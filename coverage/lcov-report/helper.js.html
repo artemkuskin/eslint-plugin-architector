@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.89% </span>
+                <span class="strong">85.45% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>48/54</span>
+                <span class='fraction'>47/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.15% </span>
+                <span class="strong">42.31% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/26</span>
+                <span class='fraction'>11/26</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88% </span>
+                <span class="strong">84.31% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/50</span>
+                <span class='fraction'>43/51</span>
             </div>
         
             
@@ -250,7 +250,8 @@
 <a name='L191'></a><a href='#L191'>191</a>
 <a name='L192'></a><a href='#L192'>192</a>
 <a name='L193'></a><a href='#L193'>193</a>
-<a name='L194'></a><a href='#L194'>194</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,11 +289,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -312,9 +313,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -504,13 +506,14 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
 <span class="cstat-no" title="statement not covered" >          return `import prohibited due to different nesting levels`;</span>
          }
          } else {
-          <span class="missing-if-branch" title="else path not taken" >E</span>if (currentModuleLevelConfiguration.parents === parentTargetModule.parents) {
-              <span class="missing-if-branch" title="else path not taken" >E</span>if (parentTargetModule.index &lt;=  currentModuleLevelConfiguration.index) {
-                return `???????????????????????`
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (currentModuleLevelConfiguration.parents === parentTargetModule.parents) {
+<span class="cstat-no" title="statement not covered" >              if (parentTargetModule.index &gt;=  currentModuleLevelConfiguration.index) {</span>
+<span class="cstat-no" title="statement not covered" >                return `???????????????????????`</span>
               }
-            } else <span class="cstat-no" title="statement not covered" >if (currentModuleLevelConfiguration.parents !== parentTargetModule.parents) {</span>
-              
+            } else if (currentModuleLevelConfiguration.name !== configurationOfTargetModule.parents) {
+<span class="cstat-no" title="statement not covered" >              return "xzxxxxxxxxxxx"</span>
             }
+            // } else if (currentModuleLevelConfiguration.parents !== parentTargetModule.parents)
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
         //   if (parentTargetModule.index &gt;=  currentModuleLevelConfiguration.index) {
         //     return `???????????????????????`
@@ -643,7 +646,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jan 19 2023 15:00:10 GMT+0300 (Москва, стандартное время)
+                at Thu Jan 19 2023 15:08:32 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
