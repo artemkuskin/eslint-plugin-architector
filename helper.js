@@ -30,11 +30,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     // модуль может не принадлежать ни одному уровню!
 
     const currentModuleLevel = partsOfPathToCurrentModule[partsOfPathToCurrentModule.length - 2];
-    console.log(currentModuleLevel);
+   // console.log(currentModuleLevel);
     
     if (currentModuleLevel) {
       const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
-      console.log(configurationTree);
+      //console.log(configurationTree);
 
       const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
 
@@ -46,8 +46,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
        // console.log(partsOfPathToTargetModule);
         const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
         //console.log(configurationOfTargetModule);
-       
+       console.log(currentModuleLevelConfiguration);
+       console.log(configurationOfTargetModule);
+       console.log(parentTargetModule);
         if (configurationOfTargetModule) {
+
         if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
           if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
             return `Cannot import ${importLevel} from ${currentModuleLevel}`;
@@ -60,7 +63,10 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
               if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
                 return `???????????????????????`
               }
+            } else if (currentModuleLevelConfiguration.name !== configurationOfTargetModule.parents) {
+              return "xzxxxxxxxxxxx"
             }
+            // } else if (currentModuleLevelConfiguration.parents !== parentTargetModule.parents)
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
         //   if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
         //     return `???????????????????????`

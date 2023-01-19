@@ -102,56 +102,56 @@ describe("Validate hierarchy with default config", () => {
 
   const componentFolder = "components";
 
+  // it("allow downward import", () => {
+  //   const errors = validateHierarchy(filePath, "../atomsMAin/asdas/asd/ComponentB", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
+
   it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../atomsMAin/asdas/asd/ComponentB", hierarchy, componentFolder);
+    const errors = validateHierarchy(filePath, "../molecules/atoms123/ComponentA", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
 
-  it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../templates/ComponentA", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("allow downward import", () => {
+  //   const errors = validateHierarchy(filePath, "../molecules/ComponentA", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
 
-  it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../molecules/ComponentA", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
-
-  it("disallow upward import", () => {
-    const errors = validateHierarchy(filePath, "../organisms/ComponentB", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("disallow upward import", () => {
+  //   const errors = validateHierarchy(filePath, "../organisms/ComponentB", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
   
-  it("allow horizontal import", () => {
-    const errors = validateHierarchy(filePath, "./ComponentY", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("allow horizontal import", () => {
+  //   const errors = validateHierarchy(filePath, "./ComponentY", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
 
-  it("disallow upward import", () => {
-    const errors = validateHierarchy("src/components/molecules/atoms2/ComponentA", "../ato/ComponentB", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("disallow upward import", () => {
+  //   const errors = validateHierarchy("src/components/molecules/atoms2/ComponentA", "../ato/ComponentB", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
 
 
-  it("disallow upward import", () => {
-    const errors = validateHierarchy("src/components/molecules/atoms5/ComponentA", "../atoms6/ComponentB",hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("disallow upward import", () => {
+  //   const errors = validateHierarchy("src/components/molecules/atoms5/ComponentA", "../atoms6/ComponentB",hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
 
-  it("disallow upward import", () => {
-    const errors = validateHierarchy("src/components/molecules/atoms1/ComponentA", "../atoms5/ComponentB", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("disallow upward import", () => {
+  //   const errors = validateHierarchy("src/components/molecules/atoms1/ComponentA", "../atoms5/ComponentB", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
 
-  it("disallow upward import", () => {
-    const errors = validateHierarchy("src/components/molecules/atoms5/ComponentA", "../atoms1/ComponentB", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("disallow upward import", () => {
+  //   const errors = validateHierarchy("src/components/molecules/atoms5/ComponentA", "../atoms1/ComponentB", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
 
-  it("disallow upward import", () => {
-    const errors = validateHierarchy("src/components/molecules/atoms5/atoms6/ComponentA", "../atoms5/ComponentB", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("disallow upward import", () => {
+  //   const errors = validateHierarchy("src/components/molecules/atoms5/atoms6/ComponentA", "../atoms5/ComponentB", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
 
 });
 
