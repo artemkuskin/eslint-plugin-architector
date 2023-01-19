@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.79% </span>
+                <span class="strong">80.65% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>46/53</span>
+                <span class='fraction'>50/62</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.83% </span>
+                <span class="strong">42.31% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/24</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>11/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">85.71% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>12/14</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">82.14% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>42/49</span>
+                <span class='fraction'>46/56</span>
             </div>
         
             
@@ -191,7 +191,16 @@
 <a name='L132'></a><a href='#L132'>132</a>
 <a name='L133'></a><a href='#L133'>133</a>
 <a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -235,6 +244,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -249,8 +260,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -325,7 +341,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const TreeModel = require("tree-model");
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const path = require('path');
+const TreeModel = require("tree-model");
 &nbsp;
 module.exports = validateIfImportIsAllowed;
 &nbsp;
@@ -366,8 +383,10 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       console.log(configurationTree);
 &nbsp;
       const currentModuleLevelConfiguration = configurationTree.find((elem) =&gt; elem.name === currentModuleLevel);
-&nbsp;
+      
       const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath)
+      const name = targetModuleLevel.input.split("/")
+      console.log(name);
       <span class="missing-if-branch" title="else path not taken" >E</span>if (targetModuleLevel) {
         const parentTargetModule = configurationTree.find((elem) =&gt; elem.name === targetModuleLevel[1]);
         const partsOfPathToTargetModule = importDefinitionPath.split("/");
@@ -381,10 +400,15 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
 <span class="cstat-no" title="statement not covered" >          if (configurationOfTargetModule.index &gt;= currentModuleLevelConfiguration.index) {</span>
 <span class="cstat-no" title="statement not covered" >            return `Cannot import ${importLevel} from ${currentModuleLevel}`;</span>
           }
-        } else <span class="cstat-no" title="statement not covered" >if (currentModuleLevelConfiguration.name !== configurationOfTargetModule.parents) {</span>
-<span class="cstat-no" title="statement not covered" >          return `import prohibited due to different nesting levels`;</span>
+        } else <span class="cstat-no" title="statement not covered" >if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {</span>
+          const firstParentCurrentModuleLevelConfiguration = <span class="cstat-no" title="statement not covered" >configurationTree.find(<span class="fstat-no" title="function not covered" >(e</span>lem) =&gt; <span class="cstat-no" title="statement not covered" >elem.name === currentModuleLevelConfiguration.firstParent)</span></span>
+          const firstParentConfigurationOfTargetModule = <span class="cstat-no" title="statement not covered" >configurationTree.find(<span class="fstat-no" title="function not covered" >(e</span>lem) =&gt; <span class="cstat-no" title="statement not covered" >elem.name === configurationOfTargetModule.firstParent)</span></span>
+<span class="cstat-no" title="statement not covered" >          if (firstParentConfigurationOfTargetModule.index &gt;= firstParentCurrentModuleLevelConfiguration.index) {</span>
+<span class="cstat-no" title="statement not covered" >            return 'qqqqqqqqqqqqqqqqqqqqqqqqqqqq'</span>
+          }
          }
          } else {
+          const pathConfigurationOfTargetModule = path.resolve(__dirname, )
           <span class="missing-if-branch" title="if path not taken" >I</span>if (currentModuleLevelConfiguration.parents === parentTargetModule.parents) {
 <span class="cstat-no" title="statement not covered" >              if (parentTargetModule.index &gt;=  currentModuleLevelConfiguration.index) {</span>
 <span class="cstat-no" title="statement not covered" >                return `???????????????????????`</span>
@@ -466,7 +490,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jan 19 2023 17:27:22 GMT+0300 (Москва, стандартное время)
+                at Thu Jan 19 2023 17:46:09 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
