@@ -1,8 +1,8 @@
 {
-  "name": "eslint-plugin-atomic-design-hierarchy",
+  "name": "eslint-plugin-architector-import",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robinalaerts1/eslint-plugin-atomic-design-hierarchy.git"
+    "url": "git+https://github.com/artemkuskin/eslint-plagin-architector.git"
   },
   "version": "1.0.10",
   "description": "Eslint plugin for enforcing atomic design hierarchy",
