@@ -54,10 +54,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
             return `Cannot import ${importLevel} from ${currentModuleLevel}`;
           }
-        } else if (currentModuleLevelConfiguration.name !== configurationOfTargetModule.parents) {
-          return `import prohibited due to different nesting levels`;
-         }
-         else if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
+        } else if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
           const firstParentCurrentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevelConfiguration.firstParent)
           const firstParentConfigurationOfTargetModule = configurationTree.find((elem) => elem.name === configurationOfTargetModule.firstParent)
           if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
