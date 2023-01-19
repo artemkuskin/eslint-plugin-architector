@@ -1,5 +1,5 @@
 const TreeModel = require("tree-model");
-const path = require('path');
+
 module.exports = validateIfImportIsAllowed;
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
@@ -16,59 +16,52 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
         architectureConfigTree.push({
           name: architectureConfigRules[key].level,
           index: key,
-          parents: lastParent || rootDirectory,
+          parents: lastParent || rootDirectory
         });
         if (architectureConfigRules[key].children.length !== 0) {
           getArchitectureConfigurationTree(architectureConfigRules[key].children);
         }
       }
       return architectureConfigTree;
+
     }
 
     // не все папки указаны в конфиге!
     // модуль может не принадлежать ни одному уровню!
 
     const currentModuleLevel = partsOfPathToCurrentModule[partsOfPathToCurrentModule.length - 2];
-    // console.log(currentModuleLevel);
+    console.log(currentModuleLevel);
 
-  //  console.log( path.resolve(__dirname, importDefinitionPath));
     if (currentModuleLevel) {
       const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
-      //console.log(configurationTree);
+      console.log(configurationTree);
 
       const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
 
-      const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
+      const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath)
       if (targetModuleLevel) {
         const parentTargetModule = configurationTree.find((elem) => elem.name === targetModuleLevel[1]);
         const partsOfPathToTargetModule = importDefinitionPath.split("/");
         const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2]; //куда импортим
-        // console.log(partsOfPathToTargetModule);
+       // console.log(partsOfPathToTargetModule);
         const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
         //console.log(configurationOfTargetModule);
-        console.log(currentModuleLevelConfiguration);
-        console.log(configurationOfTargetModule);
-        console.log(parentTargetModule);
+
         if (configurationOfTargetModule) {
-          if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
-            if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
-              return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+        if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
+          if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
+            return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+          }
+        } else if (currentModuleLevelConfiguration.name !== configurationOfTargetModule.parents) {
+          return `import prohibited due to different nesting levels`;
+         }
+         } else {
+          if (currentModuleLevelConfiguration.parents === parentTargetModule.parents) {
+              if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
+                return `???????????????????????`
+              }
             }
-          }
-          if (currentModuleLevelConfiguration.name !== configurationOfTargetModule.parents) {
-            return `import prohibited due to different nesting levels`;
-          }
-        } else {
-          // if (currentModuleLevelConfiguration.parents === parentTargetModule.parents) {
-          //   if (parentTargetModule.index >= currentModuleLevelConfiguration.index) {
-          //     return `???????????????????????`;
-          //   }
-          // }
-          if (currentModuleLevelConfiguration.name !== configurationOfTargetModule.parents) {
-            return "xzxxxxxxxxxxx";
-          }
-          // } else if (currentModuleLevelConfiguration.parents !== parentTargetModule.parents)
-        } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
+         } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
         //   if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
         //     return `???????????????????????`
         //   }
@@ -78,7 +71,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   }
 }
 
-function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
+function checkTargetModuleLevel  (configurationTree, importDefinitionPath)  {
   const levelsNames = configurationTree.map((levelConfiguration) => levelConfiguration.name);
 
   const levelsNamesString = levelsNames.reduce((acc, cur) => {
@@ -87,7 +80,7 @@ function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
 
   const targetModuleLevel = new RegExp(`(${levelsNamesString})`, "g").exec(importDefinitionPath);
   //console.log(targetModuleLevel);
-  return targetModuleLevel;
+  return targetModuleLevel
 }
 
 function getAllParentThisNode(dataset, nodeLevel) {
@@ -107,6 +100,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
 
   return parents[parents.length - 2];
 }
+
 // const fs = require('fs');
 // const path = require('path');
 
