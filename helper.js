@@ -1,4 +1,3 @@
-const path = require('path');
 const TreeModel = require("tree-model");
 
 module.exports = validateIfImportIsAllowed;
@@ -40,10 +39,8 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       console.log(configurationTree);
 
       const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
-      
+
       const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath)
-      const name = targetModuleLevel.input.split("/")
-      console.log(name);
       if (targetModuleLevel) {
         const parentTargetModule = configurationTree.find((elem) => elem.name === targetModuleLevel[1]);
         const partsOfPathToTargetModule = importDefinitionPath.split("/");
@@ -65,16 +62,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           }
          }
          } else {
-          const pathConfigurationOfTargetModule = path.resolve(__dirname, name[name.length - 2])
-          const path = pathConfigurationOfTargetModule.split("/")
-          const targetLevel = [{name: path[path.length - 1], firstParent: path[0] }]
-          console.log(pathConfigurationOfTargetModule);
-          if (currentModuleLevelConfiguration.firstParent !== targetLevel.firstParent) {
-            const firstParentCurrentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevelConfiguration.firstParent)
-            const firstParentConfigurationOfTargetModule = configurationTree.find((elem) => elem.name === targetLevel.firstParent)
-            if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
-              return `${targetLevel}`
-            }
+          // const pathConfigurationOfTargetModule = path.resolve(__dirname, name[name.length - 2])
+          // const path = pathConfigurationOfTargetModule.split("/")
+          // const targetLevel = [{name: path[path.length - 1], firstParent: path[0] }]
+          if (currentModuleLevelConfiguration.parents === parentTargetModule.parents) {
+              if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
+                return `${__dirname, "A1"}`
+              }
             }
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
         //   if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
