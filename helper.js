@@ -73,7 +73,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             const firstParentCurrentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevelConfiguration.firstParent)
             const firstParentConfigurationOfTargetModule = configurationTree.find((elem) => elem.name === targetLevel.firstParent)
             if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
-              return 'zzzzzzzzzzzzzzzzzzzzzzzzzzz'
+              return `${targetLevel}`
             }
             }
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
