@@ -12,11 +12,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     const architectureConfigTree = [];
     function getArchitectureConfigurationTree(architectureConfigRules) {
       for (let key in architectureConfigRules) {
-        const lastParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level);
+        const lastParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).lastParent;
+        const firstParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).firstParent
         architectureConfigTree.push({
           name: architectureConfigRules[key].level,
           index: key,
-          parents: lastParent || rootDirectory
+          parents: lastParent || rootDirectory,
+          firstParent: firstParent
         });
         if (architectureConfigRules[key].children.length !== 0) {
           getArchitectureConfigurationTree(architectureConfigRules[key].children);
@@ -54,6 +56,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           }
         } else if (currentModuleLevelConfiguration.name !== configurationOfTargetModule.parents) {
           return `import prohibited due to different nesting levels`;
+         }
+         else if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
+          const firstParentCurrentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevelConfiguration.firstParent)
+          const firstParentConfigurationOfTargetModule = configurationTree.find((elem) => elem.name === configurationOfTargetModule.firstParent)
+          if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
+            return 'qqqqqqqqqqqqqqqqqqqqqqqqqqqq'
+          }
          }
          } else {
           if (currentModuleLevelConfiguration.parents === parentTargetModule.parents) {
@@ -98,7 +107,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
     });
   });
 
-  return parents[parents.length - 2];
+  return {lastParent: parents[parents.length - 2], firstParent: parents[0]};
 }
 
 // const fs = require('fs');
