@@ -40,7 +40,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       const asd = path.resolve(__dirname, importDefinitionPath).split("/")
       const targetModuleLevel = {name: asd[asd.length - 2], index: 0, parent: asd[asd.length - 3]}
       if (targetModuleLevel) {
-        const parentTargetModule = {name: asd[asd.length - 2], index: 0, parent: asd[asd.length - 3]}
+        const parentTargetModule = {name: asd[asd.length - 2], index: 0, parents: asd[asd.length - 3]}
         const partsOfPathToTargetModule = importDefinitionPath.split("/");
         const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2]; //куда импортим
         // console.log(partsOfPathToTargetModule);
