@@ -82,11 +82,12 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
           const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentModule)
           const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]) //куда
+          console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName);
           if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
-            if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
+            //if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
               //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
               return `${"?????????????????????????????????????????????????"}`;
-            }
+            //}
           }
           console.log(moduleTargetLevelFirstName);
           // function flatten(lists) {
