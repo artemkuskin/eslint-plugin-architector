@@ -58,7 +58,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
         const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
         //console.log(configurationOfTargetModule);
 
-        if (configurationOfTargetModule && currentModuleLevelConfiguration) {
+        if (configurationOfTargetModule) {
          // console.log(configurationOfTargetModule);
           //console.log(currentModuleLevelConfiguration);
           if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
