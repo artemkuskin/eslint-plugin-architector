@@ -62,12 +62,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           }
          }
          } else {
-          // const pathConfigurationOfTargetModule = path.resolve(__dirname, name[name.length - 2])
-          // const path = pathConfigurationOfTargetModule.split("/")
-          // const targetLevel = [{name: path[path.length - 1], firstParent: path[0] }]
+          const name = importDefinitionPath.split('/')
+           const pathConfigurationOfTargetModule = path.resolve(__dirname, name[name.length - 2])
+           const path = pathConfigurationOfTargetModule.split("/")
+           const targetLevel = [{name: path[path.length - 1], firstParent: path[0] }]
           if (currentModuleLevelConfiguration.parents === parentTargetModule.parents) {
               if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
-                return `${__dirname, "A1"}`
+                return `${__dirname, pathConfigurationOfTargetModule}`
               }
             }
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
