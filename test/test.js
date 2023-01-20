@@ -1,97 +1,25 @@
 const validateHierarchy = require("../helper");
 
 describe("Validate hierarchy with default config", () => {
-  const filePath = "src/components/molecules/atoms1/ComponentX";
+  const filePath = "src/components/B/ComponentX";
   const filePathOutsideComponentsFolder = "src/components-alt/molecules/ComponentX";
 
   const hierarchy = {
     file: [
       {
-        level: "atomsMAin",
-        children: [],
-      },
-      {
-        level: "molecules",
+        level: "A",
         children: [
-          {
-            level: "atoms1",
-            children: [
-              {
-                level: "atoms2",
-                children: [
-                  {
-                    level: "atoms4444",
-                    children: [],
-                  },
-                ],
-              },
-              {
-                level: "ato",
-                children: [
-                  {
-                    level: "atoms5555",
-                    children: [],
-                  },
-                ],
-              },
-              {
-                level: "aaaaaaa",
-                children: [
-                  {
-                    level: "atoms77777",
-                    children: [],
-                  },
-                ],
-              },
-              {
-                level: "atoms2dsad",
-                children: [
-                  {
-                    level: "atoms88888",
-                    children: [],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            level: "atoms5",
-            children: [
-              {
-                level: "atoms6",
-                children: [
-                  {
-                    level: "atoms7",
-                    children: [],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            level: "atoms8",
-            children: [
-              {
-                level: "atoms9",
-                children: [
-                  {
-                    level: "atoms0",
-                    children: [],
-                  },
-                ],
-              },
-            ],
-          },
+
         ],
       },
       {
-        level: "organisms",
-        children: [],
-      },
-      {
-        level: "templates",
-        children: [],
-      },
+        level: "B",
+        children: []
+        },
+      // {
+      //   level: "templates",
+      //   children: [],
+      // },
     ],
     // atoms: 0,
     // molecules: 1,
@@ -108,7 +36,7 @@ describe("Validate hierarchy with default config", () => {
   // });
 
   it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "/home/artem/my-app/components/templates/A/ComponentA", hierarchy, componentFolder);
+    const errors = validateHierarchy(filePath, "../../A/A1/asd", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
 
