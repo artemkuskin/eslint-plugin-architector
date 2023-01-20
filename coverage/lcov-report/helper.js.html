@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74.6% </span>
+                <span class="strong">84.38% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>47/63</span>
+                <span class='fraction'>54/64</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.46% </span>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/26</span>
+                <span class='fraction'>12/26</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.44% </span>
+                <span class="strong">86.21% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>43/57</span>
+                <span class='fraction'>50/58</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -201,7 +201,7 @@
 <a name='L142'></a><a href='#L142'>142</a>
 <a name='L143'></a><a href='#L143'>143</a>
 <a name='L144'></a><a href='#L144'>144</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -266,12 +266,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -343,8 +343,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const TreeModel = require("tree-model");
-&nbsp;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const path = require('path');
+const TreeModel = require("tree-model");
 module.exports = validateIfImportIsAllowed;
 &nbsp;
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
@@ -409,12 +409,12 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
          } else {
           const name = importDefinitionPath.split('/')
            const pathConfigurationOfTargetModule = path.resolve(__dirname, name[name.length - 2])
-           const path = <span class="cstat-no" title="statement not covered" >pathConfigurationOfTargetModule.split("/")</span>
-           const targetLevel = <span class="cstat-no" title="statement not covered" >[{name: path[path.length - 1], firstParent: path[0] }]</span>
-<span class="cstat-no" title="statement not covered" >          if (currentModuleLevelConfiguration.parents !== parentTargetModule.parents) {</span>
-<span class="cstat-no" title="statement not covered" >              if (parentTargetModule.index &gt;=  currentModuleLevelConfiguration.index) {</span>
-<span class="cstat-no" title="statement not covered" >                console.log({__dirname, pathConfigurationOfTargetModule});</span>
-<span class="cstat-no" title="statement not covered" >                return `${__dirname, pathConfigurationOfTargetModule}`</span>
+           const path1 = pathConfigurationOfTargetModule.split("/")
+           const targetLevel = [{name: path1[path1.length - 1], firstParent: path1[0] }]
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (currentModuleLevelConfiguration.parents !== parentTargetModule.parents) {
+              <span class="missing-if-branch" title="else path not taken" >E</span>if (parentTargetModule.index &gt;=  currentModuleLevelConfiguration.index) {
+                console.log(pathConfigurationOfTargetModule);
+                return `${__dirname, pathConfigurationOfTargetModule}`
               }
             }
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
@@ -493,7 +493,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jan 20 2023 09:27:42 GMT+0300 (Москва, стандартное время)
+                at Fri Jan 20 2023 09:38:46 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>

@@ -1,5 +1,5 @@
+const path = require('path');
 const TreeModel = require("tree-model");
-
 module.exports = validateIfImportIsAllowed;
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
@@ -64,12 +64,12 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
          } else {
           const name = importDefinitionPath.split('/')
            const pathConfigurationOfTargetModule = path.resolve(__dirname, name[name.length - 2])
-           const path = pathConfigurationOfTargetModule.split("/")
-           const targetLevel = [{name: path[path.length - 1], firstParent: path[0] }]
+           const path1 = pathConfigurationOfTargetModule.split("/")
+           const targetLevel = [{name: path1[path1.length - 1], firstParent: path1[0] }]
           if (currentModuleLevelConfiguration.parents !== parentTargetModule.parents) {
               if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
-                console.log({__dirname, pathConfigurationOfTargetModule});
-                return `${__dirname, pathConfigurationOfTargetModule}`
+                console.log(pathConfigurationOfTargetModule);
+                return `${targetLevel}`
               }
             }
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
