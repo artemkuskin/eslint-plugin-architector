@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">59.09% </span>
+                <span class="strong">84.85% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>39/66</span>
+                <span class='fraction'>56/66</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.62% </span>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/26</span>
+                <span class='fraction'>12/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.43% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>10/14</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.67% </span>
+                <span class="strong">86.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>37/60</span>
+                <span class='fraction'>52/60</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -246,36 +246,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -390,15 +390,15 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       const currentModuleLevelConfiguration = configurationTree.find((elem) =&gt; elem.name === currentModuleLevel);
 &nbsp;
       const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath)
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (targetModuleLevel) {
-        const parentTargetModule = <span class="cstat-no" title="statement not covered" >configurationTree.find(<span class="fstat-no" title="function not covered" >(e</span>lem) =&gt; <span class="cstat-no" title="statement not covered" >elem.name === targetModuleLevel[1])</span>;</span>
-        const partsOfPathToTargetModule = <span class="cstat-no" title="statement not covered" >importDefinitionPath.split("/");</span>
-        const importLevel = <span class="cstat-no" title="statement not covered" >partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2];</span> //куда импортим
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (targetModuleLevel) {
+        const parentTargetModule = configurationTree.find((elem) =&gt; elem.name === targetModuleLevel[1]);
+        const partsOfPathToTargetModule = importDefinitionPath.split("/");
+        const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2]; //куда импортим
        // console.log(partsOfPathToTargetModule);
-        const configurationOfTargetModule = <span class="cstat-no" title="statement not covered" >configurationTree.find(<span class="fstat-no" title="function not covered" >(e</span>lem) =&gt; <span class="cstat-no" title="statement not covered" >elem.name === importLevel)</span>;</span>
+        const configurationOfTargetModule = configurationTree.find((elem) =&gt; elem.name === importLevel);
         //console.log(configurationOfTargetModule);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (configurationOfTargetModule) {</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (configurationOfTargetModule) {
 <span class="cstat-no" title="statement not covered" >        if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {</span>
 <span class="cstat-no" title="statement not covered" >          if (configurationOfTargetModule.index &gt;= currentModuleLevelConfiguration.index) {</span>
 <span class="cstat-no" title="statement not covered" >            return `Cannot import ${importLevel} from ${currentModuleLevel}`;</span>
@@ -411,16 +411,16 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           }
          }
          } else {
-          const name = <span class="cstat-no" title="statement not covered" >importDefinitionPath.split('/')</span>
-           const pathConfigurationOfTargetModule = <span class="cstat-no" title="statement not covered" >path.resolve(__dirname, name[name.length - 2])</span>
-           const path1 = <span class="cstat-no" title="statement not covered" >pathConfigurationOfTargetModule.split("/")</span>
-           const nameFolder = <span class="cstat-no" title="statement not covered" >path1[path1.length - 1]</span>
-           const targetModuleLevel = <span class="cstat-no" title="statement not covered" >new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathConfigurationOfTargetModule)</span>
-           const targetLevel = <span class="cstat-no" title="statement not covered" >[{name: path1[path1.length - 1], firstParent: path1[0] }]</span>
-<span class="cstat-no" title="statement not covered" >          if (currentModuleLevelConfiguration.name !== parentTargetModule.name) {</span>
-<span class="cstat-no" title="statement not covered" >              if (parentTargetModule.index &gt;=  currentModuleLevelConfiguration.index) {</span>
-<span class="cstat-no" title="statement not covered" >                console.log(pathConfigurationOfTargetModule);</span>
-<span class="cstat-no" title="statement not covered" >                return `${targetModuleLevel}`</span>
+          const name = importDefinitionPath.split('/')
+           const pathConfigurationOfTargetModule = path.resolve(rootDirectory, name[name.length - 2])
+           const path1 = pathConfigurationOfTargetModule.split("/")
+           const nameFolder = path1[path1.length - 1]
+           const targetModuleLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathConfigurationOfTargetModule)
+           const targetLevel = [{name: path1[path1.length - 1], firstParent: path1[0] }]
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (currentModuleLevelConfiguration.name !== parentTargetModule.name) {
+              <span class="missing-if-branch" title="else path not taken" >E</span>if (parentTargetModule.index &gt;=  currentModuleLevelConfiguration.index) {
+                console.log(pathConfigurationOfTargetModule);
+                return `${pathConfigurationOfTargetModule}`
               }
             }
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
@@ -499,7 +499,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jan 20 2023 10:26:48 GMT+0300 (Москва, стандартное время)
+                at Fri Jan 20 2023 10:35:23 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
