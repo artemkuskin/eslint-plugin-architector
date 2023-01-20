@@ -83,7 +83,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentModule)
           const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]) //куда
           if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
-            if (moduleCurrentLevelFirstName.index > moduleTargetLevelFirstName.index) {
+            if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
               //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
               return `${"?????????????????????????????????????????????????"}`;
             }
