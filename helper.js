@@ -71,7 +71,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           if (currentModuleLevelConfiguration.name !== parentTargetModule.name) {
               if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
                 console.log(pathConfigurationOfTargetModule);
-                return `${pathConfigurationOfTargetModule}`
+                return `${pathToCurrentModule}`
               }
             }
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
