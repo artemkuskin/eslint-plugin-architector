@@ -79,8 +79,16 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const lastParent = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 3]
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)
           const nameTargetFolder = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 2]
-          const moduleLevelFirstParent = configurationTree.find((elem) => elem.name === firstParent);
-          console.log(moduleLevelFirstParent);
+          const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
+          const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentModule)
+          const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]) //куда
+          if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
+            if (moduleCurrentLevelFirstName.index > moduleTargetLevelFirstName.index) {
+              //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
+              return `${"?????????????????????????????????????????????????"}`;
+            }
+          }
+          console.log(moduleTargetLevelFirstName);
           // function flatten(lists) {
           //   return lists.reduce((a, b) => a.concat(b), []);
           // }
@@ -122,12 +130,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
          // const allModalofTheNonSpecifiedInRules = getParentsAndNameFolder();
           // const firstParentModalofTheNonSpecifiedInRules = allModalofTheNonSpecifiedInRules.find((elem) => elem.name === name[name[length -1 ]])
           // const firstParentCurrentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevelConfiguration.firstParent)
-          if (currentModuleLevelConfiguration.name !== parentTargetModule.name) {
-            if (parentTargetModule.index >= currentModuleLevelConfiguration.index) {
-              //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
-              return `${"pathConfigurationOfTargetModule"}`;
-            }
-          }
+         
         } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
         //   if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
         //     return `???????????????????????`
