@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.33% </span>
+                <span class="strong">82.19% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>64/75</span>
+                <span class='fraction'>60/73</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.43% </span>
+                <span class="strong">35.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>13/28</span>
+                <span class='fraction'>10/28</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.06% </span>
+                <span class="strong">80.6% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>58/69</span>
+                <span class='fraction'>54/67</span>
             </div>
         
             
@@ -351,20 +351,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -539,7 +539,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
         const configurationOfTargetModule = configurationTree.find((elem) =&gt; elem.name === importLevel);
         //console.log(configurationOfTargetModule);
 &nbsp;
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (configurationOfTargetModule &amp;&amp; currentModuleLevelConfiguration) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (configurationOfTargetModule &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >currentModuleLevelConfiguration)</span> {
          // console.log(configurationOfTargetModule);
           //console.log(currentModuleLevelConfiguration);
 <span class="cstat-no" title="statement not covered" >          if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {</span>
@@ -562,20 +562,20 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const absolutePathToTheFile  = path.resolve(pathToCurrentModule, importDefinitionPath)
           const absoluteTargetPathToTheFile = absolutePathToTheFile.split("/").splice(0, absolutePathToTheFile.split("/").length - 3).join("/")
           const absolutePathToTheFile2  = path.resolve(absoluteTargetPathToTheFile, importDefinitionPath)
-          const lastParent = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 3]
+          //const lastParent = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 3]
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)
-          const nameTargetFolder = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 2]
+          //const nameTargetFolder = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 2]
           const moduleTargetLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParent[1]); //что импортим
-          const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile2)
-          console.log(absolutePathToTheFile2);
+          const firstParentcCurrentLevel =  new RegExp(`${moduleTargetLevelFirstName.name}\\/(\\w+)/(\\w+)`, "g").exec(absolutePathToTheFile)
+          console.log(firstParentcCurrentLevel);
           const moduleCurrentLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParentcCurrentLevel[1]) //куда
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName);
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName, absolutePathToTheFile);
           //console.log(a);
-          <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
-            <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleCurrentLevelFirstName.index &gt; moduleTargetLevelFirstName.index) {
+          if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
+<span class="cstat-no" title="statement not covered" >            if (moduleCurrentLevelFirstName.index &gt; moduleTargetLevelFirstName.index) {</span>
               //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
-              return `adasdasdasdasd`;
+<span class="cstat-no" title="statement not covered" >              return `adasdasdasdasd`;</span>
             }
 &nbsp;
           }
@@ -697,7 +697,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jan 20 2023 17:23:54 GMT+0300 (Москва, стандартное время)
+                at Fri Jan 20 2023 17:41:21 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>

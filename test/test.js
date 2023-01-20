@@ -36,7 +36,7 @@ describe("Validate hierarchy with default config", () => {
   // });
 
   it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../B/B.jsx", hierarchy, componentFolder);
+    const errors = validateHierarchy(filePath, "../B/B1/B1.jsx", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
 
