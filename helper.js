@@ -86,7 +86,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
             //if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
               //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
-              return `${"?????????????????????????????????????????????????"}`;
+              return `${moduleTargetLevelFirstName, moduleCurrentLevelFirstName}`;
             //}
           }
           console.log(moduleTargetLevelFirstName);
