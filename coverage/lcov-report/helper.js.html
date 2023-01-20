@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.72% </span>
+                <span class="strong">85.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>61/72</span>
+                <span class='fraction'>64/75</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.31% </span>
+                <span class="strong">46.43% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/26</span>
+                <span class='fraction'>13/28</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">84.06% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>55/66</span>
+                <span class='fraction'>58/69</span>
             </div>
         
             
@@ -264,7 +264,11 @@
 <a name='L205'></a><a href='#L205'>205</a>
 <a name='L206'></a><a href='#L206'>206</a>
 <a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L208'></a><a href='#L208'>208</a>
+<a name='L209'></a><a href='#L209'>209</a>
+<a name='L210'></a><a href='#L210'>210</a>
+<a name='L211'></a><a href='#L211'>211</a>
+<a name='L212'></a><a href='#L212'>212</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -312,21 +316,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -334,12 +337,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -519,17 +527,20 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       // console.log(configurationTree);
 &nbsp;
       const currentModuleLevelConfiguration = configurationTree.find((elem) =&gt; elem.name === currentModuleLevel);
+      console.log(currentModuleLevel);
 &nbsp;
       const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
       <span class="missing-if-branch" title="else path not taken" >E</span>if (targetModuleLevel) {
         const parentTargetModule = configurationTree.find((elem) =&gt; elem.name === targetModuleLevel[1]);
         const partsOfPathToTargetModule = importDefinitionPath.split("/");
-        const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2]; //куда импортим
+        const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2]; 
+        console.log(partsOfPathToTargetModule);
         // console.log(partsOfPathToTargetModule);
         const configurationOfTargetModule = configurationTree.find((elem) =&gt; elem.name === importLevel);
         //console.log(configurationOfTargetModule);
 &nbsp;
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (configurationOfTargetModule) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (configurationOfTargetModule &amp;&amp; currentModuleLevelConfiguration) {
+         // console.log(configurationOfTargetModule);
           //console.log(currentModuleLevelConfiguration);
 <span class="cstat-no" title="statement not covered" >          if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {</span>
 <span class="cstat-no" title="statement not covered" >            if (configurationOfTargetModule.index &gt;= currentModuleLevelConfiguration.index) {</span>
@@ -549,13 +560,14 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
         } else {
           const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
           const absolutePathToTheFile  = path.resolve(pathToCurrentModule, importDefinitionPath)
-          const absoluteTargetPathToTheFile = absolutePathToTheFile.split("/").splice(0, absolutePathToTheFile.split("/").length - 4).join("/")
+          const absoluteTargetPathToTheFile = absolutePathToTheFile.split("/").splice(0, absolutePathToTheFile.split("/").length - 3).join("/")
           const absolutePathToTheFile2  = path.resolve(absoluteTargetPathToTheFile, importDefinitionPath)
           const lastParent = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 3]
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)
           const nameTargetFolder = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 2]
           const moduleTargetLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParent[1]); //что импортим
           const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile2)
+          console.log(absolutePathToTheFile2);
           const moduleCurrentLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParentcCurrentLevel[1]) //куда
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName);
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName, absolutePathToTheFile);
@@ -563,7 +575,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
             <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleCurrentLevelFirstName.index &gt; moduleTargetLevelFirstName.index) {
               //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
-              return `${moduleTargetLevelFirstName.name, moduleCurrentLevelFirstName.name }`;
+              return `adasdasdasdasd`;
             }
 &nbsp;
           }
@@ -685,7 +697,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jan 20 2023 17:03:31 GMT+0300 (Москва, стандартное время)
+                at Fri Jan 20 2023 17:23:54 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>

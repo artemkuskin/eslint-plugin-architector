@@ -46,17 +46,20 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       // console.log(configurationTree);
 
       const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
+      console.log(currentModuleLevel);
 
       const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
       if (targetModuleLevel) {
         const parentTargetModule = configurationTree.find((elem) => elem.name === targetModuleLevel[1]);
         const partsOfPathToTargetModule = importDefinitionPath.split("/");
-        const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2]; //куда импортим
+        const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2]; 
+        console.log(partsOfPathToTargetModule);
         // console.log(partsOfPathToTargetModule);
         const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
         //console.log(configurationOfTargetModule);
 
-        if (configurationOfTargetModule) {
+        if (configurationOfTargetModule && currentModuleLevelConfiguration) {
+         // console.log(configurationOfTargetModule);
           //console.log(currentModuleLevelConfiguration);
           if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
             if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
@@ -76,13 +79,14 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
         } else {
           const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
           const absolutePathToTheFile  = path.resolve(pathToCurrentModule, importDefinitionPath)
-          const absoluteTargetPathToTheFile = absolutePathToTheFile.split("/").splice(0, absolutePathToTheFile.split("/").length - 4).join("/")
+          const absoluteTargetPathToTheFile = absolutePathToTheFile.split("/").splice(0, absolutePathToTheFile.split("/").length - 3).join("/")
           const absolutePathToTheFile2  = path.resolve(absoluteTargetPathToTheFile, importDefinitionPath)
           const lastParent = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 3]
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)
           const nameTargetFolder = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 2]
           const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
           const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile2)
+          console.log(absolutePathToTheFile2);
           const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]) //куда
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName);
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName, absolutePathToTheFile);
