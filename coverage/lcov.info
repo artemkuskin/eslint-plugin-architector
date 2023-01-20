@@ -19,7 +19,7 @@ FNH:12
 FNDA:1,validateIfImportIsAllowed
 FNDA:11,getArchitectureConfigurationTree
 FNDA:3,(anonymous_2)
-FNDA:6,(anonymous_3)
+FNDA:19,(anonymous_3)
 FNDA:19,(anonymous_4)
 FNDA:0,(anonymous_5)
 FNDA:0,(anonymous_6)
@@ -52,7 +52,7 @@ DA:39,1
 DA:41,3
 DA:43,1
 DA:44,1
-DA:45,6
+DA:45,19
 DA:46,1
 DA:47,1
 DA:49,19
@@ -72,9 +72,9 @@ DA:68,1
 DA:69,1
 DA:70,1
 DA:71,1
-DA:72,0
-DA:73,0
-DA:74,0
+DA:72,1
+DA:73,1
+DA:74,1
 DA:88,19
 DA:90,1
 DA:91,18
@@ -91,7 +91,7 @@ DA:107,38
 DA:108,104
 DA:114,38
 LF:60
-LH:49
+LH:52
 BRDA:10,0,0,1
 BRDA:10,0,1,0
 BRDA:20,1,0,19
@@ -112,12 +112,12 @@ BRDA:57,8,0,0
 BRDA:57,8,1,0
 BRDA:60,9,0,0
 BRDA:60,9,1,0
-BRDA:71,10,0,0
-BRDA:71,10,1,1
-BRDA:72,11,0,0
+BRDA:71,10,0,1
+BRDA:71,10,1,0
+BRDA:72,11,0,1
 BRDA:72,11,1,0
 BRDA:105,12,0,38
 BRDA:105,12,1,684
 BRF:26
-BRH:11
+BRH:12
 end_of_record

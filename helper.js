@@ -66,13 +66,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
            const pathConfigurationOfTargetModule = path.resolve(__dirname, name[name.length - 2])
            const path1 = pathConfigurationOfTargetModule.split("/")
            const nameFolder = path1[path1.length - 1]
-           const targetModuleLevel = new RegExp(`(${nameFolder})`, "g").exec(pathConfigurationOfTargetModule);
+           const targetModuleLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathConfigurationOfTargetModule)
            const targetLevel = [{name: path1[path1.length - 1], firstParent: path1[0] }]
-          if (currentModuleLevelConfiguration.firstParent !== parentTargetModule.firstParent) {
-              if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
+          if (currentModuleLevelConfiguration.name !== parentTargetModule.name) {
+              //if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
                 console.log(targetModuleLevel);
                 return `${targetModuleLevel}`
-              }
+             // }
             }
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
         //   if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
