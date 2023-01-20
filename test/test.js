@@ -1,7 +1,7 @@
 const validateHierarchy = require("../helper");
 
 describe("Validate hierarchy with default config", () => {
-  const filePath = "src/components/A/A1/ComponentX";
+  const filePath = "/home/artem/eslint-plagin-architector/src/A/A1/ComponentX";
   const filePathOutsideComponentsFolder = "src/components-alt/molecules/ComponentX";
 
   const hierarchy = {
@@ -28,7 +28,7 @@ describe("Validate hierarchy with default config", () => {
     // pages: 4
   };
 
-  const componentFolder = "components";
+  const componentFolder = "src";
 
   // it("allow downward import", () => {
   //   const errors = validateHierarchy(filePath, "../atomsMAin/asdas/asd/ComponentB", hierarchy, componentFolder);
@@ -36,7 +36,7 @@ describe("Validate hierarchy with default config", () => {
   // });
 
   it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../../../B/B1/asd", hierarchy, componentFolder);
+    const errors = validateHierarchy(filePath, "../B/B1/B1.jsx", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
 
