@@ -63,7 +63,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
          }
          } else {
           const name = importDefinitionPath.split('/')
-           const pathConfigurationOfTargetModule = path.resolve(rootDirectory, name[name.length - 2])
+           const pathConfigurationOfTargetModule = path.resolve(pathToCurrentModule, name[name.length - 2])
            const path1 = pathConfigurationOfTargetModule.split("/")
            const nameFolder = path1[path1.length - 1]
            const targetModuleLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathConfigurationOfTargetModule)
@@ -71,7 +71,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           if (currentModuleLevelConfiguration.name !== parentTargetModule.name) {
               if (parentTargetModule.index >=  currentModuleLevelConfiguration.index) {
                 console.log(pathConfigurationOfTargetModule);
-                return `${pathToCurrentModule}`
+                return `${pathConfigurationOfTargetModule}`
               }
             }
          } //else if (currentModuleLevelConfiguration.parents !== configurationOfTargetModule.parents) {
