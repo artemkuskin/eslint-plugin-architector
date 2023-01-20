@@ -58,7 +58,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
         const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
         //console.log(configurationOfTargetModule);
 
-        if (configurationOfTargetModule) {
+        if (configurationOfTargetModule && currentModuleLevelConfiguration) {
          // console.log(configurationOfTargetModule);
           //console.log(currentModuleLevelConfiguration);
           if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
@@ -85,9 +85,9 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)
           //const nameTargetFolder = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 2]
           const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
-          const firstParentcCurrentLevel =  new RegExp(`${moduleTargetLevelFirstName.name}\\/(\\w+)/(\\w+)`, "g").exec(absolutePathToTheFile)
-          console.log(firstParentcCurrentLevel);
-          const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[2]) //куда
+          const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile2)
+          console.log(absolutePathToTheFile2);
+          const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]) //куда
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName);
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName, absolutePathToTheFile);
           //console.log(a);
