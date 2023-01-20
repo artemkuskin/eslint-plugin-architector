@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1674218200095" clover="3.2.0">
-  <project timestamp="1674218200095" name="All files">
+<coverage generated="1674218475142" clover="3.2.0">
+  <project timestamp="1674218475143" name="All files">
     <metrics statements="63" coveredstatements="51" conditionals="24" coveredconditionals="10" methods="16" coveredmethods="14" elements="103" coveredelements="75" complexity="0" loc="63" ncloc="63" packages="1" files="1" classes="1"/>
     <file name="helper.js" path="/home/artem/eslint-plagin-architector/helper.js">
       <metrics statements="63" coveredstatements="51" conditionals="24" coveredconditionals="10" methods="16" coveredmethods="14"/>
