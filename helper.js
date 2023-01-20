@@ -82,10 +82,10 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)
           const nameTargetFolder = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 2]
           const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
-          const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)
+          const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile2)
           const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]) //куда
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName);
-          console.log(absolutePathToTheFile);
+          console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName);
           //console.log(a);
           if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
             if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
