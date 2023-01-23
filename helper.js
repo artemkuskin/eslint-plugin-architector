@@ -83,13 +83,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const moduleCurrentLevelFirstName = configurationTree.find(
             (elem) => elem.name === firstParentcCurrentLevel[1]
           ); //куда
-          console.log(pathToCurrentFile, absolutePathToTheFile);
+          console.log(firstParentAliasTargetLevel, firstParentcCurrentLevel);
           if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
             if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
               return `adasdasdasdasd`;
             }
-          } 
-          if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
+          }  
+          else if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
             const pathToCurrentFile = pathToCurrentModule
             .split("/")
             .splice(0, pathToCurrentModule.split("/").length - 1)
@@ -100,7 +100,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             }
 
           }
-          if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
+          else if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
            if (moduleCurrentLevelFirstName.index < moduleAliasTargetLevelFirstName.index) {
             return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
            }
