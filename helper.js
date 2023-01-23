@@ -100,11 +100,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             }
 
           }
-          else if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
-           if (moduleCurrentLevelFirstName.index > moduleAliasTargetLevelFirstName.index) {
-            return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-           }
-          }
+          // else if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
+          //  if (moduleCurrentLevelFirstName.index > moduleAliasTargetLevelFirstName.index) {
+          //   return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          //  }
+          // }
         }
       }
     }
