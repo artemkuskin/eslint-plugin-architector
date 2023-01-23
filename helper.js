@@ -90,11 +90,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
               return `adasdasdasdasd`;
             }
           } 
-          if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
-            if (moduleAliasTargetLevelFirstName.index > moduleCurrentLevelFirstName.index) {
-              return `ddddddddddddddddddddd`;
-            }
-          }
+          // if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
+          //   if (moduleAliasTargetLevelFirstName.index > moduleCurrentLevelFirstName.index) {
+          //     return `ddddddddddddddddddddd`;
+          //   }
+          // }
           if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
             const pathToCurrentFile = pathToCurrentModule
             .split("/")
