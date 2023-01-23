@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.28% </span>
+                <span class="strong">80.56% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>65/79</span>
+                <span class='fraction'>58/72</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.67% </span>
+                <span class="strong">40.63% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>15/36</span>
+                <span class='fraction'>13/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.24% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>15/17</span>
+                <span class='fraction'>14/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.82% </span>
+                <span class="strong">79.1% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>59/73</span>
+                <span class='fraction'>53/67</span>
             </div>
         
             
@@ -308,12 +308,12 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -330,9 +330,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -479,12 +479,12 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
           const moduleTargetLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParent[1]); //что импортим
           const firstParentcCurrentLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentFile);
-          const firstParentAliasTargetLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(importDefinitionPath)
-          const moduleAliasTargetLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParentAliasTargetLevel[1]); //что импортим
+          // const firstParentAliasTargetLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(importDefinitionPath)
+          // const moduleAliasTargetLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParentAliasTargetLevel[1]); //что импортим
           const moduleCurrentLevelFirstName = configurationTree.find(
             (elem) =&gt; elem.name === firstParentcCurrentLevel[1]
           ); //куда
-          console.log(firstParentAliasTargetLevel, firstParentcCurrentLevel);
+         // console.log(firstParentAliasTargetLevel, firstParentcCurrentLevel);
           <span class="missing-if-branch" title="if path not taken" >I</span>if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
 <span class="cstat-no" title="statement not covered" >            if (moduleCurrentLevelFirstName.index &lt; moduleTargetLevelFirstName.index) {</span>
 <span class="cstat-no" title="statement not covered" >              return `adasdasdasdasd`;</span>
@@ -501,11 +501,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             }
 &nbsp;
           }
-          <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
-           <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleCurrentLevelFirstName.index &lt; moduleAliasTargetLevelFirstName.index) {
-            return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-           }
-          }
+          // else if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
+          //  if (moduleCurrentLevelFirstName.index &gt; moduleAliasTargetLevelFirstName.index) {
+          //   return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          //  }
+          // }
         }
       }
     }
@@ -577,7 +577,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Jan 23 2023 15:02:06 GMT+0300 (Москва, стандартное время)
+                at Mon Jan 23 2023 15:10:39 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
