@@ -84,14 +84,14 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             (elem) => elem.name === firstParentcCurrentLevel[1]
             ); //куда
             //console.log(new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(importDefinitionPath));
-          console.log(pathToCurrentFile, absolutePathToTheFile);
+         // console.log(moduleCurrentLevelFirstName, moduleAliasTargetLevelFirstName);
           if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
             if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
               return `adasdasdasdasd`;
             }
           } 
           if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
-            if (moduleAliasTargetLevelFirstName.index < moduleCurrentLevelFirstName.index) {
+            if (moduleAliasTargetLevelFirstName.index > moduleCurrentLevelFirstName.index) {
               return `ddddddddddddddddddddd`;
             }
           }
