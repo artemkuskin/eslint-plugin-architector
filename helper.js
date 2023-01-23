@@ -65,7 +65,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
               (elem) => elem.name === configurationOfTargetModule.firstParent
             );
             if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
-              return "qqqqqqqqqqqqqqqqqqqqqqqqqqqq";
+              return `${path.resolve(__dirname, "jsconfig.json")}`;
             }
           }
         } else {
