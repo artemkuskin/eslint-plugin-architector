@@ -98,7 +98,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
               return `adasdasdasdasd`;
             }
 
-          } else {
+          } else if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
             return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           }
           // function flatten(lists) {
