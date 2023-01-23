@@ -90,8 +90,8 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
               return `adasdasdasdasd`;
             }
           } 
-          if (moduleTargetLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
-            if (moduleAliasTargetLevelFirstName.index < moduleTargetLevelFirstName.index) {
+          if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
+            if (moduleAliasTargetLevelFirstName.index < moduleCurrentLevelFirstName.index) {
               return `ddddddddddddddddddddd`;
             }
           }
