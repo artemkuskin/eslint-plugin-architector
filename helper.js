@@ -78,8 +78,8 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
           const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
           const firstParentcCurrentLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentFile);
-          const firstParentAliasTargetLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(importDefinitionPath)
-          const moduleAliasTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParentAliasTargetLevel[1]); //что импортим
+          // const firstParentAliasTargetLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(importDefinitionPath)
+          // const moduleAliasTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParentAliasTargetLevel[1]); //что импортим
           const moduleCurrentLevelFirstName = configurationTree.find(
             (elem) => elem.name === firstParentcCurrentLevel[1]
           ); //куда
