@@ -97,10 +97,10 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
               //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
               return `adasdasdasdasd`;
             }
-
-          } else if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
-            return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           }
+          // } else if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
+          //   return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          // }
           // function flatten(lists) {
           //   return lists.reduce((a, b) => a.concat(b), []);
           // }
