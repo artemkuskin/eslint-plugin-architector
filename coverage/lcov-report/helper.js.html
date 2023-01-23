@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.82% </span>
+                <span class="strong">82.28% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>59/73</span>
+                <span class='fraction'>65/79</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40.63% </span>
+                <span class="strong">41.67% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>13/32</span>
+                <span class='fraction'>15/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">88.24% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>14/16</span>
+                <span class='fraction'>15/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">79.41% </span>
+                <span class="strong">80.82% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>54/68</span>
+                <span class='fraction'>59/73</span>
             </div>
         
             
@@ -221,7 +221,14 @@
 <a name='L162'></a><a href='#L162'>162</a>
 <a name='L163'></a><a href='#L163'>163</a>
 <a name='L164'></a><a href='#L164'>164</a>
-<a name='L165'></a><a href='#L165'>165</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -302,23 +309,30 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -465,6 +479,8 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
           const moduleTargetLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParent[1]); //что импортим
           const firstParentcCurrentLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentFile);
+          const firstParentAliasTargetLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(importDefinitionPath)
+          const moduleAliasTargetLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParentAliasTargetLevel[1]); //что импортим
           const moduleCurrentLevelFirstName = configurationTree.find(
             (elem) =&gt; elem.name === firstParentcCurrentLevel[1]
           ); //куда
@@ -484,6 +500,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
 <span class="cstat-no" title="statement not covered" >              return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"</span>
             }
 &nbsp;
+          }
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
+           <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleCurrentLevelFirstName.index &lt; moduleAliasTargetLevelFirstName.index) {
+            return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+           }
           }
         }
       }
@@ -556,7 +577,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Jan 23 2023 14:53:17 GMT+0300 (Москва, стандартное время)
+                at Mon Jan 23 2023 14:55:46 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
