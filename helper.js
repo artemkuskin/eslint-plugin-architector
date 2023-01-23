@@ -88,8 +88,8 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
               return `adasdasdasdasd`;
             }
-          }  
-          else if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
+          } 
+          if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
             const pathToCurrentFile = pathToCurrentModule
             .split("/")
             .splice(0, pathToCurrentModule.split("/").length - 1)
@@ -101,7 +101,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
 
           }
           else if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
-           if (moduleCurrentLevelFirstName.index < moduleAliasTargetLevelFirstName.index) {
+           if (moduleCurrentLevelFirstName.index > moduleAliasTargetLevelFirstName.index) {
             return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
            }
           }
