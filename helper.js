@@ -65,10 +65,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
               (elem) => elem.name === configurationOfTargetModule.firstParent
             );
             if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
-              return `${path.resolve(__dirname, "jsconfig.json")}`;
+              return `${path.resolve('jsconfig.json')}`;
             }
           }
         } else {
+          //console.log(path.resolve(path.resolve(__dirname, "jsconfig.json"), importDefinitionPath));
           const pathToCurrentFile = pathToCurrentModule
             .split("/")
             .splice(0, pathToCurrentModule.split("/").length - 1)
