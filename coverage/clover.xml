@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1674225681953" clover="3.2.0">
-  <project timestamp="1674225681954" name="All files">
-    <metrics statements="67" coveredstatements="54" conditionals="28" coveredconditionals="10" methods="16" coveredmethods="14" elements="111" coveredelements="78" complexity="0" loc="67" ncloc="67" packages="1" files="1" classes="1"/>
+<coverage generated="1674456599229" clover="3.2.0">
+  <project timestamp="1674456599230" name="All files">
+    <metrics statements="66" coveredstatements="54" conditionals="28" coveredconditionals="12" methods="16" coveredmethods="14" elements="110" coveredelements="80" complexity="0" loc="66" ncloc="66" packages="1" files="1" classes="1"/>
     <file name="helper.js" path="/home/artem/eslint-plagin-architector/helper.js">
-      <metrics statements="67" coveredstatements="54" conditionals="28" coveredconditionals="10" methods="16" coveredmethods="14"/>
+      <metrics statements="66" coveredstatements="54" conditionals="28" coveredconditionals="12" methods="16" coveredmethods="14"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
@@ -45,32 +45,31 @@
       <line num="80" count="1" type="stmt"/>
       <line num="81" count="1" type="stmt"/>
       <line num="82" count="1" type="stmt"/>
-      <line num="83" count="1" type="stmt"/>
-      <line num="85" count="1" type="stmt"/>
-      <line num="87" count="1" type="stmt"/>
-      <line num="88" count="1" type="stmt"/>
+      <line num="86" count="1" type="stmt"/>
+      <line num="88" count="2" type="stmt"/>
       <line num="89" count="1" type="stmt"/>
-      <line num="90" count="4" type="stmt"/>
+      <line num="90" count="1" type="stmt"/>
       <line num="91" count="1" type="stmt"/>
       <line num="92" count="1" type="stmt"/>
-      <line num="94" count="1" type="cond" truecount="0" falsecount="2"/>
-      <line num="95" count="0" type="cond" truecount="0" falsecount="2"/>
-      <line num="97" count="0" type="stmt"/>
-      <line num="154" count="2" type="stmt"/>
-      <line num="156" count="1" type="stmt"/>
+      <line num="93" count="1" type="stmt"/>
+      <line num="95" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="96" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="98" count="0" type="stmt"/>
+      <line num="155" count="2" type="stmt"/>
       <line num="157" count="1" type="stmt"/>
-      <line num="160" count="1" type="stmt"/>
-      <line num="162" count="1" type="stmt"/>
-      <line num="166" count="8" type="stmt"/>
+      <line num="158" count="1" type="stmt"/>
+      <line num="161" count="1" type="stmt"/>
+      <line num="163" count="1" type="stmt"/>
       <line num="167" count="8" type="stmt"/>
       <line num="168" count="8" type="stmt"/>
-      <line num="169" count="16" type="stmt"/>
+      <line num="169" count="8" type="stmt"/>
       <line num="170" count="16" type="stmt"/>
-      <line num="171" count="16" type="cond" truecount="2" falsecount="0"/>
-      <line num="172" count="8" type="stmt"/>
+      <line num="171" count="16" type="stmt"/>
+      <line num="172" count="16" type="cond" truecount="2" falsecount="0"/>
       <line num="173" count="8" type="stmt"/>
       <line num="174" count="8" type="stmt"/>
-      <line num="180" count="8" type="stmt"/>
+      <line num="175" count="8" type="stmt"/>
+      <line num="181" count="8" type="stmt"/>
     </file>
   </project>
 </coverage>

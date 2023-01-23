@@ -77,26 +77,29 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             }
           }
         } else {
+          const path3 = pathToCurrentModule.split("/").splice(0, pathToCurrentModule.split("/").length -1).join("/")
           const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
-          const absolutePathToTheFile  = path.resolve(pathToCurrentModule, importDefinitionPath)
-          const absoluteTargetPathToTheFile = absolutePathToTheFile.split("/").splice(0, absolutePathToTheFile.split("/").length - 3).join("/")
-          const absolutePathToTheFile2  = path.resolve(absoluteTargetPathToTheFile, importDefinitionPath)
+          const absolutePathToTheFile  = path.resolve(path3, importDefinitionPath)
+          //const absoluteTargetPathToTheFile = absolutePathToTheFile.split("/").splice(0, absolutePathToTheFile.split("/").length - 3).join("/")
+         // const absolutePathToTheFile2  = path.resolve(absoluteTargetPathToTheFile, importDefinitionPath)
           //const lastParent = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 3]
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)
           //const nameTargetFolder = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 2]
           const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
-          const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile2)
-          console.log(absolutePathToTheFile2);
+          const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(path3)
+          console.log(path3, firstParent, firstParentcCurrentLevel);
           const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]) //куда
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName);
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName, absolutePathToTheFile);
           //console.log(a);
           if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
-            if (moduleCurrentLevelFirstName.index > moduleTargetLevelFirstName.index) {
+            if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
               //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
               return `adasdasdasdasd`;
             }
 
+          } else {
+            return "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
           }
           // function flatten(lists) {
           //   return lists.reduce((a, b) => a.concat(b), []);

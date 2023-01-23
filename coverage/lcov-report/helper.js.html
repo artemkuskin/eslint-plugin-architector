@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.19% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>60/73</span>
+                <span class='fraction'>60/72</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.71% </span>
+                <span class="strong">42.86% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/28</span>
+                <span class='fraction'>12/28</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.6% </span>
+                <span class="strong">81.82% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>54/67</span>
+                <span class='fraction'>54/66</span>
             </div>
         
             
@@ -268,7 +268,8 @@
 <a name='L209'></a><a href='#L209'>209</a>
 <a name='L210'></a><a href='#L210'>210</a>
 <a name='L211'></a><a href='#L211'>211</a>
-<a name='L212'></a><a href='#L212'>212</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -350,19 +351,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -558,22 +560,23 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             }
           }
         } else {
+          const path3 = pathToCurrentModule.split("/").splice(0, pathToCurrentModule.split("/").length -1).join("/")
           const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
-          const absolutePathToTheFile  = path.resolve(pathToCurrentModule, importDefinitionPath)
-          const absoluteTargetPathToTheFile = absolutePathToTheFile.split("/").splice(0, absolutePathToTheFile.split("/").length - 3).join("/")
-          const absolutePathToTheFile2  = path.resolve(absoluteTargetPathToTheFile, importDefinitionPath)
+          const absolutePathToTheFile  = path.resolve(path3, importDefinitionPath)
+          //const absoluteTargetPathToTheFile = absolutePathToTheFile.split("/").splice(0, absolutePathToTheFile.split("/").length - 3).join("/")
+         // const absolutePathToTheFile2  = path.resolve(absoluteTargetPathToTheFile, importDefinitionPath)
           //const lastParent = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 3]
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)
           //const nameTargetFolder = absolutePathToTheFile.split('/')[absolutePathToTheFile.split('/').length - 2]
           const moduleTargetLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParent[1]); //что импортим
-          const firstParentcCurrentLevel =  new RegExp(`${moduleTargetLevelFirstName.name}\\/(\\w+)/(\\w+)`, "g").exec(absolutePathToTheFile)
-          console.log(firstParentcCurrentLevel);
+          const firstParentcCurrentLevel =  new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(path3)
+          console.log(path3, firstParent, firstParentcCurrentLevel);
           const moduleCurrentLevelFirstName = configurationTree.find((elem) =&gt; elem.name === firstParentcCurrentLevel[1]) //куда
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName);
           console.log(moduleTargetLevelFirstName, moduleCurrentLevelFirstName, absolutePathToTheFile);
           //console.log(a);
-          if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
-<span class="cstat-no" title="statement not covered" >            if (moduleCurrentLevelFirstName.index &gt; moduleTargetLevelFirstName.index) {</span>
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (moduleCurrentLevelFirstName.index &gt; moduleTargetLevelFirstName.index) {
               //console.log(firstParentModalofTheNonSpecifiedInRules, firstParentCurrentModuleLevelConfiguration);
 <span class="cstat-no" title="statement not covered" >              return `adasdasdasdasd`;</span>
             }
@@ -697,7 +700,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Jan 20 2023 17:41:21 GMT+0300 (Москва, стандартное время)
+                at Mon Jan 23 2023 09:49:59 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
