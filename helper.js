@@ -66,6 +66,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
     const keyAlias = importDefinitionPath.split("/")[0]
     const targetAliasModule = configurationTreeAlias.find((elem) => elem.key === keyAlias);// сделать проверку на сущечтвование
+    if (targetAliasModule) {
     const absolutePathtoTheFileAlias = path.resolve(targetAliasModule.path.split("/").slice(0, targetAliasModule.path.split("/").length - 1).join("/"), importDefinitionPath)
     const firstParentTargetLevelALias = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathtoTheFileAlias);// что импортим
     const pathToCurrentFile = pathToCurrentModule
@@ -75,12 +76,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     const firstParentCurrentLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentFile);// куда
     const moduleTargetLevelAliasFirstName = configurationTree.find((elem) => elem.name === firstParentTargetLevelALias[1]);
     const moduleCurentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
-    console.log(configurationTreeAlias, absolutePathtoTheFileAlias);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+    console.log(targetAliasModule, configurationTree);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
     // console.log(targetAliasModule);
     if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
       if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
         return "/////////////////////////////////////////"
       }
+    }
     }
   
     
