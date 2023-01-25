@@ -15,11 +15,12 @@ function setJsConfigFileContent() {
 }
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
-  // if (jsConfigFileContent === undefined) {
-  //   setJsConfigFileContent();
+  if (jsConfigFileContent === undefined) {
+    setJsConfigFileContent();
+    return " ///////////////////////"
     
-  //   // console.log(path.resolve("jsconfig.json", jsConfigFileContent.compilerOptions.paths["B1/*"].toString()));
-  // }
+    // console.log(path.resolve("jsconfig.json", jsConfigFileContent.compilerOptions.paths["B1/*"].toString()));
+  }
   const currentModuleIsInRootDirectory = Boolean(
     new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentModule)
   );
