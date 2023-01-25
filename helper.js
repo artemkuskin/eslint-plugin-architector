@@ -4,15 +4,15 @@ const TreeModel = require("tree-model");
 
 module.exports = validateIfImportIsAllowed;
 
+const architectureConfigTree = [];
 let jsConfigFileContent = undefined;
-function searchJsConfigFile () {
+function setJsConfigFile() {
   try {
-    return jsConfigFileContent = require(path.resolve("jsconfig.json"))
+    jsConfigFileContent = require(path.resolve("jsconfig.json"));
   } catch {
-    return jsConfigFileContent = null
+    jsConfigFileContent = null;
   }
 }
-const architectureConfigTree = [];
 
 /**
  *  This function is running by eslint every time.
@@ -23,24 +23,22 @@ const architectureConfigTree = [];
  * @param {String} rootDirectory
  */
 
-
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
+  const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
   if (jsConfigFileContent === undefined) {
-    searchJsConfigFile()
+    setJsConfigFile();
   }
-console.log(jsConfigFileContent);
+
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfiguration.file,
     levelsConfiguration,
     rootDirectory
   );
-  const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
-  const partsOfPathToCurrentModule = pathToCurrentModule.split("/");
-  const currentModuleLevel = partsOfPathToCurrentModule[partsOfPathToCurrentModule.length - 2];
+
+  const currentModuleLevel = setCurrentLevel(pathToCurrentModule) //pathToCurrentModule.split("/")[pathToCurrentModule.split("/").length - 2];
   const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
   const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
-  const partsOfPathToTargetModule = importDefinitionPath.split("/");
-  const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2];
+  const importLevel = setCurrentLevel(importDefinitionPath) //importDefinitionPath.split("/")[importDefinitionPath.split("/").length - 2];
   const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
   if (jsConfigFileContent) {
     const configurationTreeAlias = getLevelAlias(rootDirectory);
@@ -80,13 +78,17 @@ console.log(jsConfigFileContent);
     }
   }
 }
+
+function setCurrentLevel (pathToModule) {
+ return pathToModule.split("/")[pathToModule.split("/").length - 2]
+}
 /**
- * 
- * @param {String} pathToCurrentModule 
- * @param {String} importDefinitionPath 
- * @param {String} rootDirectory 
- * @param {Array} configurationTree 
- * @returns 
+ *
+ * @param {String} pathToCurrentModule
+ * @param {String} importDefinitionPath
+ * @param {String} rootDirectory
+ * @param {Array} configurationTree
+ * @returns
  */
 function searchForParentsIfNotSpecifiedInTheRules(
   pathToCurrentModule,
@@ -106,7 +108,7 @@ function searchForParentsIfNotSpecifiedInTheRules(
   const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]); //куда
   if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
     if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
-      return `adasdasdasdasd`;
+      return `Cannot import ${importLevel} from ${currentModuleLevel}`;
     }
   }
   if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
@@ -122,13 +124,13 @@ function searchForParentsIfNotSpecifiedInTheRules(
 }
 
 /**
- * 
- * @param {Object} currentModuleLevelConfiguration 
- * @param {Object} configurationOfTargetModule 
- * @param {String} importLevel 
- * @param {String} currentModuleLevel 
- * @param {Array} configurationTree 
- * @returns 
+ *
+ * @param {Object} currentModuleLevelConfiguration
+ * @param {Object} configurationOfTargetModule
+ * @param {String} importLevel
+ * @param {String} currentModuleLevel
+ * @param {Array} configurationTree
+ * @returns
  */
 function searchForAFolderInTheRulesAndCompareThem(
   currentModuleLevelConfiguration,
@@ -155,13 +157,13 @@ function searchForAFolderInTheRulesAndCompareThem(
 }
 
 /**
- * 
- * @param {Object} targetAliasModule 
- * @param {String} importDefinitionPath 
- * @param {String} pathToCurrentModule 
- * @param {String} rootDirectory 
- * @param {Array} configurationTree 
- * @returns 
+ *
+ * @param {Object} targetAliasModule
+ * @param {String} importDefinitionPath
+ * @param {String} pathToCurrentModule
+ * @param {String} rootDirectory
+ * @param {Array} configurationTree
+ * @returns
  */
 function searchParentAliasesAndCompareThem(
   targetAliasModule,
@@ -195,11 +197,11 @@ function searchParentAliasesAndCompareThem(
 }
 
 /**
- * 
- * @param {Array} architectureConfigRules 
- * @param {Array} levelsConfiguration 
- * @param {String} rootDirectory 
- * @returns 
+ *
+ * @param {Array} architectureConfigRules
+ * @param {Array} levelsConfiguration
+ * @param {String} rootDirectory
+ * @returns
  */
 function getArchitectureConfigurationTree(architectureConfigRules, levelsConfiguration, rootDirectory) {
   for (let key in architectureConfigRules) {
@@ -234,10 +236,10 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
   return resultarchitectureFree;
 }
 /**
- * 
- * @param {String} rootDirectory 
- * @param {String} absolutePathToTheFile 
- * @returns 
+ *
+ * @param {String} rootDirectory
+ * @param {String} absolutePathToTheFile
+ * @returns
  */
 function getParentFolder(rootDirectory, absolutePathToTheFile) {
   let parent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
@@ -245,9 +247,9 @@ function getParentFolder(rootDirectory, absolutePathToTheFile) {
 }
 
 /**
- * 
- * @param {String} rootDirectory 
- * @returns 
+ *
+ * @param {String} rootDirectory
+ * @returns
  */
 function getLevelAlias(rootDirectory) {
   const parentsAlias = [];
@@ -286,10 +288,10 @@ function getLevelAlias(rootDirectory) {
 }
 
 /**
- * 
- * @param {Array} configurationTree 
- * @param {String} importDefinitionPath 
- * @returns 
+ *
+ * @param {Array} configurationTree
+ * @param {String} importDefinitionPath
+ * @returns
  */
 function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
   const levelsNames = configurationTree.map((levelConfiguration) => levelConfiguration.name);
@@ -303,10 +305,10 @@ function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
 }
 
 /**
- * 
- * @param {Array} dataset 
- * @param {String} nodeLevel 
- * @returns 
+ *
+ * @param {Array} dataset
+ * @param {String} nodeLevel
+ * @returns
  */
 function getAllParentThisNode(dataset, nodeLevel) {
   let parents = [];
