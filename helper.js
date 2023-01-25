@@ -8,14 +8,20 @@ let jsConfigFileContent = undefined;
 
 function setJsConfigFileContent() {
   try {
-    jsConfigFileContent = require(path.resolve("jsconfig.json"));
+    jsConfigFileContent = require("/home/artem/my-app/jsconfig.json");//path.resolve("jsconfig.json")
   } catch (error) {
     jsConfigFileContent = null;
   }
 }
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
-  const architectureConfigTree = [];
+  const currentModuleIsInRootDirectory = Boolean(
+    new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentModule)
+  );
+
+  if (currentModuleIsInRootDirectory) {
+    const partsOfPathToCurrentModule = pathToCurrentModule.split("/");
+    const architectureConfigTree = [];
     function getArchitectureConfigurationTree(architectureConfigRules) {
       for (let key in architectureConfigRules) {
         const lastParent = getAllParentThisNode(
@@ -40,57 +46,50 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       return architectureConfigTree;
     }
 
-  if (jsConfigFileContent === undefined) {
-    setJsConfigFileContent();
-    const parentsAlias = [];
-    for (let key in jsConfigFileContent.compilerOptions.paths) {
-      parentsAlias.push({ name: jsConfigFileContent.compilerOptions.paths[key].toString(), key: [key].toString() });
-    }
-    const configurationTreeAlias = [];
-    for (let key in parentsAlias) {
-      configurationTreeAlias.push({
-        key: parentsAlias[key].key
-          .split("/")
-          .splice(0, parentsAlias[key].key.split("/").length - 1)
-          .join("/"),
-        path: path.resolve(parentsAlias[key].name
-          .split("/")
-          .splice(0, parentsAlias[key].name.split("/").length - 1)
-          .join("/"), rootDirectory).split("/").splice(0, path.resolve(parentsAlias[key].name
-            .split("/")
-            .splice(0, parentsAlias[key].name.split("/").length - 2)
-            .join("/"), rootDirectory).split("/").length - 1).join("/")
-      });
-    }
-    const keyAlias = importDefinitionPath.split("/")[0]
-    const targetAliasModule = configurationTreeAlias.find((elem) => elem.key === keyAlias);// сделать проверку на сущечтвование
-    const absolutePathtoTheFileAlias = path.resolve(targetAliasModule.path, importDefinitionPath)
-    const firstParentTargetLevelALias = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathtoTheFileAlias);// что импортим
-    const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
-    const pathToCurrentFile = pathToCurrentModule
-    .split("/")
-    .splice(0, pathToCurrentModule.split("/").length - 1)
-    .join("/");
-    const firstParentCurrentLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentFile);// куда
-    const moduleTargetLevelAliasFirstName = configurationTree.find((elem) => elem.name === firstParentTargetLevelALias[1]);
-    const moduleCurentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
-    console.log(absolutePathtoTheFileAlias, moduleTargetLevelAliasFirstName, moduleCurentLevelFirstName);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-    // console.log(targetAliasModule);
-    if (targetAliasModule) {
-    if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
-      if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
-        return "/////////////////////////////////////////"
+    if (jsConfigFileContent === undefined) {
+      setJsConfigFileContent();
+      const parentsAlias = [];
+      console.log(jsConfigFileContent);
+      for (let key in jsConfigFileContent.compilerOptions.paths) {
+        parentsAlias.push({ name: jsConfigFileContent.compilerOptions.paths[key].toString(), key: [key].toString() });
       }
+      const configurationTreeAlias = [];
+      for (let key in parentsAlias) {
+        configurationTreeAlias.push({
+          key: parentsAlias[key].key
+            .split("/")
+            .splice(0, parentsAlias[key].key.split("/").length - 1)
+            .join("/"),
+          path: path.resolve(parentsAlias[key].name
+            .split("/")
+            .splice(0, parentsAlias[key].name.split("/").length - 1)
+            .join("/"), rootDirectory).split("/").splice(0, path.resolve(parentsAlias[key].name
+              .split("/")
+              .splice(0, parentsAlias[key].name.split("/").length - 1)
+              .join("/"), rootDirectory).split("/").length - 1).join("/")
+        });
+      }
+      const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
+      const keyAlias = importDefinitionPath.split("/")[0]
+      const targetAliasModule = configurationTreeAlias.find((elem) => elem.key === keyAlias);// сделать проверку на сущечтвование
+      const absolutePathtoTheFileAlias = path.resolve(targetAliasModule.path, importDefinitionPath)
+      const firstParentTargetLevelALias = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathtoTheFileAlias);// что импортим
+      const pathToCurrentFile = pathToCurrentModule
+      .split("/")
+      .splice(0, pathToCurrentModule.split("/").length - 1)
+      .join("/");
+      const firstParentCurrentLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentFile);// куда
+      const moduleTargetLevelAliasFirstName = configurationTree.find((elem) => elem.name === firstParentTargetLevelALias[1]);
+      const moduleCurentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
+      console.log(moduleTargetLevelAliasFirstName, moduleCurentLevelFirstName);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+      // console.log(targetAliasModule);
+      if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
+        if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
+          return "/////////////////////////////////////////"
+        }
+      }
+      // console.log(path.resolve("jsconfig.json", jsConfigFileContent.compilerOptions.paths["B1/*"].toString()));
     }
-  }// console.log(path.resolve("jsconfig.json", jsConfigFileContent.compilerOptions.paths["B1/*"].toString()));
-  }
-  const currentModuleIsInRootDirectory = Boolean(
-    new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentModule)
-  );
-
-  if (currentModuleIsInRootDirectory) {
-    const partsOfPathToCurrentModule = pathToCurrentModule.split("/");
-    
 
     // не все папки указаны в конфиге!
     // модуль может не принадлежать ни одному уровню!
@@ -168,6 +167,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     }
   }
 }
+
 
 function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
   const levelsNames = configurationTree.map((levelConfiguration) => levelConfiguration.name);
