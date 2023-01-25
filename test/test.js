@@ -1,7 +1,7 @@
 const validateHierarchy = require("../helper");
 
 describe("Validate hierarchy with default config", () => {
-  const filePath = "/home/artem/my-app/src/C/C.jsx";
+  const filePath = "/home/artem/my-app/src/A/C.jsx";
   const filePathOutsideComponentsFolder = "src/components-alt/molecules/ComponentX";
 
   const hierarchy = {
@@ -15,19 +15,19 @@ describe("Validate hierarchy with default config", () => {
       {
         level: "B",
         children: [
-          {
-            level: "B1",
-            children: [
-              {
-                level: "B2",
-                children: []
-                },
-            ]
-            },
-            {
-              level: "B3",
-              children: []
-              },
+          // {
+          //   level: "B1",
+          //   children: [
+          //     {
+          //       level: "B2",
+          //       children: []
+          //       },
+          //   ]
+          //   },
+          //   {
+          //     level: "B3",
+          //     children: []
+          //     },
         ]
         },
         {
