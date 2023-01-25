@@ -83,11 +83,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       const moduleCurentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
       console.log(moduleTargetLevelAliasFirstName, moduleCurentLevelFirstName);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
       // console.log(targetAliasModule);
+      if (targetAliasModule) {
       if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
         if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
           return "/////////////////////////////////////////"
         }
       }
+    }
       // console.log(path.resolve("jsconfig.json", jsConfigFileContent.compilerOptions.paths["B1/*"].toString()));
     }
 

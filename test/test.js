@@ -1,7 +1,7 @@
 const validateHierarchy = require("../helper");
 
 describe("Validate hierarchy with default config", () => {
-  const filePath = "/home/artem/eslint-plagin-architector/src/A/A1/ComponentX";
+  const filePath = "/home/artem/my-app/src/A/C.jsx";
   const filePathOutsideComponentsFolder = "src/components-alt/molecules/ComponentX";
 
   const hierarchy = {
@@ -16,6 +16,10 @@ describe("Validate hierarchy with default config", () => {
         level: "B",
         children: []
         },
+        {
+          level: "C",
+          children: []
+          },
       // {
       //   level: "templates",
       //   children: [],
