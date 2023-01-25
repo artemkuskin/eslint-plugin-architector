@@ -79,9 +79,9 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     console.log(targetAliasModule, configurationTree);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
     // console.log(targetAliasModule);
     if (moduleTargetLevelAliasFirstName.name === moduleCurentLevelFirstName.name) {
-      if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
+      //if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
         return "/////////////////////////////////////////"
-      }
+     // }
     }
     }
   
