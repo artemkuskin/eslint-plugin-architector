@@ -8,7 +8,7 @@ let jsConfigFileContent = undefined;
 
 function setJsConfigFileContent() {
   try {
-    jsConfigFileContent = require("./jsconfig.json");
+    jsConfigFileContent = require(path.resolve("jsconfig.json"));
   } catch (error) {
     jsConfigFileContent = null;
   }
@@ -77,7 +77,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
               (elem) => elem.name === configurationOfTargetModule.firstParent
             );
             if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
-              return `${importDefinitionPath}`;
+              return `${path.resolve("jsconfig.json")}`;
             }
           }
         } else {
