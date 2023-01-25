@@ -35,11 +35,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     rootDirectory
   );
 
-  const currentModuleLevel = setCurrentLevel(pathToCurrentModule) //pathToCurrentModule.split("/")[pathToCurrentModule.split("/").length - 2];
+  const currentModuleLevel = pathToCurrentModule.split("/")[pathToCurrentModule.split("/").length - 2];
   const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-  const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel) //configurationTree.find((elem) => elem.name === currentModuleLevel);
-  const importLevel = setCurrentLevel(importDefinitionPath) //importDefinitionPath.split("/")[importDefinitionPath.split("/").length - 2];
-  const configurationOfTargetModule = setModuleByName(configurationTree, importLevel)//configurationTree.find((elem) => elem.name === importLevel);
+  const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
+  const importLevel = importDefinitionPath.split("/")[importDefinitionPath.split("/").length - 2];
+  const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
   if (jsConfigFileContent) {
     const configurationTreeAlias = getLevelAlias(rootDirectory);
     const keyAlias = importDefinitionPath.split("/")[0];
@@ -79,10 +79,6 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   }
 }
 
-function setModuleByName (configurationTree, name) {
- return configurationTree.find((elem) => elem.name === name)
-}
-
 function setCurrentLevel (pathToModule) {
  return pathToModule.split("/")[pathToModule.split("/").length - 2]
 }
@@ -107,9 +103,9 @@ function searchForParentsIfNotSpecifiedInTheRules(
 
   const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
   const firstParent = getParentFolder(rootDirectory, absolutePathToTheFile);
-  const moduleTargetLevelFirstName = setModuleByName(configurationTree, firstParent[1])//configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
+  const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
   const firstParentcCurrentLevel = getParentFolder(rootDirectory, pathToCurrentFile);
-  const moduleCurrentLevelFirstName = setModuleByName(configurationTree, firstParentcCurrentLevel[1])//configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]); //куда
+  const moduleCurrentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]); //куда
   if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
     if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
       return `Cannot import ${importLevel} from ${currentModuleLevel}`;
@@ -148,12 +144,12 @@ function searchForAFolderInTheRulesAndCompareThem(
       return `Cannot import ${importLevel} from ${currentModuleLevel}`;
     }
   } else if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
-    const firstParentCurrentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevelConfiguration.firstParent) //configurationTree.find(
-    //   (elem) => elem.name === currentModuleLevelConfiguration.firstParent
-    // );
-    const firstParentConfigurationOfTargetModule = setModuleByName(configurationTree, configurationOfTargetModule.firstParent)//configurationTree.find(
-    //   (elem) => elem.name === configurationOfTargetModule.firstParent
-    // );
+    const firstParentCurrentModuleLevelConfiguration = configurationTree.find(
+      (elem) => elem.name === currentModuleLevelConfiguration.firstParent
+    );
+    const firstParentConfigurationOfTargetModule = configurationTree.find(
+      (elem) => elem.name === configurationOfTargetModule.firstParent
+    );
     if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
       return `${path.resolve("jsconfig.json")}`;
     }
@@ -189,10 +185,10 @@ function searchParentAliasesAndCompareThem(
     .splice(0, pathToCurrentModule.split("/").length - 1)
     .join("/");
   const firstParentCurrentLevel = getParentFolder(rootDirectory, pathToCurrentFile); // куда
-  const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, firstParentTargetLevelALias[1])//configurationTree.find(
-  //   (elem) => elem.name === firstParentTargetLevelALias[1]
-  // );
-  const moduleCurentLevelFirstName = setModuleByName(configurationTree,  firstParentCurrentLevel[1]) //configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
+  const moduleTargetLevelAliasFirstName = configurationTree.find(
+    (elem) => elem.name === firstParentTargetLevelALias[1]
+  );
+  const moduleCurentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
   if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
     if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
       return "/////////////////////////////////////////";
