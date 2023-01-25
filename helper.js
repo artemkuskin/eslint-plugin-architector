@@ -9,21 +9,28 @@ let jsConfigFileContent = require(path.resolve("jsconfig.json"));
 /**
  *  This function is running by eslint every time.
  *
- * @param {*} pathToCurrentModule - module in which we write import definition
- * @param {*} importDefinitionPath
- * @param {*} levelsConfiguration
- * @param {*} rootDirectory
+ * @param {String} pathToCurrentModule - module in which we write import definition
+ * @param {String} importDefinitionPath
+ * @param {Object} levelsConfiguration
+ * @param {String} rootDirectory
  */
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
+  const configurationTree = getArchitectureConfigurationTree(
+    levelsConfiguration.file,
+    levelsConfiguration,
+    rootDirectory
+  );
+  const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
+  const partsOfPathToCurrentModule = pathToCurrentModule.split("/");
+  const currentModuleLevel = partsOfPathToCurrentModule[partsOfPathToCurrentModule.length - 2];
+  const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
+  const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
+  const partsOfPathToTargetModule = importDefinitionPath.split("/");
+  const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2];
+  const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
   if (jsConfigFileContent) {
     const configurationTreeAlias = getLevelAlias(rootDirectory);
-
-    const configurationTree = getArchitectureConfigurationTree(
-      levelsConfiguration.file,
-      levelsConfiguration,
-      rootDirectory
-    );
     const keyAlias = importDefinitionPath.split("/")[0];
     const targetAliasModule = configurationTreeAlias.find((elem) => elem.key === keyAlias); // сделать проверку на сущечтвование
     if (targetAliasModule) {
@@ -37,23 +44,9 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     }
   }
 
-  const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
-
   if (currentModuleIsInRootDirectory) {
-    const partsOfPathToCurrentModule = pathToCurrentModule.split("/");
-    const currentModuleLevel = partsOfPathToCurrentModule[partsOfPathToCurrentModule.length - 2];
     if (currentModuleLevel) {
-      const configurationTree = getArchitectureConfigurationTree(
-        levelsConfiguration.file,
-        levelsConfiguration,
-        rootDirectory
-      );
-      const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
       if (targetModuleLevel) {
-        const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
-        const partsOfPathToTargetModule = importDefinitionPath.split("/");
-        const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2];
-        const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
         if (configurationOfTargetModule && currentModuleLevelConfiguration) {
           return searchForAFolderInTheRulesAndCompareThem(
             currentModuleLevelConfiguration,
@@ -74,7 +67,14 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     }
   }
 }
-
+/**
+ * 
+ * @param {String} pathToCurrentModule 
+ * @param {String} importDefinitionPath 
+ * @param {String} rootDirectory 
+ * @param {*} configurationTree 
+ * @returns 
+ */
 function searchForParentsIfNotSpecifiedInTheRules(
   pathToCurrentModule,
   importDefinitionPath,
@@ -268,33 +268,3 @@ function getAllParentThisNode(dataset, nodeLevel) {
 
   return { lastParent: parents[parents.length - 2], firstParent: parents[0] };
 }
-
-// const fs = require('fs');
-// const path = require('path');
-
-// function flatten(lists) {
-//   return lists.reduce((a, b) => a.concat(b), []);
-// }
-
-// function getDirectories(srcpath) {
-//   return fs.readdirSync(srcpath)
-//     .map(file => path.join(srcpath, file))
-//     .filter(path => fs.statSync(path).isDirectory());
-// }
-
-// function getDirectoriesRecursive(srcpath) {
-//   return [srcpath, ...flatten(getDirectories(srcpath).map(getDirectoriesRecursive))];
-// }
-
-// const foldersName =  getDirectoriesRecursive(path.resolve(__dirname, "MyFolder"))
-// const arr = []
-// const formStructur = () => {
-//     for (let key in foldersName) {
-//  const targetFolder = foldersName[key].split('/')
-//  console.log(targetFolder);
-//     arr.push({level: targetFolder[targetFolder.length-1], index:key, parents: targetFolder[targetFolder.length-2]} )
-// // console.log(targetFolder[targetFolder.length - 1]);
-// }
-// return arr
-// }
-// console.log(formStructur());
