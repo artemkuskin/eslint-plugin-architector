@@ -4,7 +4,15 @@ const TreeModel = require("tree-model");
 
 module.exports = validateIfImportIsAllowed;
 
-let jsConfigFileContent = require(path.resolve("jsconfig.json"));
+let jsConfigFileContent = undefined;
+function searchJsConfigFile () {
+  try {
+    return jsConfigFileContent = require(path.resolve("jsconfig.json"))
+  } catch {
+    return jsConfigFileContent = null
+  }
+}
+const architectureConfigTree = [];
 
 /**
  *  This function is running by eslint every time.
@@ -15,7 +23,12 @@ let jsConfigFileContent = require(path.resolve("jsconfig.json"));
  * @param {String} rootDirectory
  */
 
+
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
+  if (jsConfigFileContent === undefined) {
+    searchJsConfigFile()
+  }
+console.log(jsConfigFileContent);
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfiguration.file,
     levelsConfiguration,
@@ -72,7 +85,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
  * @param {String} pathToCurrentModule 
  * @param {String} importDefinitionPath 
  * @param {String} rootDirectory 
- * @param {*} configurationTree 
+ * @param {Array} configurationTree 
  * @returns 
  */
 function searchForParentsIfNotSpecifiedInTheRules(
@@ -108,6 +121,15 @@ function searchForParentsIfNotSpecifiedInTheRules(
   }
 }
 
+/**
+ * 
+ * @param {Object} currentModuleLevelConfiguration 
+ * @param {Object} configurationOfTargetModule 
+ * @param {String} importLevel 
+ * @param {String} currentModuleLevel 
+ * @param {Array} configurationTree 
+ * @returns 
+ */
 function searchForAFolderInTheRulesAndCompareThem(
   currentModuleLevelConfiguration,
   configurationOfTargetModule,
@@ -132,6 +154,15 @@ function searchForAFolderInTheRulesAndCompareThem(
   }
 }
 
+/**
+ * 
+ * @param {Object} targetAliasModule 
+ * @param {String} importDefinitionPath 
+ * @param {String} pathToCurrentModule 
+ * @param {String} rootDirectory 
+ * @param {Array} configurationTree 
+ * @returns 
+ */
 function searchParentAliasesAndCompareThem(
   targetAliasModule,
   importDefinitionPath,
@@ -156,15 +187,20 @@ function searchParentAliasesAndCompareThem(
     (elem) => elem.name === firstParentTargetLevelALias[1]
   );
   const moduleCurentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
-  console.log(moduleTargetLevelAliasFirstName, moduleCurentLevelFirstName); //mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-  console.log(targetAliasModule);
   if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
     if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
       return "/////////////////////////////////////////";
     }
   }
 }
-const architectureConfigTree = [];
+
+/**
+ * 
+ * @param {Array} architectureConfigRules 
+ * @param {Array} levelsConfiguration 
+ * @param {String} rootDirectory 
+ * @returns 
+ */
 function getArchitectureConfigurationTree(architectureConfigRules, levelsConfiguration, rootDirectory) {
   for (let key in architectureConfigRules) {
     const lastParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).lastParent;
@@ -197,15 +233,24 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
   ).resultarchitectureFree;
   return resultarchitectureFree;
 }
-
+/**
+ * 
+ * @param {String} rootDirectory 
+ * @param {String} absolutePathToTheFile 
+ * @returns 
+ */
 function getParentFolder(rootDirectory, absolutePathToTheFile) {
   let parent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
   return parent;
 }
 
+/**
+ * 
+ * @param {String} rootDirectory 
+ * @returns 
+ */
 function getLevelAlias(rootDirectory) {
   const parentsAlias = [];
-  console.log(jsConfigFileContent);
   for (let key in jsConfigFileContent.compilerOptions.paths) {
     parentsAlias.push({ name: jsConfigFileContent.compilerOptions.paths[key].toString(), key: [key].toString() });
   }
@@ -240,6 +285,12 @@ function getLevelAlias(rootDirectory) {
   return configurationTreeAlias;
 }
 
+/**
+ * 
+ * @param {Array} configurationTree 
+ * @param {String} importDefinitionPath 
+ * @returns 
+ */
 function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
   const levelsNames = configurationTree.map((levelConfiguration) => levelConfiguration.name);
 
@@ -251,6 +302,12 @@ function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
   return targetModuleLevel;
 }
 
+/**
+ * 
+ * @param {Array} dataset 
+ * @param {String} nodeLevel 
+ * @returns 
+ */
 function getAllParentThisNode(dataset, nodeLevel) {
   let parents = [];
   tree = new TreeModel();
