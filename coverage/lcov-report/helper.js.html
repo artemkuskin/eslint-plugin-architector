@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.32% </span>
+                <span class="strong">68.93% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>69/101</span>
+                <span class='fraction'>71/103</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.04% </span>
+                <span class="strong">69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>66/97</span>
+                <span class='fraction'>69/100</span>
             </div>
         
             
@@ -390,9 +390,7 @@
 <a name='L331'></a><a href='#L331'>331</a>
 <a name='L332'></a><a href='#L332'>332</a>
 <a name='L333'></a><a href='#L333'>333</a>
-<a name='L334'></a><a href='#L334'>334</a>
-<a name='L335'></a><a href='#L335'>335</a>
-<a name='L336'></a><a href='#L336'>336</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L334'></a><a href='#L334'>334</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -503,6 +501,8 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -543,13 +543,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -623,6 +617,8 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">45x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
@@ -764,11 +760,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     rootDirectory
   );
 &nbsp;
-  const currentModuleLevel = setCurrentLevel(pathToCurrentModule); //pathToCurrentModule.split("/")[pathToCurrentModule.split("/").length - 2];
+  const currentModuleLevel = setCurrentLevel(pathToCurrentModule) //pathToCurrentModule.split("/")[pathToCurrentModule.split("/").length - 2];
   const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-  const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel); //configurationTree.find((elem) =&gt; elem.name === currentModuleLevel);
-  const importLevel = setCurrentLevel(importDefinitionPath); //importDefinitionPath.split("/")[importDefinitionPath.split("/").length - 2];
-  const configurationOfTargetModule = setModuleByName(configurationTree, importLevel); //configurationTree.find((elem) =&gt; elem.name === importLevel);
+  const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel) //configurationTree.find((elem) =&gt; elem.name === currentModuleLevel);
+  const importLevel = setCurrentLevel(importDefinitionPath) //importDefinitionPath.split("/")[importDefinitionPath.split("/").length - 2];
+  const configurationOfTargetModule = setModuleByName(configurationTree, importLevel)//configurationTree.find((elem) =&gt; elem.name === importLevel);
   <span class="missing-if-branch" title="if path not taken" >I</span>if (jsConfigFileContent) {
     const configurationTreeAlias = <span class="cstat-no" title="statement not covered" >getLevelAlias(rootDirectory);</span>
     const keyAlias = <span class="cstat-no" title="statement not covered" >importDefinitionPath.split("/")[0];</span>
@@ -808,12 +804,12 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   }
 }
 &nbsp;
-function setModuleByName(configurationTree, name) {
-  return configurationTree.find((elem) =&gt; elem.name === name);
+function setModuleByName (configurationTree, name) {
+ return configurationTree.find((elem) =&gt; elem.name === name)
 }
 &nbsp;
-function setCurrentLevel(pathToModule) {
-  return pathToModule.split("/")[pathToModule.split("/").length - 2];
+function setCurrentLevel (pathToModule) {
+ return pathToModule.split("/")[pathToModule.split("/").length - 2]
 }
 /**
  *
@@ -835,8 +831,10 @@ function searchForParentsIfNotSpecifiedInTheRules(
     .join("/");
 &nbsp;
   const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
-  const moduleTargetLevelFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, absolutePathToTheFile)[1]); //configurationTree.find((elem) =&gt; elem.name === firstParent[1]); //что импортим
-  const moduleCurrentLevelFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, pathToCurrentFile)[1]); //configurationTree.find((elem) =&gt; elem.name === firstParentcCurrentLevel[1]); //куда
+  const firstParent = getParentFolder(rootDirectory, absolutePathToTheFile);
+  const moduleTargetLevelFirstName = setModuleByName(configurationTree, firstParent[1])//configurationTree.find((elem) =&gt; elem.name === firstParent[1]); //что импортим
+  const firstParentcCurrentLevel = getParentFolder(rootDirectory, pathToCurrentFile);
+  const moduleCurrentLevelFirstName = setModuleByName(configurationTree, firstParentcCurrentLevel[1])//configurationTree.find((elem) =&gt; elem.name === firstParentcCurrentLevel[1]); //куда
   if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
     <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleCurrentLevelFirstName.index &lt; moduleTargetLevelFirstName.index) {
       return `Cannot import ${importLevel} from ${currentModuleLevel}`;
@@ -875,16 +873,10 @@ function <span class="fstat-no" title="function not covered" >searchForAFolderIn
 <span class="cstat-no" title="statement not covered" >      return `Cannot import ${importLevel} from ${currentModuleLevel}`;</span>
     }
   } else <span class="cstat-no" title="statement not covered" >if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {</span>
-    const firstParentCurrentModuleLevelConfiguration = <span class="cstat-no" title="statement not covered" >setModuleByName(</span>
-      configurationTree,
-      currentModuleLevelConfiguration.firstParent
-    ); //configurationTree.find(
+    const firstParentCurrentModuleLevelConfiguration = <span class="cstat-no" title="statement not covered" >setModuleByName(configurationTree, currentModuleLevelConfiguration.firstParent) </span>//configurationTree.find(
     //   (elem) =&gt; elem.name === currentModuleLevelConfiguration.firstParent
     // );
-    const firstParentConfigurationOfTargetModule = <span class="cstat-no" title="statement not covered" >setModuleByName(</span>
-      configurationTree,
-      configurationOfTargetModule.firstParent
-    ); //configurationTree.find(
+    const firstParentConfigurationOfTargetModule = <span class="cstat-no" title="statement not covered" >setModuleByName(configurationTree, configurationOfTargetModule.firstParent)/</span>/configurationTree.find(
     //   (elem) =&gt; elem.name === configurationOfTargetModule.firstParent
     // );
 <span class="cstat-no" title="statement not covered" >    if (firstParentConfigurationOfTargetModule.index &gt;= firstParentCurrentModuleLevelConfiguration.index) {</span>
@@ -922,10 +914,10 @@ function <span class="fstat-no" title="function not covered" >searchParentAliase
     .splice(0, pathToCurrentModule.split("/").length - 1)
     .join("/");
   const firstParentCurrentLevel = <span class="cstat-no" title="statement not covered" >getParentFolder(rootDirectory, pathToCurrentFile);</span> // куда
-  const moduleTargetLevelAliasFirstName = <span class="cstat-no" title="statement not covered" >setModuleByName(configurationTree, firstParentTargetLevelALias[1]);</span> //configurationTree.find(
+  const moduleTargetLevelAliasFirstName = <span class="cstat-no" title="statement not covered" >setModuleByName(configurationTree, firstParentTargetLevelALias[1])/</span>/configurationTree.find(
   //   (elem) =&gt; elem.name === firstParentTargetLevelALias[1]
   // );
-  const moduleCurentLevelFirstName = <span class="cstat-no" title="statement not covered" >setModuleByName(configurationTree, firstParentCurrentLevel[1]);</span> //configurationTree.find((elem) =&gt; elem.name === firstParentCurrentLevel[1]);
+  const moduleCurentLevelFirstName = <span class="cstat-no" title="statement not covered" >setModuleByName(configurationTree,  firstParentCurrentLevel[1]) </span>//configurationTree.find((elem) =&gt; elem.name === firstParentCurrentLevel[1]);
 <span class="cstat-no" title="statement not covered" >  if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {</span>
 <span class="cstat-no" title="statement not covered" >    if (moduleTargetLevelAliasFirstName.index &gt; moduleCurentLevelFirstName.index) {</span>
 <span class="cstat-no" title="statement not covered" >      return "/////////////////////////////////////////";</span>
@@ -957,15 +949,17 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
   }
   let resultarchitectureFree = architectureConfigTree.reduce(
     (acc, file) =&gt; {
-      if (acc.map[file.name]) return acc;
+      if (acc.map[file.name])
+        // если данный город уже был
+        return acc; // ничего не делаем, возвращаем уже собранное
 &nbsp;
-      acc.map[file.name] = true;
-      acc.resultarchitectureFree.push(file);
-      return acc;
+      acc.map[file.name] = true; // помечаем город, как обработанный
+      acc.resultarchitectureFree.push(file); // добавляем объект в массив городов
+      return acc; // возвращаем собранное
     },
     {
-      map: {},
-      resultarchitectureFree: [],
+      map: {}, // здесь будут отмечаться обработанные города
+      resultarchitectureFree: [], // здесь конечный массив уникальных городов
     }
   ).resultarchitectureFree;
   return resultarchitectureFree;
@@ -1069,7 +1063,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jan 25 2023 17:57:54 GMT+0300 (Москва, стандартное время)
+                at Wed Jan 25 2023 18:00:07 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
