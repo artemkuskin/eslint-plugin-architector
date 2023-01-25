@@ -8,7 +8,7 @@ let jsConfigFileContent = undefined;
 
 function setJsConfigFileContent() {
   try {
-    jsConfigFileContent = require(path.resolve("jsconfig.json"));//path.resolve("jsconfig.json")
+    jsConfigFileContent = require("/home/artem/my-app/jsconfig.json");//path.resolve("jsconfig.json")
   } catch (error) {
     jsConfigFileContent = null;
   }
@@ -56,7 +56,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           .join("/"),
         path: path.resolve(parentsAlias[key].name
           .split("/")
-          .splice(0, parentsAlias[key].name.split("/").length - 1)
+          .splice(0, parentsAlias[key].name.split("/").length)
           .join("/"), rootDirectory).split("/").splice(0, path.resolve(parentsAlias[key].name
             .split("/")
             .splice(0, parentsAlias[key].name.split("/").length - 1)
@@ -66,7 +66,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
     const keyAlias = importDefinitionPath.split("/")[0]
     const targetAliasModule = configurationTreeAlias.find((elem) => elem.key === keyAlias);// сделать проверку на сущечтвование
-    const absolutePathtoTheFileAlias = path.resolve(targetAliasModule.path, importDefinitionPath)
+    const absolutePathtoTheFileAlias = path.resolve(targetAliasModule.path.split("/").slice(0, targetAliasModule.path.split("/").length - 1).join("/"), importDefinitionPath)
     const firstParentTargetLevelALias = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathtoTheFileAlias);// что импортим
     const pathToCurrentFile = pathToCurrentModule
     .split("/")
@@ -75,7 +75,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     const firstParentCurrentLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentFile);// куда
     const moduleTargetLevelAliasFirstName = configurationTree.find((elem) => elem.name === firstParentTargetLevelALias[1]);
     const moduleCurentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
-    console.log(moduleTargetLevelAliasFirstName, moduleCurentLevelFirstName);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+    console.log(configurationTreeAlias, absolutePathtoTheFileAlias);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
     // console.log(targetAliasModule);
     if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
       if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
