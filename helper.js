@@ -78,7 +78,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     const moduleCurentLevelFirstName = configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
     console.log(targetAliasModule, configurationTree);//mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
     // console.log(targetAliasModule);
-    if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
+    if (moduleTargetLevelAliasFirstName.name === moduleCurentLevelFirstName.name) {
       if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
         return "/////////////////////////////////////////"
       }
