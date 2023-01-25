@@ -8,9 +8,9 @@ const architectureConfigTree = [];
 let jsConfigFileContent = undefined;
 function setJsConfigFile() {
   try {
-    jsConfigFileContent = require(path.resolve("jsconfig.json"));
+    return (jsConfigFileContent = require(path.resolve("jsconfig.json")));
   } catch {
-    jsConfigFileContent = null;
+    return (jsConfigFileContent = null);
   }
 }
 
@@ -24,21 +24,22 @@ function setJsConfigFile() {
  */
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
-  const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
   if (jsConfigFileContent === undefined) {
     setJsConfigFile();
   }
-
+  console.log(jsConfigFileContent);
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfiguration.file,
     levelsConfiguration,
     rootDirectory
   );
-
-  const currentModuleLevel = pathToCurrentModule.split("/")[pathToCurrentModule.split("/").length - 2];
+  const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
+  const partsOfPathToCurrentModule = pathToCurrentModule.split("/");
+  const currentModuleLevel = partsOfPathToCurrentModule[partsOfPathToCurrentModule.length - 2];
   const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
   const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
-  const importLevel = importDefinitionPath.split("/")[importDefinitionPath.split("/").length - 2];
+  const partsOfPathToTargetModule = importDefinitionPath.split("/");
+  const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2];
   const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
   if (jsConfigFileContent) {
     const configurationTreeAlias = getLevelAlias(rootDirectory);
@@ -77,10 +78,6 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       }
     }
   }
-}
-
-function setCurrentLevel (pathToModule) {
- return pathToModule.split("/")[pathToModule.split("/").length - 2]
 }
 /**
  *

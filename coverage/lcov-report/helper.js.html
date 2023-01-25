@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.06% </span>
+                <span class="strong">67.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>72/109</span>
+                <span class='fraction'>75/111</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.38% </span>
+                <span class="strong">68% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>17/26</span>
+                <span class='fraction'>17/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.69% </span>
+                <span class="strong">67.31% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>67/102</span>
+                <span class='fraction'>70/104</span>
             </div>
         
             
@@ -383,10 +383,7 @@
 <a name='L324'></a><a href='#L324'>324</a>
 <a name='L325'></a><a href='#L325'>325</a>
 <a name='L326'></a><a href='#L326'>326</a>
-<a name='L327'></a><a href='#L327'>327</a>
-<a name='L328'></a><a href='#L328'>328</a>
-<a name='L329'></a><a href='#L329'>329</a>
-<a name='L330'></a><a href='#L330'>330</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L327'></a><a href='#L327'>327</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -413,19 +410,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -465,10 +463,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -725,9 +719,9 @@ const architectureConfigTree = [];
 let jsConfigFileContent = undefined;
 function setJsConfigFile() {
   try {
-    jsConfigFileContent = require(path.resolve("jsconfig.json"));
+    return (jsConfigFileContent = require(path.resolve("jsconfig.json")));
   } catch {
-    jsConfigFileContent = null;
+    return (jsConfigFileContent = null);
   }
 }
 &nbsp;
@@ -741,21 +735,22 @@ function setJsConfigFile() {
  */
 &nbsp;
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
-  const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
   if (jsConfigFileContent === undefined) {
     setJsConfigFile();
   }
-&nbsp;
+  console.log(jsConfigFileContent);
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfiguration.file,
     levelsConfiguration,
     rootDirectory
   );
-&nbsp;
-  const currentModuleLevel = pathToCurrentModule.split("/")[pathToCurrentModule.split("/").length - 2];
+  const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
+  const partsOfPathToCurrentModule = pathToCurrentModule.split("/");
+  const currentModuleLevel = partsOfPathToCurrentModule[partsOfPathToCurrentModule.length - 2];
   const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
   const currentModuleLevelConfiguration = configurationTree.find((elem) =&gt; elem.name === currentModuleLevel);
-  const importLevel = importDefinitionPath.split("/")[importDefinitionPath.split("/").length - 2];
+  const partsOfPathToTargetModule = importDefinitionPath.split("/");
+  const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2];
   const configurationOfTargetModule = configurationTree.find((elem) =&gt; elem.name === importLevel);
   <span class="missing-if-branch" title="if path not taken" >I</span>if (jsConfigFileContent) {
     const configurationTreeAlias = <span class="cstat-no" title="statement not covered" >getLevelAlias(rootDirectory);</span>
@@ -794,10 +789,6 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       }
     }
   }
-}
-&nbsp;
-function <span class="fstat-no" title="function not covered" >setCurrentLevel </span>(pathToModule) {
-<span class="cstat-no" title="statement not covered" > return pathToModule.split("/")[pathToModule.split("/").length - 2]</span>
 }
 /**
  *
@@ -1051,7 +1042,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jan 25 2023 18:02:12 GMT+0300 (Москва, стандартное время)
+                at Wed Jan 25 2023 18:19:43 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
