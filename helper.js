@@ -22,9 +22,7 @@ function setJsConfigFile() {
  */
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
-  if (jsConfigFileContent === undefined) {
-    setJsConfigFile();
-  }
+  getJsConfug();
 
   if (Boolean(getParentFolder(rootDirectory, pathToCurrentModule))) {
     const configurationTree = getArchitectureConfigurationTree(
@@ -33,14 +31,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       rootDirectory
     );
     const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-   
-    const targetAliasModule = getLevelAlias(rootDirectory).find(
-      (elem) => elem.key === importDefinitionPath.split("/")[0]
-    ); // сделать проверку на сущечтвование
 
     if (jsConfigFileContent) {
+      const targetAliasModule = getLevelAlias(rootDirectory).find(
+        (elem) => elem.key === importDefinitionPath.split("/")[0]
+      );
       if (targetAliasModule) {
-        return searchParentAliasesAndCompareThem(
+        return errorOutputWhenUsingAliases(
           targetAliasModule,
           importDefinitionPath,
           pathToCurrentModule,
@@ -51,18 +48,24 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     }
 
     if (targetModuleLevel) {
-      return errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory)
+      return errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory);
     }
   }
 }
 
-function errorIfNotAlias (configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory) {
+function getJsConfug() {
+  if (jsConfigFileContent === undefined) {
+    setJsConfigFile();
+  }
+}
+
+function errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory) {
   const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
   const importLevel = setCurrentLevel(importDefinitionPath);
   const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
   const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
   if (configurationOfTargetModule && currentModuleLevelConfiguration) {
-    return searchForAFolderInTheRulesAndCompareThem(
+    return outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
       currentModuleLevelConfiguration,
       configurationOfTargetModule,
       importLevel,
@@ -77,7 +80,7 @@ function errorIfNotAlias (configurationTree, pathToCurrentModule, importDefiniti
       importDefinitionPath,
       importLevel,
       currentModuleLevel
-    )
+    );
   }
 }
 
@@ -138,7 +141,7 @@ function setCurrentLevel(pathToModule) {
  * @param {String} currentModuleLevel
  * @param {Array} configurationTree
  */
-function searchForAFolderInTheRulesAndCompareThem(
+function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   currentModuleLevelConfiguration,
   configurationOfTargetModule,
   importLevel,
@@ -183,7 +186,7 @@ function absolutePathToFile(pathToCurrentModule, importDefinitionPath) {
  * @param {String} rootDirectory
  * @param {Array} configurationTree
  */
-function searchParentAliasesAndCompareThem(
+function errorOutputWhenUsingAliases(
   targetAliasModule,
   importDefinitionPath,
   pathToCurrentModule,
