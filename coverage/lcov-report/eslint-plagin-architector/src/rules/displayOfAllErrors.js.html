@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -89,11 +89,9 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -107,27 +105,25 @@
 <span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-yes">72x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const getTargetModuleLevel = require("./checkTargetModuleLevel");
-const errorIfNotAlias = require("./errorIfNotAlias");
-const errorOutputWhenUsingAliases = require("./errorOutputWhenUsingAliases");
+const errors = require("./errors");
+//const errorOutputWhenUsingAliases = require("./errorOutputWhenUsingAliases");
 const getArchitectureConfigurationTree = require("./getArchitectureConfigurationTree");
 const getLevelAlias = require("./getLevelAlias");
 &nbsp;
@@ -140,7 +136,8 @@ const getLevelAlias = require("./getLevelAlias");
     const targetModuleLevel = getTargetModuleLevel(configurationTree, importDefinitionPath);
     const targetModuleAlias = getLevelAlias(rootDirectory, jsConfigFileContent).find(
       (elem) =&gt; elem.key === importDefinitionPath.split("/")[0]
-      );
+      );   
+        return errors(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, targetModuleAlias);
       
     // if (jsConfigFileContent) {
       // if (targetModuleAlias) {
@@ -154,9 +151,6 @@ const getLevelAlias = require("./getLevelAlias");
       // }
     // }
   
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (targetModuleLevel) {
-      return errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, targetModuleAlias);
-    }
   }
 &nbsp;
   module.exports = displayOfAllErrors</pre></td></tr></table></pre>
@@ -166,7 +160,7 @@ const getLevelAlias = require("./getLevelAlias");
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jan 26 2023 17:09:49 GMT+0300 (Москва, стандартное время)
+                at Thu Jan 26 2023 17:25:13 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

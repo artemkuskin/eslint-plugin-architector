@@ -31,30 +31,31 @@ function errorWhenImportingLevelsNotIncludedInRules(
         return "/////////////////////////////////////////";
       }
     }
-  }
-  const moduleTargetLevelFirstParent = setModuleByName(
-    configurationTree,
-    getParentFolder(
-      rootDirectory,
-      absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath)
-    )
-  );
-  const moduleCurrentLevelFirstParent = setModuleByName(
-    configurationTree,
-    getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
-  );
-  if (
-    moduleTargetLevelFirstParent.name !== moduleCurrentLevelFirstParent.name &&
-    moduleCurrentLevelFirstParent.index < moduleTargetLevelFirstParent.index
-  ) {
-    return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-  }
-  if (
-    moduleTargetLevelFirstParent.name === moduleCurrentLevelFirstParent.name &&
-    pathToCurrentModule.split("/").length >
-      absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
-  ) {
-    return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+  } else {
+    const moduleTargetLevelFirstParent = setModuleByName(
+      configurationTree,
+      getParentFolder(
+        rootDirectory,
+        absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath)
+      )
+    );
+    const moduleCurrentLevelFirstParent = setModuleByName(
+      configurationTree,
+      getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
+    );
+    if (
+      moduleTargetLevelFirstParent.name !== moduleCurrentLevelFirstParent.name &&
+      moduleCurrentLevelFirstParent.index < moduleTargetLevelFirstParent.index
+    ) {
+      return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+    }
+    if (
+      moduleTargetLevelFirstParent.name === moduleCurrentLevelFirstParent.name &&
+      pathToCurrentModule.split("/").length >
+        absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
+    ) {
+      return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+    }
   }
 }
 

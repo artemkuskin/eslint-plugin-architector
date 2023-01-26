@@ -3,7 +3,7 @@ const outputOfErrorsWhenImportingLevelsSpecifiedInTheRules = require("./outputOf
 const setCurrentLevel = require("./setCurrentLevel");
 const setModuleByName = require("./setModuleByName");
 
-function errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory,targetModuleAlias) {
+function errors(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory,targetModuleAlias) {
     const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
     const importLevel = setCurrentLevel(importDefinitionPath);
     const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
@@ -29,5 +29,5 @@ function errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitio
     }
   }
 
-  module.exports = errorIfNotAlias
+  module.exports = errors
   
