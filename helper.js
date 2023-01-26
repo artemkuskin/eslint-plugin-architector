@@ -203,10 +203,7 @@ function searchParentAliasesAndCompareThem(
 ) {
   const absolutePathtoTheFileAlias = path.resolve(absolutePathFile(targetAliasModule.path), importDefinitionPath);
   const firstParentTargetLevelALias = getParentFolder(rootDirectory, absolutePathtoTheFileAlias); // что импортим
-  const pathToCurrentFile = pathToCurrentModule
-    .split("/")
-    .splice(0, pathToCurrentModule.split("/").length - 1)
-    .join("/");
+  const pathToCurrentFile = absolutePathFile(pathToCurrentModule);
   const firstParentCurrentLevel = getParentFolder(rootDirectory, pathToCurrentFile); // куда
   const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, firstParentTargetLevelALias[1]); //configurationTree.find(
   //   (elem) => elem.name === firstParentTargetLevelALias[1]
@@ -280,28 +277,14 @@ function getLevelAlias(rootDirectory) {
   const configurationTreeAlias = [];
   for (let key in parentsAlias) {
     configurationTreeAlias.push({
-      key: parentsAlias[key].key
-        .split("/")
-        .splice(0, parentsAlias[key].key.split("/").length - 1)
-        .join("/"),
+      key: absolutePathFile(parentsAlias[key].key),
       path: path
         .resolve(
           parentsAlias[key].name.split("/").splice(0, parentsAlias[key].name.split("/").length).join("/"),
           rootDirectory
         )
         .split("/")
-        .splice(
-          0,
-          path
-            .resolve(
-              parentsAlias[key].name
-                .split("/")
-                .splice(0, parentsAlias[key].name.split("/").length - 1)
-                .join("/"),
-              rootDirectory
-            )
-            .split("/").length - 1
-        )
+        .splice(0, path.resolve(absolutePathFile(parentsAlias[key].name), rootDirectory).split("/").length - 1)
         .join("/"),
     });
   }

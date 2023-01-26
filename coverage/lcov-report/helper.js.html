@@ -684,27 +684,7 @@
 <a name='L625'></a><a href='#L625'>625</a>
 <a name='L626'></a><a href='#L626'>626</a>
 <a name='L627'></a><a href='#L627'>627</a>
-<a name='L628'></a><a href='#L628'>628</a>
-<a name='L629'></a><a href='#L629'>629</a>
-<a name='L630'></a><a href='#L630'>630</a>
-<a name='L631'></a><a href='#L631'>631</a>
-<a name='L632'></a><a href='#L632'>632</a>
-<a name='L633'></a><a href='#L633'>633</a>
-<a name='L634'></a><a href='#L634'>634</a>
-<a name='L635'></a><a href='#L635'>635</a>
-<a name='L636'></a><a href='#L636'>636</a>
-<a name='L637'></a><a href='#L637'>637</a>
-<a name='L638'></a><a href='#L638'>638</a>
-<a name='L639'></a><a href='#L639'>639</a>
-<a name='L640'></a><a href='#L640'>640</a>
-<a name='L641'></a><a href='#L641'>641</a>
-<a name='L642'></a><a href='#L642'>642</a>
-<a name='L643'></a><a href='#L643'>643</a>
-<a name='L644'></a><a href='#L644'>644</a>
-<a name='L645'></a><a href='#L645'>645</a>
-<a name='L646'></a><a href='#L646'>646</a>
-<a name='L647'></a><a href='#L647'>647</a>
-<a name='L648'></a><a href='#L648'>648</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L628'></a><a href='#L628'>628</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -886,7 +866,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">195x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -908,14 +888,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -989,20 +963,6 @@
 <span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-yes">84x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1358,7 +1318,7 @@ const TreeModel = require("tree-model");
 module.exports = validateIfImportIsAllowed;
 &nbsp;
 const architectureConfigTree = [];
-let jsConfigFileContent = undefined
+let jsConfigFileContent = undefined;
 function setJsConfigFile() {
   try {
     jsConfigFileContent = require(path.resolve("jsconfig.json"));
@@ -1388,11 +1348,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       rootDirectory
     );
 &nbsp;
-    const currentModuleLevel = setCurrentLevel(pathToCurrentModule); 
+    const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
     const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-    const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel); 
-    const importLevel = setCurrentLevel(importDefinitionPath); 
-    const configurationOfTargetModule = setModuleByName(configurationTree, importLevel); 
+    const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
+    const importLevel = setCurrentLevel(importDefinitionPath);
+    const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
     <span class="missing-if-branch" title="else path not taken" >E</span>if (jsConfigFileContent) {
       const configurationTreeAlias = getLevelAlias(rootDirectory);
       const keyAlias = importDefinitionPath.split("/")[0];
@@ -1419,7 +1379,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             configurationTree
           );
         } else {
-          const pathToCurrentFile =absolutePathFile(pathToCurrentModule);
+          const pathToCurrentFile = absolutePathFile(pathToCurrentModule);
 &nbsp;
           const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
           const moduleTargetLevelFirstName = setModuleByName(
@@ -1429,7 +1389,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const moduleCurrentLevelFirstName = setModuleByName(
             configurationTree,
             getParentFolder(rootDirectory, pathToCurrentFile)[1]
-          ); 
+          );
           if (
             moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &amp;&amp;
             moduleCurrentLevelFirstName.index &lt; moduleTargetLevelFirstName.index
@@ -1532,11 +1492,11 @@ function searchForAFolderInTheRulesAndCompareThem(
   }
 }
 &nbsp;
-function absolutePathFile (relativePath) {
-  return  (relativePath
-  .split("/")
-  .slice(0, relativePath.split("/").length - 1)
-  .join("/"))
+function absolutePathFile(relativePath) {
+  return relativePath
+    .split("/")
+    .slice(0, relativePath.split("/").length - 1)
+    .join("/");
 }
 &nbsp;
 /**
@@ -1554,15 +1514,9 @@ function searchParentAliasesAndCompareThem(
   rootDirectory,
   configurationTree
 ) {
-  const absolutePathtoTheFileAlias = path.resolve(
-    absolutePathFile(targetAliasModule.path),
-    importDefinitionPath
-  );
+  const absolutePathtoTheFileAlias = path.resolve(absolutePathFile(targetAliasModule.path), importDefinitionPath);
   const firstParentTargetLevelALias = getParentFolder(rootDirectory, absolutePathtoTheFileAlias); // что импортим
-  const pathToCurrentFile = pathToCurrentModule
-    .split("/")
-    .splice(0, pathToCurrentModule.split("/").length - 1)
-    .join("/");
+  const pathToCurrentFile = absolutePathFile(pathToCurrentModule);
   const firstParentCurrentLevel = getParentFolder(rootDirectory, pathToCurrentFile); // куда
   const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, firstParentTargetLevelALias[1]); //configurationTree.find(
   //   (elem) =&gt; elem.name === firstParentTargetLevelALias[1]
@@ -1636,28 +1590,14 @@ function getLevelAlias(rootDirectory) {
   const configurationTreeAlias = [];
   for (let key in parentsAlias) {
     configurationTreeAlias.push({
-      key: parentsAlias[key].key
-        .split("/")
-        .splice(0, parentsAlias[key].key.split("/").length - 1)
-        .join("/"),
+      key: absolutePathFile(parentsAlias[key].key),
       path: path
         .resolve(
           parentsAlias[key].name.split("/").splice(0, parentsAlias[key].name.split("/").length).join("/"),
           rootDirectory
         )
         .split("/")
-        .splice(
-          0,
-          path
-            .resolve(
-              parentsAlias[key].name
-                .split("/")
-                .splice(0, parentsAlias[key].name.split("/").length - 1)
-                .join("/"),
-              rootDirectory
-            )
-            .split("/").length - 1
-        )
+        .splice(0, path.resolve(absolutePathFile(parentsAlias[key].name), rootDirectory).split("/").length - 1)
         .join("/"),
     });
   }
@@ -2005,7 +1945,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jan 26 2023 11:16:46 GMT+0300 (Москва, стандартное время)
+                at Thu Jan 26 2023 11:23:56 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
