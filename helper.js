@@ -5,14 +5,14 @@ const TreeModel = require("tree-model");
 module.exports = validateIfImportIsAllowed;
 
 const architectureConfigTree = [];
-let jsConfigFileContent = require(path.resolve("jsconfig.json"));
-// function setJsConfigFile() {
-//   try {
-//     jsConfigFileContent = require(path.resolve("jsconfig.json"));
-//   } catch {
-//     jsConfigFileContent = null;
-//   }
-// }
+let jsConfigFileContent = undefined
+function setJsConfigFile() {
+  try {
+    jsConfigFileContent = require(path.resolve("jsconfig.json"));
+  } catch {
+    jsConfigFileContent = null;
+  }
+}
 
 /**
  *  This function is running by eslint every time.
@@ -25,9 +25,9 @@ let jsConfigFileContent = require(path.resolve("jsconfig.json"));
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
   const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
-  // if (jsConfigFileContent === undefined) {
-  //   setJsConfigFile();
-  // }
+  if (jsConfigFileContent === undefined) {
+    setJsConfigFile();
+  }
   if (currentModuleIsInRootDirectory) {
     const configurationTree = getArchitectureConfigurationTree(
       levelsConfiguration.file,
@@ -35,11 +35,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       rootDirectory
     );
 
-    const currentModuleLevel = setCurrentLevel(pathToCurrentModule); //pathToCurrentModule.split("/")[pathToCurrentModule.split("/").length - 2];
+    const currentModuleLevel = setCurrentLevel(pathToCurrentModule); 
     const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-    const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel); //configurationTree.find((elem) => elem.name === currentModuleLevel);
-    const importLevel = setCurrentLevel(importDefinitionPath); //importDefinitionPath.split("/")[importDefinitionPath.split("/").length - 2];
-    const configurationOfTargetModule = setModuleByName(configurationTree, importLevel); //configurationTree.find((elem) => elem.name === importLevel);
+    const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel); 
+    const importLevel = setCurrentLevel(importDefinitionPath); 
+    const configurationOfTargetModule = setModuleByName(configurationTree, importLevel); 
     if (jsConfigFileContent) {
       const configurationTreeAlias = getLevelAlias(rootDirectory);
       const keyAlias = importDefinitionPath.split("/")[0];
@@ -75,11 +75,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const moduleTargetLevelFirstName = setModuleByName(
             configurationTree,
             getParentFolder(rootDirectory, absolutePathToTheFile)[1]
-          ); //configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
+          );
           const moduleCurrentLevelFirstName = setModuleByName(
             configurationTree,
             getParentFolder(rootDirectory, pathToCurrentFile)[1]
-          ); //configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]); //куда
+          ); 
           if (
             moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
             moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index
