@@ -13,10 +13,8 @@ function setJsConfigFile() {
     jsConfigFileContent = null;
   }
 }
-
 /**
  *  This function is running by eslint every time.
- *
  * @param {String} pathToCurrentModule - module in which we write import definition
  * @param {String} importDefinitionPath
  * @param {Object} levelsConfiguration
@@ -109,37 +107,6 @@ function setCurrentLevel(pathToModule) {
  * @param {String} rootDirectory
  * @param {Array} configurationTree
  */
-// function searchForParentsIfNotSpecifiedInTheRules(
-//   pathToCurrentModule,
-//   importDefinitionPath,
-//   rootDirectory,
-//   configurationTree
-// ) {
-//   const pathToCurrentFile = pathToCurrentModule
-//     .split("/")
-//     .splice(0, pathToCurrentModule.split("/").length - 1)
-//     .join("/");
-
-//   const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
-//   const moduleTargetLevelFirstName = setModuleByName(
-//     configurationTree,
-//     getParentFolder(rootDirectory, absolutePathToTheFile)[1]
-//   ); //configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
-//   const moduleCurrentLevelFirstName = setModuleByName(
-//     configurationTree,
-//     getParentFolder(rootDirectory, pathToCurrentFile)[1]
-//   ); //configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]); //куда
-//   if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
-//     if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
-//       return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-//     }
-//   }
-//   if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
-//     if (pathToCurrentModule.split("/").length > absolutePathToTheFile.split("/").length) {
-//       return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-//     }
-//   }
-// }
 
 /**
  *
@@ -164,15 +131,11 @@ function searchForAFolderInTheRulesAndCompareThem(
     const firstParentCurrentModuleLevelConfiguration = setModuleByName(
       configurationTree,
       currentModuleLevelConfiguration.firstParent
-    ); //configurationTree.find(
-    //   (elem) => elem.name === currentModuleLevelConfiguration.firstParent
-    // );
+    ); 
     const firstParentConfigurationOfTargetModule = setModuleByName(
       configurationTree,
       configurationOfTargetModule.firstParent
-    ); //configurationTree.find(
-    //   (elem) => elem.name === configurationOfTargetModule.firstParent
-    // );
+    ); 
     if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
       return `${path.resolve("jsconfig.json")}`;
     }
@@ -205,10 +168,8 @@ function searchParentAliasesAndCompareThem(
   const firstParentTargetLevelALias = getParentFolder(rootDirectory, absolutePathtoTheFileAlias); // что импортим
   const pathToCurrentFile = absolutePathFile(pathToCurrentModule);
   const firstParentCurrentLevel = getParentFolder(rootDirectory, pathToCurrentFile); // куда
-  const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, firstParentTargetLevelALias[1]); //configurationTree.find(
-  //   (elem) => elem.name === firstParentTargetLevelALias[1]
-  // );
-  const moduleCurentLevelFirstName = setModuleByName(configurationTree, firstParentCurrentLevel[1]); //configurationTree.find((elem) => elem.name === firstParentCurrentLevel[1]);
+  const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, firstParentTargetLevelALias[1]); 
+  const moduleCurentLevelFirstName = setModuleByName(configurationTree, firstParentCurrentLevel[1]); 
   if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
     if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
       return "/////////////////////////////////////////";
@@ -241,7 +202,6 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
   let resultarchitectureFree = architectureConfigTree.reduce(
     (acc, file) => {
       if (acc.map[file.name]) return acc;
-
       acc.map[file.name] = true;
       acc.resultarchitectureFree.push(file);
       return acc;
@@ -263,11 +223,9 @@ function getParentFolder(rootDirectory, absolutePathToTheFile) {
   let parent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
   return parent;
 }
-
 /**
  *
  * @param {String} rootDirectory
- * @returns
  */
 function getLevelAlias(rootDirectory) {
   const parentsAlias = [];
