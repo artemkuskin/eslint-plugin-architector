@@ -57,31 +57,23 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
         levelsConfiguration,
         rootDirectory
       );
-      const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
       console.log(currentModuleLevel);
-
+      
       const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
+      const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
       if (targetModuleLevel) {
-        const parentTargetModule = configurationTree.find((elem) => elem.name === targetModuleLevel[1]);
+       // const parentTargetModule = configurationTree.find((elem) => elem.name === targetModuleLevel[1]);
         const partsOfPathToTargetModule = importDefinitionPath.split("/");
         const importLevel = partsOfPathToTargetModule[partsOfPathToTargetModule.length - 2];
         const configurationOfTargetModule = configurationTree.find((elem) => elem.name === importLevel);
         if (configurationOfTargetModule && currentModuleLevelConfiguration) {
-          if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
-            if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
-              return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-            }
-          } else if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
-            const firstParentCurrentModuleLevelConfiguration = configurationTree.find(
-              (elem) => elem.name === currentModuleLevelConfiguration.firstParent
-            );
-            const firstParentConfigurationOfTargetModule = configurationTree.find(
-              (elem) => elem.name === configurationOfTargetModule.firstParent
-            );
-            if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
-              return `${path.resolve("jsconfig.json")}`;
-            }
-          }
+          return searchForAFolderInTheRulesAndCompareThem(
+            currentModuleLevelConfiguration,
+            configurationOfTargetModule,
+            importLevel,
+            currentModuleLevel,
+            configurationTree
+          );
         } else {
           //console.log(path.resolve(path.resolve(__dirname, "jsconfig.json"), importDefinitionPath))
 
@@ -127,6 +119,36 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           // }
         }
       }
+    }
+  }
+}
+
+function searchForAFolderInTheRulesAndCompareThem(
+  currentModuleLevelConfiguration,
+  configurationOfTargetModule,
+  importLevel,
+  currentModuleLevel,
+  configurationTree
+) {
+  if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
+    if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
+      return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+    }
+  } else if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
+    const firstParentCurrentModuleLevelConfiguration = setModuleByName(
+      configurationTree,
+      currentModuleLevelConfiguration.firstParent
+    ); //configurationTree.find(
+    //   (elem) => elem.name === currentModuleLevelConfiguration.firstParent
+    // );
+    const firstParentConfigurationOfTargetModule = setModuleByName(
+      configurationTree,
+      configurationOfTargetModule.firstParent
+    ); //configurationTree.find(
+    //   (elem) => elem.name === configurationOfTargetModule.firstParent
+    // );
+    if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
+      return `${path.resolve("jsconfig.json")}`;
     }
   }
 }
