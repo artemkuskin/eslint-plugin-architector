@@ -27,16 +27,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   }
 
   if (Boolean(getParentFolder(rootDirectory, pathToCurrentModule))) {
-    const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
-    const importLevel = setCurrentLevel(importDefinitionPath);
     const configurationTree = getArchitectureConfigurationTree(
       levelsConfiguration.file,
       levelsConfiguration,
       rootDirectory
     );
     const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-    const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
-    const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
+   
     const targetAliasModule = getLevelAlias(rootDirectory).find(
       (elem) => elem.key === importDefinitionPath.split("/")[0]
     ); // сделать проверку на сущечтвование
@@ -54,25 +51,33 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     }
 
     if (targetModuleLevel) {
-      if (configurationOfTargetModule && currentModuleLevelConfiguration) {
-        return searchForAFolderInTheRulesAndCompareThem(
-          currentModuleLevelConfiguration,
-          configurationOfTargetModule,
-          importLevel,
-          currentModuleLevel,
-          configurationTree
-        );
-      } else {
-        return errorWhenImportingLevelsNotIncludedInRules(
-          configurationTree,
-          rootDirectory,
-          pathToCurrentModule,
-          importDefinitionPath,
-          importLevel,
-          currentModuleLevel
-        )
-      }
+      return errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory)
     }
+  }
+}
+
+function errorIfNotAlias (configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory) {
+  const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
+  const importLevel = setCurrentLevel(importDefinitionPath);
+  const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
+  const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
+  if (configurationOfTargetModule && currentModuleLevelConfiguration) {
+    return searchForAFolderInTheRulesAndCompareThem(
+      currentModuleLevelConfiguration,
+      configurationOfTargetModule,
+      importLevel,
+      currentModuleLevel,
+      configurationTree
+    );
+  } else {
+    return errorWhenImportingLevelsNotIncludedInRules(
+      configurationTree,
+      rootDirectory,
+      pathToCurrentModule,
+      importDefinitionPath,
+      importLevel,
+      currentModuleLevel
+    )
   }
 }
 
