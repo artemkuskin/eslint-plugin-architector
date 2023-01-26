@@ -73,6 +73,74 @@ describe("Validate hierarchy with default config", () => {
     const errors = validateHierarchy(filePath, "../A.jsx", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
+
+
+
+
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "B1/B1.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "../B/B.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "C/C.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "./A1/A1.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "./A1/A2/A2.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "./A3/A3.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+
+
+
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/B/B.jsx", "../A/A.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/B/B.jsx", "../A/A1/A1.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/B/B.jsx", "C/C.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/B/B.jsx", "B1/B1.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+  
+
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A1/A1.jsx", "../../B/B.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A1/A1.jsx", "../A.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A1/A1.jsx", "C/C.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A1/A1.jsx", "B1/B1.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A1/A1.jsx", "../A3/A3.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A1/A1.jsx", "./A2/A2.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  }); 
   // it("allow downward import", () => {
   //   const errors = validateHierarchy(filePath, "../A1/A1.jsx", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
