@@ -1,4 +1,4 @@
-const checkTargetModuleLevel = require("./checkTargetModuleLevel");
+const getTargetModuleLevel = require("./checkTargetModuleLevel");
 const errorIfNotAlias = require("./errorIfNotAlias");
 const errorOutputWhenUsingAliases = require("./errorOutputWhenUsingAliases");
 const getArchitectureConfigurationTree = require("./getArchitectureConfigurationTree");
@@ -10,21 +10,22 @@ const getLevelAlias = require("./getLevelAlias");
       levelsConfiguration,
       rootDirectory
     );
-    const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-    const targetAliasModule = getLevelAlias(rootDirectory, jsConfigFileContent).find(
+    const targetModuleLevel = getTargetModuleLevel(configurationTree, importDefinitionPath);
+    const targetModuleAlias = getLevelAlias(rootDirectory, jsConfigFileContent).find(
       (elem) => elem.key === importDefinitionPath.split("/")[0]
       );
-    if (jsConfigFileContent) {
-      if (targetAliasModule) {
+      
+    // if (jsConfigFileContent) {
+      if (targetModuleAlias) {
         return errorOutputWhenUsingAliases(
-          targetAliasModule,
+          targetModuleAlias,
           importDefinitionPath,
           pathToCurrentModule,
           rootDirectory,
           configurationTree
         );
       }
-    }
+    // }
   
     if (targetModuleLevel) {
       return errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory);

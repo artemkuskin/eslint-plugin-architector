@@ -6,6 +6,7 @@ function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
     });
   
     const targetModuleLevel = new RegExp(`(${levelsNamesString})`, "g").exec(importDefinitionPath);
+    
     return targetModuleLevel;
   }
 

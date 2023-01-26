@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1674737295264" clover="3.2.0">
-  <project timestamp="1674737295264" name="All files">
-    <metrics statements="129" coveredstatements="122" conditionals="42" coveredconditionals="32" methods="25" coveredmethods="25" elements="196" coveredelements="179" complexity="0" loc="129" ncloc="129" packages="2" files="15" classes="15"/>
+<coverage generated="1674740007806" clover="3.2.0">
+  <project timestamp="1674740007806" name="All files">
+    <metrics statements="130" coveredstatements="123" conditionals="40" coveredconditionals="31" methods="25" coveredmethods="25" elements="195" coveredelements="179" complexity="0" loc="130" ncloc="130" packages="2" files="14" classes="14"/>
     <package name="eslint-plagin-architector">
-      <metrics statements="14" coveredstatements="13" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
+      <metrics statements="15" coveredstatements="14" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
       <file name="helper.js" path="/home/artem/eslint-plagin-architector/helper.js">
-        <metrics statements="14" coveredstatements="13" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
+        <metrics statements="15" coveredstatements="14" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="27" count="21" type="stmt"/>
-        <line num="29" count="21" type="cond" truecount="1" falsecount="1"/>
-        <line num="30" count="21" type="stmt"/>
-        <line num="63" count="21" type="cond" truecount="2" falsecount="0"/>
-        <line num="64" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="14" count="21" type="stmt"/>
+        <line num="16" count="21" type="stmt"/>
+        <line num="18" count="21" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="21" type="stmt"/>
+        <line num="28" count="21" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
       </file>
     </package>
     <package name="eslint-plagin-architector.src.rules">
-      <metrics statements="115" coveredstatements="109" conditionals="38" coveredconditionals="29" methods="22" coveredmethods="22"/>
+      <metrics statements="115" coveredstatements="109" conditionals="36" coveredconditionals="28" methods="23" coveredmethods="23"/>
       <file name="absolutePathToFile.js" path="/home/artem/eslint-plagin-architector/src/rules/absolutePathToFile.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -36,11 +37,11 @@
         <line num="4" count="21" type="stmt"/>
         <line num="5" count="42" type="stmt"/>
         <line num="8" count="21" type="stmt"/>
-        <line num="9" count="21" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="10" count="21" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
       </file>
       <file name="displayOfAllErrors.js" path="/home/artem/eslint-plagin-architector/src/rules/displayOfAllErrors.js">
-        <metrics statements="15" coveredstatements="15" conditionals="6" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -50,12 +51,11 @@
         <line num="13" count="21" type="stmt"/>
         <line num="14" count="21" type="stmt"/>
         <line num="15" count="72" type="stmt"/>
-        <line num="17" count="21" type="cond" truecount="1" falsecount="1"/>
-        <line num="18" count="21" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="8" type="stmt"/>
-        <line num="29" count="13" type="cond" truecount="1" falsecount="1"/>
-        <line num="30" count="13" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
+        <line num="19" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="8" type="stmt"/>
+        <line num="30" count="13" type="cond" truecount="1" falsecount="1"/>
+        <line num="31" count="13" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
       </file>
       <file name="errorIfNotAlias.js" path="/home/artem/eslint-plagin-architector/src/rules/errorIfNotAlias.js">
         <metrics statements="12" coveredstatements="12" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
@@ -100,52 +100,50 @@
         <line num="36" count="3" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
       </file>
-      <file name="getAllParentThisNode.js" path="/home/artem/eslint-plagin-architector/src/rules/getAllParentThisNode.js">
-        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="126" type="stmt"/>
-        <line num="5" count="126" type="stmt"/>
-        <line num="6" count="126" type="stmt"/>
-        <line num="7" count="378" type="stmt"/>
-        <line num="8" count="378" type="stmt"/>
-        <line num="9" count="378" type="cond" truecount="2" falsecount="0"/>
-        <line num="10" count="126" type="stmt"/>
-        <line num="11" count="126" type="stmt"/>
-        <line num="12" count="126" type="stmt"/>
-        <line num="18" count="126" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-      </file>
       <file name="getArchitectureConfigurationTree.js" path="/home/artem/eslint-plagin-architector/src/rules/getArchitectureConfigurationTree.js">
-        <metrics statements="15" coveredstatements="14" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
+        <metrics statements="25" coveredstatements="24" conditionals="8" coveredconditionals="7" methods="6" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="21" type="stmt"/>
-        <line num="6" count="63" type="stmt"/>
-        <line num="7" count="63" type="stmt"/>
-        <line num="8" count="63" type="stmt"/>
-        <line num="15" count="63" type="cond" truecount="1" falsecount="1"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="21" type="stmt"/>
-        <line num="21" count="693" type="cond" truecount="2" falsecount="0"/>
-        <line num="22" count="63" type="stmt"/>
-        <line num="23" count="63" type="stmt"/>
-        <line num="24" count="63" type="stmt"/>
-        <line num="31" count="21" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="21" type="stmt"/>
+        <line num="9" count="63" type="stmt"/>
+        <line num="10" count="63" type="stmt"/>
+        <line num="11" count="63" type="stmt"/>
+        <line num="18" count="63" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="21" type="stmt"/>
+        <line num="24" count="693" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="63" type="stmt"/>
+        <line num="26" count="63" type="stmt"/>
+        <line num="27" count="63" type="stmt"/>
+        <line num="34" count="21" type="stmt"/>
+        <line num="38" count="126" type="stmt"/>
+        <line num="39" count="126" type="stmt"/>
+        <line num="40" count="126" type="stmt"/>
+        <line num="41" count="378" type="stmt"/>
+        <line num="42" count="378" type="stmt"/>
+        <line num="43" count="378" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="126" type="stmt"/>
+        <line num="45" count="126" type="stmt"/>
+        <line num="46" count="126" type="stmt"/>
+        <line num="52" count="126" type="stmt"/>
       </file>
       <file name="getLevelAlias.js" path="/home/artem/eslint-plagin-architector/src/rules/getLevelAlias.js">
-        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="6" count="21" type="stmt"/>
-        <line num="7" count="21" type="stmt"/>
-        <line num="8" count="84" type="stmt"/>
+        <line num="8" count="21" type="stmt"/>
         <line num="10" count="21" type="stmt"/>
-        <line num="11" count="21" type="stmt"/>
-        <line num="12" count="84" type="stmt"/>
-        <line num="28" count="21" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
+        <line num="11" count="84" type="stmt"/>
+        <line num="23" count="21" type="stmt"/>
+        <line num="27" count="21" type="stmt"/>
+        <line num="29" count="21" type="stmt"/>
+        <line num="31" count="84" type="stmt"/>
+        <line num="34" count="84" type="stmt"/>
+        <line num="37" count="21" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
       </file>
       <file name="getParentFolder.js" path="/home/artem/eslint-plagin-architector/src/rules/getParentFolder.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
