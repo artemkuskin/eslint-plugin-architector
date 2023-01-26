@@ -54,7 +54,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     }
 
     if (targetModuleLevel) {
-      if (configurationOfTargetModule && currentModuleLevelConfiguration) {
+      if (configurationOfTargetModule) {
         return searchForAFolderInTheRulesAndCompareThem(
           currentModuleLevelConfiguration,
           configurationOfTargetModule,
@@ -68,7 +68,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           rootDirectory,
           pathToCurrentModule,
           importDefinitionPath
-        )
+        );
         // const moduleTargetLevelFirstName = setModuleByName(
         //   configurationTree,
         //   getParentFolder(
