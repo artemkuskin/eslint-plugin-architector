@@ -15,27 +15,27 @@ let jsConfigFileContent = require(path.resolve("jsconfig.json"));
 // }
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
-  const architectureConfigTree = [];
-  function getArchitectureConfigurationTree(architectureConfigRules) {
-    for (let key in architectureConfigRules) {
-      const lastParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).lastParent;
-      const firstParent = getAllParentThisNode(
-        levelsConfiguration.file,
-        architectureConfigRules[key].level
-      ).firstParent;
-      architectureConfigTree.push({
-        name: architectureConfigRules[key].level,
-        index: key,
-        parents: lastParent || rootDirectory,
-        firstParent: firstParent,
-        children: architectureConfigRules[key].children,
-      });
-      if (architectureConfigRules[key].children.length !== 0) {
-        getArchitectureConfigurationTree(architectureConfigRules[key].children);
-      }
-    }
-    return architectureConfigTree;
-  }
+  // const architectureConfigTree = [];
+  // function getArchitectureConfigurationTree(architectureConfigRules) {
+  //   for (let key in architectureConfigRules) {
+  //     const lastParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).lastParent;
+  //     const firstParent = getAllParentThisNode(
+  //       levelsConfiguration.file,
+  //       architectureConfigRules[key].level
+  //     ).firstParent;
+  //     architectureConfigTree.push({
+  //       name: architectureConfigRules[key].level,
+  //       index: key,
+  //       parents: lastParent || rootDirectory,
+  //       firstParent: firstParent,
+  //       children: architectureConfigRules[key].children,
+  //     });
+  //     if (architectureConfigRules[key].children.length !== 0) {
+  //       getArchitectureConfigurationTree(architectureConfigRules[key].children);
+  //     }
+  //   }
+  //   return architectureConfigTree;
+  // }
 
   let parentsAlias = [];
   console.log(jsConfigFileContent);
@@ -70,7 +70,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
         .join("/"),
     });
   }
-  let configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
+  let configurationTree = getArchitectureConfigurationTree(
+        levelsConfiguration.file,
+        levelsConfiguration,
+        rootDirectory
+      );
   let keyAlias = importDefinitionPath.split("/")[0];
   let targetAliasModule = configurationTreeAlias.find((elem) => elem.key === keyAlias); // сделать проверку на сущечтвование
   if (targetAliasModule) {
@@ -115,8 +119,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     const currentModuleLevel = partsOfPathToCurrentModule[partsOfPathToCurrentModule.length - 2];
 
     if (currentModuleLevel) {
-      const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
-
+      const configurationTree = getArchitectureConfigurationTree(
+        levelsConfiguration.file,
+        levelsConfiguration,
+        rootDirectory
+      );
       const currentModuleLevelConfiguration = configurationTree.find((elem) => elem.name === currentModuleLevel);
       console.log(currentModuleLevel);
 
@@ -149,7 +156,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             .split("/")
             .splice(0, pathToCurrentModule.split("/").length - 1)
             .join("/");
-          const configurationTree = getArchitectureConfigurationTree(levelsConfiguration.file);
+          const configurationTree = getArchitectureConfigurationTree(
+            levelsConfiguration.file,
+            levelsConfiguration,
+            rootDirectory
+          );
           const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
           const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
           const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
@@ -214,6 +225,37 @@ function getAllParentThisNode(dataset, nodeLevel) {
   });
 
   return { lastParent: parents[parents.length - 2], firstParent: parents[0] };
+}
+const architectureConfigTree = [];
+function getArchitectureConfigurationTree(architectureConfigRules, levelsConfiguration, rootDirectory) {
+  for (let key in architectureConfigRules) {
+    const lastParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).lastParent;
+    const firstParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).firstParent;
+    architectureConfigTree.push({
+      name: architectureConfigRules[key].level,
+      index: key,
+      parents: lastParent || rootDirectory,
+      firstParent: firstParent,
+      children: architectureConfigRules[key].children,
+    });
+    if (architectureConfigRules[key].children.length !== 0) {
+      getArchitectureConfigurationTree(architectureConfigRules[key].children, levelsConfiguration, rootDirectory);
+    }
+  }
+  let resultarchitectureFree = architectureConfigTree.reduce(
+    (acc, file) => {
+      if (acc.map[file.name]) return acc;
+// 
+      acc.map[file.name] = true;
+      acc.resultarchitectureFree.push(file);
+      return acc;
+    },
+    {
+      map: {},
+      resultarchitectureFree: [],
+    }
+  ).resultarchitectureFree;
+  return resultarchitectureFree;
 }
 
 
