@@ -164,10 +164,8 @@ function searchParentAliasesAndCompareThem(
   configurationTree
 ) {
   const absolutePathtoTheFileAlias = absolutePathToFile(PathToCurrentFileWithoutContent(targetAliasModule.path), importDefinitionPath);
-  const firstParentTargetLevelALias = getParentFolder(rootDirectory, absolutePathtoTheFileAlias); // что импортим
-  const firstParentCurrentLevel = getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule)); // куда
-  const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, firstParentTargetLevelALias); 
-  const moduleCurentLevelFirstName = setModuleByName(configurationTree, firstParentCurrentLevel); 
+  const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, absolutePathtoTheFileAlias)); 
+  const moduleCurentLevelFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))); 
   if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
     if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
       return "/////////////////////////////////////////";
