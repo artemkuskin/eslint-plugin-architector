@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1674714476989" clover="3.2.0">
-  <project timestamp="1674714476990" name="All files">
-    <metrics statements="97" coveredstatements="86" conditionals="44" coveredconditionals="25" methods="20" coveredmethods="19" elements="161" coveredelements="130" complexity="0" loc="97" ncloc="97" packages="1" files="1" classes="1"/>
+<coverage generated="1674714685082" clover="3.2.0">
+  <project timestamp="1674714685082" name="All files">
+    <metrics statements="92" coveredstatements="82" conditionals="42" coveredconditionals="23" methods="19" coveredmethods="18" elements="153" coveredelements="123" complexity="0" loc="92" ncloc="92" packages="1" files="1" classes="1"/>
     <file name="helper.js" path="/home/artem/eslint-plagin-architector/helper.js">
-      <metrics statements="97" coveredstatements="86" conditionals="44" coveredconditionals="25" methods="20" coveredmethods="19"/>
+      <metrics statements="92" coveredstatements="82" conditionals="42" coveredconditionals="23" methods="19" coveredmethods="18"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
       <line num="5" count="1" type="stmt"/>
       <line num="7" count="1" type="stmt"/>
       <line num="8" count="1" type="stmt"/>
-      <line num="10" count="1" type="stmt"/>
-      <line num="11" count="1" type="stmt"/>
-      <line num="13" count="0" type="stmt"/>
       <line num="27" count="5" type="stmt"/>
-      <line num="28" count="5" type="cond" truecount="2" falsecount="0"/>
-      <line num="29" count="1" type="stmt"/>
       <line num="32" count="5" type="stmt"/>
       <line num="38" count="5" type="stmt"/>
       <line num="39" count="5" type="stmt"/>

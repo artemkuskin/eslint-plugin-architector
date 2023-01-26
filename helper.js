@@ -5,14 +5,14 @@ const TreeModel = require("tree-model");
 module.exports = validateIfImportIsAllowed;
 
 const architectureConfigTree = [];
-let jsConfigFileContent = undefined;
-function setJsConfigFile() {
-  try {
-    jsConfigFileContent = require(path.resolve("jsconfig.json"));
-  } catch {
-    jsConfigFileContent = null;
-  }
-}
+let jsConfigFileContent = require(path.resolve("jsconfig.json"));
+// function setJsConfigFile() {
+//   try {
+//     jsConfigFileContent = require(path.resolve("jsconfig.json"));
+//   } catch {
+//     jsConfigFileContent = null;
+//   }
+// }
 
 /**
  *  This function is running by eslint every time.
@@ -25,9 +25,9 @@ function setJsConfigFile() {
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
   const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
-  if (jsConfigFileContent === undefined) {
-    setJsConfigFile();
-  }
+  // if (jsConfigFileContent === undefined) {
+  //   setJsConfigFile();
+  // }
 
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfiguration.file,
