@@ -67,12 +67,24 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             configurationTree
           );
         } else {
-          return searchForParentsIfNotSpecifiedInTheRules(
-            pathToCurrentModule,
-            importDefinitionPath,
-            rootDirectory,
-            configurationTree
-          )
+          const pathToCurrentFile = pathToCurrentModule
+    .split("/")
+    .splice(0, pathToCurrentModule.split("/").length - 1)
+    .join("/");
+
+  const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
+  const moduleTargetLevelFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, absolutePathToTheFile)[1]); //configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
+  const moduleCurrentLevelFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, pathToCurrentFile)[1]); //configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]); //куда
+  if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
+    if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
+      return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+    }
+  }
+  if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
+    if (pathToCurrentModule.split("/").length > absolutePathToTheFile.split("/").length) {
+      return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+    }
+  }
         }
       }
     }
