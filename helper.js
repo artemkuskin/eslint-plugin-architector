@@ -86,31 +86,12 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             levelsConfiguration,
             rootDirectory
           );
-          const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
-          const firstParent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
-          const moduleTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
-          const firstParentcCurrentLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(pathToCurrentFile);
-          // const firstParentAliasTargetLevel = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(importDefinitionPath)
-          // const moduleAliasTargetLevelFirstName = configurationTree.find((elem) => elem.name === firstParentAliasTargetLevel[1]); //что импортим
-          const moduleCurrentLevelFirstName = configurationTree.find(
-            (elem) => elem.name === firstParentcCurrentLevel[1]
-          ); //куда
-          // console.log(firstParentAliasTargetLevel, firstParentcCurrentLevel);
-          if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
-            if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
-              return `adasdasdasdasd`;
-            }
-          }
-          if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
-            const pathToCurrentFile = pathToCurrentModule
-              .split("/")
-              .splice(0, pathToCurrentModule.split("/").length - 1)
-              .join("/");
-            const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
-            if (pathToCurrentModule.split("/").length > absolutePathToTheFile.split("/").length) {
-              return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-            }
-          }
+          return searchForParentsIfNotSpecifiedInTheRules(
+            pathToCurrentModule,
+            importDefinitionPath,
+            rootDirectory,
+            configurationTree
+          );
 
           // else if (moduleCurrentLevelFirstName.name !== moduleAliasTargetLevelFirstName.name) {
           //  if (moduleCurrentLevelFirstName.index > moduleAliasTargetLevelFirstName.index) {
@@ -119,6 +100,37 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           // }
         }
       }
+    }
+  }
+}
+
+function searchForParentsIfNotSpecifiedInTheRules(
+  pathToCurrentModule,
+  importDefinitionPath,
+  rootDirectory,
+  configurationTree
+) {
+  const pathToCurrentFile = pathToCurrentModule
+    .split("/")
+    .splice(0, pathToCurrentModule.split("/").length - 1)
+    .join("/");
+
+  const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
+  const moduleTargetLevelFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, absolutePathToTheFile)[1]); //configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
+  const moduleCurrentLevelFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, pathToCurrentFile)[1]); //configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]); //куда
+  if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
+    if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
+      return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+    }
+  }
+  if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
+    const pathToCurrentFile = pathToCurrentModule
+      .split("/")
+      .splice(0, pathToCurrentModule.split("/").length - 1)
+      .join("/");
+    const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
+    if (pathToCurrentModule.split("/").length > absolutePathToTheFile.split("/").length) {
+      return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
     }
   }
 }
