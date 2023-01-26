@@ -5,7 +5,7 @@ const TreeModel = require("tree-model");
 module.exports = validateIfImportIsAllowed;
 
 const architectureConfigTree = [];
-let jsConfigFileContent = undefined
+let jsConfigFileContent = undefined;
 function setJsConfigFile() {
   try {
     jsConfigFileContent = require(path.resolve("jsconfig.json"));
@@ -35,11 +35,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       rootDirectory
     );
 
-    const currentModuleLevel = setCurrentLevel(pathToCurrentModule); 
+    const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
     const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-    const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel); 
-    const importLevel = setCurrentLevel(importDefinitionPath); 
-    const configurationOfTargetModule = setModuleByName(configurationTree, importLevel); 
+    const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
+    const importLevel = setCurrentLevel(importDefinitionPath);
+    const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
     if (jsConfigFileContent) {
       const configurationTreeAlias = getLevelAlias(rootDirectory);
       const keyAlias = importDefinitionPath.split("/")[0];
@@ -66,10 +66,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             configurationTree
           );
         } else {
-          const pathToCurrentFile = pathToCurrentModule
-            .split("/")
-            .splice(0, pathToCurrentModule.split("/").length - 1)
-            .join("/");
+          const pathToCurrentFile = absolutePathFile(pathToCurrentModule);
 
           const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
           const moduleTargetLevelFirstName = setModuleByName(
@@ -79,7 +76,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           const moduleCurrentLevelFirstName = setModuleByName(
             configurationTree,
             getParentFolder(rootDirectory, pathToCurrentFile)[1]
-          ); 
+          );
           if (
             moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
             moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index
@@ -112,37 +109,37 @@ function setCurrentLevel(pathToModule) {
  * @param {String} rootDirectory
  * @param {Array} configurationTree
  */
-function searchForParentsIfNotSpecifiedInTheRules(
-  pathToCurrentModule,
-  importDefinitionPath,
-  rootDirectory,
-  configurationTree
-) {
-  const pathToCurrentFile = pathToCurrentModule
-    .split("/")
-    .splice(0, pathToCurrentModule.split("/").length - 1)
-    .join("/");
+// function searchForParentsIfNotSpecifiedInTheRules(
+//   pathToCurrentModule,
+//   importDefinitionPath,
+//   rootDirectory,
+//   configurationTree
+// ) {
+//   const pathToCurrentFile = pathToCurrentModule
+//     .split("/")
+//     .splice(0, pathToCurrentModule.split("/").length - 1)
+//     .join("/");
 
-  const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
-  const moduleTargetLevelFirstName = setModuleByName(
-    configurationTree,
-    getParentFolder(rootDirectory, absolutePathToTheFile)[1]
-  ); //configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
-  const moduleCurrentLevelFirstName = setModuleByName(
-    configurationTree,
-    getParentFolder(rootDirectory, pathToCurrentFile)[1]
-  ); //configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]); //куда
-  if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
-    if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
-      return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-    }
-  }
-  if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
-    if (pathToCurrentModule.split("/").length > absolutePathToTheFile.split("/").length) {
-      return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-    }
-  }
-}
+//   const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
+//   const moduleTargetLevelFirstName = setModuleByName(
+//     configurationTree,
+//     getParentFolder(rootDirectory, absolutePathToTheFile)[1]
+//   ); //configurationTree.find((elem) => elem.name === firstParent[1]); //что импортим
+//   const moduleCurrentLevelFirstName = setModuleByName(
+//     configurationTree,
+//     getParentFolder(rootDirectory, pathToCurrentFile)[1]
+//   ); //configurationTree.find((elem) => elem.name === firstParentcCurrentLevel[1]); //куда
+//   if (moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name) {
+//     if (moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index) {
+//       return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+//     }
+//   }
+//   if (moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name) {
+//     if (pathToCurrentModule.split("/").length > absolutePathToTheFile.split("/").length) {
+//       return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+//     }
+//   }
+// }
 
 /**
  *
@@ -182,6 +179,13 @@ function searchForAFolderInTheRulesAndCompareThem(
   }
 }
 
+function absolutePathFile(relativePath) {
+  return relativePath
+    .split("/")
+    .slice(0, relativePath.split("/").length - 1)
+    .join("/");
+}
+
 /**
  *
  * @param {Object} targetAliasModule
@@ -197,13 +201,7 @@ function searchParentAliasesAndCompareThem(
   rootDirectory,
   configurationTree
 ) {
-  const absolutePathtoTheFileAlias = path.resolve(
-    targetAliasModule.path
-      .split("/")
-      .slice(0, targetAliasModule.path.split("/").length - 1)
-      .join("/"),
-    importDefinitionPath
-  );
+  const absolutePathtoTheFileAlias = path.resolve(absolutePathFile(targetAliasModule.path), importDefinitionPath);
   const firstParentTargetLevelALias = getParentFolder(rootDirectory, absolutePathtoTheFileAlias); // что импортим
   const pathToCurrentFile = pathToCurrentModule
     .split("/")
