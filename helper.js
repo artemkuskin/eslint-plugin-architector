@@ -64,16 +64,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             configurationTree
           );
         } else {
-          const pathToCurrentFile = absolutePathFile(pathToCurrentModule);
-
-          const absolutePathToTheFile = path.resolve(pathToCurrentFile, importDefinitionPath);
           const moduleTargetLevelFirstName = setModuleByName(
             configurationTree,
-            getParentFolder(rootDirectory, absolutePathToTheFile)[1]
+            getParentFolder(rootDirectory, absolutePathToFile(absolutePathToCurrentFile(pathToCurrentModule), importDefinitionPath))[1]
           );
           const moduleCurrentLevelFirstName = setModuleByName(
             configurationTree,
-            getParentFolder(rootDirectory, pathToCurrentFile)[1]
+            getParentFolder(rootDirectory, absolutePathToCurrentFile(pathToCurrentModule))[1]
           );
           if (
             moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
@@ -83,7 +80,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           }
           if (
             moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &&
-            pathToCurrentModule.split("/").length > absolutePathToTheFile.split("/").length
+            pathToCurrentModule.split("/").length > absolutePathToFile(absolutePathToCurrentFile(pathToCurrentModule), importDefinitionPath).split("/").length
           ) {
             return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
           }
@@ -142,11 +139,15 @@ function searchForAFolderInTheRulesAndCompareThem(
   }
 }
 
-function absolutePathFile(relativePath) {
+function absolutePathToCurrentFile(relativePath) {
   return relativePath
     .split("/")
     .slice(0, relativePath.split("/").length - 1)
     .join("/");
+}
+
+function absolutePathToFile (pathToCurrentModule, importDefinitionPath) {
+  return path.resolve(pathToCurrentModule, importDefinitionPath)
 }
 
 /**
@@ -164,9 +165,9 @@ function searchParentAliasesAndCompareThem(
   rootDirectory,
   configurationTree
 ) {
-  const absolutePathtoTheFileAlias = path.resolve(absolutePathFile(targetAliasModule.path), importDefinitionPath);
+  const absolutePathtoTheFileAlias = absolutePathToFile(absolutePathToCurrentFile(targetAliasModule.path), importDefinitionPath);
   const firstParentTargetLevelALias = getParentFolder(rootDirectory, absolutePathtoTheFileAlias); // что импортим
-  const pathToCurrentFile = absolutePathFile(pathToCurrentModule);
+  const pathToCurrentFile = absolutePathToCurrentFile(pathToCurrentModule);
   const firstParentCurrentLevel = getParentFolder(rootDirectory, pathToCurrentFile); // куда
   const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, firstParentTargetLevelALias[1]); 
   const moduleCurentLevelFirstName = setModuleByName(configurationTree, firstParentCurrentLevel[1]); 
@@ -235,14 +236,14 @@ function getLevelAlias(rootDirectory) {
   const configurationTreeAlias = [];
   for (let key in parentsAlias) {
     configurationTreeAlias.push({
-      key: absolutePathFile(parentsAlias[key].key),
+      key: absolutePathToCurrentFile(parentsAlias[key].key),
       path: path
         .resolve(
           parentsAlias[key].name.split("/").splice(0, parentsAlias[key].name.split("/").length).join("/"),
           rootDirectory
         )
         .split("/")
-        .splice(0, path.resolve(absolutePathFile(parentsAlias[key].name), rootDirectory).split("/").length - 1)
+        .splice(0, absolutePathToFile(absolutePathToCurrentFile(parentsAlias[key].name), rootDirectory).split("/").length - 1)
         .join("/"),
     });
   }
@@ -291,6 +292,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
 }
 // const fs = require("fs");
 // const path = require("path");
+
 // const TreeModel = require("tree-model");
 
 // module.exports = validateIfImportIsAllowed;
