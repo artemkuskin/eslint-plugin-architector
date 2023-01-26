@@ -25,31 +25,35 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   getJsConfug();
 
   if (Boolean(getParentFolder(rootDirectory, pathToCurrentModule))) {
-    const configurationTree = getArchitectureConfigurationTree(
-      levelsConfiguration.file,
-      levelsConfiguration,
-      rootDirectory
+   return displayOfAllErrors (rootDirectory, importDefinitionPath, pathToCurrentModule, levelsConfiguration)
+    
+  }
+}
+
+function displayOfAllErrors (rootDirectory, importDefinitionPath, pathToCurrentModule, levelsConfiguration) {
+  const configurationTree = getArchitectureConfigurationTree(
+    levelsConfiguration.file,
+    levelsConfiguration,
+    rootDirectory
+  );
+  const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
+  const targetAliasModule = getLevelAlias(rootDirectory).find(
+    (elem) => elem.key === importDefinitionPath.split("/")[0]
     );
-    const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-
-    if (jsConfigFileContent) {
-      const targetAliasModule = getLevelAlias(rootDirectory).find(
-        (elem) => elem.key === importDefinitionPath.split("/")[0]
+  if (jsConfigFileContent) {
+    if (targetAliasModule) {
+      return errorOutputWhenUsingAliases(
+        targetAliasModule,
+        importDefinitionPath,
+        pathToCurrentModule,
+        rootDirectory,
+        configurationTree
       );
-      if (targetAliasModule) {
-        return errorOutputWhenUsingAliases(
-          targetAliasModule,
-          importDefinitionPath,
-          pathToCurrentModule,
-          rootDirectory,
-          configurationTree
-        );
-      }
     }
+  }
 
-    if (targetModuleLevel) {
-      return errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory);
-    }
+  if (targetModuleLevel) {
+    return errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory);
   }
 }
 
