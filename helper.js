@@ -25,19 +25,19 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   if (jsConfigFileContent === undefined) {
     setJsConfigFile();
   }
-  const currentModuleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
-  const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
-  const importLevel = setCurrentLevel(importDefinitionPath);
-  const configurationTree = getArchitectureConfigurationTree(
-    levelsConfiguration.file,
-    levelsConfiguration,
-    rootDirectory
-    );
-  const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
-  const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
-  const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
-  const targetAliasModule = getLevelAlias(rootDirectory).find((elem) => elem.key === importDefinitionPath.split("/")[0]); // сделать проверку на сущечтвование
-  if (currentModuleIsInRootDirectory) {
+  
+  if (Boolean(getParentFolder(rootDirectory, pathToCurrentModule))) {
+    const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
+    const importLevel = setCurrentLevel(importDefinitionPath);
+    const configurationTree = getArchitectureConfigurationTree(
+      levelsConfiguration.file,
+      levelsConfiguration,
+      rootDirectory
+      );
+    const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
+    const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
+    const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
+    const targetAliasModule = getLevelAlias(rootDirectory).find((elem) => elem.key === importDefinitionPath.split("/")[0]); // сделать проверку на сущечтвование
 
     if (jsConfigFileContent) {
       if (targetAliasModule) {
@@ -51,7 +51,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       }
     }
 
-    if (currentModuleLevel) {
+  
       if (targetModuleLevel) {
         if (configurationOfTargetModule && currentModuleLevelConfiguration) {
           return searchForAFolderInTheRulesAndCompareThem(
@@ -62,10 +62,29 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
             configurationTree
           );
         } else {
-         return errorWhenImportingLevelsNotIncludedInRules (configurationTree, rootDirectory, pathToCurrentModule, importDefinitionPath)
+         const moduleTargetLevelFirstName = setModuleByName(
+    configurationTree,
+    getParentFolder(rootDirectory, absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath))
+  );
+  const moduleCurrentLevelFirstName = setModuleByName(
+    configurationTree,
+    getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
+  );
+  if (
+    moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
+    moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index
+  ) {
+    return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  }
+  if (
+    moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &&
+    pathToCurrentModule.split("/").length > absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
+  ) {
+    return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+  }
         }
       }
-    }
+    
   }
 }
 
