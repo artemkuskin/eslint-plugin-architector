@@ -16,19 +16,19 @@ const getLevelAlias = require("./getLevelAlias");
       );
       
     // if (jsConfigFileContent) {
-      if (targetModuleAlias) {
-        return errorOutputWhenUsingAliases(
-          targetModuleAlias,
-          importDefinitionPath,
-          pathToCurrentModule,
-          rootDirectory,
-          configurationTree
-        );
-      }
+      // if (targetModuleAlias) {
+      //   return errorOutputWhenUsingAliases(
+      //     targetModuleAlias,
+      //     importDefinitionPath,
+      //     pathToCurrentModule,
+      //     rootDirectory,
+      //     configurationTree
+      //   );
+      // }
     // }
   
     if (targetModuleLevel) {
-      return errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory);
+      return errorIfNotAlias(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, targetModuleAlias);
     }
   }
 

@@ -4,37 +4,58 @@ const PathToCurrentFileWithoutContent = require("./pathToCurrentFileWithoutConte
 const setModuleByName = require("./setModuleByName");
 
 function errorWhenImportingLevelsNotIncludedInRules(
-    configurationTree,
-    rootDirectory,
-    pathToCurrentModule,
-    importDefinitionPath,
-    importLevel,
-    currentModuleLevel
-  ) {
-    const moduleTargetLevelFirstName = setModuleByName(
-      configurationTree,
-      getParentFolder(
-        rootDirectory,
-        absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath)
-      )
+  configurationTree,
+  rootDirectory,
+  pathToCurrentModule,
+  importDefinitionPath,
+  importLevel,
+  currentModuleLevel,
+  targetAliasModule
+) {
+  if (targetAliasModule) {
+    const absolutePathtoTheFileAlias = absolutePathToFile(
+      PathToCurrentFileWithoutContent(targetAliasModule.path),
+      importDefinitionPath
     );
-    const moduleCurrentLevelFirstName = setModuleByName(
+    const moduleTargetLevelAliasFirstParent = setModuleByName(
+      configurationTree,
+      getParentFolder(rootDirectory, absolutePathtoTheFileAlias)
+    );
+    const moduleCurentLevelFirstParent = setModuleByName(
       configurationTree,
       getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
     );
-    if (
-      moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
-      moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index
-    ) {
-      return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-    }
-    if (
-      moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &&
-      pathToCurrentModule.split("/").length >
-        absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
-    ) {
-      return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+
+    if (moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name) {
+      if (moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index) {
+        return "/////////////////////////////////////////";
+      }
     }
   }
+  const moduleTargetLevelFirstParent = setModuleByName(
+    configurationTree,
+    getParentFolder(
+      rootDirectory,
+      absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath)
+    )
+  );
+  const moduleCurrentLevelFirstParent = setModuleByName(
+    configurationTree,
+    getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
+  );
+  if (
+    moduleTargetLevelFirstParent.name !== moduleCurrentLevelFirstParent.name &&
+    moduleCurrentLevelFirstParent.index < moduleTargetLevelFirstParent.index
+  ) {
+    return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  }
+  if (
+    moduleTargetLevelFirstParent.name === moduleCurrentLevelFirstParent.name &&
+    pathToCurrentModule.split("/").length >
+      absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
+  ) {
+    return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+  }
+}
 
-  module.exports = errorWhenImportingLevelsNotIncludedInRules
+module.exports = errorWhenImportingLevelsNotIncludedInRules;
