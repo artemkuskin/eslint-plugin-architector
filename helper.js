@@ -28,6 +28,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   // if (jsConfigFileContent === undefined) {
   //   setJsConfigFile();
   // }
+  if (currentModuleIsInRootDirectory) {
 
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfiguration.file,
@@ -55,7 +56,6 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     }
   }
 
-  if (currentModuleIsInRootDirectory) {
     if (currentModuleLevel) {
       if (targetModuleLevel) {
         if (configurationOfTargetModule && currentModuleLevelConfiguration) {
@@ -92,7 +92,6 @@ function setCurrentLevel(pathToModule) {
  * @param {String} importDefinitionPath
  * @param {String} rootDirectory
  * @param {Array} configurationTree
- * @returns
  */
 function searchForParentsIfNotSpecifiedInTheRules(
   pathToCurrentModule,
@@ -132,7 +131,6 @@ function searchForParentsIfNotSpecifiedInTheRules(
  * @param {String} importLevel
  * @param {String} currentModuleLevel
  * @param {Array} configurationTree
- * @returns
  */
 function searchForAFolderInTheRulesAndCompareThem(
   currentModuleLevelConfiguration,
@@ -171,7 +169,6 @@ function searchForAFolderInTheRulesAndCompareThem(
  * @param {String} pathToCurrentModule
  * @param {String} rootDirectory
  * @param {Array} configurationTree
- * @returns
  */
 function searchParentAliasesAndCompareThem(
   targetAliasModule,
