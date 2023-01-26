@@ -105,7 +105,6 @@ function errorWhenImportingLevelsNotIncludedInRules(
   pathToCurrentModule,
   importDefinitionPath
 ) {
-  let result = null
   const moduleTargetLevelFirstName = setModuleByName(
     configurationTree,
     getParentFolder(
@@ -121,20 +120,14 @@ function errorWhenImportingLevelsNotIncludedInRules(
     moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
     moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index
   ) {
-    result = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+    return `Cannot import  from `;
   }
   if (
     moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &&
     pathToCurrentModule.split("/").length >
       absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
   ) {
-    result = "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-  }
-  if (result) {
-
-    return result
-  } else {
-    return
+    return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
   }
 }
 
