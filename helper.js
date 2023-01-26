@@ -54,7 +54,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
     }
 
     if (targetModuleLevel) {
-      if (configurationOfTargetModule) {
+      if (configurationOfTargetModule && currentModuleLevelConfiguration) {
         return searchForAFolderInTheRulesAndCompareThem(
           currentModuleLevelConfiguration,
           configurationOfTargetModule,
@@ -68,7 +68,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           rootDirectory,
           pathToCurrentModule,
           importDefinitionPath
-        );
+        )
         // const moduleTargetLevelFirstName = setModuleByName(
         //   configurationTree,
         //   getParentFolder(
@@ -105,6 +105,7 @@ function errorWhenImportingLevelsNotIncludedInRules(
   pathToCurrentModule,
   importDefinitionPath
 ) {
+  let result = null
   const moduleTargetLevelFirstName = setModuleByName(
     configurationTree,
     getParentFolder(
@@ -120,14 +121,20 @@ function errorWhenImportingLevelsNotIncludedInRules(
     moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
     moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index
   ) {
-    return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+    result = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   }
   if (
     moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &&
     pathToCurrentModule.split("/").length >
       absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
   ) {
-    return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+    result = "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+  }
+  if (result) {
+
+    return result
+  } else {
+    return
   }
 }
 
