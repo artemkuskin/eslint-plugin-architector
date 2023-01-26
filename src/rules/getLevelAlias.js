@@ -1,5 +1,5 @@
 const absolutePathToFile = require("./absolutePathToFile");
-const PathToCurrentFileWithoutContent = require("./pathToCurrentFileWithoutContent");
+const PathToCurrentFileWithOutContent = require("./pathToCurrentFileWithoutContent");
 const path = require("path");
 
 function getLevelAlias(rootDirectory, jsConfigFileContent) {
@@ -9,18 +9,22 @@ function getLevelAlias(rootDirectory, jsConfigFileContent) {
 
   for (let key in aliases) {
     configurationTreeAlias.push({
-      key: PathToCurrentFileWithoutContent(aliases[key].key),
+      key: PathToCurrentFileWithOutContent(aliases[key].key),
       path: path
-        .resolve(aliases[key].name.split("/").splice(0, aliases[key].name.split("/").length).join("/"), rootDirectory)
+        .resolve(aliases[key].name.split("/").splice(0, setLengthPathFolder(aliases[key].name)).join("/"), rootDirectory)
         .split("/")
         .splice(
           0,
-          absolutePathToFile(PathToCurrentFileWithoutContent(aliases[key].name), rootDirectory).split("/").length - 1
+          setLengthPathFolder(absolutePathToFile(PathToCurrentFileWithOutContent(aliases[key].name), rootDirectory)) - 1
         )
         .join("/"),
     });
   }
   return configurationTreeAlias;
+}
+
+function setLengthPathFolder (pathFolder) {
+    return pathFolder.split("/").length
 }
 
 function getAliases(jsConfigFileContent) {
