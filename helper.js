@@ -64,11 +64,11 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
         } else {
           const moduleTargetLevelFirstName = setModuleByName(
             configurationTree,
-            getParentFolder(rootDirectory, absolutePathToFile(absolutePathToCurrentFile(pathToCurrentModule), importDefinitionPath))[1]
+            getParentFolder(rootDirectory, absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath))
           );
           const moduleCurrentLevelFirstName = setModuleByName(
             configurationTree,
-            getParentFolder(rootDirectory, absolutePathToCurrentFile(pathToCurrentModule))[1]
+            getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
           );
           if (
             moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
@@ -78,7 +78,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           }
           if (
             moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &&
-            pathToCurrentModule.split("/").length > absolutePathToFile(absolutePathToCurrentFile(pathToCurrentModule), importDefinitionPath).split("/").length
+            pathToCurrentModule.split("/").length > absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
           ) {
             return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
           }
@@ -137,7 +137,7 @@ function searchForAFolderInTheRulesAndCompareThem(
   }
 }
 
-function absolutePathToCurrentFile(relativePath) {
+function PathToCurrentFileWithoutContent(relativePath) {
   return relativePath
     .split("/")
     .slice(0, relativePath.split("/").length - 1)
@@ -163,12 +163,11 @@ function searchParentAliasesAndCompareThem(
   rootDirectory,
   configurationTree
 ) {
-  const absolutePathtoTheFileAlias = absolutePathToFile(absolutePathToCurrentFile(targetAliasModule.path), importDefinitionPath);
+  const absolutePathtoTheFileAlias = absolutePathToFile(PathToCurrentFileWithoutContent(targetAliasModule.path), importDefinitionPath);
   const firstParentTargetLevelALias = getParentFolder(rootDirectory, absolutePathtoTheFileAlias); // что импортим
-  const pathToCurrentFile = absolutePathToCurrentFile(pathToCurrentModule);
-  const firstParentCurrentLevel = getParentFolder(rootDirectory, pathToCurrentFile); // куда
-  const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, firstParentTargetLevelALias[1]); 
-  const moduleCurentLevelFirstName = setModuleByName(configurationTree, firstParentCurrentLevel[1]); 
+  const firstParentCurrentLevel = getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule)); // куда
+  const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, firstParentTargetLevelALias); 
+  const moduleCurentLevelFirstName = setModuleByName(configurationTree, firstParentCurrentLevel); 
   if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
     if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
       return "/////////////////////////////////////////";
@@ -220,7 +219,7 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
  */
 function getParentFolder(rootDirectory, absolutePathToTheFile) {
   let parent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
-  return parent;
+  return parent[1];
 }
 /**
  *
@@ -234,14 +233,14 @@ function getLevelAlias(rootDirectory) {
   const configurationTreeAlias = [];
   for (let key in parentsAlias) {
     configurationTreeAlias.push({
-      key: absolutePathToCurrentFile(parentsAlias[key].key),
+      key: PathToCurrentFileWithoutContent(parentsAlias[key].key),
       path: path
         .resolve(
           parentsAlias[key].name.split("/").splice(0, parentsAlias[key].name.split("/").length).join("/"),
           rootDirectory
         )
         .split("/")
-        .splice(0, absolutePathToFile(absolutePathToCurrentFile(parentsAlias[key].name), rootDirectory).split("/").length - 1)
+        .splice(0, absolutePathToFile(PathToCurrentFileWithoutContent(parentsAlias[key].name), rootDirectory).split("/").length - 1)
         .join("/"),
     });
   }
