@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "src/*": [
+        "src/*"
+      ],
+      "B1/*":[
+        "src/B/B1/*"
+      ], 
+      "C/*":[
+        "src/C/*"
+      ],
+      "A3/*":[
+        "src/A/A3/*"
+      ]
+    }
+  }
+}
