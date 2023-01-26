@@ -379,28 +379,7 @@
 <a name='L320'></a><a href='#L320'>320</a>
 <a name='L321'></a><a href='#L321'>321</a>
 <a name='L322'></a><a href='#L322'>322</a>
-<a name='L323'></a><a href='#L323'>323</a>
-<a name='L324'></a><a href='#L324'>324</a>
-<a name='L325'></a><a href='#L325'>325</a>
-<a name='L326'></a><a href='#L326'>326</a>
-<a name='L327'></a><a href='#L327'>327</a>
-<a name='L328'></a><a href='#L328'>328</a>
-<a name='L329'></a><a href='#L329'>329</a>
-<a name='L330'></a><a href='#L330'>330</a>
-<a name='L331'></a><a href='#L331'>331</a>
-<a name='L332'></a><a href='#L332'>332</a>
-<a name='L333'></a><a href='#L333'>333</a>
-<a name='L334'></a><a href='#L334'>334</a>
-<a name='L335'></a><a href='#L335'>335</a>
-<a name='L336'></a><a href='#L336'>336</a>
-<a name='L337'></a><a href='#L337'>337</a>
-<a name='L338'></a><a href='#L338'>338</a>
-<a name='L339'></a><a href='#L339'>339</a>
-<a name='L340'></a><a href='#L340'>340</a>
-<a name='L341'></a><a href='#L341'>341</a>
-<a name='L342'></a><a href='#L342'>342</a>
-<a name='L343'></a><a href='#L343'>343</a>
-<a name='L344'></a><a href='#L344'>344</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L323'></a><a href='#L323'>323</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -466,27 +445,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -812,33 +770,10 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
           configurationTree,
           rootDirectory,
           pathToCurrentModule,
-          importDefinitionPath
+          importDefinitionPath,
+          importLevel,
+          currentModuleLevel
         )
-        // const moduleTargetLevelFirstName = setModuleByName(
-        //   configurationTree,
-        //   getParentFolder(
-        //     rootDirectory,
-        //     absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath)
-        //   )
-        // );
-        // const moduleCurrentLevelFirstName = setModuleByName(
-        //   configurationTree,
-        //   getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
-        // );
-        // if (
-        //   moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &amp;&amp;
-        //   moduleCurrentLevelFirstName.index &lt; moduleTargetLevelFirstName.index
-        // ) {
-        //   return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-        // }
-        // if (
-        //   moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &amp;&amp;
-        //   pathToCurrentModule.split("/").length &gt;
-        //     absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/")
-        //       .length
-        // ) {
-        //   return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-        // }
       }
     }
   }
@@ -848,7 +783,9 @@ function errorWhenImportingLevelsNotIncludedInRules(
   configurationTree,
   rootDirectory,
   pathToCurrentModule,
-  importDefinitionPath
+  importDefinitionPath,
+  importLevel,
+  currentModuleLevel
 ) {
   const moduleTargetLevelFirstName = setModuleByName(
     configurationTree,
@@ -865,7 +802,7 @@ function errorWhenImportingLevelsNotIncludedInRules(
     moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &amp;&amp;
     moduleCurrentLevelFirstName.index &lt; moduleTargetLevelFirstName.index
   ) {
-    return `Cannot import  from `;
+    return `Cannot import ${importLevel} from ${currentModuleLevel}`;
   }
   if (
     moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &amp;&amp;
@@ -1093,7 +1030,7 @@ function getAllParentThisNode(dataset, nodeLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Jan 26 2023 14:22:35 GMT+0300 (Москва, стандартное время)
+                at Thu Jan 26 2023 14:24:28 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="prettify.js"></script>
