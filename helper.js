@@ -25,7 +25,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   if (jsConfigFileContent === undefined) {
     setJsConfigFile();
   }
-  
+
   if (Boolean(getParentFolder(rootDirectory, pathToCurrentModule))) {
     const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
     const importLevel = setCurrentLevel(importDefinitionPath);
@@ -33,11 +33,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       levelsConfiguration.file,
       levelsConfiguration,
       rootDirectory
-      );
+    );
     const targetModuleLevel = checkTargetModuleLevel(configurationTree, importDefinitionPath);
     const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
     const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
-    const targetAliasModule = getLevelAlias(rootDirectory).find((elem) => elem.key === importDefinitionPath.split("/")[0]); // сделать проверку на сущечтвование
+    const targetAliasModule = getLevelAlias(rootDirectory).find(
+      (elem) => elem.key === importDefinitionPath.split("/")[0]
+    ); // сделать проверку на сущечтвование
 
     if (jsConfigFileContent) {
       if (targetAliasModule) {
@@ -51,47 +53,64 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       }
     }
 
-  
-      if (targetModuleLevel) {
-        if (configurationOfTargetModule && currentModuleLevelConfiguration) {
-          return searchForAFolderInTheRulesAndCompareThem(
-            currentModuleLevelConfiguration,
-            configurationOfTargetModule,
-            importLevel,
-            currentModuleLevel,
-            configurationTree
-          );
-        } else {
-         const moduleTargetLevelFirstName = setModuleByName(
-    configurationTree,
-    getParentFolder(rootDirectory, absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath))
-  );
-  const moduleCurrentLevelFirstName = setModuleByName(
-    configurationTree,
-    getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
-  );
-  if (
-    moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
-    moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index
-  ) {
-    return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-  }
-  if (
-    moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &&
-    pathToCurrentModule.split("/").length > absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
-  ) {
-    return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-  }
-        }
+    if (targetModuleLevel) {
+      if (configurationOfTargetModule && currentModuleLevelConfiguration) {
+        return searchForAFolderInTheRulesAndCompareThem(
+          currentModuleLevelConfiguration,
+          configurationOfTargetModule,
+          importLevel,
+          currentModuleLevel,
+          configurationTree
+        );
+      } else {
+        return errorWhenImportingLevelsNotIncludedInRules(
+          configurationTree,
+          rootDirectory,
+          pathToCurrentModule,
+          importDefinitionPath
+        )
+        // const moduleTargetLevelFirstName = setModuleByName(
+        //   configurationTree,
+        //   getParentFolder(
+        //     rootDirectory,
+        //     absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath)
+        //   )
+        // );
+        // const moduleCurrentLevelFirstName = setModuleByName(
+        //   configurationTree,
+        //   getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
+        // );
+        // if (
+        //   moduleTargetLevelFirstName.name !== moduleCurrentLevelFirstName.name &&
+        //   moduleCurrentLevelFirstName.index < moduleTargetLevelFirstName.index
+        // ) {
+        //   return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+        // }
+        // if (
+        //   moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &&
+        //   pathToCurrentModule.split("/").length >
+        //     absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/")
+        //       .length
+        // ) {
+        //   return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+        // }
       }
-    
+    }
   }
 }
 
-function errorWhenImportingLevelsNotIncludedInRules (configurationTree, rootDirectory, pathToCurrentModule, importDefinitionPath) {
+function errorWhenImportingLevelsNotIncludedInRules(
+  configurationTree,
+  rootDirectory,
+  pathToCurrentModule,
+  importDefinitionPath
+) {
   const moduleTargetLevelFirstName = setModuleByName(
     configurationTree,
-    getParentFolder(rootDirectory, absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath))
+    getParentFolder(
+      rootDirectory,
+      absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath)
+    )
   );
   const moduleCurrentLevelFirstName = setModuleByName(
     configurationTree,
@@ -105,7 +124,8 @@ function errorWhenImportingLevelsNotIncludedInRules (configurationTree, rootDire
   }
   if (
     moduleTargetLevelFirstName.name === moduleCurrentLevelFirstName.name &&
-    pathToCurrentModule.split("/").length > absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
+    pathToCurrentModule.split("/").length >
+      absolutePathToFile(PathToCurrentFileWithoutContent(pathToCurrentModule), importDefinitionPath).split("/").length
   ) {
     return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
   }
@@ -149,11 +169,11 @@ function searchForAFolderInTheRulesAndCompareThem(
     const firstParentCurrentModuleLevelConfiguration = setModuleByName(
       configurationTree,
       currentModuleLevelConfiguration.firstParent
-    ); 
+    );
     const firstParentConfigurationOfTargetModule = setModuleByName(
       configurationTree,
       configurationOfTargetModule.firstParent
-    ); 
+    );
     if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
       return `${path.resolve("jsconfig.json")}`;
     }
@@ -167,8 +187,8 @@ function PathToCurrentFileWithoutContent(relativePath) {
     .join("/");
 }
 
-function absolutePathToFile (pathToCurrentModule, importDefinitionPath) {
-  return path.resolve(pathToCurrentModule, importDefinitionPath)
+function absolutePathToFile(pathToCurrentModule, importDefinitionPath) {
+  return path.resolve(pathToCurrentModule, importDefinitionPath);
 }
 
 /**
@@ -186,9 +206,18 @@ function searchParentAliasesAndCompareThem(
   rootDirectory,
   configurationTree
 ) {
-  const absolutePathtoTheFileAlias = absolutePathToFile(PathToCurrentFileWithoutContent(targetAliasModule.path), importDefinitionPath);
-  const moduleTargetLevelAliasFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, absolutePathtoTheFileAlias)); 
-  const moduleCurentLevelFirstName = setModuleByName(configurationTree, getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))); 
+  const absolutePathtoTheFileAlias = absolutePathToFile(
+    PathToCurrentFileWithoutContent(targetAliasModule.path),
+    importDefinitionPath
+  );
+  const moduleTargetLevelAliasFirstName = setModuleByName(
+    configurationTree,
+    getParentFolder(rootDirectory, absolutePathtoTheFileAlias)
+  );
+  const moduleCurentLevelFirstName = setModuleByName(
+    configurationTree,
+    getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))
+  );
   if (moduleTargetLevelAliasFirstName.name !== moduleCurentLevelFirstName.name) {
     if (moduleTargetLevelAliasFirstName.index > moduleCurentLevelFirstName.index) {
       return "/////////////////////////////////////////";
@@ -261,7 +290,11 @@ function getLevelAlias(rootDirectory) {
           rootDirectory
         )
         .split("/")
-        .splice(0, absolutePathToFile(PathToCurrentFileWithoutContent(parentsAlias[key].name), rootDirectory).split("/").length - 1)
+        .splice(
+          0,
+          absolutePathToFile(PathToCurrentFileWithoutContent(parentsAlias[key].name), rootDirectory).split("/").length -
+            1
+        )
         .join("/"),
     });
   }
