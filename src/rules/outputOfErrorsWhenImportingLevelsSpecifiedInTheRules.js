@@ -26,13 +26,12 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
     currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents &&
     configurationOfTargetModule.index >= currentModuleLevelConfiguration.index
   ) {
-    return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-  }
-  if (
+    errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  } else if (
     currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent &&
     firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index
   ) {
-    return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
+    errorMessage = `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
   }
   // if (
   //   currentModuleLevelConfiguration.firstParent === configurationOfTargetModule.firstParent &&
@@ -40,8 +39,8 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   // ) {
   //   return `[[[[[[[[[[aaaaaaaaaaaaaaaaaaaaaaaaaaaa]]]]]]]]]]`;
   // }
-  
-  //return errorMessage;
+
+  return errorMessage;
 }
 
 function absolutePathTo(pathToModule, importDefinitionPath) {
@@ -51,4 +50,3 @@ function absolutePathTo(pathToModule, importDefinitionPath) {
 function lengthPathToFile(path) {
   return path.split("/").length;
 }
-
