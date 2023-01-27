@@ -24,17 +24,17 @@ function errorWhenImportingLevelsNotIncludedInRules(
       configurationTree,
       absolutePathtoTheFileAlias,
       rootDirectory
-      );
-      console.log(moduleTargetLevelAliasFirstParent, moduleCurentLevelFirstParent);
+    );
+    console.log(moduleTargetLevelAliasFirstParent, moduleCurentLevelFirstParent);
     if (
       moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name &&
       moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
     ) {
       return "/////////////////////////////////////////";
-    } 
-     if (
+    }
+    if (
       moduleTargetLevelAliasFirstParent.name === moduleCurentLevelFirstParent.name &&
-      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias) - 1
+      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias) - 2
     ) {
       return "]]]]]]]]]]]]]]]]]]]]]]";
     }
