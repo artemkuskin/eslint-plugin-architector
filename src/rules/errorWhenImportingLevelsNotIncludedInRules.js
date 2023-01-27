@@ -30,8 +30,7 @@ function errorWhenImportingLevelsNotIncludedInRules(
       moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
     ) {
       errorMessage = "/////////////////////////////////////////";
-    }
-   else if (
+    } else if (
       moduleTargetLevelAliasFirstParent.name === moduleCurentLevelFirstParent.name &&
       lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
     ) {
@@ -43,15 +42,14 @@ function errorWhenImportingLevelsNotIncludedInRules(
       moduleCurentLevelFirstParent.index < moduleTargetLevelFirstParent.index
     ) {
       errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
-    }
-  else  if (
+    } else if (
       moduleTargetLevelFirstParent.name === moduleCurentLevelFirstParent.name &&
       lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathToTargetModule)
     ) {
       errorMessage = "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
     }
   }
-   return errorMessage;
+  return errorMessage;
 }
 
 function lengthPathToFile(path) {

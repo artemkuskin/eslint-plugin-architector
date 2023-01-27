@@ -10,11 +10,14 @@ function errors(configurationTree, pathToCurrentModule, importDefinitionPath, ro
   const importLevel = setCurrentLevel(importDefinitionPath);
   const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
   const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
-  const targetModuleAlias = setLevelByKey(getLevelAlias(rootDirectory, jsConfigFileContent), firstElemImportDefinitionPath (importDefinitionPath))
- 
-  let errorMessage = undefined 
+  const targetModuleAlias = setLevelByKey(
+    getLevelAlias(rootDirectory, jsConfigFileContent),
+    firstElemImportDefinitionPath(importDefinitionPath)
+  );
+
+  let errorMessage = undefined;
   if (configurationOfTargetModule && currentModuleLevelConfiguration) {
-    return outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
+    errorMessage = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
       currentModuleLevelConfiguration,
       configurationOfTargetModule,
       importLevel,
@@ -23,23 +26,24 @@ function errors(configurationTree, pathToCurrentModule, importDefinitionPath, ro
       importDefinitionPath,
       pathToCurrentModule
     );
+  } else {
+    errorMessage = errorWhenImportingLevelsNotIncludedInRules(
+      configurationTree,
+      rootDirectory,
+      pathToCurrentModule,
+      importDefinitionPath,
+      importLevel,
+      currentModuleLevel,
+      targetModuleAlias
+    );
   }
-  return errorWhenImportingLevelsNotIncludedInRules(
-    configurationTree,
-    rootDirectory,
-    pathToCurrentModule,
-    importDefinitionPath,
-    importLevel,
-    currentModuleLevel,
-    targetModuleAlias
-  );
-  //return errorMessage
+  return errorMessage;
 }
 
-function firstElemImportDefinitionPath (importDefinitionPath) {
- return importDefinitionPath.split("/")[0]
+function firstElemImportDefinitionPath(importDefinitionPath) {
+  return importDefinitionPath.split("/")[0];
 }
 
-function setLevelByKey (configurationTree, key) {
+function setLevelByKey(configurationTree, key) {
   return configurationTree.find((elem) => elem.key === key);
 }
