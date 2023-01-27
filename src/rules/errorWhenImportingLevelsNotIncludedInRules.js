@@ -26,12 +26,13 @@ function errorWhenImportingLevelsNotIncludedInRules(
     if (
       moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name &&
       moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
-    ) {
+      ) {
       return   "/////////////////////////////////////////";
     }
     else if (
-      moduleTargetLevelAliasFirstParent.name === moduleCurentLevelFirstParent.name &&
-      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
+      moduleTargetLevelAliasFirstParent.firstParent === moduleCurentLevelFirstParent.firstParent &&
+      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias) && 
+      moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
     ) {
       return   "]]]]]]]]]]]]]]]]]]]]]]";
     }
