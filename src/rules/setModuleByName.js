@@ -1,5 +1,5 @@
 function setModuleByName(configurationTree, name) {
-    return configurationTree.find((elem) => elem.name === name);
-  }
+  return configurationTree.find((elem) => elem.name === name);
+}
 
-  module.exports = setModuleByName
+module.exports = setModuleByName;
