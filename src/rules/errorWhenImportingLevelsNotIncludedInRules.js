@@ -14,6 +14,8 @@ function errorWhenImportingLevelsNotIncludedInRules(
   targetAliasModule
 ) {
   const moduleCurentLevelFirstParent = setLevelsCurent(configurationTree, rootDirectory, pathToCurrentModule);
+  const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
+  const moduleTargetLevelFirstParent = setLevelsTarget(configurationTree, absolutePathToTargetModule, rootDirectory);
   let errorMessage = undefined;
 
   if (targetAliasModule) {
@@ -36,8 +38,6 @@ function errorWhenImportingLevelsNotIncludedInRules(
       return "]]]]]]]]]]]]]]]]]]]]]]";
     }
   }
-  const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
-  const moduleTargetLevelFirstParent = setLevelsTarget(configurationTree, absolutePathToTargetModule, rootDirectory);
   if (
     moduleTargetLevelFirstParent.name !== moduleCurentLevelFirstParent.name &&
     moduleCurentLevelFirstParent.index < moduleTargetLevelFirstParent.index
