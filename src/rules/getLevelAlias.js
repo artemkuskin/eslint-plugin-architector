@@ -6,7 +6,6 @@ module.exports = getLevelAlias;
 function getLevelAlias(rootDirectory, jsConfigFileContent) {
   const aliases = getAliases(jsConfigFileContent);
   const configurationTreeAlias = [];
-
   for (let key in aliases) {
     configurationTreeAlias.push({
       key: PathToCurrentFileWithOutContent(aliases[key].name),

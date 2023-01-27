@@ -1,6 +1,4 @@
-//const getTargetModuleLevel = require("./checkTargetModuleLevel");
 const errors = require("./errors");
-//const errorOutputWhenUsingAliases = require("./errorOutputWhenUsingAliases");
 const getArchitectureConfigurationTree = require("./getArchitectureConfigurationTree");
 const getLevelAlias = require("./getLevelAlias");
 module.exports = displayOfAllErrors;
