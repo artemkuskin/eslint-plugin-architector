@@ -28,27 +28,27 @@ function errorWhenImportingLevelsNotIncludedInRules(
       moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
     ) {
       return "/////////////////////////////////////////";
-    } else if (
+    } 
+     if (
       moduleTargetLevelAliasFirstParent.firstParent === moduleCurentLevelFirstParent.firstParent &&
       lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
     ) {
       return "]]]]]]]]]]]]]]]]]]]]]]";
     }
-  } else {
-    const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
-    const moduleTargetLevelFirstParent = setLevelsTarget(configurationTree, absolutePathToTargetModule, rootDirectory);
-    if (
-      moduleTargetLevelFirstParent.name !== moduleCurentLevelFirstParent.name &&
-      moduleCurentLevelFirstParent.index < moduleTargetLevelFirstParent.index
-    ) {
-      return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-    }
-    if (
-      moduleTargetLevelFirstParent.name === moduleCurentLevelFirstParent.name &&
-      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathToTargetModule)
-    ) {
-      return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
-    }
+  }
+  const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
+  const moduleTargetLevelFirstParent = setLevelsTarget(configurationTree, absolutePathToTargetModule, rootDirectory);
+  if (
+    moduleTargetLevelFirstParent.name !== moduleCurentLevelFirstParent.name &&
+    moduleCurentLevelFirstParent.index < moduleTargetLevelFirstParent.index
+  ) {
+    return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  }
+  if (
+    moduleTargetLevelFirstParent.name === moduleCurentLevelFirstParent.name &&
+    lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathToTargetModule)
+  ) {
+    return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
   }
 
   // return errorMessage;
