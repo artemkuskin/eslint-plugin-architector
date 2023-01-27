@@ -34,12 +34,12 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   ) {
     return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
   }
-  if (
-    currentModuleLevelConfiguration.firstParent === configurationOfTargetModule.firstParent &&
-    lengthPathToFile(absolutePathToTargetModule) < lengthPathToFile(pathToCurrentModule)
-  ) {
-    return `[[[[[[[[[[aaaaaaaaaaaaaaaaaaaaaaaaaaaa]]]]]]]]]]`;
-  }
+  // if (
+  //   currentModuleLevelConfiguration.firstParent === configurationOfTargetModule.firstParent &&
+  //   lengthPathToFile(absolutePathToTargetModule) < lengthPathToFile(pathToCurrentModule)
+  // ) {
+  //   return `[[[[[[[[[[aaaaaaaaaaaaaaaaaaaaaaaaaaaa]]]]]]]]]]`;
+  // }
   
   //return errorMessage;
 }
