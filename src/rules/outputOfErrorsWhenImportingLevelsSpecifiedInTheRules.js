@@ -1,32 +1,52 @@
 const setModuleByName = require("./setModuleByName");
-module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules
+module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules;
 
 function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
+  currentModuleLevelConfiguration,
+  configurationOfTargetModule,
+  importLevel,
+  currentModuleLevel,
+  configurationTree,
+  targetLevelAlias
+) {
+  let errorMessage = undefined;
+  const firstParentCurrentModuleLevelConfiguration = setModuleByName(
+    configurationTree,
+    currentModuleLevelConfiguration.firstParent
+  );
+  const firstParentConfigurationOfTargetModule = setModuleByName(
+    configurationTree,
+    configurationOfTargetModule.firstParent
+  );
+  setErrorsWithEqualParents(currentModuleLevelConfiguration, configurationOfTargetModule);
+  setErrorsWithNotEquilFirstParetnt(
     currentModuleLevelConfiguration,
     configurationOfTargetModule,
-    importLevel,
-    currentModuleLevel,
-    configurationTree,
-    targetLevelAlias
+    firstParentConfigurationOfTargetModule,
+    firstParentCurrentModuleLevelConfiguration
+  );
+  //return errorMessage
+}
+
+function setErrorsWithEqualParents(currentModuleLevelConfiguration, configurationOfTargetModule) {
+  if (
+    currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents &&
+    configurationOfTargetModule.index >= currentModuleLevelConfiguration.index
   ) {
-    let errorMessage = undefined
-    const firstParentCurrentModuleLevelConfiguration = setModuleByName(
-      configurationTree,
-      currentModuleLevelConfiguration.firstParent
-    );
-    const firstParentConfigurationOfTargetModule = setModuleByName(
-      configurationTree,
-      configurationOfTargetModule.firstParent
-    );
-    if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
-      if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
-        return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-      }
-    } 
-    if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
-      if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
-        return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
-      }
-    }
-    //return errorMessage
+    return `Cannot import ${importLevel} from ${currentModuleLevel}`;
   }
+}
+
+function setErrorsWithNotEquilFirstParetnt(
+  currentModuleLevelConfiguration,
+  configurationOfTargetModule,
+  firstParentConfigurationOfTargetModule,
+  firstParentCurrentModuleLevelConfiguration
+) {
+  if (
+    currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent &&
+    firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index
+  ) {
+    return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
+  }
+}
