@@ -18,45 +18,45 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
     configurationTree,
     configurationOfTargetModule.firstParent
   );
-  errorMessage = setErrorsWithEqualParents(
-    currentModuleLevelConfiguration,
-    configurationOfTargetModule,
-    importLevel,
-    currentModuleLevel
-  );
-  errorMessage = setErrorsWithNotEquilFirstParetnt(
-    currentModuleLevelConfiguration,
-    configurationOfTargetModule,
-    firstParentConfigurationOfTargetModule,
-    firstParentCurrentModuleLevelConfiguration
-  );
-  return errorMessage;
-}
-
-function setErrorsWithEqualParents(
-  currentModuleLevelConfiguration,
-  configurationOfTargetModule,
-  importLevel,
-  currentModuleLevel
-) {
   if (
     currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents &&
     configurationOfTargetModule.index >= currentModuleLevelConfiguration.index
   ) {
     return `Cannot import ${importLevel} from ${currentModuleLevel}`;
   }
-}
-
-function setErrorsWithNotEquilFirstParetnt(
-  currentModuleLevelConfiguration,
-  configurationOfTargetModule,
-  firstParentConfigurationOfTargetModule,
-  firstParentCurrentModuleLevelConfiguration
-) {
   if (
     currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent &&
     firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index
   ) {
     return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
   }
+  //return errorMessage;
 }
+
+// function setErrorsWithEqualParents(
+//   currentModuleLevelConfiguration,
+//   configurationOfTargetModule,
+//   importLevel,
+//   currentModuleLevel
+// ) {
+//   if (
+//     currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents &&
+//     configurationOfTargetModule.index >= currentModuleLevelConfiguration.index
+//   ) {
+//     return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+//   }
+// }
+
+// function setErrorsWithNotEquilFirstParetnt(
+//   currentModuleLevelConfiguration,
+//   configurationOfTargetModule,
+//   firstParentConfigurationOfTargetModule,
+//   firstParentCurrentModuleLevelConfiguration
+// ) {
+//   if (
+//     currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent &&
+//     firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index
+//   ) {
+//     return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
+//   }
+// }
