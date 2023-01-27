@@ -1,6 +1,5 @@
 const errors = require("./errors");
 const getArchitectureConfigurationTree = require("./getArchitectureConfigurationTree");
-const getLevelAlias = require("./getLevelAlias");
 module.exports = displayOfAllErrors;
 
 function displayOfAllErrors(
