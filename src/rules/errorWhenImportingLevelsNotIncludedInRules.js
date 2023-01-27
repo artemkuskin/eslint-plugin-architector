@@ -31,11 +31,14 @@ function errorWhenImportingLevelsNotIncludedInRules(
     }
     else if (
       moduleTargetLevelAliasFirstParent.firstParent === moduleCurentLevelFirstParent.firstParent &&
-      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias) && 
-      moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
+      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
     ) {
       return   "]]]]]]]]]]]]]]]]]]]]]]";
-    }
+    } else if ( moduleTargetLevelAliasFirstParent.firstParent === moduleCurentLevelFirstParent.firstParent &&
+      lengthPathToFile(pathToCurrentModule) === lengthPathToFile(absolutePathtoTheFileAlias) &&
+      moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index) {
+        return "..............................."
+      }
   } else {
     const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
     const moduleTargetLevelFirstParent = setLevelsTarget(configurationTree, absolutePathToTargetModule, rootDirectory);
