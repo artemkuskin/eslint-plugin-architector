@@ -25,7 +25,6 @@ function errorWhenImportingLevelsNotIncludedInRules(
       absolutePathtoTheFileAlias,
       rootDirectory
     );
-    console.log(moduleTargetLevelAliasFirstParent, moduleCurentLevelFirstParent);
     if (
       moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name &&
       moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
@@ -34,7 +33,7 @@ function errorWhenImportingLevelsNotIncludedInRules(
     }
     if (
       moduleTargetLevelAliasFirstParent.name === moduleCurentLevelFirstParent.name &&
-      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias) - 2
+      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
     ) {
       return "]]]]]]]]]]]]]]]]]]]]]]";
     }
