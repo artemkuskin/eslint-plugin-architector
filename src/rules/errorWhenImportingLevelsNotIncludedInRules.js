@@ -31,7 +31,7 @@ function errorWhenImportingLevelsNotIncludedInRules(
       }
       else if (
         moduleTargetLevelAliasFirstParent.firstParent === moduleCurentLevelFirstParent.firstParent &&
-        lengthPathToFile(pathToCurrentModule) === lengthPathToFile(absolutePathtoTheFileAlias)
+        lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
         ) {
       //console.log(moduleTargetLevelAliasFirstParent);
       return   "]]]]]]]]]]]]]]]]]]]]]]";

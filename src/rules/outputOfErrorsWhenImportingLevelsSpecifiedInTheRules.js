@@ -51,30 +51,4 @@ function absolutePathTo(pathToModule, importDefinitionPath) {
 function lengthPathToFile(path) {
   return path.split("/").length;
 }
-// function setErrorsWithEqualParents(
-//   currentModuleLevelConfiguration,
-//   configurationOfTargetModule,
-//   importLevel,
-//   currentModuleLevel
-// ) {
-//   if (
-//     currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents &&
-//     configurationOfTargetModule.index >= currentModuleLevelConfiguration.index
-//   ) {
-//     return `Cannot import ${importLevel} from ${currentModuleLevel}`;
-//   }
-// }
 
-// function setErrorsWithNotEquilFirstParetnt(
-//   currentModuleLevelConfiguration,
-//   configurationOfTargetModule,
-//   firstParentConfigurationOfTargetModule,
-//   firstParentCurrentModuleLevelConfiguration
-// ) {
-//   if (
-//     currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent &&
-//     firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index
-//   ) {
-//     return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
-//   }
-// }

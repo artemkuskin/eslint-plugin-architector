@@ -19,7 +19,11 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       getArchitectureConfigurationTree(architectureConfigRules[key].children, levelsConfiguration, rootDirectory);
     }
   }
-  let resultarchitectureFree = architectureConfigTree.reduce(
+return resultArchitectureFree (architectureConfigTree)
+}
+
+function resultArchitectureFree (architectureConfigTree) {
+  let resultArchitectureFree = architectureConfigTree.reduce(
     (acc, file) => {
       if (acc.map[file.name]) return acc;
       acc.map[file.name] = true;
@@ -31,7 +35,7 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       resultarchitectureFree: [],
     }
   ).resultarchitectureFree;
-  return resultarchitectureFree;
+  return resultArchitectureFree;
 }
 
 function getAllParentThisNode(dataset, nodeLevel) {
