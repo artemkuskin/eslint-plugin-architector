@@ -24,7 +24,8 @@ function errorWhenImportingLevelsNotIncludedInRules(
       configurationTree,
       absolutePathtoTheFileAlias,
       rootDirectory
-    );
+      );
+      console.log(moduleTargetLevelAliasFirstParent, moduleCurentLevelFirstParent);
     if (
       moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name &&
       moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
@@ -32,8 +33,8 @@ function errorWhenImportingLevelsNotIncludedInRules(
       return "/////////////////////////////////////////";
     } 
      if (
-      moduleTargetLevelAliasFirstParent.firstParent === moduleCurentLevelFirstParent.firstParent &&
-      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
+      moduleTargetLevelAliasFirstParent.name === moduleCurentLevelFirstParent.name &&
+      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias) - 1
     ) {
       return "]]]]]]]]]]]]]]]]]]]]]]";
     }
