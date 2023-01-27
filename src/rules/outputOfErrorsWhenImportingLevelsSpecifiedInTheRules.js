@@ -1,12 +1,15 @@
 const setModuleByName = require("./setModuleByName");
+module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules
 
 function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
     currentModuleLevelConfiguration,
     configurationOfTargetModule,
     importLevel,
     currentModuleLevel,
-    configurationTree
+    configurationTree,
+    targetLevelAlias
   ) {
+    let errorMessage = undefined
     const firstParentCurrentModuleLevelConfiguration = setModuleByName(
       configurationTree,
       currentModuleLevelConfiguration.firstParent
@@ -17,14 +20,13 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
     );
     if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
       if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
-        return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+        errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
       }
     } 
-     if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
+    if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
       if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
-        return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
+        errorMessage = `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
       }
     }
+    return errorMessage
   }
-
-  module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules

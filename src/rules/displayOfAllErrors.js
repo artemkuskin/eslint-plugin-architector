@@ -3,6 +3,7 @@ const errors = require("./errors");
 //const errorOutputWhenUsingAliases = require("./errorOutputWhenUsingAliases");
 const getArchitectureConfigurationTree = require("./getArchitectureConfigurationTree");
 const getLevelAlias = require("./getLevelAlias");
+module.exports = displayOfAllErrors
 
  function displayOfAllErrors (rootDirectory, importDefinitionPath, pathToCurrentModule, levelsConfiguration, jsConfigFileContent) {
     const configurationTree = getArchitectureConfigurationTree(
@@ -29,5 +30,3 @@ const getLevelAlias = require("./getLevelAlias");
     // }
   
   }
-
-  module.exports = displayOfAllErrors

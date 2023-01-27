@@ -13,33 +13,41 @@ function errorWhenImportingLevelsNotIncludedInRules(
   currentModuleLevel,
   targetAliasModule
 ) {
-  const moduleCurentLevelFirstParent = setLevelsCurent (configurationTree, rootDirectory, pathToCurrentModule)
+  const moduleCurentLevelFirstParent = setLevelsCurent(configurationTree, rootDirectory, pathToCurrentModule);
+  let errorMessage = undefined;
 
   if (targetAliasModule) {
+    console.log(targetAliasModule);
     const absolutePathtoTheFileAlias = absolutePathTo(targetAliasModule.path, importDefinitionPath);
-    const moduleTargetLevelAliasFirstParent = setLevelsTarget (configurationTree, absolutePathtoTheFileAlias, rootDirectory)
-
-    if (moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name) {
-      if (moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index) {
-        return "/////////////////////////////////////////";
-      }
+    const moduleTargetLevelAliasFirstParent = setLevelsTarget(
+      configurationTree,
+      absolutePathtoTheFileAlias,
+      rootDirectory
+    );
+    if (
+      moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name &&
+      moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
+    ) {
+      errorMessage = "/////////////////////////////////////////";
     }
   } else {
     const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
-    const moduleTargetLevelFirstParent = setLevelsTarget (configurationTree, absolutePathToTargetModule, rootDirectory)
+    const moduleTargetLevelFirstParent = setLevelsTarget(configurationTree, absolutePathToTargetModule, rootDirectory);
     if (
       moduleTargetLevelFirstParent.name !== moduleCurentLevelFirstParent.name &&
       moduleCurentLevelFirstParent.index < moduleTargetLevelFirstParent.index
     ) {
-      return `Cannot import ${importLevel} from ${currentModuleLevel}`;
+      errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
     }
     if (
       moduleTargetLevelFirstParent.name === moduleCurentLevelFirstParent.name &&
       lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathToTargetModule)
     ) {
-      return "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+      errorMessage = "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
     }
   }
+
+  return errorMessage;
 }
 
 function lengthPathToFile(path) {
@@ -50,14 +58,11 @@ function absolutePathTo(pathToModule, importDefinitionPath) {
   return absolutePathToFile(PathToCurrentFileWithoutContent(pathToModule), importDefinitionPath);
 }
 
-function setLevelsTarget (configurationTree, absolutePathToTargetLevel, rootDirectory) {
-  return setModuleByName(
-    configurationTree,
-    getParentFolder(rootDirectory, absolutePathToTargetLevel)
-  );
+function setLevelsTarget(configurationTree, absolutePathToTargetLevel, rootDirectory) {
+  return setModuleByName(configurationTree, getParentFolder(rootDirectory, absolutePathToTargetLevel));
 }
 
-function setLevelsCurent (configurationTree, rootDirectory, pathToCurrentModule) {
+function setLevelsCurent(configurationTree, rootDirectory, pathToCurrentModule) {
   return setModuleByName(
     configurationTree,
     getParentFolder(rootDirectory, PathToCurrentFileWithoutContent(pathToCurrentModule))

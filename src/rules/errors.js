@@ -2,22 +2,25 @@ const errorWhenImportingLevelsNotIncludedInRules = require("./errorWhenImporting
 const outputOfErrorsWhenImportingLevelsSpecifiedInTheRules = require("./outputOfErrorsWhenImportingLevelsSpecifiedInTheRules");
 const setCurrentLevel = require("./setCurrentLevel");
 const setModuleByName = require("./setModuleByName");
+module.exports = errors;
 
 function errors(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, targetModuleAlias) {
   const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
   const importLevel = setCurrentLevel(importDefinitionPath);
   const currentModuleLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
   const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
+  let errorMessage = undefined 
   if (configurationOfTargetModule && currentModuleLevelConfiguration) {
-    return outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
+    errorMessage = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
       currentModuleLevelConfiguration,
       configurationOfTargetModule,
       importLevel,
       currentModuleLevel,
-      configurationTree
+      configurationTree,
+      targetModuleAlias
     );
   }
-  return errorWhenImportingLevelsNotIncludedInRules(
+  errorMessage = errorWhenImportingLevelsNotIncludedInRules(
     configurationTree,
     rootDirectory,
     pathToCurrentModule,
@@ -26,6 +29,6 @@ function errors(configurationTree, pathToCurrentModule, importDefinitionPath, ro
     currentModuleLevel,
     targetModuleAlias
   );
+  return errorMessage
 }
 
-module.exports = errors;
