@@ -18,17 +18,27 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
     configurationTree,
     configurationOfTargetModule.firstParent
   );
-  errorMessage = setErrorsWithEqualParents(currentModuleLevelConfiguration, configurationOfTargetModule);
+  errorMessage = setErrorsWithEqualParents(
+    currentModuleLevelConfiguration,
+    configurationOfTargetModule,
+    importLevel,
+    currentModuleLevel
+  );
   errorMessage = setErrorsWithNotEquilFirstParetnt(
     currentModuleLevelConfiguration,
     configurationOfTargetModule,
     firstParentConfigurationOfTargetModule,
     firstParentCurrentModuleLevelConfiguration
   );
-  return errorMessage
+  return errorMessage;
 }
 
-function setErrorsWithEqualParents(currentModuleLevelConfiguration, configurationOfTargetModule) {
+function setErrorsWithEqualParents(
+  currentModuleLevelConfiguration,
+  configurationOfTargetModule,
+  importLevel,
+  currentModuleLevel
+) {
   if (
     currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents &&
     configurationOfTargetModule.index >= currentModuleLevelConfiguration.index
