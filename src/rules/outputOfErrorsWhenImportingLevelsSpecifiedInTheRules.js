@@ -36,7 +36,7 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
     ) {
       return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
     }
-  }
+  } else {
   if (
     currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents &&
     configurationOfTargetModule.index >= currentModuleLevelConfiguration.index
@@ -49,6 +49,7 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   ) {
     return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
   }
+}
   //return errorMessage;
 }
 

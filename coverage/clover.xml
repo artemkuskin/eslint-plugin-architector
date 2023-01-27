@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1674817914331" clover="3.2.0">
-  <project timestamp="1674817914331" name="All files">
+<coverage generated="1674818041574" clover="3.2.0">
+  <project timestamp="1674818041575" name="All files">
     <metrics statements="129" coveredstatements="121" conditionals="48" coveredconditionals="32" methods="29" coveredmethods="29" elements="206" coveredelements="182" complexity="0" loc="129" ncloc="129" packages="2" files="12" classes="12"/>
     <package name="eslint-plagin-architector">
       <metrics statements="15" coveredstatements="14" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
