@@ -9,7 +9,19 @@ describe("Validate hierarchy with default config", () => {
       {
         level: "A",
         children: [
-
+          {
+            "level": "A1",
+            "children": [ {
+              "level": "A2",
+              "children": []
+            }]
+          },
+          {
+            "level": "A3",
+            "children": [
+              
+            ]
+          }
         ],
       },
       {
