@@ -20,13 +20,13 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
     );
     if (currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents) {
       if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
-        errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+        return `Cannot import ${importLevel} from ${currentModuleLevel}`;
       }
     } 
     if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
       if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
-        errorMessage = `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
+        return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
       }
     }
-    return errorMessage
+    //return errorMessage
   }

@@ -11,7 +11,7 @@ function errors(configurationTree, pathToCurrentModule, importDefinitionPath, ro
   const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
   let errorMessage = undefined 
   if (configurationOfTargetModule && currentModuleLevelConfiguration) {
-    errorMessage = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
+    return outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
       currentModuleLevelConfiguration,
       configurationOfTargetModule,
       importLevel,
@@ -20,7 +20,7 @@ function errors(configurationTree, pathToCurrentModule, importDefinitionPath, ro
       targetModuleAlias
     );
   }
-  errorMessage = errorWhenImportingLevelsNotIncludedInRules(
+  return errorWhenImportingLevelsNotIncludedInRules(
     configurationTree,
     rootDirectory,
     pathToCurrentModule,
@@ -29,6 +29,6 @@ function errors(configurationTree, pathToCurrentModule, importDefinitionPath, ro
     currentModuleLevel,
     targetModuleAlias
   );
-  return errorMessage
+  //return errorMessage
 }
 

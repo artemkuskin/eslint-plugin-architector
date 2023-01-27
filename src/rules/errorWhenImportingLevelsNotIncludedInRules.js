@@ -28,7 +28,7 @@ function errorWhenImportingLevelsNotIncludedInRules(
       moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name &&
       moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
     ) {
-      errorMessage = "/////////////////////////////////////////";
+      return   "/////////////////////////////////////////";
     }
   } else {
     const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
@@ -37,17 +37,17 @@ function errorWhenImportingLevelsNotIncludedInRules(
       moduleTargetLevelFirstParent.name !== moduleCurentLevelFirstParent.name &&
       moduleCurentLevelFirstParent.index < moduleTargetLevelFirstParent.index
     ) {
-      errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+      return   `Cannot import ${importLevel} from ${currentModuleLevel}`;
     }
     if (
       moduleTargetLevelFirstParent.name === moduleCurentLevelFirstParent.name &&
       lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathToTargetModule)
     ) {
-      errorMessage = "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+      return   "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
     }
   }
 
-  return errorMessage;
+  // return errorMessage;
 }
 
 function lengthPathToFile(path) {
