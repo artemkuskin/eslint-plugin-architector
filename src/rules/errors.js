@@ -17,7 +17,8 @@ function errors(configurationTree, pathToCurrentModule, importDefinitionPath, ro
       importLevel,
       currentModuleLevel,
       configurationTree,
-      targetModuleAlias
+      importDefinitionPath,
+      pathToCurrentModule
     );
   }
   return errorWhenImportingLevelsNotIncludedInRules(
