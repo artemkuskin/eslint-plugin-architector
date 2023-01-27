@@ -19,7 +19,8 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
       if (configurationOfTargetModule.index >= currentModuleLevelConfiguration.index) {
         return `Cannot import ${importLevel} from ${currentModuleLevel}`;
       }
-    } else if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
+    } 
+     if (currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent) {
       if (firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index) {
         return `aaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
       }
