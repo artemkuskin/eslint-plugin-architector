@@ -10,10 +10,10 @@ const getLevelAlias = require("./getLevelAlias");
       levelsConfiguration,
       rootDirectory
     );
-    //const targetModuleLevel = getTargetModuleLevel(configurationTree, importDefinitionPath);
     const targetModuleAlias = getLevelAlias(rootDirectory, jsConfigFileContent).find(
       (elem) => elem.key === importDefinitionPath.split("/")[0]
       );   
+    //const targetModuleLevel = getTargetModuleLevel(configurationTree, importDefinitionPath);
         return errors(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, targetModuleAlias);
       
     // if (jsConfigFileContent) {

@@ -1,6 +1,7 @@
 const absolutePathToFile = require("./absolutePathToFile");
 const PathToCurrentFileWithOutContent = require("./pathToCurrentFileWithoutContent");
-const path = require("path");
+// const path = require("path");
+module.exports = getLevelAlias;
 
 function getLevelAlias(rootDirectory, jsConfigFileContent) {
   const aliases = getAliases(jsConfigFileContent);
@@ -46,4 +47,3 @@ function getAliases(jsConfigFileContent) {
   return aliases;
 }
 
-module.exports = getLevelAlias;

@@ -1,13 +1,13 @@
-function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
-    const levelsNames = configurationTree.map((levelConfiguration) => levelConfiguration.name);
+// function checkTargetModuleLevel(configurationTree, importDefinitionPath) {
+//     const levelsNames = configurationTree.map((levelConfiguration) => levelConfiguration.name);
   
-    const levelsNamesString = levelsNames.reduce((acc, cur) => {
-      return `${acc}|${cur}`;
-    });
+//     const levelsNamesString = levelsNames.reduce((acc, cur) => {
+//       return `${acc}|${cur}`;
+//     });
   
-    const targetModuleLevel = new RegExp(`(${levelsNamesString})`, "g").exec(importDefinitionPath);
+//     const targetModuleLevel = new RegExp(`(${levelsNamesString})`, "g").exec(importDefinitionPath);
     
-    return targetModuleLevel;
-  }
+//     return targetModuleLevel;
+//   }
 
-  module.exports = checkTargetModuleLevel
+//   module.exports = checkTargetModuleLevel
