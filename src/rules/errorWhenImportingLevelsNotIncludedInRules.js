@@ -27,10 +27,9 @@ function errorWhenImportingLevelsNotIncludedInRules(
       moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name &&
       moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
     ) {
-      console.log(moduleTargetLevelAliasFirstParent);
       return   "/////////////////////////////////////////";
     }
-    if (
+    else if (
       moduleTargetLevelAliasFirstParent.name === moduleCurentLevelFirstParent.name &&
       lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
     ) {

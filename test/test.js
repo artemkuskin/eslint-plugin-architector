@@ -52,7 +52,10 @@ describe("Validate hierarchy with default config", () => {
   //   const errors = validateHierarchy(filePath, "../atomsMAin/asdas/asd/ComponentB", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
   // });
-
+  it("allow downward import", () => {
+    const errors = validateHierarchy(filePath, "A3/A3.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
   
   it("allow downward import", () => {
     const errors = validateHierarchy(filePath, "../../A.jsx", hierarchy, componentFolder);
