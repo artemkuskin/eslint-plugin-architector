@@ -15,8 +15,6 @@ function displayOfAllErrors(
     levelsConfiguration,
     rootDirectory
   );
-  const targetModuleAlias = getLevelAlias(rootDirectory, jsConfigFileContent).find(
-    (elem) => elem.key === importDefinitionPath.split("/")[0]
-  );
-  return errors(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, targetModuleAlias);
+  return errors(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, jsConfigFileContent);
 }
+
