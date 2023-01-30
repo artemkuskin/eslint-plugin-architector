@@ -1,7 +1,7 @@
-const absolutePathToFile = require("./absolutePathToFile");
-const getParentFolder = require("./getParentFolder");
-const PathToCurrentFileWithoutContent = require("./pathToCurrentFileWithoutContent");
-const setModuleByName = require("./setModuleByName");
+const absolutePathToFile = require("../helpers/absolutePathToFile");
+const getParentFolder = require("../helpers/getParentFolder");
+const PathToCurrentFileWithoutContent = require("../helpers/pathToCurrentFileWithoutContent");
+const setModuleByName = require("../helpers/setModuleByName");
 module.exports = errorWhenImportingLevelsNotIncludedInRules;
 
 function errorWhenImportingLevelsNotIncludedInRules(
@@ -29,12 +29,12 @@ function errorWhenImportingLevelsNotIncludedInRules(
       moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name &&
       moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
     ) {
-      errorMessage = "/////////////////////////////////////////";
+      errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
     } else if (
       moduleTargetLevelAliasFirstParent.name === moduleCurentLevelFirstParent.name &&
       lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
     ) {
-      errorMessage = "]]]]]]]]]]]]]]]]]]]]]]";
+      errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
     }
   } else {
     if (
@@ -46,7 +46,7 @@ function errorWhenImportingLevelsNotIncludedInRules(
       moduleTargetLevelFirstParent.name === moduleCurentLevelFirstParent.name &&
       lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathToTargetModule)
     ) {
-      errorMessage = "qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww";
+      errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
     }
   }
   return errorMessage;

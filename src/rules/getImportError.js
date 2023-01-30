@@ -1,8 +1,8 @@
-const errors = require("./errors");
+const returnOfAllPossibleErrors = require("./returnOfAllPossibleErrors");
 const getArchitectureConfigurationTree = require("./getArchitectureConfigurationTree");
-module.exports = displayOfAllErrors;
+module.exports = getImportError;
 
-function displayOfAllErrors(
+function getImportError(
   rootDirectory,
   importDefinitionPath,
   pathToCurrentModule,
@@ -14,6 +14,6 @@ function displayOfAllErrors(
     levelsConfiguration,
     rootDirectory
   );
-  return errors(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, jsConfigFileContent);
+  return returnOfAllPossibleErrors(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, jsConfigFileContent);
 }
 

@@ -29,8 +29,9 @@ module.exports.rules = {
 
             return {
                 ImportDeclaration: ( node ) => {
-                    const fn = context.getFilename();//тут изменил 
-                    const error = validateHierarchy(fn.split("\\").join("/"), node.source.value.split("\\").join("/"), hierarchy, componentFolder); // тут изменил
+                    const fn = context.getFilename().split("\\").join("/");//тут изменил 
+                    const nodeValue = node.source.value.split("\\").join("/") // тут изменил
+                    const error = validateHierarchy(fn, nodeValue, hierarchy, componentFolder);
                     if(error) {
                         context.report(node, error);
                     }
