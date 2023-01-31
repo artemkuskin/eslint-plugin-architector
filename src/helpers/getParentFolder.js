@@ -4,4 +4,3 @@ function getParentFolder(rootDirectory, absolutePathToTheFile) {
 }
 
 module.exports = getParentFolder;
-

@@ -21,28 +21,20 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
     configurationTree,
     configurationOfTargetModule.firstParent
   );
-  const absolutePathToTargetModule = absolutePathTo(
-    pathToCurrentModule,
-    importDefinitionPath
-  );
+  const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
   if (
-    currentModuleLevelConfiguration.parents ===
-      configurationOfTargetModule.parents &&
+    currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents &&
     configurationOfTargetModule.index >= currentModuleLevelConfiguration.index
   ) {
     errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   } else if (
-    currentModuleLevelConfiguration.firstParent !==
-      configurationOfTargetModule.firstParent &&
-    firstParentConfigurationOfTargetModule.index >=
-      firstParentCurrentModuleLevelConfiguration.index
+    currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent &&
+    firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index
   ) {
     errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   } else if (
-    currentModuleLevelConfiguration.firstParent ===
-      configurationOfTargetModule.firstParent &&
-    lengthPathToFile(absolutePathToTargetModule) <
-      lengthPathToFile(pathToCurrentModule)
+    currentModuleLevelConfiguration.firstParent === configurationOfTargetModule.firstParent &&
+    lengthPathToFile(absolutePathToTargetModule) < lengthPathToFile(pathToCurrentModule)
   ) {
     errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   }
@@ -51,10 +43,7 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
 }
 
 function absolutePathTo(pathToModule, importDefinitionPath) {
-  return absolutePathToFile(
-    PathToCurrentFileWithOutContent(pathToModule),
-    importDefinitionPath
-  );
+  return absolutePathToFile(PathToCurrentFileWithOutContent(pathToModule), importDefinitionPath);
 }
 
 function lengthPathToFile(path) {

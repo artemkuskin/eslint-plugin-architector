@@ -1,11 +1,17 @@
-const errorWhenImportingLevelsNotIncludedInRules = require("./errorsWhenImportingLevelsNotIncludedInRules");
+const errorWhenImportingLevelsNotIncludedInRules = require("../errors/errorsWhenImportingLevelsNotIncludedInRules");
 const getLevelAlias = require("../helpers/getLevelAlias");
-const errorsWhenImportingLevelsSpecifiedInTheRules = require("./errorsWhenImportingLevelsSpecifiedInTheRules");
+const errorsWhenImportingLevelsSpecifiedInTheRules = require("../errors/errorsWhenImportingLevelsSpecifiedInTheRules");
 const setCurrentLevel = require("../helpers/setCurrentLevel");
 const setModuleByName = require("../helpers/setModuleByName");
 module.exports = returnOfAllPossibleErrors;
 
-function returnOfAllPossibleErrors(configurationTree, pathToCurrentModule, importDefinitionPath, rootDirectory, jsConfigFileContent) {
+function returnOfAllPossibleErrors(
+  configurationTree,
+  pathToCurrentModule,
+  importDefinitionPath,
+  rootDirectory,
+  jsConfigFileContent
+) {
   const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
   const importLevel = setCurrentLevel(importDefinitionPath);
   const currentLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
