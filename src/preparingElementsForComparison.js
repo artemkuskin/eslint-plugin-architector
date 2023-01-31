@@ -40,6 +40,16 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
         const target = getParentFolder(generalLevel[generalLevel.length -1], absolutePathTo(targetModuleAlias.path, importDefinitionPath))
         const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
         const currentModuleLevel = configurationTree.find((elem) => elem.name === current)
+        if (targetModuleLevel === undefined || targetModuleLevel == undefined) {
+          const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
+          const targetModuleLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
+          return {currentModuleLevel:currentLevel, targetModuleLevel:targetModuleLevel}
+        }
+        if (targetModuleLevel === undefined && targetModuleLevel == undefined) {
+          const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
+          const targetModuleLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
+          return {currentModuleLevel:currentLevel, targetModuleLevel:targetModuleLevel}
+        }
         console.log(16);
         return {currentModuleLevel:currentModuleLevel, targetModuleLevel:targetModuleLevel}
     } else {

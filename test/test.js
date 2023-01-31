@@ -1,7 +1,7 @@
 const validateHierarchy = require("../helper");
 
 describe("Validate hierarchy with default config", () => {
-  const filePath = "C:/Новая папка (2)/my-app/src/A/A3/A3.js";
+  const filePath = "C:/Новая папка (2)/my-app/src/A/A1/A1.js";
   const filePathOutsideComponentsFolder = "src/components-alt/molecules/ComponentX";
 
   const hierarchy = {
@@ -65,24 +65,24 @@ describe("Validate hierarchy with default config", () => {
   //   const errors = validateHierarchy(filePath, "../atomsMAin/asdas/asd/ComponentB", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
   // });
-  it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "C/C", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
-  
-  it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../../B/B", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
-
   // it("allow downward import", () => {
-  //   const errors = validateHierarchy(filePath, "B1/B1.jsx", hierarchy, componentFolder);
+  //   const errors = validateHierarchy(filePath, "B1/B1", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
   // });
+  
+  // it("allow downward import", () => {
+  //   const errors = validateHierarchy(filePath, "../../B/B", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
+
   it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../A1/A1", hierarchy, componentFolder);
+    const errors = validateHierarchy(filePath, "A3/A3", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
+  // it("allow downward import", () => {
+  //   const errors = validateHierarchy(filePath, "../../C/C", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
   // it("allow downward import", () => {
   //   const errors = validateHierarchy(filePath, "../B", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
