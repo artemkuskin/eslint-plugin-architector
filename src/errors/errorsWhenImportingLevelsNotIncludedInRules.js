@@ -3,7 +3,7 @@ const absolutePathToFile = require("../helpers/absolutePathToFile");
 const getParentFolder = require("../helpers/getParentFolder");
 const PathToCurrentFileWithoutContent = require("../helpers/pathToCurrentFileWithoutContent");
 const setModuleByName = require("../helpers/setModuleByName");
-const comparisonOfIndexes = require("src/helpers/comparisonOfIndexes");
+const comparisonOfIndexes = require("../helpers/comparisonOfIndexes");
 module.exports = errorWhenImportingLevelsNotIncludedInRules;
 
 function errorWhenImportingLevelsNotIncludedInRules(
