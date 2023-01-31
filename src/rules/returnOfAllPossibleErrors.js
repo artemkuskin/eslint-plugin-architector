@@ -14,14 +14,17 @@ function returnOfAllPossibleErrors(
 ) {
   const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
   const importLevel = setCurrentLevel(importDefinitionPath);
+
   const currentLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
   const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
+
   const targetModuleAlias = setLevelByKey(
     getLevelAlias(rootDirectory, jsConfigFileContent),
     firstElemImportDefinitionPath(importDefinitionPath)
   );
 
   let errorMessage = undefined;
+  
   if (configurationOfTargetModule && currentLevelConfiguration) {
     errorMessage = errorsWhenImportingLevelsSpecifiedInTheRules(
       currentLevelConfiguration,
@@ -30,19 +33,22 @@ function returnOfAllPossibleErrors(
       currentModuleLevel,
       configurationTree,
       importDefinitionPath,
-      pathToCurrentModule
-    );
-  } else {
-    errorMessage = errorWhenImportingLevelsNotIncludedInRules(
-      configurationTree,
-      rootDirectory,
       pathToCurrentModule,
-      importDefinitionPath,
-      importLevel,
-      currentModuleLevel,
-      targetModuleAlias
+      rootDirectory,
+      jsConfigFileContent
     );
-  }
+  } //else {
+  //   errorMessage = errorWhenImportingLevelsNotIncludedInRules(
+  //     configurationTree,
+  //     rootDirectory,
+  //     pathToCurrentModule,
+  //     importDefinitionPath,
+  //     importLevel,
+  //     currentModuleLevel,
+  //     targetModuleAlias
+  //   );
+  // }
+
   return errorMessage;
 }
 

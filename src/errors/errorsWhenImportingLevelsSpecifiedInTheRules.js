@@ -2,8 +2,9 @@ const lengthPathToFile = require("../helpers/lengthPathToFile");
 const absolutePathToFile = require("../helpers/absolutePathToFile");
 const PathToCurrentFileWithOutContent = require("../helpers/pathToCurrentFileWithoutContent");
 const setModuleByName = require("../helpers/setModuleByName");
-const comparisonOfIndexes = require("../helpers/comparisonOfIndexes");
-const comparisonOfLength = require("../helpers/comparisonOfLength");
+const isTargetModuleLevelAboveCurrentModuleLevel = require("../helpers/comparisonOfIndexes");
+const isTargetModuleLevelDeeperThanCurrentModuleLevel = require("../helpers/comparisonOfLength");
+const getTargetAndPath = require("../preparingElementsForComparison");
 module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules;
 
 function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
@@ -13,31 +14,42 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   currentModuleLevel,
   configurationTree,
   importDefinitionPath,
-  pathToCurrentModule
+  pathToCurrentModule,
+  rootDirectory,
+      jsConfigFileContent
 ) {
   let errorMessage = undefined;
-  const firstParentCurrentModuleLevelConfiguration = setModuleByName(
-    configurationTree,
-    currentModuleLevelConfiguration.firstParent
-  );
-  const firstParentConfigurationOfTargetModule = setModuleByName(
-    configurationTree,
-    configurationOfTargetModule.firstParent
-  );
-  const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
+  
+  // const firstParentCurrentModuleLevelConfiguration = setModuleByName(
+  //   configurationTree,
+  //   currentModuleLevelConfiguration.firstParent
+  // );
+  // const firstParentConfigurationOfTargetModule = setModuleByName(
+  //   configurationTree,
+  //   configurationOfTargetModule.firstParent
+  // );
+  // const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
+  const firstParentCurrentModuleLevelConfiguration = getTargetAndPath (pathToCurrentModule,importDefinitionPath, configurationTree,rootDirectory,jsConfigFileContent).currentLevel
+  const firstParentConfigurationOfTargetModule = getTargetAndPath (pathToCurrentModule,importDefinitionPath, configurationTree,rootDirectory,jsConfigFileContent).moduleTargetLevel
+  const absolutePathToTargetModule = getTargetAndPath (pathToCurrentModule,importDefinitionPath, configurationTree,rootDirectory,jsConfigFileContent).absolutePath
+
+
+  const currentAndTargetModulesAreChildrenOfTheSameNearestLevel = areNearestParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration);
+  const currentAndTargetModulesAreChildrenOfTheSameRootLevel =  areRootParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration)
+
   if (
-    equalityOfParents(configurationOfTargetModule, currentModuleLevelConfiguration) &&
-    comparisonOfIndexes(configurationOfTargetModule, currentModuleLevelConfiguration)
+    currentAndTargetModulesAreChildrenOfTheSameNearestLevel &&
+    isTargetModuleLevelAboveCurrentModuleLevel(configurationOfTargetModule, currentModuleLevelConfiguration)
   ) {
     errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   } else if (
-    uniqualityFirstParent(configurationOfTargetModule, currentModuleLevelConfiguration) &&
-    comparisonOfIndexes(firstParentConfigurationOfTargetModule, firstParentCurrentModuleLevelConfiguration)
+    currentAndTargetModulesAreChildrenOfTheSameRootLevel &&
+    isTargetModuleLevelDeeperThanCurrentModuleLevel(pathToCurrentModule, absolutePathToTargetModule)
   ) {
     errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   } else if (
-    equalityOfFirstParents(configurationOfTargetModule, currentModuleLevelConfiguration) &&
-    comparisonOfLength(pathToCurrentModule, absolutePathToTargetModule)
+    ! currentAndTargetModulesAreChildrenOfTheSameRootLevel &&
+    isTargetModuleLevelAboveCurrentModuleLevel(firstParentConfigurationOfTargetModule, firstParentCurrentModuleLevelConfiguration)
   ) {
     errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   }
@@ -45,15 +57,11 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   return errorMessage;
 }
 
-function uniqualityFirstParent (targetModule, currentModule) {
-  return targetModule.firstParent !== currentModule.firstParent
-}
-
-function equalityOfParents (targetModule, currentModule) {
+function areNearestParentsEqual (targetModule, currentModule) {
   return targetModule.parents === currentModule.parents
 }
 
-function equalityOfFirstParents (targetModule, currentModule) {
+function areRootParentsEqual (targetModule, currentModule) {
   return targetModule.firstParent === currentModule.firstParent
 }
 

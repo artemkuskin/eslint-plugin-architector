@@ -1,5 +1,5 @@
-function comparisonOfIndexes(targetModule, currentModule) {
+function isTargetModulelevelAboveCurrentModuleLevel(targetModule, currentModule) {
     return targetModule.index >= currentModule.index;
   }
 
-  module.exports = comparisonOfIndexes
+  module.exports = isTargetModulelevelAboveCurrentModuleLevel

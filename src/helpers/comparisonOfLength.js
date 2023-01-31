@@ -1,7 +1,7 @@
 const lengthPathToFile = require("./lengthPathToFile");
 
-function comparisonOfLength(currentModule, targetModule) {
+function isTargetModuleLevelDeeperThanCurrentModuleLevel(currentModule, targetModule) {
   return lengthPathToFile(currentModule) > lengthPathToFile(targetModule);
 }
 
-module.exports = comparisonOfLength
+module.exports = isTargetModuleLevelDeeperThanCurrentModuleLevel
