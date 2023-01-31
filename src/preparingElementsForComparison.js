@@ -48,6 +48,7 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
         if (targetModuleLevel === undefined && targetModuleLevel == undefined) {
           const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
           const targetModuleLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
+          console.log(2);
           return {currentModuleLevel:currentLevel, targetModuleLevel:targetModuleLevel}
         }
         console.log(16);
@@ -64,7 +65,18 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
         if (currentModuleLevel === undefined || targetModuleLevel === undefined) {
           const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
           const targetModuleLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
-          return {currentModuleLevel:currentLevel, targetModuleLevel:targetModuleLevel}
+          const asd = (arr) =>  {
+            const  currentLevel = configurationTree.find((elem) => elem.name === arr[arr.length -1])
+            if (currentLevel === undefined) {
+              const a = arr.slice(0, arr.length - 1)
+             return  asd(a)
+            } else {
+
+              return currentLevel
+            }
+          }
+          
+          return {currentModuleLevel:asd(generalLevel), targetModuleLevel:asd(generalLevel)}//ПЕРЕРАБОТАТЬ
         }
         if (targetModuleLevel === undefined && currentModuleLevel === undefined) {
           const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
