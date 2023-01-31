@@ -1,3 +1,4 @@
+const lengthPathToFile = require("../helpers/lengthPathToFile");
 const absolutePathToFile = require("../helpers/absolutePathToFile");
 const PathToCurrentFileWithOutContent = require("../helpers/pathToCurrentFileWithoutContent");
 const setModuleByName = require("../helpers/setModuleByName");
@@ -46,6 +47,3 @@ function absolutePathTo(pathToModule, importDefinitionPath) {
   return absolutePathToFile(PathToCurrentFileWithOutContent(pathToModule), importDefinitionPath);
 }
 
-function lengthPathToFile(path) {
-  return path.split("/").length;
-}

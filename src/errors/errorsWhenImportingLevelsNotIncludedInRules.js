@@ -1,7 +1,9 @@
+const lengthPathToFile = require("../helpers/lengthPathToFile");
 const absolutePathToFile = require("../helpers/absolutePathToFile");
 const getParentFolder = require("../helpers/getParentFolder");
 const PathToCurrentFileWithoutContent = require("../helpers/pathToCurrentFileWithoutContent");
 const setModuleByName = require("../helpers/setModuleByName");
+const comparisonOfIndexes = require("src/helpers/comparisonOfIndexes");
 module.exports = errorWhenImportingLevelsNotIncludedInRules;
 
 function errorWhenImportingLevelsNotIncludedInRules(
@@ -52,25 +54,16 @@ function errorWhenImportingLevelsNotIncludedInRules(
   return errorMessage;
 }
 
-function comparisonOfIndexes (targetModule, currentModule) {
- return targetModule.index > currentModule.index
+function unequalNames(targetModule, currentModule) {
+  return targetModule.name !== currentModule.name;
 }
 
-function unequalNames (targetModule, currentModule) {
-  return  targetModule.name !== currentModule.name
+function equalityOfNames(targetModule, currentModule) {
+  return targetModule.name === currentModule.name;
 }
 
-function equalityOfNames (targetModule, currentModule) {
-  return  targetModule.name === currentModule.name
-}
-
-function  comparisonOfLength (currentModule, targetModule) {
-return lengthPathToFile(currentModule) > lengthPathToFile(targetModule)
-}
-
-
-function lengthPathToFile(path) {
-  return path.split("/").length;
+function comparisonOfLength(currentModule, targetModule) {
+  return lengthPathToFile(currentModule) > lengthPathToFile(targetModule);
 }
 
 function absolutePathTo(pathToModule, importDefinitionPath) {
