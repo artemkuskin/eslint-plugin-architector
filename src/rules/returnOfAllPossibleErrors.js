@@ -3,6 +3,9 @@ const getLevelAlias = require("../helpers/getLevelAlias");
 const errorsWhenImportingLevelsSpecifiedInTheRules = require("../errors/errorsWhenImportingLevelsSpecifiedInTheRules");
 const setCurrentLevel = require("../helpers/setCurrentLevel");
 const setModuleByName = require("../helpers/setModuleByName");
+const absolutePathToFile = require("../helpers/absolutePathToFile");
+const PathToCurrentFileWithOutContent = require("../helpers/pathToCurrentFileWithoutContent");
+const test = require("../preparingElementsForComparison");
 module.exports = returnOfAllPossibleErrors;
 
 function returnOfAllPossibleErrors(
@@ -25,6 +28,8 @@ function returnOfAllPossibleErrors(
 
   let errorMessage = undefined;
   
+console.log(test (importDefinitionPath, configurationTree, pathToCurrentModule));
+//console.log(searchCurrentModuleLevelInConfigTree(pathToCurrentModule));
   if (configurationOfTargetModule && currentLevelConfiguration) {
     errorMessage = errorsWhenImportingLevelsSpecifiedInTheRules(
       currentLevelConfiguration,

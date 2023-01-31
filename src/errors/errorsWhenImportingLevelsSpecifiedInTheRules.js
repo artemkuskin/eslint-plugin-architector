@@ -4,7 +4,7 @@ const PathToCurrentFileWithOutContent = require("../helpers/pathToCurrentFileWit
 const setModuleByName = require("../helpers/setModuleByName");
 const isTargetModuleLevelAboveCurrentModuleLevel = require("../helpers/comparisonOfIndexes");
 const isTargetModuleLevelDeeperThanCurrentModuleLevel = require("../helpers/comparisonOfLength");
-const getTargetAndPath = require("../preparingElementsForComparison");
+const setCurrentLevel = require("../helpers/setCurrentLevel");
 module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules;
 
 function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
@@ -14,12 +14,11 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   currentModuleLevel,
   configurationTree,
   importDefinitionPath,
-  pathToCurrentModule,
-  rootDirectory,
-      jsConfigFileContent
+  pathToCurrentModule
 ) {
   let errorMessage = undefined;
-  
+  const currentModuleLevel1 = setCurrentLevel(pathToCurrentModule)
+  console.log(currentModuleLevel1);
   // const firstParentCurrentModuleLevelConfiguration = setModuleByName(
   //   configurationTree,
   //   currentModuleLevelConfiguration.firstParent
@@ -29,30 +28,27 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   //   configurationOfTargetModule.firstParent
   // );
   // const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
-  const firstParentCurrentModuleLevelConfiguration = getTargetAndPath (pathToCurrentModule,importDefinitionPath, configurationTree,rootDirectory,jsConfigFileContent).currentLevel
-  const firstParentConfigurationOfTargetModule = getTargetAndPath (pathToCurrentModule,importDefinitionPath, configurationTree,rootDirectory,jsConfigFileContent).moduleTargetLevel
-  const absolutePathToTargetModule = getTargetAndPath (pathToCurrentModule,importDefinitionPath, configurationTree,rootDirectory,jsConfigFileContent).absolutePath
+  
 
+  // const currentAndTargetModulesAreChildrenOfTheSameNearestLevel = areNearestParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration);
+  // const currentAndTargetModulesAreChildrenOfTheSameRootLevel =  areRootParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration)
 
-  const currentAndTargetModulesAreChildrenOfTheSameNearestLevel = areNearestParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration);
-  const currentAndTargetModulesAreChildrenOfTheSameRootLevel =  areRootParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration)
-
-  if (
-    currentAndTargetModulesAreChildrenOfTheSameNearestLevel &&
-    isTargetModuleLevelAboveCurrentModuleLevel(configurationOfTargetModule, currentModuleLevelConfiguration)
-  ) {
-    errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
-  } else if (
-    currentAndTargetModulesAreChildrenOfTheSameRootLevel &&
-    isTargetModuleLevelDeeperThanCurrentModuleLevel(pathToCurrentModule, absolutePathToTargetModule)
-  ) {
-    errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
-  } else if (
-    ! currentAndTargetModulesAreChildrenOfTheSameRootLevel &&
-    isTargetModuleLevelAboveCurrentModuleLevel(firstParentConfigurationOfTargetModule, firstParentCurrentModuleLevelConfiguration)
-  ) {
-    errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
-  }
+  // if (
+  //   currentAndTargetModulesAreChildrenOfTheSameNearestLevel &&
+  //   isTargetModuleLevelAboveCurrentModuleLevel(configurationOfTargetModule, currentModuleLevelConfiguration)
+  // ) {
+  //   errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  // } else if (
+  //   currentAndTargetModulesAreChildrenOfTheSameRootLevel &&
+  //   isTargetModuleLevelDeeperThanCurrentModuleLevel(pathToCurrentModule, absolutePathToTargetModule)
+  // ) {
+  //   errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  // } else if (
+  //   ! currentAndTargetModulesAreChildrenOfTheSameRootLevel &&
+  //   isTargetModuleLevelAboveCurrentModuleLevel(firstParentConfigurationOfTargetModule, firstParentCurrentModuleLevelConfiguration)
+  // ) {
+  //   errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  // }
 
   return errorMessage;
 }

@@ -16,39 +16,6 @@ function getImportError(
     levelsConfiguration,
     rootDirectory
   );
-  // const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
-  // const importLevel = setCurrentLevel(importDefinitionPath);
-  // const currentLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
-  // const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
-  // const firstParentCurrentModuleLevelConfiguration = setModuleByName(
-  //   configurationTree,
-  //   currentLevelConfiguration.firstParent
-  // );
-
-  // let moduleTargetLevel;
-  // let absolutePath;
-  // const targetModuleAlias = setLevelByKey(
-  //   getLevelAlias(rootDirectory, jsConfigFileContent),
-  //   firstElemImportDefinitionPath(importDefinitionPath)
-  // );
-
-  // if (targetModuleAlias) {
-  //    absolutePath = absolutePathTo(targetAliasModule.path, importDefinitionPath);
-  //    moduleTargetLevel = setLevelsTarget(
-  //     configurationTree,
-  //     absolutePath,
-  //     rootDirectory
-  //   );
-  // } else if (currentLevelConfiguration && configurationOfTargetModule) {
-  //    moduleTargetLevel = setModuleByName(
-  //     configurationTree,
-  //     configurationOfTargetModule.firstParent
-  //   );
-  //   absolutePath = absolutePathTo(pathToCurrentModule, importDefinitionPath)
-  // } else {
-  //   moduleTargetLevel = setLevelsTarget(configurationTree, absolutePathToTargetModule, rootDirectory)
-  //   absolutePath = absolutePathTo(pathToCurrentModule, importDefinitionPath)
-  // }
 
   return returnOfAllPossibleErrors(
     configurationTree,
@@ -58,7 +25,6 @@ function getImportError(
     jsConfigFileContent
   );
 }
-
 
 function firstElemImportDefinitionPath(importDefinitionPath) {
   return importDefinitionPath.split("/")[0];
