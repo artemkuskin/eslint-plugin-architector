@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">77.78% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/15</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">77.78% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/15</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -124,24 +124,13 @@
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -153,6 +142,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,6 +161,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,7 +173,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -198,20 +200,21 @@ const setModuleByName = require("../helpers/setModuleByName");
 const isTargetModuleLevelAboveCurrentModuleLevel = require("../helpers/comparisonOfIndexes");
 const isTargetModuleLevelDeeperThanCurrentModuleLevel = require("../helpers/comparisonOfLength");
 const setCurrentLevel = require("../helpers/setCurrentLevel");
+const test = require("../preparingElementsForComparison");
 module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules;
 &nbsp;
 function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
-  currentModuleLevelConfiguration,
-  configurationOfTargetModule,
-  importLevel,
-  currentModuleLevel,
   configurationTree,
   importDefinitionPath,
-  pathToCurrentModule
+  pathToCurrentModule,
+  rootDirectory,
+  jsConfigFileContent
 ) {
   let errorMessage = undefined;
-  const currentModuleLevel1 = setCurrentLevel(pathToCurrentModule)
-  console.log(currentModuleLevel1);
+  //const currentModuleLevel1 = setCurrentLevel(pathToCurrentModule)
+  const asd = test (importDefinitionPath, configurationTree, pathToCurrentModule, rootDirectory, jsConfigFileContent);
+  console.log(asd);
+  //console.log(currentModuleLevel1);
   // const firstParentCurrentModuleLevelConfiguration = setModuleByName(
   //   configurationTree,
   //   currentModuleLevelConfiguration.firstParent
@@ -226,11 +229,11 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   // const currentAndTargetModulesAreChildrenOfTheSameNearestLevel = areNearestParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration);
   // const currentAndTargetModulesAreChildrenOfTheSameRootLevel =  areRootParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration)
 &nbsp;
-  // if (
-  //   currentAndTargetModulesAreChildrenOfTheSameNearestLevel &amp;&amp;
-  //   isTargetModuleLevelAboveCurrentModuleLevel(configurationOfTargetModule, currentModuleLevelConfiguration)
-  // ) {
-  //   errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (
+    asd.currentModuleLevel.index &lt; asd.targetModuleLevel.name
+  ) {
+    errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  }
   // } else if (
   //   currentAndTargetModulesAreChildrenOfTheSameRootLevel &amp;&amp;
   //   isTargetModuleLevelDeeperThanCurrentModuleLevel(pathToCurrentModule, absolutePathToTargetModule)
@@ -243,7 +246,7 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   //   errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   // }
 &nbsp;
-  return errorMessage;
+<span class="cstat-no" title="statement not covered" >  return errorMessage;</span>
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >areNearestParentsEqual </span>(targetModule, currentModule) {
@@ -265,7 +268,7 @@ function <span class="fstat-no" title="function not covered" >absolutePathTo(</s
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Jan 31 2023 18:06:33 GMT+0300 (Москва, стандартное время)
+                at Tue Jan 31 2023 20:35:05 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

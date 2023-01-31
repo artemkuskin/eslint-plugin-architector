@@ -1,39 +1,73 @@
 const absolutePathToFile = require("./helpers/absolutePathToFile")
+const getLevelAlias = require("./helpers/getLevelAlias")
+const getParentFolder = require("./helpers/getParentFolder")
 const PathToCurrentFileWithOutContent = require("./helpers/pathToCurrentFileWithoutContent")
 const setCurrentLevel = require("./helpers/setCurrentLevel")
 const setModuleByName = require("./helpers/setModuleByName")
 module.exports = test
-function test (importDefinitionPath, configurationTree, pathToCurrentModule) {
-    const searchCurrentModuleLevelInConfigTree = (params) =>  {
-        const currentModuleLevel1 = setModuleByName(configurationTree, setCurrentLevel(params)) 
-        if(currentModuleLevel1 === undefined) {
-          let result = params.split("/").slice(0, params.split("/").length - 1).join("/")
-         return  searchCurrentModuleLevelInConfigTree(result)
-        } else {
+function test (importDefinitionPath, configurationTree, pathToCurrentModule, rootDirectory, jsConfigFileContent) {
+    // const searchCurrentModuleLevelInConfigTree = (params) =>  {
+    //     const currentModuleLevel1 = setModuleByName(configurationTree, setCurrentLevel(params)) 
+    //     if(currentModuleLevel1 === undefined) {
+    //       let result = params.split("/").slice(0, params.split("/").length - 1).join("/")
+    //      return  searchCurrentModuleLevelInConfigTree(result)
+    //     } else {
     
-          return currentModuleLevel1
-        }
-        //console.log(currentModuleLevel1);
-      }
-      const asd = (params) => {
-        const targetModulePath  = absolutePathToFile(pathToCurrentModule, PathToCurrentFileWithOutContent(params))
-        const targetLevel = setModuleByName(configurationTree, setCurrentLevel(targetModulePath)) 
-        if (targetLevel === undefined) {
-          let result = params.split("/").slice(0, params.split("/").length - 1).join("/")
-          return asd(result)
-        } else {
-          return targetLevel
-        }
+    //       return currentModuleLevel1
+    //     }
+    //     //console.log(currentModuleLevel1);
+    //   }
+    //   const asd = (params) => {
+    //     const targetModulePath  = absolutePathToFile(pathToCurrentModule, PathToCurrentFileWithOutContent(params))
+    //     const targetLevel = setModuleByName(configurationTree, setCurrentLevel(targetModulePath)) 
+    //     if (targetLevel === undefined) {
+    //       let result = params.split("/").slice(0, params.split("/").length - 1).join("/")
+    //       return asd(result)
+    //     } else {
+    //       return targetLevel
+    //     }
       
-      }
+    //   }
+    const targetModuleAlias = setLevelByKey(
+      getLevelAlias(rootDirectory, jsConfigFileContent),
+      firstElemImportDefinitionPath(importDefinitionPath)
+    );
+    if (targetModuleAlias) {
+      const targetAliasModulPath = absolutePathTo(targetModuleAlias.path, importDefinitionPath).split("/");
+      const currentModulePath = pathToCurrentModule.split('/')
+      let generalLevel = targetAliasModulPath.filter(x => currentModulePath.indexOf(x) !== -1)
+        const current = getParentFolder(generalLevel[generalLevel.length -1],  pathToCurrentModule)
+        const target = getParentFolder(generalLevel[generalLevel.length -1], absolutePathTo(targetModuleAlias.path, importDefinitionPath))
+        const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
+        const currentModuleLevel = configurationTree.find((elem) => elem.name === current)
+        return {currentModuleLevel:currentModuleLevel, targetModuleLevel:targetModuleLevel}
+    } else {
 
         const targetModulePath  = absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath).split("/")
         const currentModulePath = pathToCurrentModule.split('/')
         let generalLevel = targetModulePath.filter(x => currentModulePath.indexOf(x) !== -1)
-        const current = configurationTree.find((elem) => elem.parents === generalLevel[generalLevel.length -1]) //НЕ ПРАВИЛЬНО НАДО ПЕРЕПИСАТЬ
-        const target = configurationTree.find((elem) => elem.parents === generalLevel[generalLevel.length -1] && elem.name === targetModulePath[targetModulePath.length -2])
-        console.log(current, target);
+        const current = getParentFolder(generalLevel[generalLevel.length -1],  pathToCurrentModule)
+        const target = getParentFolder(generalLevel[generalLevel.length -1], absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath))
+        const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
+        const currentModuleLevel = configurationTree.find((elem) => elem.name === current)
+       return {currentModuleLevel:currentModuleLevel, targetModuleLevel:targetModuleLevel}
         
       
-      return {a: searchCurrentModuleLevelInConfigTree(pathToCurrentModule), b: asd(importDefinitionPath)}
+    }
+}
+
+function setLevelByKey(configurationTree, key) {
+  return configurationTree.find((elem) => elem.key === key);
+}
+
+function firstElemImportDefinitionPath(importDefinitionPath) {
+  return importDefinitionPath.split("/")[0];
+}
+
+function absolutePathTo(pathToModule, importDefinitionPath) {
+  return absolutePathToFile(PathToCurrentFileWithOutContent(pathToModule), importDefinitionPath);
+}
+
+function setLevelsTarget(configurationTree, absolutePathToTargetLevel, rootDirectory) {
+  return setModuleByName(configurationTree, getParentFolder(rootDirectory, absolutePathToTargetLevel));
 }

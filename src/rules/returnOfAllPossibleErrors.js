@@ -15,47 +15,44 @@ function returnOfAllPossibleErrors(
   rootDirectory,
   jsConfigFileContent
 ) {
-  const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
-  const importLevel = setCurrentLevel(importDefinitionPath);
+  // const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
+  // const importLevel = setCurrentLevel(importDefinitionPath);
 
-  const currentLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
-  const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
+  // const currentLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
+  // const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
 
-  const targetModuleAlias = setLevelByKey(
-    getLevelAlias(rootDirectory, jsConfigFileContent),
-    firstElemImportDefinitionPath(importDefinitionPath)
-  );
+  // const targetModuleAlias = setLevelByKey(
+  //   getLevelAlias(rootDirectory, jsConfigFileContent),
+  //   firstElemImportDefinitionPath(importDefinitionPath)
+  // );
 
   let errorMessage = undefined;
   
-console.log(test (importDefinitionPath, configurationTree, pathToCurrentModule));
+
+//console.log(aasd);
 //console.log(searchCurrentModuleLevelInConfigTree(pathToCurrentModule));
-  if (configurationOfTargetModule && currentLevelConfiguration) {
+  
     errorMessage = errorsWhenImportingLevelsSpecifiedInTheRules(
-      currentLevelConfiguration,
-      configurationOfTargetModule,
-      importLevel,
-      currentModuleLevel,
       configurationTree,
       importDefinitionPath,
       pathToCurrentModule,
       rootDirectory,
       jsConfigFileContent
     );
-  } else {
-    errorMessage = errorWhenImportingLevelsNotIncludedInRules(
-      configurationTree,
-      rootDirectory,
-      pathToCurrentModule,
-      importDefinitionPath,
-      importLevel,
-      currentModuleLevel,
-      targetModuleAlias
-    );
+  // } else {
+  //   errorMessage = errorWhenImportingLevelsNotIncludedInRules(
+  //     configurationTree,
+  //     rootDirectory,
+  //     pathToCurrentModule,
+  //     importDefinitionPath,
+  //     importLevel,
+  //     currentModuleLevel,
+  //     targetModuleAlias
+  //   );
+  return errorMessage;
   }
 
-  return errorMessage;
-}
+
 
 function firstElemImportDefinitionPath(importDefinitionPath) {
   return importDefinitionPath.split("/")[0];
