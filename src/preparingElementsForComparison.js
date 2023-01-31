@@ -40,45 +40,46 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
         const target = getParentFolder(generalLevel[generalLevel.length -1], absolutePathTo(targetModuleAlias.path, importDefinitionPath))
         const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
         const currentModuleLevel = configurationTree.find((elem) => elem.name === current)
+        console.log(16);
         return {currentModuleLevel:currentModuleLevel, targetModuleLevel:targetModuleLevel}
     } else {
-
-        const targetModulePath  = absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath).split("/")
-        const currentModulePath = pathToCurrentModule.split('/')
-        const generalLevel = targetModulePath.filter(x => currentModulePath.indexOf(x) !== -1)
+      
+      const targetModulePath  = absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath).split("/")
+      const currentModulePath = pathToCurrentModule.split('/')
+      const generalLevel = targetModulePath.filter(x => currentModulePath.indexOf(x) !== -1)
         const current = getParentFolder(generalLevel[generalLevel.length -1],  pathToCurrentModule)
         const target = getParentFolder(generalLevel[generalLevel.length -1], absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath))
         const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
         const currentModuleLevel = configurationTree.find((elem) => elem.name === current)
-        if (currentModuleLevel === undefined ) {
+        if (currentModuleLevel === undefined || targetModuleLevel === undefined) {
           const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
+          const targetModuleLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
           return {currentModuleLevel:currentLevel, targetModuleLevel:targetModuleLevel}
-        }
-        if (targetModuleLevel === undefined) {
-          const targetLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
-          return {currentModuleLevel:currentModuleLevel, targetModuleLevel:targetLevel}
         }
         if (targetModuleLevel === undefined && currentModuleLevel === undefined) {
           const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
           const targetLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
+          console.log(2);
           return {currentModuleLevel:currentLevel, targetModuleLevel:targetLevel}
-        
+          
         }
-        console.log(generalLevel);
-       return {currentModuleLevel:currentModuleLevel, targetModuleLevel:targetModuleLevel}
+        console.log(1);
+        return {currentModuleLevel:currentModuleLevel, targetModuleLevel:targetModuleLevel}
         
-      
+        
+      }
     }
-}
+ 
 
-function setLevelByKey(configurationTree, key) {
-  return configurationTree.find((elem) => elem.key === key);
-}
 
-function firstElemImportDefinitionPath(importDefinitionPath) {
-  return importDefinitionPath.split("/")[0];
-}
+    function setLevelByKey(configurationTree, key) {
+      return configurationTree.find((elem) => elem.key === key);
+    }
 
+    function firstElemImportDefinitionPath(importDefinitionPath) {
+      return importDefinitionPath.split("/")[0];
+    }
+    
 function absolutePathTo(pathToModule, importDefinitionPath) {
   return absolutePathToFile(PathToCurrentFileWithOutContent(pathToModule), importDefinitionPath);
 }
