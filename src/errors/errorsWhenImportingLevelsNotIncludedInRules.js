@@ -4,6 +4,7 @@ const getParentFolder = require("../helpers/getParentFolder");
 const PathToCurrentFileWithoutContent = require("../helpers/pathToCurrentFileWithoutContent");
 const setModuleByName = require("../helpers/setModuleByName");
 const comparisonOfIndexes = require("../helpers/comparisonOfIndexes");
+const comparisonOfLength = require("../helpers/comparisonOfLength");
 module.exports = errorWhenImportingLevelsNotIncludedInRules;
 
 function errorWhenImportingLevelsNotIncludedInRules(
@@ -62,9 +63,9 @@ function equalityOfNames(targetModule, currentModule) {
   return targetModule.name === currentModule.name;
 }
 
-function comparisonOfLength(currentModule, targetModule) {
-  return lengthPathToFile(currentModule) > lengthPathToFile(targetModule);
-}
+// function comparisonOfLength(currentModule, targetModule) {
+//   return lengthPathToFile(currentModule) > lengthPathToFile(targetModule);
+// }
 
 function absolutePathTo(pathToModule, importDefinitionPath) {
   return absolutePathToFile(PathToCurrentFileWithoutContent(pathToModule), importDefinitionPath);

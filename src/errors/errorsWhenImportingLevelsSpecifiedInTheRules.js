@@ -2,6 +2,8 @@ const lengthPathToFile = require("../helpers/lengthPathToFile");
 const absolutePathToFile = require("../helpers/absolutePathToFile");
 const PathToCurrentFileWithOutContent = require("../helpers/pathToCurrentFileWithoutContent");
 const setModuleByName = require("../helpers/setModuleByName");
+const comparisonOfIndexes = require("../helpers/comparisonOfIndexes");
+const comparisonOfLength = require("../helpers/comparisonOfLength");
 module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules;
 
 function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
@@ -24,23 +26,35 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   );
   const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
   if (
-    currentModuleLevelConfiguration.parents === configurationOfTargetModule.parents &&
-    configurationOfTargetModule.index >= currentModuleLevelConfiguration.index
+    equalityOfParents(configurationOfTargetModule, currentModuleLevelConfiguration) &&
+    comparisonOfIndexes(configurationOfTargetModule, currentModuleLevelConfiguration)
   ) {
     errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   } else if (
-    currentModuleLevelConfiguration.firstParent !== configurationOfTargetModule.firstParent &&
-    firstParentConfigurationOfTargetModule.index >= firstParentCurrentModuleLevelConfiguration.index
+    uniqualityFirstParent(configurationOfTargetModule, currentModuleLevelConfiguration) &&
+    comparisonOfIndexes(firstParentConfigurationOfTargetModule, firstParentCurrentModuleLevelConfiguration)
   ) {
     errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   } else if (
-    currentModuleLevelConfiguration.firstParent === configurationOfTargetModule.firstParent &&
-    lengthPathToFile(absolutePathToTargetModule) < lengthPathToFile(pathToCurrentModule)
+    equalityOfFirstParents(configurationOfTargetModule, currentModuleLevelConfiguration) &&
+    comparisonOfLength(pathToCurrentModule, absolutePathToTargetModule)
   ) {
     errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
   }
 
   return errorMessage;
+}
+
+function uniqualityFirstParent (targetModule, currentModule) {
+  return targetModule.firstParent !== currentModule.firstParent
+}
+
+function equalityOfParents (targetModule, currentModule) {
+  return targetModule.parents === currentModule.parents
+}
+
+function equalityOfFirstParents (targetModule, currentModule) {
+  return targetModule.firstParent === currentModule.firstParent
 }
 
 function absolutePathTo(pathToModule, importDefinitionPath) {
