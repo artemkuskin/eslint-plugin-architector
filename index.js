@@ -31,12 +31,12 @@ module.exports.rules = {
                 ImportDeclaration: ( node ) => {
                     const fn = context.getFilename().split("\\").join("/");//тут изменил 
                     const nodeValue = node.source.value.split("\\").join("/") // тут изменил
-                    const params = {
-                        pathToCurrentModule: fn,
-                         importDefinitionPath: nodeValue,
-                          levelsConfiguration: hierarchy,
-                           rootDirectory: componentFolder
-                    }
+                    // const params = {
+                    //     pathToCurrentModule: fn,
+                    //      importDefinitionPath: nodeValue,
+                    //       levelsConfiguration: hierarchy,
+                    //        rootDirectory: componentFolder
+                    // }
                     const error = validateHierarchy(fn, nodeValue, hierarchy, componentFolder);
                     if(error) {
                         context.report(node, error);

@@ -26,31 +26,48 @@ function errorWhenImportingLevelsNotIncludedInRules(
       rootDirectory
     );
     if (
-      moduleTargetLevelAliasFirstParent.name !== moduleCurentLevelFirstParent.name &&
-      moduleTargetLevelAliasFirstParent.index > moduleCurentLevelFirstParent.index
+      unequalNames(moduleTargetLevelAliasFirstParent, moduleCurentLevelFirstParent) &&
+      comparisonOfIndexes(moduleTargetLevelAliasFirstParent, moduleCurentLevelFirstParent)
     ) {
       errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
     } else if (
-      moduleTargetLevelAliasFirstParent.name === moduleCurentLevelFirstParent.name &&
-      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathtoTheFileAlias)
+      equalityOfNames(moduleTargetLevelAliasFirstParent, moduleCurentLevelFirstParent) &&
+      comparisonOfLength(pathToCurrentModule, absolutePathtoTheFileAlias)
     ) {
       errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
     }
   } else {
     if (
-      moduleTargetLevelFirstParent.name !== moduleCurentLevelFirstParent.name &&
-      moduleCurentLevelFirstParent.index < moduleTargetLevelFirstParent.index
+      unequalNames(moduleTargetLevelFirstParent, moduleCurentLevelFirstParent) &&
+      comparisonOfIndexes(moduleTargetLevelFirstParent, moduleCurentLevelFirstParent)
     ) {
       errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
     } else if (
-      moduleTargetLevelFirstParent.name === moduleCurentLevelFirstParent.name &&
-      lengthPathToFile(pathToCurrentModule) > lengthPathToFile(absolutePathToTargetModule)
+      equalityOfNames(moduleTargetLevelFirstParent, moduleCurentLevelFirstParent) &&
+      comparisonOfLength(pathToCurrentModule, absolutePathToTargetModule)
     ) {
       errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
     }
   }
   return errorMessage;
 }
+
+function comparisonOfIndexes (targetModule, currentModule) {
+ return targetModule.index > currentModule.index
+}
+
+function unequalNames (targetModule, currentModule) {
+  return  targetModule.name !== currentModule.name
+}
+
+function equalityOfNames (targetModule, currentModule) {
+  return  targetModule.name === currentModule.name
+}
+
+function  comparisonOfLength (currentModule, targetModule) {
+return lengthPathToFile(currentModule) > lengthPathToFile(targetModule)
+}
+
 
 function lengthPathToFile(path) {
   return path.split("/").length;
