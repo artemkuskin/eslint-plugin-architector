@@ -39,8 +39,8 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   // const currentAndTargetModulesAreChildrenOfTheSameNearestLevel = areNearestParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration);
   // const currentAndTargetModulesAreChildrenOfTheSameRootLevel =  areRootParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration)
 
-  if (asd.currentModuleLevel.index < asd.targetModuleLevel.name) {
-    errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
+  if (asd.currentModuleLevel.index < asd.targetModuleLevel.index) {
+    errorMessage = `Cannot import ${asd.currentModuleLevel.name} from ${asd.targetModuleLevel.name}`;
   }
   // } else if (
   //   currentAndTargetModulesAreChildrenOfTheSameRootLevel &&

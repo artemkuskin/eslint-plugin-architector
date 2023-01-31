@@ -15,7 +15,7 @@ function returnOfAllPossibleErrors(
   rootDirectory,
   jsConfigFileContent
 ) {
-  // const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
+   const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
   // const importLevel = setCurrentLevel(importDefinitionPath);
 
   // const currentLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
@@ -31,7 +31,7 @@ function returnOfAllPossibleErrors(
 
 //console.log(aasd);
 //console.log(searchCurrentModuleLevelInConfigTree(pathToCurrentModule));
-  
+  if (currentModuleLevel) {
     errorMessage = errorsWhenImportingLevelsSpecifiedInTheRules(
       configurationTree,
       importDefinitionPath,
@@ -39,6 +39,7 @@ function returnOfAllPossibleErrors(
       rootDirectory,
       jsConfigFileContent
     );
+  }
   // } else {
   //   errorMessage = errorWhenImportingLevelsNotIncludedInRules(
   //     configurationTree,
