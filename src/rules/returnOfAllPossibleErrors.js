@@ -37,17 +37,17 @@ function returnOfAllPossibleErrors(
       rootDirectory,
       jsConfigFileContent
     );
-  } //else {
-  //   errorMessage = errorWhenImportingLevelsNotIncludedInRules(
-  //     configurationTree,
-  //     rootDirectory,
-  //     pathToCurrentModule,
-  //     importDefinitionPath,
-  //     importLevel,
-  //     currentModuleLevel,
-  //     targetModuleAlias
-  //   );
-  // }
+  } else {
+    errorMessage = errorWhenImportingLevelsNotIncludedInRules(
+      configurationTree,
+      rootDirectory,
+      pathToCurrentModule,
+      importDefinitionPath,
+      importLevel,
+      currentModuleLevel,
+      targetModuleAlias
+    );
+  }
 
   return errorMessage;
 }
