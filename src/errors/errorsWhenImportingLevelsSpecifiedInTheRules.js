@@ -42,9 +42,9 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   if (asd.currentModuleLevel.name !== asd.targetModuleLevel.name &&
     asd.currentModuleLevel.index < asd.targetModuleLevel.index) {
     errorMessage = `Cannot import ${asd.currentModuleLevel.name} from ${asd.targetModuleLevel.name}`;
-  } else if (asd.currentModuleLevel.name === asd.targetModuleLevel.name) {
-    errorMessage = `Cannot import ${asd.currentModuleLevel.name} from ${asd.targetModuleLevel.name}`
-  }
+  } //else if (asd.currentModuleLevel.name === asd.targetModuleLevel.name) {
+   // errorMessage = `Cannot import ${asd.currentModuleLevel.name} from ${asd.targetModuleLevel.name}`
+ // }
   // } else if (
   //   currentAndTargetModulesAreChildrenOfTheSameRootLevel &&
   //   isTargetModuleLevelDeeperThanCurrentModuleLevel(pathToCurrentModule, absolutePathToTargetModule)
