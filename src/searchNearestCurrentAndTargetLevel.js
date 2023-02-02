@@ -4,64 +4,52 @@ const setNameModuleLevel = require("./helpers/getParentFolder");
 const PathToCurrentFileWithOutContent = require("./helpers/pathToCurrentFileWithoutContent");
 const setModuleByName = require("./helpers/setModuleByName");
 module.exports = searchNearestCurrentAndTargetLevel;
-function searchNearestCurrentAndTargetLevel(importDefinitionPath, configurationTree, pathToCurrentModule, rootDirectory, jsConfigFileContent) {
+function searchNearestCurrentAndTargetLevel(
+  importDefinitionPath,
+  configurationTree,
+  pathToCurrentModule,
+  rootDirectory,
+  jsConfigFileContent
+) {
   const targetModuleAlias = setLevelByKey(
     getLevelAlias(rootDirectory, jsConfigFileContent),
     firstElemImportDefinitionPath(importDefinitionPath)
   );
 
   if (targetModuleAlias) {
-    const generalLevels = serachGeneralLevels(targetModuleAlias.path, pathToCurrentModule, importDefinitionPath);
-
-    const moduleLevelName = currentAndTargetNameFolder(
-      generalLevels,
-      pathToCurrentModule,
-      targetModuleAlias.path,
-      importDefinitionPath
-    );
-    const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
-    const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
-
-    if (currentModuleLevel === undefined) {
-      const levelsModule = setLevelsModule(generalLevels, pathToCurrentModule, configurationTree);
-      return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
-    }
-
-    if (targetModuleLevel === undefined) {
-      const levelsModule = setLevelsModule(
-        generalLevels,
-        absolutePathTo(pathToCurrentModule, importDefinitionPath),
-        configurationTree
-      );
-      return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
-    }
-    return { currentModuleLevel: currentModuleLevel, targetModuleLevel: targetModuleLevel };
+    return setCurrentAndTargetLevel(targetModuleAlias, pathToCurrentModule, importDefinitionPath, configurationTree);
   } else {
-    const generalLevels = serachGeneralLevels(pathToCurrentModule, pathToCurrentModule, importDefinitionPath);
-    const moduleLevelName = currentAndTargetNameFolder(
-      generalLevels,
-      pathToCurrentModule,
-      pathToCurrentModule,
-      importDefinitionPath
-    );
-    const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
-    const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
-
-    if (currentModuleLevel === undefined) {
-      const levelsModule = setLevelsModule(generalLevels, pathToCurrentModule, configurationTree);
-      return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
-    }
-
-    if (targetModuleLevel === undefined) {
-      const levelsModule = setLevelsModule(
-        generalLevels,
-        absolutePathTo(pathToCurrentModule, importDefinitionPath),
-        configurationTree
-      );
-      return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
-    }
-    return { currentModuleLevel: currentModuleLevel, targetModuleLevel: targetModuleLevel };
+    return setCurrentAndTargetLevel(pathToCurrentModule, pathToCurrentModule, importDefinitionPath, configurationTree);
   }
+}
+
+
+function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefinitionPath, configurationTree) {
+  const generalLevels = serachGeneralLevels(targetModule.path, pathToCurrentModule, importDefinitionPath);
+
+  const moduleLevelName = currentAndTargetNameFolder(
+    generalLevels,
+    pathToCurrentModule,
+    targetModule.path,
+    importDefinitionPath
+  );
+  const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
+  const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
+
+  if (currentModuleLevel === undefined) {
+    const levelsModule = setLevelsModule(generalLevels, pathToCurrentModule, configurationTree);
+    return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
+  }
+
+  if (targetModuleLevel === undefined) {
+    const levelsModule = setLevelsModule(
+      generalLevels,
+      absolutePathTo(pathToCurrentModule, importDefinitionPath),
+      configurationTree
+    );
+    return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
+  }
+  return { currentModuleLevel: currentModuleLevel, targetModuleLevel: targetModuleLevel };
 }
 
 function currentAndTargetNameFolder(generalLevels, pathToCurrentModule, targetModule, importDefinitionPath) {
