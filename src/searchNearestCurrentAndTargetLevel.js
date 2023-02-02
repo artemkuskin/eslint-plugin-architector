@@ -1,3 +1,4 @@
+
 const absolutePathToFile = require("./helpers/absolutePathToFile");
 const getLevelAlias = require("./helpers/getLevelAlias");
 const setNameModuleLevel = require("./helpers/getParentFolder");
@@ -29,21 +30,39 @@ function searchNearestCurrentAndTargetLevel(
       lengthTargetPath
     );
   } else {
+    const path = absolutePathTo(pathToCurrentModule, importDefinitionPath).split("/").splice(0, absolutePathTo(pathToCurrentModule, importDefinitionPath).split("/").length - 1).join("/")
+    console.log(path);
     const lengthCurrentPath = lengthPathToFile(pathToCurrentModule);
     const lengthTargetPath = lengthPathToFile(absolutePathTo(pathToCurrentModule, importDefinitionPath));
-    return setCurrentAndTargetLevel(pathToCurrentModule, pathToCurrentModule, importDefinitionPath, configurationTree, lengthCurrentPath, lengthTargetPath);
+    return setCurrentAndTargetLevel(
+      pathToCurrentModule,
+      pathToCurrentModule,
+      importDefinitionPath,
+      configurationTree,
+      lengthCurrentPath,
+      lengthTargetPath,
+    );
   }
 }
 
-function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefinitionPath, configurationTree, lengthCurrentPath, lengthTargetPath) {
+function setCurrentAndTargetLevel(
+  targetModule,
+  pathToCurrentModule,
+  importDefinitionPath,
+  configurationTree,
+  lengthCurrentPath,
+  lengthTargetPath
+) {
+  
   const generalLevels = serachGeneralLevels(targetModule, pathToCurrentModule, importDefinitionPath);
-
+  console.log(generalLevels);
   const moduleLevelName = currentAndTargetNameFolder(
     generalLevels,
     pathToCurrentModule,
     targetModule,
     importDefinitionPath
-  );
+    );
+//console.log(moduleLevelName);
   const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
 
@@ -54,7 +73,7 @@ function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefin
       targetModuleLevel: levelsModule,
       lengthCurrentPath: lengthCurrentPath,
       lengthTargetPath: lengthTargetPath,
-    }; //ПЕРЕРАБОТАТЬ
+    }; 
   }
 
   if (targetModuleLevel === undefined) {
