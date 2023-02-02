@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "noUnusedLocals": false,
     "paths": {
-      "src/*": [
+      "Src/*": [
         "src/*"
       ],
       "B1/*":[
@@ -13,6 +14,12 @@
       ],
       "A3/*":[
         "src/A/A3/*"
+      ],
+      "A/*":[
+        "src/A/*"
+      ],
+      "B3/*":[
+        "src/B/B1//B2/B3/*"
       ]
     }
   }
