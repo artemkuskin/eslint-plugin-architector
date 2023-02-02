@@ -5,7 +5,7 @@ const setModuleByName = require("../helpers/setModuleByName");
 const isTargetModuleLevelAboveCurrentModuleLevel = require("../helpers/comparisonOfIndexes");
 const isTargetModuleLevelDeeperThanCurrentModuleLevel = require("../helpers/comparisonOfLength");
 const setCurrentLevel = require("../helpers/setCurrentLevel");
-const test = require("../preparingElementsForComparison");
+const searchNearestCurrentAndTargetLevel = require("../searchNearestCurrentAndTargetLevel");
 module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules;
 
 function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
@@ -17,34 +17,20 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
 ) {
   let errorMessage = undefined;
 
-  const asd = test(
+  const currentAndTargetLevel = searchNearestCurrentAndTargetLevel(
     importDefinitionPath,
     configurationTree,
     pathToCurrentModule,
     rootDirectory,
     jsConfigFileContent
   );
-  
-  console.log(asd);
 
-  if (asd.currentModuleLevel.name !== asd.targetModuleLevel.name &&
-    asd.currentModuleLevel.index < asd.targetModuleLevel.index) {
-    errorMessage = `Cannot import ${asd.currentModuleLevel.name} from ${asd.targetModuleLevel.name}`;
+  console.log(currentAndTargetLevel);
+
+  if (currentAndTargetLevel.currentModuleLevel.name !== currentAndTargetLevel.targetModuleLevel.name &&
+    currentAndTargetLevel.currentModuleLevel.index < currentAndTargetLevel.targetModuleLevel.index) {
+    errorMessage = `Cannot import ${currentAndTargetLevel.currentModuleLevel.name} from ${currentAndTargetLevel.targetModuleLevel.name}`;
   } 
   return errorMessage;
 }
 
-function areNearestParentsEqual(targetModule, currentModule) {
-  return targetModule.parents === currentModule.parents;
-}
-
-function areRootParentsEqual(targetModule, currentModule) {
-  return targetModule.firstParent === currentModule.firstParent;
-}
-
-function absolutePathTo(pathToModule, importDefinitionPath) {
-  return absolutePathToFile(
-    PathToCurrentFileWithOutContent(pathToModule),
-    importDefinitionPath
-  );
-}

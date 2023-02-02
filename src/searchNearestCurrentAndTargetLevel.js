@@ -3,8 +3,8 @@ const getLevelAlias = require("./helpers/getLevelAlias");
 const setNameModuleLevel = require("./helpers/getParentFolder");
 const PathToCurrentFileWithOutContent = require("./helpers/pathToCurrentFileWithoutContent");
 const setModuleByName = require("./helpers/setModuleByName");
-module.exports = test;
-function test(importDefinitionPath, configurationTree, pathToCurrentModule, rootDirectory, jsConfigFileContent) {
+module.exports = searchNearestCurrentAndTargetLevel;
+function searchNearestCurrentAndTargetLevel(importDefinitionPath, configurationTree, pathToCurrentModule, rootDirectory, jsConfigFileContent) {
   const targetModuleAlias = setLevelByKey(
     getLevelAlias(rootDirectory, jsConfigFileContent),
     firstElemImportDefinitionPath(importDefinitionPath)
@@ -22,10 +22,18 @@ function test(importDefinitionPath, configurationTree, pathToCurrentModule, root
     const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
     const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
 
-    if (targetModuleLevel === undefined || targetModuleLevel == undefined) {
-      const currentLevel = setModuleByName(configurationTree, generalLevel(generalLevels));
-      const targetModuleLevel = setModuleByName(configurationTree, generalLevel(generalLevels));
-      return { currentModuleLevel: currentLevel, targetModuleLevel: targetModuleLevel };
+    if (currentModuleLevel === undefined) {
+      const levelsModule = setLevelsModule(generalLevels, pathToCurrentModule, configurationTree);
+      return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
+    }
+
+    if (targetModuleLevel === undefined) {
+      const levelsModule = setLevelsModule(
+        generalLevels,
+        absolutePathTo(pathToCurrentModule, importDefinitionPath),
+        configurationTree
+      );
+      return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
     }
     return { currentModuleLevel: currentModuleLevel, targetModuleLevel: targetModuleLevel };
   } else {

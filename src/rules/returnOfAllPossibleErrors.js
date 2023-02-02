@@ -5,32 +5,25 @@ const setCurrentLevel = require("../helpers/setCurrentLevel");
 const setModuleByName = require("../helpers/setModuleByName");
 const absolutePathToFile = require("../helpers/absolutePathToFile");
 const PathToCurrentFileWithOutContent = require("../helpers/pathToCurrentFileWithoutContent");
-const test = require("../preparingElementsForComparison");
+const test = require("../searchNearestCurrentAndTargetLevel");
+const getArchitectureConfigurationTree = require("../helpers/getArchitectureConfigurationTree");
 module.exports = returnOfAllPossibleErrors;
 
 function returnOfAllPossibleErrors(
-  configurationTree,
-  pathToCurrentModule,
-  importDefinitionPath,
   rootDirectory,
+  importDefinitionPath,
+  pathToCurrentModule,
+  levelsConfiguration,
   jsConfigFileContent
 ) {
    const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
-  // const importLevel = setCurrentLevel(importDefinitionPath);
-
-  // const currentLevelConfiguration = setModuleByName(configurationTree, currentModuleLevel);
-  // const configurationOfTargetModule = setModuleByName(configurationTree, importLevel);
-
-  // const targetModuleAlias = setLevelByKey(
-  //   getLevelAlias(rootDirectory, jsConfigFileContent),
-  //   firstElemImportDefinitionPath(importDefinitionPath)
-  // );
-
+   const configurationTree = getArchitectureConfigurationTree(
+    levelsConfiguration.file,
+    levelsConfiguration,
+    rootDirectory
+  );
   let errorMessage = undefined;
-  
 
-//console.log(aasd);
-//console.log(searchCurrentModuleLevelInConfigTree(pathToCurrentModule));
   if (currentModuleLevel) {
     errorMessage = errorsWhenImportingLevelsSpecifiedInTheRules(
       configurationTree,
@@ -40,16 +33,6 @@ function returnOfAllPossibleErrors(
       jsConfigFileContent
     );
   }
-  // } else {
-  //   errorMessage = errorWhenImportingLevelsNotIncludedInRules(
-  //     configurationTree,
-  //     rootDirectory,
-  //     pathToCurrentModule,
-  //     importDefinitionPath,
-  //     importLevel,
-  //     currentModuleLevel,
-  //     targetModuleAlias
-  //   );
   return errorMessage;
   }
 
