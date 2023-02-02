@@ -1,7 +1,7 @@
 const path = require("path");
 const getImportError = require("./src/getImportError");
 const getParentFolder = require("./src/helpers/getParentFolder");
-const returnOfAllPossibleErrors = require("./src/rules/returnOfAllPossibleErrors");
+const returnAnErrorForThisImport = require("./src/rules/returnAnErrorForThisImport");
 
 module.exports = validateIfImportIsAllowed;
 
@@ -17,7 +17,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   const moduleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
 
   if (moduleIsInRootDirectory) {
-    errorMessage = returnOfAllPossibleErrors(
+    errorMessage = returnAnErrorForThisImport(
       rootDirectory,
       importDefinitionPath,
       pathToCurrentModule,

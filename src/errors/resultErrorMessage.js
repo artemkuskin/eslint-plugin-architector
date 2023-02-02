@@ -6,9 +6,9 @@ const isTargetModuleLevelAboveCurrentModuleLevel = require("../helpers/compariso
 const isTargetModuleLevelDeeperThanCurrentModuleLevel = require("../helpers/comparisonOfLength");
 const setCurrentLevel = require("../helpers/setCurrentLevel");
 const searchNearestCurrentAndTargetLevel = require("../searchNearestCurrentAndTargetLevel");
-module.exports = outputOfErrorsWhenImportingLevelsSpecifiedInTheRules;
+module.exports = resultErrorMessage;
 
-function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
+function resultErrorMessage(
   configurationTree,
   importDefinitionPath,
   pathToCurrentModule,
