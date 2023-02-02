@@ -9,11 +9,10 @@ function getParentFolder(rootDirectory, absolutePathToTheFile) {
     try {
       parent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)[1];
     } catch {
-      parent = null;
+      parent = undefined;
     }
   }
   setParent()
-  console.log(parent);
   return parent
 }
 

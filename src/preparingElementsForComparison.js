@@ -79,7 +79,7 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
         }
         if (targetModuleLevel === undefined) {
           const asd = (arr) =>  {
-            const  targetLevel =  getParentFolder(generalLevel[generalLevel.length -1], PathToCurrentFileWithOutContent(absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath)))
+            const  targetLevel =  getParentFolder(arr[arr.length -1], PathToCurrentFileWithOutContent(absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath)))
             const targetModuleLevel = configurationTree.find((elem) => elem.name === targetLevel)
             if (targetModuleLevel === undefined) {
               const a = arr.slice(0, arr.length - 1)
