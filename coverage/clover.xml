@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675347885969" clover="3.2.0">
-  <project timestamp="1675347885970" name="All files">
+<coverage generated="1675349482288" clover="3.2.0">
+  <project timestamp="1675349482289" name="All files">
     <metrics statements="142" coveredstatements="133" conditionals="30" coveredconditionals="19" methods="35" coveredmethods="35" elements="207" coveredelements="187" complexity="0" loc="142" ncloc="142" packages="5" files="12" classes="12"/>
     <package name="eslint-plagin-architector">
       <metrics statements="15" coveredstatements="14" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
@@ -59,19 +59,19 @@
         <line num="101" count="1" type="stmt"/>
         <line num="102" count="1" type="stmt"/>
         <line num="106" count="1" type="stmt"/>
-        <line num="110" count="5" type="stmt"/>
+        <line num="110" count="4" type="stmt"/>
         <line num="114" count="1" type="stmt"/>
         <line num="115" count="1" type="stmt"/>
-        <line num="116" count="7" type="stmt"/>
+        <line num="116" count="6" type="stmt"/>
         <line num="117" count="1" type="stmt"/>
         <line num="121" count="6" type="stmt"/>
         <line num="125" count="1" type="stmt"/>
-        <line num="129" count="5" type="stmt"/>
-        <line num="133" count="3" type="stmt"/>
-        <line num="134" count="3" type="stmt"/>
-        <line num="135" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="136" count="2" type="stmt"/>
-        <line num="137" count="2" type="stmt"/>
+        <line num="129" count="3" type="stmt"/>
+        <line num="133" count="2" type="stmt"/>
+        <line num="134" count="2" type="stmt"/>
+        <line num="135" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="136" count="1" type="stmt"/>
+        <line num="137" count="1" type="stmt"/>
         <line num="139" count="1" type="stmt"/>
       </file>
     </package>
@@ -97,7 +97,7 @@
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="5" count="17" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
       </file>
       <file name="getArchitectureConfigurationTree.js" path="/home/artem/eslint-plagin-architector/src/helpers/getArchitectureConfigurationTree.js">
         <metrics statements="26" coveredstatements="26" conditionals="8" coveredconditionals="7" methods="7" coveredmethods="7"/>
@@ -150,12 +150,12 @@
       </file>
       <file name="getParentFolder.js" path="/home/artem/eslint-plagin-architector/src/helpers/getParentFolder.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="16" count="6" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
       </file>
       <file name="lengthPathToFile.js" path="/home/artem/eslint-plagin-architector/src/helpers/lengthPathToFile.js">
@@ -165,7 +165,7 @@
       </file>
       <file name="pathToCurrentFileWithoutContent.js" path="/home/artem/eslint-plagin-architector/src/helpers/pathToCurrentFileWithoutContent.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="22" type="stmt"/>
+        <line num="2" count="19" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
       </file>
       <file name="setCurrentLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/setCurrentLevel.js">
@@ -175,7 +175,7 @@
       </file>
       <file name="setModuleByName.js" path="/home/artem/eslint-plagin-architector/src/helpers/setModuleByName.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="2" count="21" type="stmt"/>
+        <line num="2" count="16" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
       </file>
     </package>
