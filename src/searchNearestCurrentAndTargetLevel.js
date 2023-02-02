@@ -45,7 +45,12 @@ function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefin
 
   if (currentModuleLevel === undefined) {
     const levelsModule = setLevelsModule(generalLevels, pathToCurrentModule, configurationTree);
-    return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
+    return {
+      currentModuleLevel: levelsModule,
+      targetModuleLevel: levelsModule,
+      lengthCurrentPath: lengthCurrentPath,
+      lengthTargetPath: lengthTargetPath,
+    }; //ПЕРЕРАБОТАТЬ
   }
 
   if (targetModuleLevel === undefined) {
@@ -54,7 +59,12 @@ function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefin
       absolutePathTo(pathToCurrentModule, importDefinitionPath),
       configurationTree
     );
-    return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
+    return {
+      currentModuleLevel: levelsModule,
+      targetModuleLevel: levelsModule,
+      lengthCurrentPath: lengthCurrentPath,
+      lengthTargetPath: lengthTargetPath,
+    }; //ПЕРЕРАБОТАТЬ
   }
   return {
     currentModuleLevel: currentModuleLevel,
