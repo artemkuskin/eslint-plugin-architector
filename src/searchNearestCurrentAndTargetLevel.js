@@ -1,6 +1,7 @@
 const absolutePathToFile = require("./helpers/absolutePathToFile");
 const getLevelAlias = require("./helpers/getLevelAlias");
 const setNameModuleLevel = require("./helpers/getParentFolder");
+const lengthPathToFile = require("./helpers/lengthPathToFile");
 const PathToCurrentFileWithOutContent = require("./helpers/pathToCurrentFileWithoutContent");
 const setModuleByName = require("./helpers/setModuleByName");
 module.exports = searchNearestCurrentAndTargetLevel;
@@ -17,12 +18,16 @@ function searchNearestCurrentAndTargetLevel(
   );
 
   if (targetModuleAlias) {
-    return setCurrentAndTargetLevel(targetModuleAlias.path, pathToCurrentModule, importDefinitionPath, configurationTree);
+    return setCurrentAndTargetLevel(
+      targetModuleAlias.path,
+      pathToCurrentModule,
+      importDefinitionPath,
+      configurationTree
+    );
   } else {
     return setCurrentAndTargetLevel(pathToCurrentModule, pathToCurrentModule, importDefinitionPath, configurationTree);
   }
 }
-
 
 function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefinitionPath, configurationTree) {
   const generalLevels = serachGeneralLevels(targetModule, pathToCurrentModule, importDefinitionPath);
@@ -35,6 +40,8 @@ function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefin
   );
   const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
+  const lengthCurrentPath = lengthPathToFile(pathToCurrentModule);
+  const lengthTargetPath = lengthPathToFile(absolutePathTo(pathToCurrentModule, importDefinitionPath));
 
   if (currentModuleLevel === undefined) {
     const levelsModule = setLevelsModule(generalLevels, pathToCurrentModule, configurationTree);
@@ -49,7 +56,12 @@ function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefin
     );
     return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
   }
-  return { currentModuleLevel: currentModuleLevel, targetModuleLevel: targetModuleLevel };
+  return {
+    currentModuleLevel: currentModuleLevel,
+    targetModuleLevel: targetModuleLevel,
+    lengthCurrentPath: lengthCurrentPath,
+    lengthTargetPath: lengthTargetPath,
+  };
 }
 
 function currentAndTargetNameFolder(generalLevels, pathToCurrentModule, targetModule, importDefinitionPath) {
