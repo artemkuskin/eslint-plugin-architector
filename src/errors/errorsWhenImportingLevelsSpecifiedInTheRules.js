@@ -16,7 +16,7 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
   jsConfigFileContent
 ) {
   let errorMessage = undefined;
-  //const currentModuleLevel1 = setCurrentLevel(pathToCurrentModule)
+
   const asd = test(
     importDefinitionPath,
     configurationTree,
@@ -24,39 +24,13 @@ function outputOfErrorsWhenImportingLevelsSpecifiedInTheRules(
     rootDirectory,
     jsConfigFileContent
   );
+  
   console.log(asd);
-  //console.log(currentModuleLevel1);
-  // const firstParentCurrentModuleLevelConfiguration = setModuleByName(
-  //   configurationTree,
-  //   currentModuleLevelConfiguration.firstParent
-  // );
-  // const firstParentConfigurationOfTargetModule = setModuleByName(
-  //   configurationTree,
-  //   configurationOfTargetModule.firstParent
-  // );
-  // const absolutePathToTargetModule = absolutePathTo(pathToCurrentModule, importDefinitionPath);
-
-  // const currentAndTargetModulesAreChildrenOfTheSameNearestLevel = areNearestParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration);
-  // const currentAndTargetModulesAreChildrenOfTheSameRootLevel =  areRootParentsEqual(configurationOfTargetModule, currentModuleLevelConfiguration)
 
   if (asd.currentModuleLevel.name !== asd.targetModuleLevel.name &&
     asd.currentModuleLevel.index < asd.targetModuleLevel.index) {
     errorMessage = `Cannot import ${asd.currentModuleLevel.name} from ${asd.targetModuleLevel.name}`;
-  } //else if (asd.currentModuleLevel.name === asd.targetModuleLevel.name) {
-   // errorMessage = `Cannot import ${asd.currentModuleLevel.name} from ${asd.targetModuleLevel.name}`
- // }
-  // } else if (
-  //   currentAndTargetModulesAreChildrenOfTheSameRootLevel &&
-  //   isTargetModuleLevelDeeperThanCurrentModuleLevel(pathToCurrentModule, absolutePathToTargetModule)
-  // ) {
-  //   errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
-  // } else if (
-  //   ! currentAndTargetModulesAreChildrenOfTheSameRootLevel &&
-  //   isTargetModuleLevelAboveCurrentModuleLevel(firstParentConfigurationOfTargetModule, firstParentCurrentModuleLevelConfiguration)
-  // ) {
-  //   errorMessage = `Cannot import ${importLevel} from ${currentModuleLevel}`;
-  // }
-
+  } 
   return errorMessage;
 }
 

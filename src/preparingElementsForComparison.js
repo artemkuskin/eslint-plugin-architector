@@ -11,16 +11,14 @@ function test(importDefinitionPath, configurationTree, pathToCurrentModule, root
   );
 
   if (targetModuleAlias) {
-    let generalLevels = serachGeneralLevels(targetModuleAlias.path, pathToCurrentModule, importDefinitionPath);
+    const generalLevels = serachGeneralLevels(targetModuleAlias.path, pathToCurrentModule, importDefinitionPath);
 
-    const moduleLevelName = currentAndTargetNameFolder (generalLevels, pathToCurrentModule, targetModuleAlias.path, importDefinitionPath)
-
-    // const current = setNameModuleLevel(generalLevel(generalLevels), PathToCurrentFileWithOutContent(pathToCurrentModule));
-    // const target = setNameModuleLevel(
-    //   generalLevel(generalLevels),
-    //   PathToCurrentFileWithOutContent(
-    //   absolutePathTo(PathToCurrentFileWithOutContent(targetModuleAlias.path), importDefinitionPath))
-    // );
+    const moduleLevelName = currentAndTargetNameFolder(
+      generalLevels,
+      pathToCurrentModule,
+      targetModuleAlias.path,
+      importDefinitionPath
+    );
     const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
     const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
 
@@ -29,19 +27,15 @@ function test(importDefinitionPath, configurationTree, pathToCurrentModule, root
       const targetModuleLevel = setModuleByName(configurationTree, generalLevel(generalLevels));
       return { currentModuleLevel: currentLevel, targetModuleLevel: targetModuleLevel };
     }
-
     return { currentModuleLevel: currentModuleLevel, targetModuleLevel: targetModuleLevel };
   } else {
-    const generalLevels = serachGeneralLevels(pathToCurrentModule ,pathToCurrentModule, importDefinitionPath);
-    const moduleLevelName = currentAndTargetNameFolder (generalLevels, pathToCurrentModule, pathToCurrentModule, importDefinitionPath)
-    // let current = setNameModuleLevel(generalLevel(generalLevels), PathToCurrentFileWithOutContent(pathToCurrentModule));
-    // let target = setNameModuleLevel(
-    //   generalLevel(generalLevels),
-    //   PathToCurrentFileWithOutContent(
-    //     absolutePathTo(pathToCurrentModule, importDefinitionPath)
-    //   )
-    // );
-
+    const generalLevels = serachGeneralLevels(pathToCurrentModule, pathToCurrentModule, importDefinitionPath);
+    const moduleLevelName = currentAndTargetNameFolder(
+      generalLevels,
+      pathToCurrentModule,
+      pathToCurrentModule,
+      importDefinitionPath
+    );
     const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
     const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
 
@@ -53,7 +47,7 @@ function test(importDefinitionPath, configurationTree, pathToCurrentModule, root
     if (targetModuleLevel === undefined) {
       const levelsModule = setLevelsModule(
         generalLevels,
-        absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath),
+        absolutePathTo(pathToCurrentModule, importDefinitionPath),
         configurationTree
       );
       return { currentModuleLevel: levelsModule, targetModuleLevel: levelsModule }; //ПЕРЕРАБОТАТЬ
@@ -62,14 +56,13 @@ function test(importDefinitionPath, configurationTree, pathToCurrentModule, root
   }
 }
 
-function currentAndTargetNameFolder (generalLevels, pathToCurrentModule, targetModule, importDefinitionPath) {
+function currentAndTargetNameFolder(generalLevels, pathToCurrentModule, targetModule, importDefinitionPath) {
   const current = setNameModuleLevel(generalLevel(generalLevels), PathToCurrentFileWithOutContent(pathToCurrentModule));
-    const target = setNameModuleLevel(
-      generalLevel(generalLevels),
-      PathToCurrentFileWithOutContent(
-      absolutePathTo(targetModule, importDefinitionPath))
-    );
-    return {currentName: current, targetName: target}
+  const target = setNameModuleLevel(
+    generalLevel(generalLevels),
+    PathToCurrentFileWithOutContent(absolutePathTo(targetModule, importDefinitionPath))
+  );
+  return { currentName: current, targetName: target };
 }
 
 function generalLevel(generalLevels) {
@@ -82,13 +75,6 @@ function serachGeneralLevels(targetModulePath, currentModulePath, importDefiniti
   const generalLevels = targetModulPathArr.filter((x) => currentModulePatharr.indexOf(x) !== -1);
   return generalLevels;
 }
-
-// function serachGeneralLevels(targetModulePath ,currentModulePath, importDefinitionPath) {
-//   const targetModulPathArr = absolutePathTo(targetModulePath, importDefinitionPath).split("/");
-//   const currentModulePatharr = currentModulePath.split("/");
-//   const generalLevels = targetModulPathArr.filter((x) => currentModulePatharr.indexOf(x) !== -1);
-//   return generalLevels;
-// }
 
 function setLevelByKey(configurationTree, key) {
   return configurationTree.find((elem) => elem.key === key);
