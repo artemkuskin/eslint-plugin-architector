@@ -62,13 +62,9 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
         let target = getParentFolder(generalLevel[generalLevel.length -1], PathToCurrentFileWithOutContent(absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath)))
         const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
         const currentModuleLevel = configurationTree.find((elem) => elem.name === current)
-        if (!current) {
-          current = generalLevel[generalLevel.length -1]
-          target = generalLevel[generalLevel.length -1]
-        }
-        if (currentModuleLevel === undefined || targetModuleLevel === undefined) {
+        if (currentModuleLevel === undefined) {
           const asd = (arr) =>  {
-            const  currentLevel = getParentFolder(arr[arr.length -1],  pathToCurrentModule)
+            const  currentLevel = getParentFolder(arr[arr.length -1],  PathToCurrentFileWithOutContent(pathToCurrentModule))
             const currentModuleLevel = configurationTree.find((elem) => elem.name === currentLevel)
             if (currentModuleLevel === undefined) {
               const a = arr.slice(0, arr.length - 1)
@@ -78,20 +74,23 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
               return currentModuleLevel
             }
           }
-
-          const qwe = (arr) =>  {
-            const target = getParentFolder(arr[arr.length -1], absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath))
-            const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
+          
+          return {currentModuleLevel:asd(generalLevel), targetModuleLevel:asd(generalLevel)}//ПЕРЕРАБОТАТЬ
+        }
+        if (targetModuleLevel === undefined) {
+          const asd = (arr) =>  {
+            const  targetLevel =  getParentFolder(generalLevel[generalLevel.length -1], PathToCurrentFileWithOutContent(absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath)))
+            const targetModuleLevel = configurationTree.find((elem) => elem.name === targetLevel)
             if (targetModuleLevel === undefined) {
               const a = arr.slice(0, arr.length - 1)
-             return  qwe(a)
+             return  asd(a)
             } else {
 
               return targetModuleLevel
             }
           }
           
-          return {currentModuleLevel:asd(generalLevel), targetModuleLevel:qwe(generalLevel)}//ПЕРЕРАБОТАТЬ
+          return {currentModuleLevel:asd(generalLevel), targetModuleLevel:asd(generalLevel)}//ПЕРЕРАБОТАТЬ
         }
         
         console.log(PathToCurrentFileWithOutContent(pathToCurrentModule), PathToCurrentFileWithOutContent(absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath)));

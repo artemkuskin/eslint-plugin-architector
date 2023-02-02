@@ -1,12 +1,20 @@
 function getParentFolder(rootDirectory, absolutePathToTheFile) {
-  let pagent = undefined;
+  // const parent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile);
+ 
+  // return parent[1];
 
-  if (parent === undefined) {
-    parent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)[0];
-    return parent;
-  } else {
-    return (parent = undefined);
+  let parent = undefined
+
+  function setParent() {
+    try {
+      parent = new RegExp(`${rootDirectory}\\/(\\w+)`, "g").exec(absolutePathToTheFile)[1];
+    } catch {
+      parent = null;
+    }
   }
+  setParent()
+  console.log(parent);
+  return parent
 }
 
 module.exports = getParentFolder;
