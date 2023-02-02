@@ -1,5 +1,4 @@
 const path = require("path");
-const getImportError = require("./src/getImportError");
 const getParentFolder = require("./src/helpers/getParentFolder");
 const returnAnErrorForThisImport = require("./src/rules/returnAnErrorForThisImport");
 

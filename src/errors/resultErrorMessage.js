@@ -1,10 +1,3 @@
-const lengthPathToFile = require("../helpers/lengthPathToFile");
-const absolutePathToFile = require("../helpers/absolutePathToFile");
-const PathToCurrentFileWithOutContent = require("../helpers/pathToCurrentFileWithoutContent");
-const setModuleByName = require("../helpers/setModuleByName");
-const isTargetModuleLevelAboveCurrentModuleLevel = require("../helpers/comparisonOfIndexes");
-const isTargetModuleLevelDeeperThanCurrentModuleLevel = require("../helpers/comparisonOfLength");
-const setCurrentLevel = require("../helpers/setCurrentLevel");
 const searchNearestCurrentAndTargetLevel = require("../searchNearestCurrentAndTargetLevel");
 module.exports = resultErrorMessage;
 
