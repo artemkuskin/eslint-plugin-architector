@@ -18,18 +18,24 @@ function searchNearestCurrentAndTargetLevel(
   );
 
   if (targetModuleAlias) {
+    const lengthCurrentPath = lengthPathToFile(pathToCurrentModule);
+    const lengthTargetPath = lengthPathToFile(targetModuleAlias.path);
     return setCurrentAndTargetLevel(
       targetModuleAlias.path,
       pathToCurrentModule,
       importDefinitionPath,
-      configurationTree
+      configurationTree,
+      lengthCurrentPath,
+      lengthTargetPath
     );
   } else {
-    return setCurrentAndTargetLevel(pathToCurrentModule, pathToCurrentModule, importDefinitionPath, configurationTree);
+    const lengthCurrentPath = lengthPathToFile(pathToCurrentModule);
+    const lengthTargetPath = lengthPathToFile(absolutePathTo(pathToCurrentModule, importDefinitionPath));
+    return setCurrentAndTargetLevel(pathToCurrentModule, pathToCurrentModule, importDefinitionPath, configurationTree, lengthCurrentPath, lengthTargetPath);
   }
 }
 
-function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefinitionPath, configurationTree) {
+function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefinitionPath, configurationTree, lengthCurrentPath, lengthTargetPath) {
   const generalLevels = serachGeneralLevels(targetModule, pathToCurrentModule, importDefinitionPath);
 
   const moduleLevelName = currentAndTargetNameFolder(
@@ -40,8 +46,6 @@ function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefin
   );
   const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
-  const lengthCurrentPath = lengthPathToFile(pathToCurrentModule);
-  const lengthTargetPath = lengthPathToFile(absolutePathTo(pathToCurrentModule, importDefinitionPath));
 
   if (currentModuleLevel === undefined) {
     const levelsModule = setLevelsModule(generalLevels, pathToCurrentModule, configurationTree);
@@ -56,7 +60,7 @@ function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefin
   if (targetModuleLevel === undefined) {
     const levelsModule = setLevelsModule(
       generalLevels,
-      absolutePathTo(pathToCurrentModule, importDefinitionPath),
+      absolutePathTo(targetModule, importDefinitionPath),
       configurationTree
     );
     return {

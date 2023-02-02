@@ -1,7 +1,7 @@
 const validateHierarchy = require("../helper");
 
 describe("Validate hierarchy with default config", () => {
-  const filePath = "/home/artem/my-app/src/B/B1/B1.jsx";
+  const filePath = "/home/artem/my-app/src/A/A1/A2/A22/A22.jsx";
   const filePathOutsideComponentsFolder = "src/components-alt/molecules/ComponentX";
 
   const hierarchy = {
@@ -81,7 +81,7 @@ describe("Validate hierarchy with default config", () => {
   //   expect(errors).toEqual(undefined);
   // });
   it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../B.jsx", hierarchy, componentFolder);
+    const errors = validateHierarchy(filePath, "A/A", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
   // it("allow downward import", () => {
