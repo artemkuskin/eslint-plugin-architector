@@ -63,20 +63,31 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
         const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
         const currentModuleLevel = configurationTree.find((elem) => elem.name === current)
         if (currentModuleLevel === undefined || targetModuleLevel === undefined) {
-          const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
-          const targetModuleLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
           const asd = (arr) =>  {
-            const  currentLevel = configurationTree.find((elem) => elem.name === arr[arr.length -1])
-            if (currentLevel === undefined) {
+            const  currentLevel = getParentFolder(arr[arr.length -1],  pathToCurrentModule)
+            const currentModuleLevel = configurationTree.find((elem) => elem.name === currentLevel)
+            if (currentModuleLevel === undefined) {
               const a = arr.slice(0, arr.length - 1)
              return  asd(a)
             } else {
 
-              return currentLevel
+              return currentModuleLevel
+            }
+          }
+
+          const qwe = (arr) =>  {
+            const target = getParentFolder(arr[arr.length -1], absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath))
+            const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
+            if (targetModuleLevel === undefined) {
+              const a = arr.slice(0, arr.length - 1)
+             return  qwe(a)
+            } else {
+
+              return targetModuleLevel
             }
           }
           
-          return {currentModuleLevel:asd(generalLevel), targetModuleLevel:asd(generalLevel)}//ПЕРЕРАБОТАТЬ
+          return {currentModuleLevel:asd(generalLevel), targetModuleLevel:qwe(generalLevel)}//ПЕРЕРАБОТАТЬ
         }
         if (targetModuleLevel === undefined && currentModuleLevel === undefined) {
           const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])

@@ -16,12 +16,12 @@ describe("Validate hierarchy with default config", () => {
           //     "children": []
           //   }]
           // },
-          // {
-          //   "level": "A3",
-          //   "children": [
+          {
+            "level": "A3",
+            "children": [
               
-          //   ]
-          // }
+            ]
+          }
         ],
       },
       {

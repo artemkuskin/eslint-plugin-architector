@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">49.3% </span>
+                <span class="strong">52.63% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>35/71</span>
+                <span class='fraction'>40/76</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">31.82% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/20</span>
+                <span class='fraction'>7/22</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50.91% </span>
+                <span class="strong">55.74% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>28/55</span>
+                <span class='fraction'>34/61</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -167,7 +167,18 @@
 <a name='L108'></a><a href='#L108'>108</a>
 <a name='L109'></a><a href='#L109'>109</a>
 <a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -226,22 +237,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -342,20 +364,31 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
         const targetModuleLevel = configurationTree.find((elem) =&gt; elem.name === target)
         const currentModuleLevel = configurationTree.find((elem) =&gt; elem.name === current)
         <span class="missing-if-branch" title="else path not taken" >E</span>if (currentModuleLevel === undefined || <span class="branch-1 cbranch-no" title="branch not covered" >targetModuleLevel === undefined)</span> {
-          const currentLevel = configurationTree.find((elem) =&gt; elem.name === generalLevel[generalLevel.length -1])
-          const targetModuleLevel = configurationTree.find((elem) =&gt; elem.name === generalLevel[generalLevel.length -1])
           const asd = (arr) =&gt;  {
-            const  currentLevel = configurationTree.find((elem) =&gt; elem.name === arr[arr.length -1])
-            if (currentLevel === undefined) {
+            const  currentLevel = getParentFolder(arr[arr.length -1],  pathToCurrentModule)
+            const currentModuleLevel = configurationTree.find((elem) =&gt; elem.name === currentLevel)
+            if (currentModuleLevel === undefined) {
               const a = arr.slice(0, arr.length - 1)
              return  asd(a)
             } else {
 &nbsp;
-              return currentLevel
+              return currentModuleLevel
+            }
+          }
+&nbsp;
+          const qwe = (arr) =&gt;  {
+            const target = getParentFolder(arr[arr.length -1], absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath))
+            const targetModuleLevel = configurationTree.find((elem) =&gt; elem.name === target)
+            if (targetModuleLevel === undefined) {
+              const a = arr.slice(0, arr.length - 1)
+             return  qwe(a)
+            } else {
+&nbsp;
+              return targetModuleLevel
             }
           }
           
-          return {currentModuleLevel:asd(generalLevel), targetModuleLevel:asd(generalLevel)}//ПЕРЕРАБОТАТЬ
+          return {currentModuleLevel:asd(generalLevel), targetModuleLevel:qwe(generalLevel)}//ПЕРЕРАБОТАТЬ
         }
 <span class="cstat-no" title="statement not covered" >        if (targetModuleLevel === undefined &amp;&amp; currentModuleLevel === undefined) {</span>
           const currentLevel = <span class="cstat-no" title="statement not covered" >configurationTree.find(<span class="fstat-no" title="function not covered" >(e</span>lem) =&gt; <span class="cstat-no" title="statement not covered" >elem.name === generalLevel[generalLevel.length -1])</span></span>
@@ -394,7 +427,7 @@ function <span class="fstat-no" title="function not covered" >setLevelsTarget(</
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Feb 01 2023 20:40:46 GMT+0300 (Москва, стандартное время)
+                at Thu Feb 02 2023 09:38:34 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>
