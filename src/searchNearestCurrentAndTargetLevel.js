@@ -17,7 +17,7 @@ function searchNearestCurrentAndTargetLevel(
   );
 
   if (targetModuleAlias) {
-    return setCurrentAndTargetLevel(targetModuleAlias, pathToCurrentModule, importDefinitionPath, configurationTree);
+    return setCurrentAndTargetLevel(targetModuleAlias.path, pathToCurrentModule, importDefinitionPath, configurationTree);
   } else {
     return setCurrentAndTargetLevel(pathToCurrentModule, pathToCurrentModule, importDefinitionPath, configurationTree);
   }
@@ -25,12 +25,12 @@ function searchNearestCurrentAndTargetLevel(
 
 
 function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefinitionPath, configurationTree) {
-  const generalLevels = serachGeneralLevels(targetModule.path, pathToCurrentModule, importDefinitionPath);
+  const generalLevels = serachGeneralLevels(targetModule, pathToCurrentModule, importDefinitionPath);
 
   const moduleLevelName = currentAndTargetNameFolder(
     generalLevels,
     pathToCurrentModule,
-    targetModule.path,
+    targetModule,
     importDefinitionPath
   );
   const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
