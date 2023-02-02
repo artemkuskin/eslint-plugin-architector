@@ -13,25 +13,27 @@ function test(importDefinitionPath, configurationTree, pathToCurrentModule, root
   );
 
   if (targetModuleAlias) {
-    // const targetAliasModulPath = absolutePathTo(targetModuleAlias.path, importDefinitionPath).split("/");
-    // const currentModulePath = pathToCurrentModule.split("/");
     let generalLevels = serachGeneralLevelsAlias(targetModuleAlias.path, pathToCurrentModule, importDefinitionPath)
     const current = getParentFolder(generlLevel(generalLevels), pathToCurrentModule);
     const target = getParentFolder(
       generlLevel(generalLevels),
       absolutePathTo(targetModuleAlias.path, importDefinitionPath)
     );
-    const targetModuleLevel = configurationTree.find((elem) => elem.name === target);
-    const currentModuleLevel = configurationTree.find((elem) => elem.name === current);
+    const targetModuleLevel = setModuleByName(configurationTree, target)
+    const currentModuleLevel = setModuleByName(configurationTree, current) 
+
     if (targetModuleLevel === undefined || targetModuleLevel == undefined) {
-      const currentLevel = configurationTree.find((elem) => elem.name === generlLevel(generalLevels));
-      const targetModuleLevel = configurationTree.find((elem) => elem.name === generlLevel(generalLevels));
+      const currentLevel = setModuleByName(configurationTree, generlLevel(generalLevels))
+      const targetModuleLevel = setModuleByName(configurationTree, generlLevel(generalLevels))
       return { currentModuleLevel: currentLevel, targetModuleLevel: targetModuleLevel };
     }
-    console.log(16);
+
     return { currentModuleLevel: currentModuleLevel, targetModuleLevel: targetModuleLevel };
+
   } else {
+
     const generalLevels = serachGeneralLevels (pathToCurrentModule,  importDefinitionPath)
+
     let current = getParentFolder(
       generlLevel(generalLevels),
       PathToCurrentFileWithOutContent(pathToCurrentModule)
@@ -42,8 +44,9 @@ function test(importDefinitionPath, configurationTree, pathToCurrentModule, root
         absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath)
       )
     );
-    const targetModuleLevel = configurationTree.find((elem) => elem.name === target);
-    const currentModuleLevel = configurationTree.find((elem) => elem.name === current);
+
+    const targetModuleLevel = setModuleByName(configurationTree, target)
+    const currentModuleLevel = setModuleByName(configurationTree, current)
 
     if (currentModuleLevel === undefined) {
       const levelsModule = setLevelsModule(generalLevels, pathToCurrentModule, configurationTree);
@@ -101,8 +104,8 @@ function setLevelsTarget(configurationTree, absolutePathToTargetLevel, rootDirec
 }
 
 function setLevelsModule(arr, path, configurationTree) {
-  const currentLevel = getParentFolder(arr[arr.length - 1], PathToCurrentFileWithOutContent(path));
-  const currentModuleLevel = configurationTree.find((elem) => elem.name === currentLevel);
+  const currentLevel = getParentFolder(generlLevel(arr), PathToCurrentFileWithOutContent(path));
+  const currentModuleLevel =setModuleByName(configurationTree, currentLevel);
   if (currentModuleLevel === undefined) {
     const a = arr.slice(0, arr.length - 1);
     return setLevelsModule(a, path, configurationTree);
