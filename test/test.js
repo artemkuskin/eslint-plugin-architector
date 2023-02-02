@@ -1,7 +1,7 @@
 const validateHierarchy = require("../helper");
 
 describe("Validate hierarchy with default config", () => {
-  const filePath = "C:/Новая папка (2)/my-app/src/A/A3/A33/A333/A334/A334.js";
+  const filePath = "/home/artem/my-app/src/A/A.jsx";
   const filePathOutsideComponentsFolder = "src/components-alt/molecules/ComponentX";
 
   const hierarchy = {
@@ -75,18 +75,18 @@ describe("Validate hierarchy with default config", () => {
   //   expect(errors).toEqual(undefined);
   // });
 
+  // it("allow downward import", () => {
+  //   const errors = validateHierarchy(filePath, "B1/B1.jsx", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
+  // it("allow downward import", () => {
+  //   const errors = validateHierarchy(filePath, "../B/B.jsx", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
   it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../A333", hierarchy, componentFolder);
+    const errors = validateHierarchy(filePath, "./A3/A3.jsx", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
-  // it("allow downward import", () => {
-  //   const errors = validateHierarchy(filePath, "../../C/C", hierarchy, componentFolder);
-  //   expect(errors).toEqual(undefined);
-  // });
-  // it("allow downward import", () => {
-  //   const errors = validateHierarchy(filePath, "../B", hierarchy, componentFolder);
-  //   expect(errors).toEqual(undefined);
-  // });
   // it("allow downward import", () => {
   //   const errors = validateHierarchy(filePath, "../A.jsx", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);

@@ -58,10 +58,14 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
       const targetModulePath  = absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath).split("/")
       const currentModulePath = pathToCurrentModule.split('/')
       const generalLevel = targetModulePath.filter(x => currentModulePath.indexOf(x) !== -1)
-        const current = getParentFolder(generalLevel[generalLevel.length -1],  pathToCurrentModule)
-        const target = getParentFolder(generalLevel[generalLevel.length -1], absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath))
+        let current = getParentFolder(generalLevel[generalLevel.length -1],  PathToCurrentFileWithOutContent(pathToCurrentModule))
+        let target = getParentFolder(generalLevel[generalLevel.length -1], PathToCurrentFileWithOutContent(absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath)))
         const targetModuleLevel = configurationTree.find((elem) => elem.name === target)
         const currentModuleLevel = configurationTree.find((elem) => elem.name === current)
+        if (!current) {
+          current = generalLevel[generalLevel.length -1]
+          target = generalLevel[generalLevel.length -1]
+        }
         if (currentModuleLevel === undefined || targetModuleLevel === undefined) {
           const asd = (arr) =>  {
             const  currentLevel = getParentFolder(arr[arr.length -1],  pathToCurrentModule)
@@ -89,14 +93,8 @@ function test (importDefinitionPath, configurationTree, pathToCurrentModule, roo
           
           return {currentModuleLevel:asd(generalLevel), targetModuleLevel:qwe(generalLevel)}//ПЕРЕРАБОТАТЬ
         }
-        if (targetModuleLevel === undefined && currentModuleLevel === undefined) {
-          const currentLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
-          const targetLevel = configurationTree.find((elem) => elem.name === generalLevel[generalLevel.length -1])
-          console.log(2);
-          return {currentModuleLevel:currentLevel, targetModuleLevel:targetLevel}
-          
-        }
-        console.log(1);
+        
+        console.log(PathToCurrentFileWithOutContent(pathToCurrentModule), PathToCurrentFileWithOutContent(absolutePathToFile(PathToCurrentFileWithOutContent(pathToCurrentModule), importDefinitionPath)));
         return {currentModuleLevel:currentModuleLevel, targetModuleLevel:targetModuleLevel}
         
         
