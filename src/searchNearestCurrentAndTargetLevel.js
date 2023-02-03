@@ -154,7 +154,7 @@ function absolutePathTo(pathToModule, importDefinitionPath) {
 }
 
 function setLevelsModule(arr, path, configurationTree, pathTargetLevel, generalPath) {
-  const currentLevel = setNameModuleLevel(generalLevel(arr), PathToCurrentFileWithOutContent(path));
+  const currentLevel = setNameModuleLevel(generalLevel(arr), path);
   const currentModuleLevel = setModuleByName(configurationTree, currentLevel);
   const lengthArr = arr.length
   const target = pathTargetLevel.split("/").splice(0, lengthArr).join("/")
