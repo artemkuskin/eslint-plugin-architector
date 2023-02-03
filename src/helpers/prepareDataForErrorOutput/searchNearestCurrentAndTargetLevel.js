@@ -30,10 +30,6 @@ function searchNearestCurrentAndTargetLevel(
       targetModuleAlias.path
     );
   } else {
-    // const path = absolutePathTo(pathToCurrentModule, importDefinitionPath)
-    //   .split("/")
-    //   .splice(0, absolutePathTo(pathToCurrentModule, importDefinitionPath).split("/").length - 1)
-    //   .join("/");
     const lengthCurrentPath = lengthPathToFile(pathToCurrentModule);
     const lengthTargetPath = lengthPathToFile(absolutePathTo(pathToCurrentModule, importDefinitionPath));
     return setCurrentAndTargetLevel(
@@ -68,56 +64,56 @@ function setCurrentAndTargetLevel(
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
   const generalPath = generalLevels.join("/");
 
-  if (currentModuleLevel === undefined && targetModuleLevel === undefined) {
-    const currentModuleLevel = setLevelsModule(
-      generalLevels,
-      PathToCurrentFileWithOutContent(pathToCurrentModule),
-      configurationTree,
-      generalPath
-    );
-    const targetModuleLevel = setLevelsModule(
-      generalLevels,
-      absolutePathTo(targetModule, importDefinitionPath),
-      configurationTree,
-      generalPath
-    );
-    return {
-      currentModuleLevel: currentModuleLevel,
-      targetModuleLevel: targetModuleLevel,
-      lengthCurrentPath: lengthCurrentPath,
-      lengthTargetPath: lengthTargetPath,
-    };
-  }
+  // if (currentModuleLevel === undefined && targetModuleLevel === undefined) {
+  //   const currentModuleLevel = setLevelsModule(
+  //     generalLevels,
+  //     PathToCurrentFileWithOutContent(pathToCurrentModule),
+  //     configurationTree,
+  //     generalPath
+  //   );
+  //   const targetModuleLevel = setLevelsModule(
+  //     generalLevels,
+  //     absolutePathTo(targetModule, importDefinitionPath),
+  //     configurationTree,
+  //     generalPath
+  //   );
+  //   return {
+  //     currentModuleLevel: currentModuleLevel,
+  //     targetModuleLevel: targetModuleLevel,
+  //     lengthCurrentPath: lengthCurrentPath,
+  //     lengthTargetPath: lengthTargetPath,
+  //   };
+  // }
 
-  if (currentModuleLevel === undefined) {
-    const levelsModule = setLevelsModule(
-      generalLevels,
-      PathToCurrentFileWithOutContent(pathToCurrentModule),
-      configurationTree,
-      generalPath
-    );
-    return {
-      currentModuleLevel: levelsModule,
-      targetModuleLevel: levelsModule,
-      lengthCurrentPath: lengthCurrentPath,
-      lengthTargetPath: lengthTargetPath,
-    };
-  }
+  // if (currentModuleLevel === undefined) {
+  //   const levelsModule = setLevelsModule(
+  //     generalLevels,
+  //     PathToCurrentFileWithOutContent(pathToCurrentModule),
+  //     configurationTree,
+  //     generalPath
+  //   );
+  //   return {
+  //     currentModuleLevel: levelsModule,
+  //     targetModuleLevel: levelsModule,
+  //     lengthCurrentPath: lengthCurrentPath,
+  //     lengthTargetPath: lengthTargetPath,
+  //   };
+  // }
 
-  if (targetModuleLevel === undefined) {
-    const levelsModule = setLevelsModule(
-      generalLevels,
-      absolutePathTo(targetModule, importDefinitionPath),
-      configurationTree,
-      generalPath
-    );
-    return {
-      currentModuleLevel: levelsModule,
-      targetModuleLevel: levelsModule,
-      lengthCurrentPath: lengthCurrentPath,
-      lengthTargetPath: lengthTargetPath,
-    }; //ПЕРЕРАБОТАТЬ
-  }
+  // if (targetModuleLevel === undefined) {
+  //   const levelsModule = setLevelsModule(
+  //     generalLevels,
+  //     absolutePathTo(targetModule, importDefinitionPath),
+  //     configurationTree,
+  //     generalPath
+  //   );
+  //   return {
+  //     currentModuleLevel: levelsModule,
+  //     targetModuleLevel: levelsModule,
+  //     lengthCurrentPath: lengthCurrentPath,
+  //     lengthTargetPath: lengthTargetPath,
+  //   }; //ПЕРЕРАБОТАТЬ
+  // }
 
   return {
     currentModuleLevel: currentModuleLevel,
