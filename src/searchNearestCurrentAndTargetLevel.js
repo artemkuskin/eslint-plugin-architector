@@ -91,7 +91,7 @@ function setCurrentAndTargetLevel(
     const levelsModule = setLevelsModule(generalLevels, PathToCurrentFileWithOutContent(pathToCurrentModule), configurationTree, pathTargetLevel , generalPath);
     return {
       currentModuleLevel: levelsModule,
-      targetModuleLevel: targetModuleLevel,
+      targetModuleLevel: levelsModule,
       lengthCurrentPath: lengthCurrentPath,
       lengthTargetPath: lengthTargetPath,
     }; 
@@ -106,7 +106,7 @@ function setCurrentAndTargetLevel(
       generalPath
     );
     return {
-      currentModuleLevel: currentModuleLevel,
+      currentModuleLevel: levelsModule,
       targetModuleLevel: levelsModule,
       lengthCurrentPath: lengthCurrentPath,
       lengthTargetPath: lengthTargetPath,
@@ -159,7 +159,7 @@ function setLevelsModule(arr, path, configurationTree, pathTargetLevel, generalP
   const lengthArr = arr.length
   const target = pathTargetLevel.split("/").splice(0, lengthArr).join("/")
   const current = path.split("/").splice(0, lengthArr).join("/")
-  //console.log(target, current, arr);
+  console.log(path, pathTargetLevel);
   if (currentModuleLevel === undefined) {
     const a = arr.slice(0, arr.length - 1);
     return setLevelsModule(a, path, configurationTree, pathTargetLevel, generalPath);
