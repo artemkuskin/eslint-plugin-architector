@@ -11,7 +11,7 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
     architectureConfigTree.push({
       name: architectureConfigRules[key].level,
       index: key,
-      parents: lastParent || rootDirectory,
+      parent: lastParent,
       firstParent: firstParent,
       children: architectureConfigRules[key].children,
     });
