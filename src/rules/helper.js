@@ -1,6 +1,6 @@
 const path = require("path");
-const getParentFolder = require("./src/helpers/getNameFolder");
-const returnAnErrorForThisImport = require("./src/rules/returnAnErrorForThisImport");
+const getParentFolder = require("../helpers/serachByNameFolder/getNameFolder");
+const returnAnErrorForThisImport = require("./returnAnErrorForThisImport");
 
 module.exports = validateIfImportIsAllowed;
 

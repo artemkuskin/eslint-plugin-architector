@@ -1,4 +1,4 @@
-const searchNearestCurrentAndTargetLevel = require("../searchNearestCurrentAndTargetLevel");
+const searchNearestCurrentAndTargetLevel = require("../helpers/prepareDataForErrorOutput/searchNearestCurrentAndTargetLevel");
 module.exports = resultErrorMessage;
 
 function resultErrorMessage(

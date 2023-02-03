@@ -1,4 +1,4 @@
-const validateHierarchy = require("../helper");
+const validateHierarchy = require("../src/rules/helper");
 
 describe("Validate hierarchy with default config", () => {
   const filePath = "/home/artem/my-app/src/A/A.jsx";

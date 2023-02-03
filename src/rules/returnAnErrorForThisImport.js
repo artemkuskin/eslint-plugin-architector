@@ -1,6 +1,6 @@
 const resultErrorMessage = require("../errors/resultErrorMessage");
-const setCurrentLevel = require("../helpers/setCurrentLevel");
-const getArchitectureConfigurationTree = require("../helpers/getArchitectureConfigurationTree");
+const setCurrentLevel = require("../helpers/convertPath/setCurrentLevel");
+const getArchitectureConfigurationTree = require("../helpers/architectorTree/getArchitectureConfigurationTree");
 module.exports = returnAnErrorForThisImport;
 
 function returnAnErrorForThisImport(

@@ -1,9 +1,9 @@
-const absolutePathToFile = require("./helpers/absolutePathToFile");
-const getLevelAlias = require("./helpers/getLevelAlias");
-const setNameModuleLevel = require("./helpers/getNameFolder");
-const lengthPathToFile = require("./helpers/lengthPathToFile");
-const PathToCurrentFileWithOutContent = require("./helpers/pathToCurrentFileWithoutContent");
-const setModuleByName = require("./helpers/setModuleByName");
+const absolutePathToFile = require("../convertPath/absolutePathToFile");
+const getLevelAlias = require("../architectorTree/configurationTreeAleases");
+const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
+const lengthPathToFile = require("../lengthPathToFile");
+const PathToCurrentFileWithOutContent = require("../convertPath/pathToCurrentFileWithoutContent");
+const setModuleByName = require("../serachByNameFolder/setModuleByName");
 module.exports = searchNearestCurrentAndTargetLevel;
 function searchNearestCurrentAndTargetLevel(
   importDefinitionPath,

@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for eslint-plagin-architector/helper.js</title>
+    <title>Code coverage report for eslint-plagin-architector/src/helpers/architectorTree/configurationTreeAleases.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">eslint-plagin-architector</a> helper.js</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">eslint-plagin-architector/src/helpers/architectorTree</a> configurationTreeAleases.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/15</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/15</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
@@ -94,29 +94,26 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,49 +122,82 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const path = require("path");
-const getParentFolder = require("./src/helpers/serachByNameFolder/getNameFolder");
-const returnAnErrorForThisImport = require("./src/rules/returnAnErrorForThisImport");
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const absolutePathToFile = require("../convertPath/absolutePathToFile");
+const PathToCurrentFileWithOutContent = require("../convertPath/pathToCurrentFileWithoutContent");
+// const path = require("path");
+module.exports = getLevelAlias;
 &nbsp;
-module.exports = validateIfImportIsAllowed;
-&nbsp;
-let jsConfigFileContent = undefined;
-&nbsp;
-function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
-  if (jsConfigFileContent === undefined) {
-    setJsConfigFile();
+function getLevelAlias(rootDirectory, jsConfigFileContent) {
+  const aliases = getAliases(jsConfigFileContent);
+  const configurationTreeAlias = [];
+  for (let key in aliases) {
+    configurationTreeAlias.push({
+      key: PathToCurrentFileWithOutContent(aliases[key].name),
+      path: absolutePathToAliasesByKey(aliases[key], rootDirectory),
+    });
   }
-&nbsp;
-  let errorMessage = undefined
-&nbsp;
-  const moduleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
-&nbsp;
-  <span class="missing-if-branch" title="else path not taken" >E</span>if (moduleIsInRootDirectory) {
-    errorMessage = returnAnErrorForThisImport(
-      rootDirectory,
-      importDefinitionPath,
-      pathToCurrentModule,
-      levelsConfiguration,
-      jsConfigFileContent
-    );
-  }
-&nbsp;
-  return errorMessage
+  return configurationTreeAlias;
 }
 &nbsp;
-function setJsConfigFile() {
-  try {
-    jsConfigFileContent = require(path.resolve("jsconfig.json"));
-  } catch {
-<span class="cstat-no" title="statement not covered" >    jsConfigFileContent = null;</span>
-  }
+function setLengthPathFolder(pathFolder) {
+  return pathFolder.split("/").length - 1;
 }
+&nbsp;
+function setPathAliases(pathAlias) {
+  return pathAlias.split("/").splice(0, setLengthPathFolder(pathAlias)).join("/");
+}
+&nbsp;
+function absolutePathToAliasesByKey(aliases, rootDirectory) {
+  const lengthStringAliases = setLengthPathFolder(
+    absolutePathToFile(PathToCurrentFileWithOutContent(aliases.path), rootDirectory)
+  );
+  return absolutePathToFile(setPathAliases(aliases.path), rootDirectory)
+    .split("/")
+    .splice(0, lengthStringAliases)
+    .join("/");
+}
+&nbsp;
+function getAliases(jsConfigFileContent) {
+  const aliases = [];
+&nbsp;
+  for (let aliasName in jsConfigFileContent.compilerOptions.paths) {
+    /* We access first element of array, because for now we support only aliases with one value. It can be multiple, see https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping. */
+    const aliasPath = jsConfigFileContent.compilerOptions.paths[aliasName][0];
+    aliases.push({ path: aliasPath, name: aliasName });
+  }
+&nbsp;
+  return aliases;
+}
+&nbsp;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -178,14 +208,14 @@ function setJsConfigFile() {
                 at Fri Feb 03 2023 11:07:01 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
-        <script src="../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     
