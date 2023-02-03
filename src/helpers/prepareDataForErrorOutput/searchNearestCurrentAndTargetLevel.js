@@ -45,6 +45,7 @@ function setCurrentAndTargetLevel(
   path
 
 ) {
+  console.log(pathToCurrentModule);
   const generalLevels = serachGeneralLevels(targetModule, pathToCurrentModule, importDefinitionPath);
   //console.log(generalLevels);
   const moduleLevelName = currentAndTargetNameFolder(
@@ -59,8 +60,9 @@ function setCurrentAndTargetLevel(
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
   const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent)
   const generalPath = generalLevels.join("/");
-  currentModuleLevel ? currentModuleLevel.path = PathToCurrentFileWithOutContent(pathToCurrentModule) : undefined
-  targetModuleLevel? targetModuleLevel.path = path : undefined
+  currentModuleLevel ? currentModuleLevel.path = PathToCurrentFileWithOutContent(pathToCurrentModule) : ''
+  targetModuleLevel? targetModuleLevel.path = path : ''
+  nearestGeneralLevel? nearestGeneralLevel.path = currentModuleLevel.path : ''
   
   if (currentModuleLevel === undefined && targetModuleLevel === undefined) {
     const currentModuleLevel = setLevelsModule(
@@ -75,8 +77,12 @@ function setCurrentAndTargetLevel(
       configurationTree,
       generalPath
     );
-    targetModuleLevel? targetModuleLevel.path = path : undefined
+   // targetModuleLevel? targetModuleLevel.path = path : undefined
+   
     const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent)
+    // currentModuleLevel.path =  PathToCurrentFileWithOutContent(pathToCurrentModule)
+    // targetModuleLevel.path = path  ПРОБЛЕМА ТУТ
+    // nearestGeneralLevel.path = currentModuleLevel.path 
     
     return {
       currentModuleLevel: currentModuleLevel,
