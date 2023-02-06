@@ -216,7 +216,7 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
@@ -265,52 +265,52 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">40x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const getModuleByName = require("../serachByNameFolder/setModuleByName");
@@ -340,7 +340,7 @@ function getCurrentAndTargetLevel({
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
   <span class="missing-if-branch" title="else path not taken" >E</span>if (!currentModuleLevelNotSpecifiedInTheRules) {
-    currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
+    currentModuleLevel.path = (pathToCurrentModule);
     nearestGeneralLevel.path = currentModuleLevel.path;
   }
   if (!targetModuleLevelNotSpecifiedInTheRules) {
@@ -366,7 +366,7 @@ function getCurrentAndTargetLevel({
     );
     const nearestGeneralLevel = <span class="cstat-no" title="statement not covered" >getModuleByName(configurationTree, currentModuleLevel?.parent);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    targetModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);</span>
+<span class="cstat-no" title="statement not covered" >    targetModuleLevel.path = (pathToCurrentModule);</span>
 <span class="cstat-no" title="statement not covered" >    currentModuleLevel.path = absolutePathToTargetModule;</span>
 <span class="cstat-no" title="statement not covered" >    nearestGeneralLevel.path = targetModuleLevel.path;</span>
 &nbsp;
@@ -416,7 +416,7 @@ function getCurrentAndTargetLevel({
 }
 &nbsp;
 function searchGeneralLevels(targetModulePath, currentModulePath) {
-  const targetModulPathArr = targetModulePath.split("/");
+  const targetModulPathArr = getPathToCurrentFileWithoutExtension(targetModulePath).split("/");
   const currentModulePatharr = getPathToCurrentFileWithoutExtension(currentModulePath).split("/");
   const generalLevels = targetModulPathArr.filter((x) =&gt; currentModulePatharr.indexOf(x) !== -1);
   return generalLevels;
@@ -427,7 +427,7 @@ function getCurrentAndTargetNameFolder({ generalLevels, pathToCurrentModule, abs
     getGeneralLevel(generalLevels),
     getPathToCurrentFileWithoutExtension(pathToCurrentModule)
   );
-  const target = setNameModuleLevel(getGeneralLevel(generalLevels), absolutePathToTargetModule);
+  const target = setNameModuleLevel(getGeneralLevel(generalLevels), getPathToCurrentFileWithoutExtension(absolutePathToTargetModule));
   return { currentName: current, targetName: target };
 }
 &nbsp;
@@ -448,7 +448,7 @@ function getLevelsModule({ generalLevels, path, configurationTree }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Feb 06 2023 17:41:48 GMT+0300 (Москва, стандартное время)
+                at Mon Feb 06 2023 17:51:54 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>

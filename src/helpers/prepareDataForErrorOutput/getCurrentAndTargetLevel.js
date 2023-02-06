@@ -25,7 +25,7 @@ function getCurrentAndTargetLevel({
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
   if (!currentModuleLevelNotSpecifiedInTheRules) {
-    currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
+    currentModuleLevel.path = (pathToCurrentModule);
     nearestGeneralLevel.path = currentModuleLevel.path;
   }
   if (!targetModuleLevelNotSpecifiedInTheRules) {
@@ -51,7 +51,7 @@ function getCurrentAndTargetLevel({
     );
     const nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
 
-    targetModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
+    targetModuleLevel.path = (pathToCurrentModule);
     currentModuleLevel.path = absolutePathToTargetModule;
     nearestGeneralLevel.path = targetModuleLevel.path;
 
@@ -101,7 +101,7 @@ function getCurrentAndTargetLevel({
 }
 
 function searchGeneralLevels(targetModulePath, currentModulePath) {
-  const targetModulPathArr = targetModulePath.split("/");
+  const targetModulPathArr = getPathToCurrentFileWithoutExtension(targetModulePath).split("/");
   const currentModulePatharr = getPathToCurrentFileWithoutExtension(currentModulePath).split("/");
   const generalLevels = targetModulPathArr.filter((x) => currentModulePatharr.indexOf(x) !== -1);
   return generalLevels;
@@ -112,7 +112,7 @@ function getCurrentAndTargetNameFolder({ generalLevels, pathToCurrentModule, abs
     getGeneralLevel(generalLevels),
     getPathToCurrentFileWithoutExtension(pathToCurrentModule)
   );
-  const target = setNameModuleLevel(getGeneralLevel(generalLevels), absolutePathToTargetModule);
+  const target = setNameModuleLevel(getGeneralLevel(generalLevels), getPathToCurrentFileWithoutExtension(absolutePathToTargetModule));
   return { currentName: current, targetName: target };
 }
 
