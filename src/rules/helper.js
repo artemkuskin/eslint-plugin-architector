@@ -1,25 +1,22 @@
 const resultErrorMessage = require("../errors/resultErrorMessage");
 const getParentFolder = require("../helpers/serachByNameFolder/getNameFolder");
-const returnAnErrorForThisImport = require("./returnAnErrorForThisImport");
 
 module.exports = validateIfImportIsAllowed;
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
-
-  let errorMessage = undefined
+  let errorMessage = undefined;
 
   const moduleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
 
   if (moduleIsInRootDirectory) {
-    errorMessage = resultErrorMessage (
+    errorMessage = resultErrorMessage({
       importDefinitionPath,
       pathToCurrentModule,
       rootDirectory,
-      levelsConfiguration.file,
-      levelsConfiguration
-    )
+      levelsConfigurationFile: levelsConfiguration.file,
+      levelsConfiguration,
+    });
   }
 
-  return errorMessage
+  return errorMessage;
 }
-

@@ -72,11 +72,11 @@ function setCurrentAndTargetLevel({
   configurationTree,
   absolutePathToTargetModule,
 }) {
-  const generalLevels = serachGeneralLevels(absolutePathToTargetModule, pathToCurrentModule, importDefinitionPath);
+  const generalLevels = searchGeneralLevels(absolutePathToTargetModule, pathToCurrentModule);
   const moduleLevelName = currentAndTargetNameFolder(
-    generalLevels,
+   { generalLevels,
     pathToCurrentModule,
-    absolutePathToTargetModule
+    absolutePathToTargetModule}
   );
 
   const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
@@ -94,7 +94,6 @@ function setCurrentAndTargetLevel({
         generalLevels,
         getPathToCurrentFileWithoutExtension(pathToCurrentModule),
         configurationTree,
-        //generalPath
       )
     );
     const targetModuleLevel = Object.assign(
@@ -103,7 +102,6 @@ function setCurrentAndTargetLevel({
         generalLevels,
         absolutePathTo(pathToCurrentModule, importDefinitionPath),
         configurationTree,
-       // generalPath
       )
     );
 
@@ -160,12 +158,12 @@ function setCurrentAndTargetLevel({
   };
 }
 
-function currentAndTargetNameFolder(generalLevels, pathToCurrentModule, targetModule) {
+function currentAndTargetNameFolder({generalLevels, pathToCurrentModule, absolutePathToTargetModule}) {
   const current = setNameModuleLevel(
     generalLevel(generalLevels),
     getPathToCurrentFileWithoutExtension(pathToCurrentModule)
   );
-  const target = setNameModuleLevel(generalLevel(generalLevels), targetModule);
+  const target = setNameModuleLevel(generalLevel(generalLevels), absolutePathToTargetModule);
   return { currentName: current, targetName: target };
 }
 
@@ -173,7 +171,7 @@ function generalLevel(generalLevels) {
   return generalLevels[generalLevels.length - 1];
 }
 
-function serachGeneralLevels(targetModulePath, currentModulePath, importDefinitionPath) {
+function searchGeneralLevels(targetModulePath, currentModulePath) {
   const targetModulPathArr = targetModulePath.split("/");
   const currentModulePatharr = getPathToCurrentFileWithoutExtension(currentModulePath).split("/");
   const generalLevels = targetModulPathArr.filter((x) => currentModulePatharr.indexOf(x) !== -1);
