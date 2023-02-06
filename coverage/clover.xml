@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675682416454" clover="3.2.0">
-  <project timestamp="1675682416455" name="All files">
-    <metrics statements="158" coveredstatements="157" conditionals="34" coveredconditionals="32" methods="35" coveredmethods="35" elements="227" coveredelements="224" complexity="0" loc="158" ncloc="158" packages="6" files="10" classes="10"/>
+<coverage generated="1675682542019" clover="3.2.0">
+  <project timestamp="1675682542020" name="All files">
+    <metrics statements="161" coveredstatements="160" conditionals="40" coveredconditionals="38" methods="35" coveredmethods="35" elements="236" coveredelements="233" complexity="0" loc="161" ncloc="161" packages="6" files="10" classes="10"/>
     <package name="errors">
       <metrics statements="27" coveredstatements="27" conditionals="10" coveredconditionals="9" methods="3" coveredmethods="3"/>
       <file name="resultErrorMessage.js" path="/home/artem/eslint-plagin-architector/src/errors/resultErrorMessage.js">
@@ -97,14 +97,14 @@
       </file>
       <file name="pathToCurrentFileWithoutContent.js" path="/home/artem/eslint-plagin-architector/src/helpers/convertPath/pathToCurrentFileWithoutContent.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="116" type="stmt"/>
+        <line num="2" count="120" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
       </file>
     </package>
     <package name="helpers.prepareDataForErrorOutput">
-      <metrics statements="65" coveredstatements="64" conditionals="16" coveredconditionals="16" methods="13" coveredmethods="13"/>
+      <metrics statements="68" coveredstatements="67" conditionals="22" coveredconditionals="22" methods="13" coveredmethods="13"/>
       <file name="searchNearestCurrentAndTargetLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/searchNearestCurrentAndTargetLevel.js">
-        <metrics statements="65" coveredstatements="64" conditionals="16" coveredconditionals="16" methods="13" coveredmethods="13"/>
+        <metrics statements="68" coveredstatements="67" conditionals="22" coveredconditionals="22" methods="13" coveredmethods="13"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -133,6 +133,9 @@
         <line num="83" count="7" type="stmt"/>
         <line num="84" count="7" type="stmt"/>
         <line num="85" count="7" type="stmt"/>
+        <line num="86" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="87" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="88" count="7" type="cond" truecount="2" falsecount="0"/>
         <line num="90" count="7" type="cond" truecount="4" falsecount="0"/>
         <line num="91" count="2" type="stmt"/>
         <line num="100" count="2" type="stmt"/>

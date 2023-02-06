@@ -83,9 +83,9 @@ function setCurrentAndTargetLevel({
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
   const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent);
   const generalPath = generalLevels.join("/");
-  // currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : "";
-  // targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
-  // nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : "";
+  currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : "";
+  targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
+  nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : "";
 
   if (currentModuleLevel === undefined && targetModuleLevel === undefined) {
     const currentModuleLevel = Object.assign(
