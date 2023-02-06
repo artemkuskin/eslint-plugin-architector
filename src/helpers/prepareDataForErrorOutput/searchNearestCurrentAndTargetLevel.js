@@ -65,6 +65,7 @@ function setCurrentAndTargetLevel(
   nearestGeneralLevel? nearestGeneralLevel.path = currentModuleLevel.path : ''
   
   if (currentModuleLevel === undefined && targetModuleLevel === undefined) {
+    console.log(1);
     const currentModuleLevel = setLevelsModule(
       generalLevels,
       PathToCurrentFileWithOutContent(pathToCurrentModule),
@@ -77,21 +78,25 @@ function setCurrentAndTargetLevel(
       configurationTree,
       generalPath
     );
-   // targetModuleLevel? targetModuleLevel.path = path : undefined
+    const clone = Object.assign({}, targetModuleLevel)
+    const clone2 = Object.assign({}, currentModuleLevel)
+    clone.path = PathToCurrentFileWithOutContent(pathToCurrentModule)
+    clone2.path = path
    
+    //currentModuleLevel.path =  pathToCurrentModule
+    //targetModuleLevel.path = path  //ПРОБЛЕМА ТУТ
     const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent)
-    // currentModuleLevel.path =  PathToCurrentFileWithOutContent(pathToCurrentModule)
-    // targetModuleLevel.path = path  ПРОБЛЕМА ТУТ
-    // nearestGeneralLevel.path = currentModuleLevel.path 
+     nearestGeneralLevel.path = clone.path 
     
     return {
-      currentModuleLevel: currentModuleLevel,
-      targetModuleLevel: targetModuleLevel,
+      currentModuleLevel: clone2,
+      targetModuleLevel: clone,
       nearestGeneralLevel: nearestGeneralLevel
     };
   }
 
   if (currentModuleLevel === undefined) {
+    console.log(2);
     const levelsModule = setLevelsModule(
       generalLevels,
       PathToCurrentFileWithOutContent(pathToCurrentModule),
@@ -108,6 +113,7 @@ function setCurrentAndTargetLevel(
   }
 
   if (targetModuleLevel === undefined) {
+    console.log(3);
     const levelsModule = setLevelsModule(
       generalLevels,
       absolutePathTo(targetModule, importDefinitionPath),

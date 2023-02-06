@@ -65,17 +65,17 @@ describe("Validate hierarchy with default config", () => {
 
   const componentFolder = "src";
 
-  // it("allow downward import", () => {
-  //   const errors = validateHierarchy(filePath, "../../A", hierarchy, componentFolder);
-  //   expect(errors).toEqual(undefined);
-  // });
-  // it("allow downward import", () => {
-  //   const errors = validateHierarchy(filePath, "B1/B1.jsx", hierarchy, componentFolder);
-  //   expect(errors).toEqual(undefined);
-  // });
+  it("allow downward import", () => {
+    const errors = validateHierarchy(filePath, "../../A", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
+  it("allow downward import", () => {
+    const errors = validateHierarchy(filePath, "../A1.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
 
   // it("allow downward import", () => {
-  //   const errors = validateHierarchy(filePath, "../../../B/B.jsx", hierarchy, componentFolder);
+  //   const errors = validateHierarchy(filePath, "../../B/B.jsx", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
   // });
 
@@ -84,13 +84,13 @@ describe("Validate hierarchy with default config", () => {
   //   expect(errors).toEqual(undefined);
   // });
   // it("allow downward import", () => {
-  //   const errors = validateHierarchy(filePath, "A3/A3.jsx", hierarchy, componentFolder);
+  //   const errors = validateHierarchy(filePath, "../A1/A1.jsx", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
   // });
-  it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../A1.jsx", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("allow downward import", () => {
+  //   const errors = validateHierarchy(filePath, "../A1.jsx", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
   // it("allow downward import", () => {
   //   const errors = validateHierarchy(filePath, "..S/D", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
