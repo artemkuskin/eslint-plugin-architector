@@ -57,9 +57,9 @@ function getAbsolutePathToTargetModule({ pathToCurrentModule, importDefinitionPa
   if (Boolean(targetModuleAlias)) {
     absolutePathToTargetModule = targetModuleAlias.path;
   } else {
-    absolutePathToTargetModule = 
+    absolutePathToTargetModule = getPathToCurrentFileWithoutExtension(
       getAbsolutePathTo(pathToCurrentModule, importDefinitionPath)
-    
+    );
   }
 
   return absolutePathToTargetModule;
