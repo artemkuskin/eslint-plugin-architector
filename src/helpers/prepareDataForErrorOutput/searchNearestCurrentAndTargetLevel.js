@@ -22,7 +22,7 @@ function searchNearestCurrentAndTargetLevel({
 
   const targetModuleAlias = setLevelByKey(
     getLevelAlias(rootDirectory, jsConfigFileContent),
-    firstElemImportDefinitionPath(importDefinitionPath)
+    keyAliases(importDefinitionPath)
   );
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfigurationFile,
@@ -73,7 +73,7 @@ function setCurrentAndTargetLevel({
   absolutePathToTargetModule,
 }) {
   const generalLevels = searchGeneralLevels(absolutePathToTargetModule, pathToCurrentModule);
-  const moduleLevelName = currentAndTargetNameFolder({
+  const moduleLevelName = getCurrentAndTargetNameFolder({
     generalLevels,
     pathToCurrentModule,
     absolutePathToTargetModule,
@@ -82,26 +82,36 @@ function setCurrentAndTargetLevel({
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
   const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent);
 
-  currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : "";
-  targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
+  currentModuleLevel ? (currentModuleLevel.path = (pathToCurrentModule)) : "";
+  targetModuleLevel ? (targetModuleLevel.path = absolutePathTo(pathToCurrentModule, importDefinitionPath)) : "";
   nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : "";
-  
-  const currentModuleLevelNotSpecifiedInTheRules = currentModuleLevel === undefined;
-  const targetModuleLevelNotSpecifiedInTheRules = targetModuleLevel === undefined;
+
+  const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
+  const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
+  console.log(1);
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
+    console.log(2);
     const currentModuleLevel = Object.assign(
       {},
-      setLevelsModule({generalLevels, path: getPathToCurrentFileWithoutExtension(pathToCurrentModule), configurationTree})
+      setLevelsModule({
+        generalLevels,
+        path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
+        configurationTree,
+      })
     );
     const targetModuleLevel = Object.assign(
       {},
-      setLevelsModule({generalLevels, path: absolutePathTo(pathToCurrentModule, importDefinitionPath), configurationTree})
+      setLevelsModule({
+        generalLevels,
+        path: absolutePathTo(pathToCurrentModule, importDefinitionPath),
+        configurationTree,
+      })
     );
     const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent);
 
-    targetModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
-    currentModuleLevel.path = absolutePathToTargetModule;
+    targetModuleLevel.path = (pathToCurrentModule);
+    currentModuleLevel.path = absolutePathTo(pathToCurrentModule, importDefinitionPath);
     nearestGeneralLevel.path = targetModuleLevel.path;
 
     return {
@@ -112,10 +122,11 @@ function setCurrentAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules) {
+    console.log(3);
     const levelsModule = setLevelsModule({
       generalLevels,
       path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
-      configurationTree
+      configurationTree,
     });
     const nearestGeneralLevel = setModuleByName(configurationTree, levelsModule?.parent);
     targetModuleLevel.name = levelsModule.name;
@@ -127,13 +138,14 @@ function setCurrentAndTargetLevel({
   }
 
   if (targetModuleLevelNotSpecifiedInTheRules) {
+    console.log(5);
     const levelsModule = setLevelsModule({
       generalLevels,
       path: absolutePathTo(pathToCurrentModule, importDefinitionPath),
-      configurationTree
+      configurationTree,
     });
     const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent);
-    levelsModule.path = absolutePathToTargetModule;
+    levelsModule.path = absolutePathTo(pathToCurrentModule, importDefinitionPath);
     currentModuleLevel.name = levelsModule.name;
     return {
       currentModuleLevel: currentModuleLevel,
@@ -149,16 +161,16 @@ function setCurrentAndTargetLevel({
   };
 }
 
-function currentAndTargetNameFolder({ generalLevels, pathToCurrentModule, absolutePathToTargetModule }) {
+function getCurrentAndTargetNameFolder({ generalLevels, pathToCurrentModule, absolutePathToTargetModule }) {
   const current = setNameModuleLevel(
-    generalLevel(generalLevels),
+    getGeneralLevel(generalLevels),
     getPathToCurrentFileWithoutExtension(pathToCurrentModule)
   );
-  const target = setNameModuleLevel(generalLevel(generalLevels), absolutePathToTargetModule);
+  const target = setNameModuleLevel(getGeneralLevel(generalLevels), absolutePathToTargetModule);
   return { currentName: current, targetName: target };
 }
 
-function generalLevel(generalLevels) {
+function getGeneralLevel(generalLevels) {
   return generalLevels[generalLevels.length - 1];
 }
 
@@ -173,7 +185,7 @@ function setLevelByKey(configurationTree, key) {
   return configurationTree.find((elem) => elem.key === key);
 }
 
-function firstElemImportDefinitionPath(importDefinitionPath) {
+function keyAliases(importDefinitionPath) {
   return importDefinitionPath.split("/")[0];
 }
 
@@ -181,12 +193,12 @@ function absolutePathTo(pathToModule, importDefinitionPath) {
   return absolutePathToFile(getPathToCurrentFileWithoutExtension(pathToModule), importDefinitionPath);
 }
 
-function setLevelsModule({generalLevels, path, configurationTree}) {
-  const currentLevel = setNameModuleLevel(generalLevel(generalLevels), path);
+function setLevelsModule({ generalLevels, path, configurationTree }) {
+  const currentLevel = setNameModuleLevel(getGeneralLevel(generalLevels), path);
   const currentModuleLevel = setModuleByName(configurationTree, currentLevel);
   if (currentModuleLevel === undefined && generalLevels.length !== 0) {
     const result = generalLevels.slice(0, generalLevels.length - 1);
-    return setLevelsModule({generalLevels: result, path, configurationTree});
+    return setLevelsModule({ generalLevels: result, path, configurationTree });
   } else {
     return currentModuleLevel;
   }
