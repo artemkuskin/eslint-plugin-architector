@@ -16,13 +16,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   const moduleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
 
   if (moduleIsInRootDirectory) {
-    errorMessage = returnAnErrorForThisImport(
+    errorMessage = returnAnErrorForThisImport({
       rootDirectory,
       importDefinitionPath,
       pathToCurrentModule,
       levelsConfiguration,
       jsConfigFileContent
-    );
+    });
   }
 
   return errorMessage

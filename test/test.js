@@ -4,8 +4,7 @@ describe("Validate hierarchy with default config", () => {
   const filePath = "/home/artem/my-app/src/A/A1/A2/A2.jsx";
   const filePathOutsideComponentsFolder = "src/components-alt/molecules/ComponentX";
 
-  const hierarchy = {
-    file: [
+  const hierarchy =  [
       {
         level: "src",
         children: [
@@ -55,13 +54,12 @@ describe("Validate hierarchy with default config", () => {
       //   level: "templates",
       //   children: [],
       // },
-    ],
+    ]
     // atoms: 0,
     // molecules: 1,
     // organisms: 2,
     // templates: 3,
     // pages: 4
-  };
 
   const componentFolder = "src";
 

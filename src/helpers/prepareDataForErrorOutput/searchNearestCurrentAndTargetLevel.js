@@ -5,13 +5,13 @@ const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurre
 const setModuleByName = require("../serachByNameFolder/setModuleByName");
 module.exports = searchNearestCurrentAndTargetLevel;
 
-function searchNearestCurrentAndTargetLevel(
+function searchNearestCurrentAndTargetLevel({
   importDefinitionPath,
   configurationTree,
   pathToCurrentModule,
   rootDirectory,
   jsConfigFileContent
-) {
+}) {
   const targetModuleAlias = setLevelByKey(
     getLevelAlias(rootDirectory, jsConfigFileContent),
     firstElemImportDefinitionPath(importDefinitionPath)
