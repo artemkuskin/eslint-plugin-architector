@@ -22,12 +22,19 @@ function getCurrentAndTargetLevel({
   const currentModuleLevel = getModuleByName(configurationTree, moduleLevelName.currentName);
   const nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
 
-  currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : "";
-  targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
-  nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : "";
+ // currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : "";
+  //targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
+ // nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : "";
 
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
+  if (!currentModuleLevelNotSpecifiedInTheRules ) {
+    currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)
+    nearestGeneralLevel.path = currentModuleLevel.path
+  }
+  if (!targetModuleLevelNotSpecifiedInTheRules) {
+    targetModuleLevel.path = absolutePathToTargetModule
+  }
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
     const currentModuleLevel = Object.assign(

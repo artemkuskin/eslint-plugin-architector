@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>37/50</span>
+                <span class='fraction'>39/52</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.11% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/18</span>
+                <span class='fraction'>10/16</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.47% </span>
+                <span class="strong">74.51% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>36/49</span>
+                <span class='fraction'>38/51</span>
             </div>
         
             
@@ -182,7 +182,14 @@
 <a name='L123'></a><a href='#L123'>123</a>
 <a name='L124'></a><a href='#L124'>124</a>
 <a name='L125'></a><a href='#L125'>125</a>
-<a name='L126'></a><a href='#L126'>126</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -206,12 +213,19 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -331,12 +345,19 @@ function getCurrentAndTargetLevel({
   const currentModuleLevel = getModuleByName(configurationTree, moduleLevelName.currentName);
   const nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
 &nbsp;
-  currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : <span class="branch-1 cbranch-no" title="branch not covered" >"";</span>
-  targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
-  nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : <span class="branch-1 cbranch-no" title="branch not covered" >"";</span>
+ // currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : "";
+  //targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
+ // nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : "";
 &nbsp;
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (!currentModuleLevelNotSpecifiedInTheRules ) {
+    currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)
+    nearestGeneralLevel.path = currentModuleLevel.path
+  }
+  if (!targetModuleLevelNotSpecifiedInTheRules) {
+    targetModuleLevel.path = absolutePathToTargetModule
+  }
 &nbsp;
   <span class="missing-if-branch" title="if path not taken" >I</span>if (currentModuleLevelNotSpecifiedInTheRules &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >targetModuleLevelNotSpecifiedInTheRules)</span> {
     const currentModuleLevel = <span class="cstat-no" title="statement not covered" >Object.assign(</span>
@@ -439,7 +460,7 @@ function getLevelsModule({ generalLevels, path, configurationTree }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Feb 06 2023 17:34:26 GMT+0300 (Москва, стандартное время)
+                at Mon Feb 06 2023 17:38:16 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>
