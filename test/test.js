@@ -49,6 +49,10 @@ describe("Validate hierarchy with default config", () => {
             level: "C",
             children: [],
           },
+          {
+            level: "D",
+            children: [],
+          }
         ],
       },
       // {
@@ -86,7 +90,7 @@ describe("Validate hierarchy with default config", () => {
     expect(errors).toEqual(undefined);
   });
   it("allow downward import", () => {
-    const errors = validateHierarchy(filePath, "../A1/A1.jsx", hierarchy, componentFolder);
+    const errors = validateHierarchy(filePath, "../../D.jsx", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
 })

@@ -40,7 +40,7 @@ function searchNearestCurrentAndTargetLevel({
     pathToCurrentModule,
     importDefinitionPath,
     configurationTree,
-    absolutePathToTargetModule
+    absolutePathToTargetModule,
   });
 }
 
@@ -66,9 +66,18 @@ function getAbsolutePathToTargetModule({ pathToCurrentModule, importDefinitionPa
   return absolutePathToTargetModule;
 }
 
-function setCurrentAndTargetLevel({pathToCurrentModule, importDefinitionPath, configurationTree, absolutePathToTargetModule}) {
+function setCurrentAndTargetLevel({
+  pathToCurrentModule,
+  importDefinitionPath,
+  configurationTree,
+  absolutePathToTargetModule,
+}) {
   const generalLevels = serachGeneralLevels(absolutePathToTargetModule, pathToCurrentModule, importDefinitionPath);
-  const moduleLevelName = currentAndTargetNameFolder(generalLevels, pathToCurrentModule, absolutePathToTargetModule, importDefinitionPath);
+  const moduleLevelName = currentAndTargetNameFolder(
+    generalLevels,
+    pathToCurrentModule,
+    absolutePathToTargetModule
+  );
 
   const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
@@ -134,9 +143,11 @@ function setCurrentAndTargetLevel({pathToCurrentModule, importDefinitionPath, co
       configurationTree,
       generalPath
     );
-    levelsModule ? (levelsModule.path = absolutePathToTargetModule) : undefined;
+    levelsModule.path = absolutePathToTargetModule;
     const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent);
-    currentModuleLevel.name = levelsModule.name;
+    if (currentModuleLevel.parent !== levelsModule.parent) {
+      currentModuleLevel.name = levelsModule.name;
+    }
     return {
       currentModuleLevel: currentModuleLevel,
       targetModuleLevel: levelsModule,
@@ -151,7 +162,7 @@ function setCurrentAndTargetLevel({pathToCurrentModule, importDefinitionPath, co
   };
 }
 
-function currentAndTargetNameFolder(generalLevels, pathToCurrentModule, targetModule, importDefinitionPath) {
+function currentAndTargetNameFolder(generalLevels, pathToCurrentModule, targetModule) {
   const current = setNameModuleLevel(
     generalLevel(generalLevels),
     getPathToCurrentFileWithoutExtension(pathToCurrentModule)
