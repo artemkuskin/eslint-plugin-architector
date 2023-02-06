@@ -6,7 +6,6 @@ function resultErrorMessage(
   importDefinitionPath,
   pathToCurrentModule,
   rootDirectory,
-  jsConfigFileContent
 ) {
   let errorMessage = undefined;
 
@@ -15,7 +14,6 @@ function resultErrorMessage(
     configurationTree,
     pathToCurrentModule,
     rootDirectory,
-    jsConfigFileContent
   );
 
   const nearestGeneralLevel = currentAndTargetLevel.nearestGeneralLevel;

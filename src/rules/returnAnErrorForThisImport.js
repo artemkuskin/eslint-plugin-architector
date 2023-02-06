@@ -8,7 +8,6 @@ function returnAnErrorForThisImport(
   importDefinitionPath,
   pathToCurrentModule,
   levelsConfiguration,
-  jsConfigFileContent
 ) {
   const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
   const configurationTree = getArchitectureConfigurationTree(
@@ -23,8 +22,7 @@ function returnAnErrorForThisImport(
       configurationTree,
       importDefinitionPath,
       pathToCurrentModule,
-      rootDirectory,
-      jsConfigFileContent
+      rootDirectory
     );
   }
   return errorMessage;
