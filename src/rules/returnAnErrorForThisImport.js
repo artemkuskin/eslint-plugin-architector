@@ -17,13 +17,13 @@ function returnAnErrorForThisImport(
   );
   let errorMessage = undefined;
 
-  if (currentModuleLevel) {
+  
     errorMessage = resultErrorMessage(
       configurationTree,
       importDefinitionPath,
       pathToCurrentModule,
       rootDirectory
     );
-  }
+  
   return errorMessage;
 }
