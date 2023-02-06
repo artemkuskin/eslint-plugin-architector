@@ -10,17 +10,17 @@ function resultErrorMessage(
 ) {
   let errorMessage = undefined;
 
-  const currentAndTargetLevel = searchNearestCurrentAndTargetLevel(
+  const errorHandlingData = searchNearestCurrentAndTargetLevel({
     importDefinitionPath,
     pathToCurrentModule,
     rootDirectory,
     levelsConfigurationFile,
     levelsConfiguration,
-  );
+  });
 
-  const nearestGeneralLevel = currentAndTargetLevel.nearestGeneralLevel;
-  const childrenOfGeneralLevelWhereTargetModuleLevelLocated = currentAndTargetLevel.targetModuleLevel;
-  const childrenOfGeneralLevelWhereCurrentModuleLevelLocated = currentAndTargetLevel.currentModuleLevel;
+  const nearestGeneralLevel = errorHandlingData.nearestGeneralLevel;
+  const childrenOfGeneralLevelWhereTargetModuleLevelLocated = errorHandlingData.targetModuleLevel;
+  const childrenOfGeneralLevelWhereCurrentModuleLevelLocated = errorHandlingData.currentModuleLevel;
 
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
 
@@ -43,7 +43,7 @@ function resultErrorMessage(
     }
   }
 
-  console.log(currentAndTargetLevel);
+  console.log(errorHandlingData);
 
   return errorMessage;
 }
