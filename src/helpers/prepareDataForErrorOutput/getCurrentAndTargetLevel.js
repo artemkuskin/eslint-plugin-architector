@@ -28,7 +28,6 @@ function getCurrentAndTargetLevel({
 
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
-  console.log(1);
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
     const currentModuleLevel = Object.assign(
