@@ -10,8 +10,8 @@ function returnAnErrorForThisImport(
   levelsConfiguration,
   jsConfigFileContent
 ) {
-   const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
-   const configurationTree = getArchitectureConfigurationTree(
+  const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
+  const configurationTree = getArchitectureConfigurationTree(
     levelsConfiguration.file,
     levelsConfiguration,
     rootDirectory
@@ -28,14 +28,4 @@ function returnAnErrorForThisImport(
     );
   }
   return errorMessage;
-  }
-
-
-
-// function firstElemImportDefinitionPath(importDefinitionPath) {
-//   return importDefinitionPath.split("/")[0];
-// }
-
-// function setLevelByKey(configurationTree, key) {
-//   return configurationTree.find((elem) => elem.key === key);
-// }
+}

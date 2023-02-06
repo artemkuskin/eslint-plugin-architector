@@ -60,11 +60,11 @@ function getAbsolutePathToTargetModule({
 }
 
 function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefinitionPath, configurationTree, path) {
-  const generalLevels = serachGeneralLevels(targetModule, pathToCurrentModule, importDefinitionPath);
+  const generalLevels = serachGeneralLevels(path, pathToCurrentModule, importDefinitionPath);
   const moduleLevelName = currentAndTargetNameFolder(
     generalLevels,
     pathToCurrentModule,
-    targetModule,
+    path,
     importDefinitionPath
   );
 
@@ -88,7 +88,7 @@ function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefin
     );
     const targetModuleLevel = Object.assign(
       {},
-      setLevelsModule(generalLevels, absolutePathTo(targetModule, importDefinitionPath), configurationTree, generalPath)
+      setLevelsModule(generalLevels, absolutePathTo(pathToCurrentModule, importDefinitionPath), configurationTree, generalPath)
     );
 
     const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent);
@@ -123,7 +123,7 @@ function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefin
   if (targetModuleLevel === undefined) {
     const levelsModule = setLevelsModule(
       generalLevels,
-      absolutePathTo(targetModule, importDefinitionPath),
+      absolutePathTo(pathToCurrentModule, importDefinitionPath),
       configurationTree,
       generalPath
     );
@@ -148,7 +148,7 @@ function currentAndTargetNameFolder(generalLevels, pathToCurrentModule, targetMo
   const current = setNameModuleLevel(generalLevel(generalLevels), getPathToCurrentFileWithoutExtension(pathToCurrentModule));
   const target = setNameModuleLevel(
     generalLevel(generalLevels),
-    getPathToCurrentFileWithoutExtension(absolutePathTo(targetModule, importDefinitionPath))
+    targetModule
   );
   return { currentName: current, targetName: target };
 }
@@ -158,9 +158,7 @@ function generalLevel(generalLevels) {
 }
 
 function serachGeneralLevels(targetModulePath, currentModulePath, importDefinitionPath) {
-  const targetModulPathArr = getPathToCurrentFileWithoutExtension(
-    absolutePathTo(targetModulePath, importDefinitionPath)
-  ).split("/");
+  const targetModulPathArr = targetModulePath.split("/");
   const currentModulePatharr = getPathToCurrentFileWithoutExtension(currentModulePath).split("/");
   const generalLevels = targetModulPathArr.filter((x) => currentModulePatharr.indexOf(x) !== -1);
   return generalLevels;

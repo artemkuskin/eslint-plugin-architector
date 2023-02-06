@@ -1,6 +1,5 @@
 const absolutePathToFile = require("../convertPath/absolutePathToFile");
 const PathToCurrentFileWithOutContent = require("../convertPath/pathToCurrentFileWithoutContent");
-// const path = require("path");
 module.exports = getLevelAlias;
 
 function getLevelAlias(rootDirectory, jsConfigFileContent) {
