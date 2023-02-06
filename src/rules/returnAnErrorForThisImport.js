@@ -10,7 +10,7 @@ function returnAnErrorForThisImport(
   levelsConfiguration,
 ) {
   const configurationTree = getArchitectureConfigurationTree(
-    levelsConfiguration,
+    levelsConfiguration.file,
     levelsConfiguration,
     rootDirectory
   );
