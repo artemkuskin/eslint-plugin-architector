@@ -23,24 +23,16 @@ function searchNearestCurrentAndTargetLevel(
     targetModuleAlias,
   })
  
-  if (targetModuleAlias) {
+ 
     return setCurrentAndTargetLevel(
-      targetModuleAlias.path,
       pathToCurrentModule,
       importDefinitionPath,
       configurationTree,
       absolutePathToTargetModule
     );
-  } else {
-    return setCurrentAndTargetLevel(
-      pathToCurrentModule,
-      pathToCurrentModule,
-      importDefinitionPath,
-      configurationTree,
-      absolutePathToTargetModule
-    );
-  }
+  
 }
+
 
 function getAbsolutePathToTargetModule({
   pathToCurrentModule,
@@ -59,7 +51,7 @@ function getAbsolutePathToTargetModule({
   return absolutePathToTargetModule;
 }
 
-function setCurrentAndTargetLevel(targetModule, pathToCurrentModule, importDefinitionPath, configurationTree, path) {
+function setCurrentAndTargetLevel(pathToCurrentModule, importDefinitionPath, configurationTree, path) {
   const generalLevels = serachGeneralLevels(path, pathToCurrentModule, importDefinitionPath);
   const moduleLevelName = currentAndTargetNameFolder(
     generalLevels,
