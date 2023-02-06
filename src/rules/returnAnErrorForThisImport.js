@@ -9,11 +9,11 @@ function returnAnErrorForThisImport(
   pathToCurrentModule,
   levelsConfiguration,
 ) {
-  const configurationTree = getArchitectureConfigurationTree(
-    levelsConfiguration.file,
-    levelsConfiguration,
-    rootDirectory
-  );
+  // const configurationTree = getArchitectureConfigurationTree(
+  //   levelsConfiguration.file,
+  //   levelsConfiguration,
+  //   rootDirectory
+  // );
   let errorMessage = undefined;
 
   

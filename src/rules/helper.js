@@ -1,3 +1,4 @@
+const resultErrorMessage = require("../errors/resultErrorMessage");
 const getParentFolder = require("../helpers/serachByNameFolder/getNameFolder");
 const returnAnErrorForThisImport = require("./returnAnErrorForThisImport");
 
@@ -10,12 +11,13 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
   const moduleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
 
   if (moduleIsInRootDirectory) {
-    errorMessage = returnAnErrorForThisImport(
-      rootDirectory,
+    errorMessage = resultErrorMessage (
       importDefinitionPath,
       pathToCurrentModule,
-      levelsConfiguration,
-    );
+      rootDirectory,
+      levelsConfiguration.file,
+      levelsConfiguration
+    )
   }
 
   return errorMessage

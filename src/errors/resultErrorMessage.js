@@ -2,18 +2,20 @@ const searchNearestCurrentAndTargetLevel = require("../helpers/prepareDataForErr
 module.exports = resultErrorMessage;
 
 function resultErrorMessage(
-  configurationTree,
   importDefinitionPath,
   pathToCurrentModule,
   rootDirectory,
+  levelsConfigurationFile,
+  levelsConfiguration
 ) {
   let errorMessage = undefined;
 
   const currentAndTargetLevel = searchNearestCurrentAndTargetLevel(
     importDefinitionPath,
-    configurationTree,
     pathToCurrentModule,
     rootDirectory,
+    levelsConfigurationFile,
+    levelsConfiguration,
   );
 
   const nearestGeneralLevel = currentAndTargetLevel.nearestGeneralLevel;

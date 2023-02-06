@@ -4,15 +4,17 @@ const getLevelAlias = require("../architectorTree/configurationTreeAleases");
 const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
 const setModuleByName = require("../serachByNameFolder/setModuleByName");
+const getArchitectureConfigurationTree = require("../architectorTree/getArchitectureConfigurationTree");
 module.exports = searchNearestCurrentAndTargetLevel;
 
 let jsConfigFileContent = undefined;
 
 function searchNearestCurrentAndTargetLevel(
   importDefinitionPath,
-  configurationTree,
   pathToCurrentModule,
-  rootDirectory
+  rootDirectory,
+  levelsConfigurationFile,
+  levelsConfiguration,
 ) {
   if (jsConfigFileContent === undefined) {
     setJsConfigFile();
@@ -21,6 +23,11 @@ function searchNearestCurrentAndTargetLevel(
   const targetModuleAlias = setLevelByKey(
     getLevelAlias(rootDirectory, jsConfigFileContent),
     firstElemImportDefinitionPath(importDefinitionPath)
+  );
+  const configurationTree = getArchitectureConfigurationTree(
+    levelsConfigurationFile,
+    levelsConfiguration,
+    rootDirectory
   );
 
   const absolutePathToTargetModule = getAbsolutePathToTargetModule({
