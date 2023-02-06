@@ -18,23 +18,70 @@ function resultErrorMessage(
     jsConfigFileContent
   );
 
-  console.log(currentAndTargetLevel);
-    if (currentAndTargetLevel.nearestGeneralLevel) {
+  const nearestGeneralLevel = currentAndTargetLevel.nearestGeneralLevel;
+  const childrenOfGeneralLevelWhereTargetModuleLevelLocated = currentAndTargetLevel.targetModuleLevel;
+  const childrenOfGeneralLevelWhereCurrentModuleLevelLocated = currentAndTargetLevel.currentModuleLevel;
 
-      if (currentAndTargetLevel.currentModuleLevel.name !== currentAndTargetLevel.targetModuleLevel.name ) {
-        
-        if (currentAndTargetLevel.currentModuleLevel.index < currentAndTargetLevel.targetModuleLevel.index) {
-            errorMessage = `Cannot import ${currentAndTargetLevel.currentModuleLevel.name} from ${currentAndTargetLevel.targetModuleLevel.name}`;
+  const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
 
-         }
-        } else {
-          if (currentAndTargetLevel.targetModuleLevel.path === currentAndTargetLevel.nearestGeneralLevel.path && 
-            currentAndTargetLevel.currentModuleLevel.path !== currentAndTargetLevel.nearestGeneralLevel.path) {
-              errorMessage = `ddddddddddddd`
-            }
-        }
-       
-      
+  if (nearestGeneralLevelExists) {
+    const currentAndTargetModulesLevelsAreInTheSameLevel =
+      childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name ===
+      childrenOfGeneralLevelWhereTargetModuleLevelLocated.name;
+
+    if (currentAndTargetModulesLevelsAreInTheSameLevel) {
+      errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
+        childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
+        childrenOfGeneralLevelWhereTargetModuleLevelLocated,
+        nearestGeneralLevel,
+      });
+    } else {
+      errorMessage = getErrorWhenCurrentAndTargetModulesAreInDifferentLevels({
+        childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
+        childrenOfGeneralLevelWhereTargetModuleLevelLocated,
+      });
     }
+  }
+
+  console.log(currentAndTargetLevel);
+
+  return errorMessage;
+}
+
+function getErrorWhenCurrentAndTargetAreInTheSameLevel({
+  childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
+  childrenOfGeneralLevelWhereTargetModuleLevelLocated,
+  nearestGeneralLevel,
+}) {
+  let errorMessage = undefined;
+
+  const tagetModuleLevelIsNearestGeneralLevel =
+    childrenOfGeneralLevelWhereTargetModuleLevelLocated.path === nearestGeneralLevel.path;
+  const currentModuleLevelIsNotNearestLevel =
+    childrenOfGeneralLevelWhereCurrentModuleLevelLocated.path !== nearestGeneralLevel.path;
+  const currentModuleLevelImportsItsParentLevel =
+    tagetModuleLevelIsNearestGeneralLevel && currentModuleLevelIsNotNearestLevel;
+
+  if (currentModuleLevelImportsItsParentLevel) {
+    errorMessage = `ddddddddddddd`;
+  }
+
+  return errorMessage;
+}
+
+function getErrorWhenCurrentAndTargetModulesAreInDifferentLevels({
+  childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
+  childrenOfGeneralLevelWhereTargetModuleLevelLocated,
+}) {
+  const currentModuleLevelAboveTargetModuleLevel =
+    childrenOfGeneralLevelWhereCurrentModuleLevelLocated.index <
+    childrenOfGeneralLevelWhereTargetModuleLevelLocated.index;
+
+  let errorMessage = undefined;
+
+  if (currentModuleLevelAboveTargetModuleLevel) {
+    errorMessage = `Cannot import ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name} from ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name}`;
+  }
+
   return errorMessage;
 }
