@@ -3,13 +3,13 @@ const setCurrentLevel = require("../helpers/convertPath/setCurrentLevel");
 const getArchitectureConfigurationTree = require("../helpers/architectorTree/getArchitectureConfigurationTree");
 module.exports = returnAnErrorForThisImport;
 
-function returnAnErrorForThisImport({
+function returnAnErrorForThisImport(
   rootDirectory,
   importDefinitionPath,
   pathToCurrentModule,
   levelsConfiguration,
   jsConfigFileContent
-}) {
+) {
   const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfiguration.file,
@@ -19,13 +19,13 @@ function returnAnErrorForThisImport({
   let errorMessage = undefined;
 
   if (currentModuleLevel) {
-    errorMessage = resultErrorMessage({
+    errorMessage = resultErrorMessage(
       configurationTree,
       importDefinitionPath,
       pathToCurrentModule,
       rootDirectory,
       jsConfigFileContent
-    });
+    );
   }
   return errorMessage;
 }

@@ -40,7 +40,7 @@ function resultArchitectureFree (architectureConfigTree) {
 
 function getAllParentThisNode(dataset, nodeLevel) {
   let parents = [];
-  tree = new TreeModel();
+  let tree = new TreeModel();
   dataset.forEach((element) => {
     let rootMain = tree.parse(element);
     rootMain.walk(function (node) {
