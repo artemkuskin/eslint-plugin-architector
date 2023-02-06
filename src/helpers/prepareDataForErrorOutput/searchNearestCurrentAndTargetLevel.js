@@ -25,10 +25,7 @@ function searchNearestCurrentAndTargetLevel(
       targetModuleAlias.path
     );
   } else {
-    const path = absolutePathTo(pathToCurrentModule, importDefinitionPath)
-      .split("/")
-      .splice(0, absolutePathTo(pathToCurrentModule, importDefinitionPath).split("/").length - 1)
-      .join("/");
+    const path = PathToCurrentFileWithOutContent(absolutePathTo(pathToCurrentModule, importDefinitionPath)) 
     return setCurrentAndTargetLevel(
       pathToCurrentModule,
       pathToCurrentModule,
