@@ -24,7 +24,6 @@ function searchNearestCurrentAndTargetLevel({
     getLevelAlias(rootDirectory, jsConfigFileContent),
     keyAliases(importDefinitionPath)
   );
-  
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfigurationFile,
     levelsConfiguration,
@@ -89,6 +88,7 @@ function setCurrentAndTargetLevel({
 
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
+  console.log(1);
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
     const currentModuleLevel = Object.assign(

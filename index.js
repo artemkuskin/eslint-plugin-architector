@@ -37,12 +37,7 @@ module.exports.rules = {
                     //       levelsConfiguration: hierarchy,
                     //        rootDirectory: componentFolder
                     // }
-                    const error = validateHierarchy({
-                            pathToCurrentModule: fn,
-                             importDefinitionPath: nodeValue,
-                              levelsConfiguration: hierarchy,
-                               rootDirectory: componentFolder
-                        });
+                    const error = validateHierarchy(fn, nodeValue, hierarchy, componentFolder);
                     if(error) {
                         context.report(node, error);
                     }
