@@ -24,11 +24,12 @@ function searchNearestCurrentAndTargetLevel({
     getLevelAlias(rootDirectory, jsConfigFileContent),
     keyAliases(importDefinitionPath)
   );
-  const configurationTree = getArchitectureConfigurationTree(
+
+  const configurationTree = getArchitectureConfigurationTree({
     levelsConfigurationFile,
     levelsConfiguration,
     rootDirectory
-  );
+  });
 
   const absolutePathToTargetModule = getAbsolutePathToTargetModule({
     pathToCurrentModule,
@@ -82,16 +83,14 @@ function setCurrentAndTargetLevel({
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
   const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent);
 
-  currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : "";
-  targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
-  nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : "";
+  // currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : "";
+  // targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
+  //nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : "";
 
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
-  console.log(1);
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
-    console.log(2);
     const currentModuleLevel = Object.assign(
       {},
       setLevelsModule({
@@ -122,7 +121,6 @@ function setCurrentAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules) {
-    console.log(3);
     const levelsModule = setLevelsModule({
       generalLevels,
       path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
@@ -138,12 +136,12 @@ function setCurrentAndTargetLevel({
   }
 
   if (targetModuleLevelNotSpecifiedInTheRules) {
-    console.log(5);
     const levelsModule = setLevelsModule({
       generalLevels,
       path: absolutePathTo(pathToCurrentModule, importDefinitionPath),
       configurationTree,
     });
+    currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)
     const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent);
     levelsModule.path = absolutePathToTargetModule;
     currentModuleLevel.name = levelsModule.name;
