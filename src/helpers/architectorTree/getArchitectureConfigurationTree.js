@@ -4,29 +4,25 @@ const architectureConfigTree = [];
 
 module.exports = getArchitectureConfigurationTree;
 
-function getArchitectureConfigurationTree({ levelsConfigurationFile, levelsConfiguration, rootDirectory }) {
-  for (let key in levelsConfigurationFile) {
-    const lastParent = getAllParentThisNode(levelsConfiguration.file, levelsConfigurationFile[key].level).lastParent;
-    const firstParent = getAllParentThisNode(levelsConfiguration.file, levelsConfigurationFile[key].level).firstParent;
+function getArchitectureConfigurationTree(architectureConfigRules, levelsConfiguration, rootDirectory) {
+  for (let key in architectureConfigRules) {
+    const lastParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).lastParent;
+    const firstParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).firstParent;
     architectureConfigTree.push({
-      name: levelsConfigurationFile[key].level,
+      name: architectureConfigRules[key].level,
       index: key,
       parent: lastParent,
       firstParent: firstParent,
-      children: levelsConfigurationFile[key].children,
+      children: architectureConfigRules[key].children,
     });
-    if (levelsConfigurationFile[key].children.length !== 0) {
-      getArchitectureConfigurationTree({
-        levelsConfigurationFile: levelsConfigurationFile[key].children,
-        levelsConfiguration,
-        rootDirectory,
-      });
+    if (architectureConfigRules[key].children.length !== 0) {
+      getArchitectureConfigurationTree(architectureConfigRules[key].children, levelsConfiguration, rootDirectory);
     }
   }
-  return resultArchitectureFree(architectureConfigTree);
+return resultArchitectureFree (architectureConfigTree)
 }
 
-function resultArchitectureFree(architectureConfigTree) {
+function resultArchitectureFree (architectureConfigTree) {
   let resultArchitectureFree = architectureConfigTree.reduce(
     (acc, file) => {
       if (acc.map[file.name]) return acc;
@@ -59,3 +55,4 @@ function getAllParentThisNode(dataset, nodeLevel) {
 
   return { lastParent: parents[parents.length - 2], firstParent: parents[0] };
 }
+
