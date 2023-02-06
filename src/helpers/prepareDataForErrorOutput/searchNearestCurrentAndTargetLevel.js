@@ -5,6 +5,8 @@ const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurre
 const setModuleByName = require("../serachByNameFolder/setModuleByName");
 module.exports = searchNearestCurrentAndTargetLevel;
 
+// let jsConfigFileContent = undefined;  
+
 function searchNearestCurrentAndTargetLevel(
   importDefinitionPath,
   configurationTree,
@@ -12,6 +14,11 @@ function searchNearestCurrentAndTargetLevel(
   rootDirectory,
   jsConfigFileContent
 ) {
+
+  // if (jsConfigFileContent === undefined) {
+  //   setJsConfigFile();
+  // }
+
   const targetModuleAlias = setLevelByKey(
     getLevelAlias(rootDirectory, jsConfigFileContent),
     firstElemImportDefinitionPath(importDefinitionPath)
@@ -31,6 +38,14 @@ function searchNearestCurrentAndTargetLevel(
       absolutePathToTargetModule
     );
   
+}
+
+function setJsConfigFile() {
+  try {
+    jsConfigFileContent = require(path.resolve("jsconfig.json"));
+  } catch {
+    jsConfigFileContent = null;
+  }
 }
 
 
