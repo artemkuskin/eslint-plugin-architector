@@ -9,9 +9,8 @@ function returnAnErrorForThisImport(
   pathToCurrentModule,
   levelsConfiguration,
 ) {
-  const currentModuleLevel = setCurrentLevel(pathToCurrentModule);
   const configurationTree = getArchitectureConfigurationTree(
-    levelsConfiguration.file,
+    levelsConfiguration,
     levelsConfiguration,
     rootDirectory
   );
