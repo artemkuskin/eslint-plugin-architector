@@ -3,7 +3,7 @@ const getLevelAlias = require("../architectorTree/configurationTreeAleases");
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
 const getArchitectureConfigurationTree = require("../architectorTree/getArchitectureConfigurationTree");
 const getCurrentAndTargetLevel = require("./getCurrentAndTargetLevel");
-const absolutePathTo = require("./absolutePathTo");
+const getAbsolutePathTo = require("./absolutePathTo");
 module.exports = searchNearestCurrentAndTargetLevel;
 
 let jsConfigFileContent = undefined;
@@ -58,7 +58,7 @@ function getAbsolutePathToTargetModule({ pathToCurrentModule, importDefinitionPa
     absolutePathToTargetModule = targetModuleAlias.path;
   } else {
     absolutePathToTargetModule = getPathToCurrentFileWithoutExtension(
-      absolutePathTo(pathToCurrentModule, importDefinitionPath)
+      getAbsolutePathTo(pathToCurrentModule, importDefinitionPath)
     );
   }
 

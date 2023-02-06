@@ -1,6 +1,6 @@
 const getModuleByName = require("../serachByNameFolder/setModuleByName");
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
-const absolutePathTo = require("./absolutePathTo");
+const getAbsolutePathTo = require("./absolutePathTo");
 const getGeneralLevel = require("./getGeneralLevel");
 const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
 module.exports = getCurrentAndTargetLevel;
@@ -22,18 +22,14 @@ function getCurrentAndTargetLevel({
   const currentModuleLevel = getModuleByName(configurationTree, moduleLevelName.currentName);
   const nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
 
- // currentModuleLevel ? (currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)) : "";
-  //targetModuleLevel ? (targetModuleLevel.path = absolutePathToTargetModule) : "";
- // nearestGeneralLevel ? (nearestGeneralLevel.path = currentModuleLevel.path) : "";
-
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
-  if (!currentModuleLevelNotSpecifiedInTheRules ) {
-    currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule)
-    nearestGeneralLevel.path = currentModuleLevel.path
+  if (!currentModuleLevelNotSpecifiedInTheRules) {
+    currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
+    nearestGeneralLevel.path = currentModuleLevel.path;
   }
   if (!targetModuleLevelNotSpecifiedInTheRules) {
-    targetModuleLevel.path = absolutePathToTargetModule
+    targetModuleLevel.path = absolutePathToTargetModule;
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
@@ -49,7 +45,7 @@ function getCurrentAndTargetLevel({
       {},
       getLevelsModule({
         generalLevels,
-        path: absolutePathTo(pathToCurrentModule, importDefinitionPath),
+        path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
         configurationTree,
       })
     );
@@ -84,7 +80,7 @@ function getCurrentAndTargetLevel({
   if (targetModuleLevelNotSpecifiedInTheRules) {
     const levelsModule = getLevelsModule({
       generalLevels,
-      path: absolutePathTo(pathToCurrentModule, importDefinitionPath),
+      path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
       configurationTree,
     });
     const nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
