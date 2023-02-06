@@ -17,6 +17,7 @@ function getCurrentAndTargetLevel({
     pathToCurrentModule,
     absolutePathToTargetModule,
   });
+
   const targetModuleLevel = setModuleByName(configurationTree, moduleLevelName.targetName);
   const currentModuleLevel = setModuleByName(configurationTree, moduleLevelName.currentName);
   const nearestGeneralLevel = setModuleByName(configurationTree, currentModuleLevel?.parent);
