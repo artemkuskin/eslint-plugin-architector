@@ -110,7 +110,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
         configurationTree,
       })
     );
-    nearestGeneralLevel.path = targetModuleLevel.path
+    nearestGeneralLevel.path = targetModuleLevel.path.split("/").length > currentModuleLevel.path.split("/").length ? currentModuleLevel.path : targetModuleLevel.path
     // nearestGeneralLevel.path = currentModuleLevel.path;
   }
 
