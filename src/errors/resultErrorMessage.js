@@ -61,7 +61,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
     tagetModuleLevelIsNearestGeneralLevel && currentModuleLevelIsNotNearestLevel;
 
   if (currentModuleLevelImportsItsParentLevel) {
-    errorMessage = `Target Level Is The parent Level Of The Curent Level`;
+    errorMessage = `Target level is the parent level of the current level`;
   }
 
   return errorMessage;
@@ -78,7 +78,7 @@ function getErrorWhenCurrentAndTargetModulesAreInDifferentLevels({
   let errorMessage = undefined;
 
   if (currentModuleLevelAboveTargetModuleLevel) {
-    errorMessage = `It Is Not Advisable To ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} in ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name}, Since Level ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name} Is Higher Than Level ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} In The Rules`;
+    errorMessage = `It is not advisable to ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} in ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name}, since level ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} in the rules`;
   }
 
   return errorMessage;

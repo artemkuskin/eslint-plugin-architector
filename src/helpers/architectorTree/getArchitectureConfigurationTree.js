@@ -11,7 +11,7 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       index:0,
       parent: ''
     }
-    const lastParent = getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level);
+    const lastParent = getParentThisNode(levelsConfiguration, architectureConfigRules[key].level);
     architectureConfigTree.unshift(rootModuleLevel)
     architectureConfigTree.push({
       name: architectureConfigRules[key].level,

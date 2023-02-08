@@ -13,7 +13,7 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       importDefinitionPath,
       pathToCurrentModule,
       rootDirectory,
-      levelsConfigurationFile: levelsConfiguration.file,
+      levelsConfigurationFile: levelsConfiguration,
       levelsConfiguration,
     });
   }

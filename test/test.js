@@ -2,68 +2,40 @@ const validateHierarchy = require("../src/rules/helper");
 
 describe("Validate hierarchy with default config", () => {
   const filePath = "/home/artem/my-app/src/A/A1/A2/A22/A22.jsx";
- 
 
-  const hierarchy = {
-    file: [
+  const hierarchy =  [
       {
         level: "D",
         children: [],
       },
-        
+
+      {
+        level: "A",
+        children: [
           {
-            level: "A",
-            children: [
-              {
-                level: "A1",
-                children: [],
-              },
-              {
-                level: "A3",
-                children: [],
-              },
-            ],
-          },
-          {
-            level: "B",
-            children: [
-              {
-                level: "B1",
-                children: [],
-              }
-              //   {
-              //     level: "B1",
-              //     children: [
-              //       {
-              //         level: "B2",
-              //         children: []
-              //         },
-              //     ]
-              //     },
-              //     {
-              //       level: "B3",
-              //       children: []
-              //       },
-              // ]
-            ],
-          },
-          {
-            level: "C",
+            level: "A1",
             children: [],
-          }
-        
-      
-      // {
-      //   level: "templates",
-      //   children: [],
-      // },
-    ],
-    // atoms: 0,
-    // molecules: 1,
-    // organisms: 2,
-    // templates: 3,
-    // pages: 4
-  };
+          },
+          {
+            level: "A3",
+            children: [],
+          },
+        ],
+      },
+      {
+        level: "B",
+        children: [
+          {
+            level: "B1",
+            children: [],
+          },
+        ],
+      },
+      {
+        level: "C",
+        children: [],
+      },
+    ]
 
   const componentFolder = "src";
 
@@ -104,7 +76,6 @@ describe("Validate hierarchy with default config", () => {
     expect(errors).toEqual(undefined);
   });
 
-
   it("allow downward import", () => {
     const errors = validateHierarchy("/home/artem/my-app/src/D.jsx", "./A/A.jsx", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
@@ -118,10 +89,14 @@ describe("Validate hierarchy with default config", () => {
     expect(errors).toEqual(undefined);
   });
   it("allow downward import", () => {
-    const errors = validateHierarchy("/home/artem/my-app/src/D.jsx", "./A/A1/A2/A22/A22.jsx", hierarchy, componentFolder);
+    const errors = validateHierarchy(
+      "/home/artem/my-app/src/D.jsx",
+      "./A/A1/A2/A22/A22.jsx",
+      hierarchy,
+      componentFolder
+    );
     expect(errors).toEqual(undefined);
   });
-
 
   it("allow downward import", () => {
     const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "./A1/A1.jsx", hierarchy, componentFolder);
@@ -135,6 +110,4 @@ describe("Validate hierarchy with default config", () => {
     const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "A3/A3.jsx", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
-
-
-})
+});
