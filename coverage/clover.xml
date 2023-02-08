@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675843389898" clover="3.2.0">
-  <project timestamp="1675843389898" name="All files">
-    <metrics statements="182" coveredstatements="153" conditionals="48" coveredconditionals="30" methods="35" coveredmethods="34" elements="265" coveredelements="217" complexity="0" loc="182" ncloc="182" packages="6" files="12" classes="12"/>
+<coverage generated="1675844300682" clover="3.2.0">
+  <project timestamp="1675844300682" name="All files">
+    <metrics statements="185" coveredstatements="154" conditionals="48" coveredconditionals="30" methods="38" coveredmethods="35" elements="271" coveredelements="219" complexity="0" loc="185" ncloc="185" packages="6" files="12" classes="12"/>
     <package name="errors">
       <metrics statements="27" coveredstatements="19" conditionals="10" coveredconditionals="3" methods="3" coveredmethods="2"/>
       <file name="resultErrorMessage.js" path="/home/artem/eslint-plagin-architector/src/errors/resultErrorMessage.js">
@@ -103,7 +103,7 @@
       </file>
     </package>
     <package name="helpers.prepareDataForErrorOutput">
-      <metrics statements="89" coveredstatements="68" conditionals="28" coveredconditionals="18" methods="13" coveredmethods="13"/>
+      <metrics statements="92" coveredstatements="69" conditionals="28" coveredconditionals="18" methods="16" coveredmethods="14"/>
       <file name="absolutePathTo.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/absolutePathTo.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -112,7 +112,7 @@
         <line num="6" count="1" type="stmt"/>
       </file>
       <file name="getCurrentAndTargetLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/getCurrentAndTargetLevel.js">
-        <metrics statements="60" coveredstatements="40" conditionals="24" coveredconditionals="14" methods="5" coveredmethods="5"/>
+        <metrics statements="63" coveredstatements="41" conditionals="24" coveredconditionals="14" methods="8" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -133,46 +133,49 @@
         <line num="33" count="4" type="stmt"/>
         <line num="36" count="4" type="cond" truecount="3" falsecount="1"/>
         <line num="37" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="46" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="47" count="4" type="stmt"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="66" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="67" count="4" type="stmt"/>
-        <line num="75" count="4" type="stmt"/>
-        <line num="76" count="4" type="stmt"/>
-        <line num="77" count="4" type="cond" truecount="3" falsecount="1"/>
-        <line num="78" count="4" type="stmt"/>
-        <line num="87" count="4" type="stmt"/>
-        <line num="88" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
         <line num="89" count="0" type="stmt"/>
-        <line num="91" count="4" type="stmt"/>
-        <line num="92" count="4" type="stmt"/>
-        <line num="99" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
         <line num="100" count="0" type="stmt"/>
-        <line num="108" count="0" type="stmt"/>
-        <line num="110" count="0" type="stmt"/>
-        <line num="111" count="0" type="stmt"/>
-        <line num="112" count="0" type="stmt"/>
-        <line num="113" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="114" count="0" type="stmt"/>
-        <line num="116" count="0" type="stmt"/>
-        <line num="123" count="0" type="stmt"/>
-        <line num="131" count="4" type="stmt"/>
-        <line num="132" count="4" type="stmt"/>
-        <line num="133" count="28" type="stmt"/>
-        <line num="134" count="4" type="stmt"/>
-        <line num="138" count="4" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="117" count="4" type="stmt"/>
+        <line num="125" count="4" type="stmt"/>
+        <line num="126" count="4" type="stmt"/>
+        <line num="127" count="4" type="cond" truecount="3" falsecount="1"/>
+        <line num="128" count="4" type="stmt"/>
+        <line num="137" count="4" type="stmt"/>
+        <line num="138" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="141" count="4" type="stmt"/>
         <line num="142" count="4" type="stmt"/>
-        <line num="143" count="4" type="stmt"/>
-        <line num="147" count="21" type="stmt"/>
-        <line num="148" count="21" type="stmt"/>
-        <line num="149" count="21" type="cond" truecount="4" falsecount="0"/>
-        <line num="150" count="13" type="stmt"/>
-        <line num="151" count="13" type="stmt"/>
-        <line num="153" count="8" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="166" count="0" type="stmt"/>
+        <line num="168" count="0" type="stmt"/>
+        <line num="169" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="171" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="174" count="0" type="stmt"/>
+        <line num="182" count="4" type="stmt"/>
+        <line num="183" count="4" type="stmt"/>
+        <line num="184" count="28" type="stmt"/>
+        <line num="185" count="4" type="stmt"/>
+        <line num="189" count="4" type="stmt"/>
+        <line num="193" count="4" type="stmt"/>
+        <line num="194" count="4" type="stmt"/>
+        <line num="198" count="21" type="stmt"/>
+        <line num="199" count="21" type="stmt"/>
+        <line num="200" count="21" type="cond" truecount="4" falsecount="0"/>
+        <line num="201" count="13" type="stmt"/>
+        <line num="202" count="13" type="stmt"/>
+        <line num="204" count="8" type="stmt"/>
       </file>
       <file name="getGeneralLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/getGeneralLevel.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
