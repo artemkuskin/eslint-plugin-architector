@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.1% </span>
+                <span class="strong">67.21% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>39/59</span>
+                <span class='fraction'>41/61</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.52% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>38/58</span>
+                <span class='fraction'>40/60</span>
             </div>
         
             
@@ -279,7 +279,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -289,6 +288,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -297,6 +298,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -310,7 +312,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -320,8 +321,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -379,7 +379,7 @@ function getCurrentAndTargetLevel({
   importDefinitionPath,
   configurationTree,
   absolutePathToTargetModule,
-  rootDirectory
+  rootDirectory,
 }) {
   const generalLevels = searchGeneralLevels(absolutePathToTargetModule, pathToCurrentModule);
   const moduleLevelName = getCurrentAndTargetNameFolder({
@@ -433,26 +433,28 @@ function getCurrentAndTargetLevel({
   }
 &nbsp;
   <span class="missing-if-branch" title="else path not taken" >E</span>if (currentModuleLevelNotSpecifiedInTheRules) {
-    console.log(2);
     let levelsModule = Object.assign(
       {},
       getLevelsModule({
-      generalLevels,
-      path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
-      configurationTree,
-    })
-    );
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (levelsModule.name === rootDirectory || !levelsModule.name) {
-       levelsModule = Object.assign(
-        {},
-        getLevelsModule({
         generalLevels,
-        path: pathToCurrentModule,
+        path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
         configurationTree,
       })
-      );
-    }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (levelsModule.parent !== targetModuleLevel.parent) {
+    );
+    const levelsModuleIsRoorDirectory = Boolean(levelsModule.name === rootDirectory)
+    const moduleNotFoundByName = !levelsModule.name
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (levelsModuleIsRoorDirectory|| moduleNotFoundByName) {
+      levelsModule = Object.assign(
+        {},
+        getLevelsModule({
+          generalLevels,
+          path: pathToCurrentModule,
+          configurationTree,
+        })
+        );
+      }
+      const differentParentLevels = Boolean(levelsModule.parent !== targetModuleLevel.parent)
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (differentParentLevels) {
 <span class="cstat-no" title="statement not covered" >      targetModuleLevel.name = levelsModule.name;</span>
     }
     const nearestGeneralLevel = getModuleByName(configurationTree, levelsModule?.parent);
@@ -464,22 +466,20 @@ function getCurrentAndTargetLevel({
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (targetModuleLevelNotSpecifiedInTheRules) {</span>
-<span class="cstat-no" title="statement not covered" >    console.log(3);</span>
     const levelsModule = <span class="cstat-no" title="statement not covered" >Object.assign(</span>
       {},
       getLevelsModule({
-      generalLevels,
-      path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
-      configurationTree,
-    })
+        generalLevels,
+        path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
+        configurationTree,
+      })
     );
-    const nearestGeneralLevel =<span class="cstat-no" title="statement not covered" >Object.assign(</span>
-      {},
-       getModuleByName(configurationTree, currentModuleLevel?.parent));
-       
+    const nearestGeneralLevel = <span class="cstat-no" title="statement not covered" >Object.assign({}, getModuleByName(configurationTree, currentModuleLevel?.parent));</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    levelsModule.path = absolutePathToTargetModule;</span>
-<span class="cstat-no" title="statement not covered" >    nearestGeneralLevel.path =  levelsModule.path</span>
-<span class="cstat-no" title="statement not covered" >    if (levelsModule.parent !== currentModuleLevel.parent) {</span>
+<span class="cstat-no" title="statement not covered" >    nearestGeneralLevel.path = levelsModule.path;</span>
+    const differentParentLevels = <span class="cstat-no" title="statement not covered" >Boolean(levelsModule.parent !== currentModuleLevel.parent)</span>
+<span class="cstat-no" title="statement not covered" >    if (differentParentLevels) {</span>
 <span class="cstat-no" title="statement not covered" >      currentModuleLevel.name = levelsModule.name;</span>
     }
 <span class="cstat-no" title="statement not covered" >    return {</span>
@@ -529,7 +529,7 @@ function getLevelsModule({ generalLevels, path, configurationTree }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Feb 08 2023 10:32:31 GMT+0300 (Москва, стандартное время)
+                at Wed Feb 08 2023 11:03:09 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>
