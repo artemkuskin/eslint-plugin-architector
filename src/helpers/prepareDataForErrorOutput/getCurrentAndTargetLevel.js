@@ -95,7 +95,7 @@ function getCurrentAndTargetLevel({
        
     levelsModule.path = absolutePathToTargetModule;
     nearestGeneralLevel.path =  levelsModule.path
-    //currentModuleLevel.name = levelsModule.name;
+    currentModuleLevel.name = levelsModule.name;
     return {
       currentModuleLevel: currentModuleLevel,
       targetModuleLevel: levelsModule,
