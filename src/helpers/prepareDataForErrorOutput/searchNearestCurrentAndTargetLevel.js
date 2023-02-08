@@ -19,9 +19,9 @@ function dataForErrorDetection({
     setJsConfigFile();
   }
 
-  const targetModuleAlias = setLevelByKey(
+  const targetModuleAlias = getLevelByKey(
     getLevelAlias(rootDirectory, jsConfigFileContent),
-    keyAliases(importDefinitionPath)
+    getKeyAliases(importDefinitionPath)
   );
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfigurationFile,
@@ -55,7 +55,7 @@ function setJsConfigFile() {
 function getAbsolutePathToTargetModule({ pathToCurrentModule, importDefinitionPath, targetModuleAlias }) {
   let absolutePathToTargetModule;
 
-  if (Boolean(targetModuleAlias)) {
+  if (targetModuleAlias) {
     absolutePathToTargetModule = targetModuleAlias.path;
   } else {
     absolutePathToTargetModule = getPathToCurrentFileWithoutExtension(
@@ -65,10 +65,10 @@ function getAbsolutePathToTargetModule({ pathToCurrentModule, importDefinitionPa
   return absolutePathToTargetModule;
 }
 
-function setLevelByKey(configurationTree, key) {
+function getLevelByKey(configurationTree, key) {
   return configurationTree.find((elem) => elem.key === key);
 }
 
-function keyAliases(importDefinitionPath) {
+function getKeyAliases(importDefinitionPath) {
   return importDefinitionPath.split("/")[0];
 }

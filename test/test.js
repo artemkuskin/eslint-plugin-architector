@@ -122,4 +122,19 @@ describe("Validate hierarchy with default config", () => {
     expect(errors).toEqual(undefined);
   });
 
+
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "./A1/A1.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "./A1/A2/A2.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
+  it("allow downward import", () => {
+    const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "A3/A3.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
+
+
 })

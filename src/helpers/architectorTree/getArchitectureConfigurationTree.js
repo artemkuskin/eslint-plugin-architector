@@ -11,7 +11,7 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       index:0,
       parent: ''
     }
-    const lastParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).lastParent;
+    const lastParent = getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level);
     architectureConfigTree.unshift(rootModuleLevel)
     architectureConfigTree.push({
       name: architectureConfigRules[key].level,
@@ -42,7 +42,7 @@ function resultArchitectureFree (architectureConfigTree) {
   return resultArchitectureFree;
 }
 
-function getAllParentThisNode(dataset, nodeLevel) {
+function getParentThisNode(dataset, nodeLevel) {
   let parents = [];
   let tree = new TreeModel();
   dataset.forEach((element) => {
@@ -56,7 +56,6 @@ function getAllParentThisNode(dataset, nodeLevel) {
       }
     });
   });
-
-  return { lastParent: parents[parents.length - 2], firstParent: parents[0] };
+  return parents[parents.length - 2]
 }
 

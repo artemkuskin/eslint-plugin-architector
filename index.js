@@ -9,9 +9,6 @@ const DEFAULT_HIERARCHY = {
 };
 
 const DEFAULT_COMPONENTS_FOLDER = 'components';
-function adaptingTheImportPathForLinux (path) {
-  return  path.split("\\").join("/")
-}
 
 module.exports.rules = {
     "architector-import": {
@@ -50,3 +47,7 @@ module.exports.rules = {
 
     }
 };
+
+function adaptingTheImportPathForLinux (path) {
+    return  path.split("\\").join("/")
+  }
