@@ -98,21 +98,28 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   );
   let nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
 
-  targetModuleLevel.path =  absolutePathToTargetModule ;
-  currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
-  nearestGeneralLevel.path = targetModuleLevel.path;
-  if (targetModuleLevel.parent === currentModuleLevel.parent) {
-     nearestGeneralLevel = Object.assign(
-      {},
-      getLevelsModule({
-        generalLevels,
-        path: targetModuleLevel.path,
-        configurationTree,
-      })
-    );
+  
+  // nearestGeneralLevel.path = targetModuleLevel.path;
+  if (targetModuleLevel.name === targetModuleLevel.name) {
+    targetModuleLevel.path =  absolutePathToTargetModule
+    targetModuleLevel.path = currentModuleLevel.path 
+    nearestGeneralLevel.path = currentModuleLevel.path
+  } else {
+    targetModuleLevel.path =  absolutePathToTargetModule ;
+    currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
     nearestGeneralLevel.path = targetModuleLevel.path.split("/").length > currentModuleLevel.path.split("/").length ? currentModuleLevel.path : targetModuleLevel.path
-    // nearestGeneralLevel.path = currentModuleLevel.path;
   }
+  // if (targetModuleLevel.parent === currentModuleLevel.parent) {
+  //    nearestGeneralLevel = Object.assign(
+  //     {},
+  //     getLevelsModule({
+  //       generalLevels,
+  //       path: targetModuleLevel.path,
+  //       configurationTree,
+  //     })
+  //   );
+  //   // nearestGeneralLevel.path = currentModuleLevel.path;
+  // }
 
   return {
     currentModuleLevel: currentModuleLevel,
