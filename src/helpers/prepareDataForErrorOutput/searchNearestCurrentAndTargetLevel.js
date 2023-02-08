@@ -40,6 +40,7 @@ function searchNearestCurrentAndTargetLevel({
     importDefinitionPath,
     configurationTree,
     absolutePathToTargetModule,
+    rootDirectory
   });
 }
 
