@@ -31,13 +31,13 @@ module.exports.rules = {
                 ImportDeclaration: ( node ) => {
                     const fn = adaptingTheImportPathForLinux(context.getFilename())
                     const nodeValue = adaptingTheImportPathForLinux(node.source.value)
-                    // const params = {
-                    //     pathToCurrentModule: fn,
-                    //      importDefinitionPath: nodeValue,
-                    //       levelsConfiguration: hierarchy,
-                    //        rootDirectory: componentFolder
-                    // }
-                    const error = validateHierarchy(fn, nodeValue, hierarchy, componentFolder);
+                    const params = {
+                        pathToCurrentModule: fn,
+                         importDefinitionPath: nodeValue,
+                          levelsConfiguration: hierarchy,
+                           rootDirectory: componentFolder
+                    }
+                    const error = validateHierarchy(params);
                     if(error) {
                         context.report(node, error);
                     }

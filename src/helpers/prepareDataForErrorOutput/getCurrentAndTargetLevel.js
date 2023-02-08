@@ -34,6 +34,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
+    console.log(1);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
@@ -44,6 +45,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules) {
+    console.log(2);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
@@ -54,6 +56,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   }
 
   if (targetModuleLevelNotSpecifiedInTheRules) {
+    console.log(3);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
@@ -95,9 +98,9 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   );
   const nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
 
-  targetModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
-  currentModuleLevel.path = absolutePathToTargetModule;
-  nearestGeneralLevel.path = targetModuleLevel.path;
+  targetModuleLevel.path = absolutePathToTargetModule 
+  currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);;
+  nearestGeneralLevel.path = currentModuleLevel.path;
 
   return {
     currentModuleLevel: currentModuleLevel,
