@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675850267600" clover="3.2.0">
-  <project timestamp="1675850267601" name="All files">
-    <metrics statements="184" coveredstatements="183" conditionals="48" coveredconditionals="46" methods="38" coveredmethods="38" elements="270" coveredelements="267" complexity="0" loc="184" ncloc="184" packages="6" files="12" classes="12"/>
+<coverage generated="1675854943314" clover="3.2.0">
+  <project timestamp="1675854943314" name="All files">
+    <metrics statements="183" coveredstatements="182" conditionals="46" coveredconditionals="45" methods="38" coveredmethods="38" elements="267" coveredelements="265" complexity="0" loc="183" ncloc="183" packages="6" files="12" classes="12"/>
     <package name="errors">
       <metrics statements="26" coveredstatements="26" conditionals="10" coveredconditionals="9" methods="3" coveredmethods="3"/>
       <file name="resultErrorMessage.js" path="/home/artem/eslint-plagin-architector/src/errors/resultErrorMessage.js">
@@ -227,17 +227,16 @@
       </file>
     </package>
     <package name="rules">
-      <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="helper.js" path="/home/artem/eslint-plagin-architector/src/rules/helper.js">
-        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="7" count="16" type="stmt"/>
-        <line num="9" count="16" type="stmt"/>
-        <line num="11" count="16" type="cond" truecount="1" falsecount="1"/>
-        <line num="12" count="16" type="stmt"/>
-        <line num="21" count="16" type="stmt"/>
+        <line num="8" count="16" type="stmt"/>
+        <line num="11" count="16" type="stmt"/>
+        <line num="19" count="16" type="stmt"/>
       </file>
     </package>
   </project>

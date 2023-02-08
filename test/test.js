@@ -3,7 +3,8 @@ const validateHierarchy = require("../src/rules/helper");
 describe("Validate hierarchy with default config", () => {
   const filePath = "/home/artem/my-app/src/A/A1/A2/A22/A22.jsx";
 
-  const hierarchy =  [
+  const hierarchy = {
+    file: [
       {
         level: "D",
         children: [],
@@ -35,7 +36,8 @@ describe("Validate hierarchy with default config", () => {
         level: "C",
         children: [],
       },
-    ]
+    ],
+  };
 
   const componentFolder = "src";
 

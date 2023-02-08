@@ -5,7 +5,6 @@ module.exports = validateIfImportIsAllowed;
 
 function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
   let errorMessage = undefined;
-
   const moduleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
 
   if (moduleIsInRootDirectory) {
@@ -13,10 +12,9 @@ function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, le
       importDefinitionPath,
       pathToCurrentModule,
       rootDirectory,
-      levelsConfigurationFile: levelsConfiguration,
+      levelsConfigurationFile: levelsConfiguration.file,
       levelsConfiguration,
     });
   }
-
   return errorMessage;
 }
