@@ -167,13 +167,15 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurati
     }),
   };
   const nearestGeneralLevel = { ...getModuleByName(configurationTree, currentModuleLevel?.parent) };
-
   const differentParentLevels = Boolean(levelsModule.parent !== currentModuleLevel.parent);
+
   if (differentParentLevels) {
     currentModuleLevel.name = levelsModule.name;
   }
+
   levelsModule.path = absolutePathToTargetModule;
   nearestGeneralLevel.path = levelsModule.path;
+  
   return {
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: levelsModule,
