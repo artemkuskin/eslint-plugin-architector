@@ -72,24 +72,21 @@ describe("Validate hierarchy with default config", () => {
     const errors = validateHierarchy(filePath, "../../../A", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
-//   it("allow downward import", () => {
-//     const errors = validateHierarchy(filePath, "B1/B1.jsx", hierarchy, componentFolder);
-//     expect(errors).toEqual(undefined);
-//   });
-//   it("allow downward import", () => {
-//     const errors = validateHierarchy(filePath, "C/C.jsx", hierarchy, componentFolder);
-//     expect(errors).toEqual(undefined);
-//   });
-//   it("allow downward import", () => {
-//     const errors = validateHierarchy(filePath, "../../B/B.jsx", hierarchy, componentFolder);
-//     expect(errors).toEqual(undefined);
-//   });
-//   it("allow downward import", () => {
-//     const errors = validateHierarchy(filePath, "../A.jsx", hierarchy, componentFolder);
-//     expect(errors).toEqual(undefined);
-//   });
-//   it("allow downward import", () => {
-//     const errors = validateHierarchy(filePath, "../A1/A1.jsx", hierarchy, componentFolder);
-//     expect(errors).toEqual(undefined);
-//   });
+  it("allow downward import", () => {
+    const errors = validateHierarchy(filePath, "B1/B1.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
+  it("allow downward import", () => {
+    const errors = validateHierarchy(filePath, "C/C.jsx", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
+  it("allow downward import", () => {
+    const errors = validateHierarchy(filePath, "B3/B3", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
+  it("allow downward import", () => {
+    const errors = validateHierarchy(filePath, "../../../../D", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
+
 })

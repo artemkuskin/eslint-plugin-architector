@@ -33,7 +33,6 @@ function getCurrentAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
-    console.log(1);
     const currentModuleLevel = Object.assign(
       {},
       getLevelsModule({
@@ -95,7 +94,9 @@ function getCurrentAndTargetLevel({
        
     levelsModule.path = absolutePathToTargetModule;
     nearestGeneralLevel.path =  levelsModule.path
-    currentModuleLevel.name = levelsModule.name;
+    if (levelsModule.parent !== currentModuleLevel.parent) {
+      currentModuleLevel.name = levelsModule.name;
+    }
     return {
       currentModuleLevel: currentModuleLevel,
       targetModuleLevel: levelsModule,
