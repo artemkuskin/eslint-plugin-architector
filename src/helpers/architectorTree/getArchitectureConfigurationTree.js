@@ -9,15 +9,17 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
     const rootModuleLevel = {
       name: rootDirectory,
       index:0,
-      parent: ''
+      parent: '',
+      architectorPath: rootDirectory
     }
-    const lastParent = getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level);
+    const lastParent = getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).parent;
     architectureConfigTree.unshift(rootModuleLevel)
     architectureConfigTree.push({
       name: architectureConfigRules[key].level,
       index: key,
       parent: lastParent || rootDirectory,
       children: architectureConfigRules[key].children,
+      architectorPath:rootDirectory + "/" + getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).archectorPath
     });
     if (architectureConfigRules[key].children.length !== 0) {
       getArchitectureConfigurationTree(architectureConfigRules[key].children, levelsConfiguration, rootDirectory);
@@ -56,6 +58,7 @@ function getParentThisNode(dataset, nodeLevel) {
       }
     });
   });
-  return parents[parents.length - 2]
+
+  return {parent: parents[parents.length - 2], archectorPath: parents.join("/")}
 }
 

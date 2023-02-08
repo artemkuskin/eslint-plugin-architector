@@ -34,7 +34,7 @@ function getDataForErrorDetection({
     importDefinitionPath,
     targetModuleAlias,
   });
-
+//console.log(configurationTree);
   return getAllTheDataAboutTheCurrentLevelAndTargetLevel({
     pathToCurrentModule,
     importDefinitionPath,

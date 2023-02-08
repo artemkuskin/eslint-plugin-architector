@@ -106,7 +106,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   } else {
     targetModuleLevel.path =  absolutePathToTargetModule ;
     currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
-    nearestGeneralLevel.path = targetModuleLevel.path.split("/").length > currentModuleLevel.path.split("/").length ? currentModuleLevel.path : targetModuleLevel.path
+    nearestGeneralLevel.path = targetModuleLevel.archectorPath.split("/").length > currentModuleLevel.archectorPath.split("/").length ? currentModuleLevel.path : targetModuleLevel.path
   }
   // if (targetModuleLevel.parent === currentModuleLevel.parent) {
   //    nearestGeneralLevel = Object.assign(
