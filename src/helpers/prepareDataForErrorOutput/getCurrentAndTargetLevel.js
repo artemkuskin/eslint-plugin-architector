@@ -33,6 +33,7 @@ function getCurrentAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
+    console.log(1);
     const currentModuleLevel = Object.assign(
       {},
       getLevelsModule({
@@ -63,6 +64,7 @@ function getCurrentAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules) {
+    console.log(2);
     const levelsModule = getLevelsModule({
       generalLevels,
       path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
@@ -78,14 +80,22 @@ function getCurrentAndTargetLevel({
   }
 
   if (targetModuleLevelNotSpecifiedInTheRules) {
-    const levelsModule = getLevelsModule({
+    console.log(3);
+    const levelsModule = Object.assign(
+      {},
+      getLevelsModule({
       generalLevels,
       path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
       configurationTree,
-    });
-    const nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
+    })
+    );
+    const nearestGeneralLevel =Object.assign(
+      {},
+       getModuleByName(configurationTree, currentModuleLevel?.parent));
+       
     levelsModule.path = absolutePathToTargetModule;
-    currentModuleLevel.name = levelsModule.name;
+    nearestGeneralLevel.path =  levelsModule.path
+    //currentModuleLevel.name = levelsModule.name;
     return {
       currentModuleLevel: currentModuleLevel,
       targetModuleLevel: levelsModule,

@@ -61,7 +61,6 @@ function getAbsolutePathToTargetModule({ pathToCurrentModule, importDefinitionPa
       getAbsolutePathTo(pathToCurrentModule, importDefinitionPath)
     );
   }
-
   return absolutePathToTargetModule;
 }
 
