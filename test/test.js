@@ -6,9 +6,8 @@ describe("Validate hierarchy with default config", () => {
 
   const hierarchy = {
     file: [
-      {
-        level: "src",
-        children: [
+      
+        
           {
             level: "A",
             children: [
@@ -53,8 +52,8 @@ describe("Validate hierarchy with default config", () => {
             level: "D",
             children: [],
           }
-        ],
-      },
+        
+      
       // {
       //   level: "templates",
       //   children: [],

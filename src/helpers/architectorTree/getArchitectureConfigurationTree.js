@@ -6,13 +6,17 @@ module.exports = getArchitectureConfigurationTree;
 
 function getArchitectureConfigurationTree(architectureConfigRules, levelsConfiguration, rootDirectory) {
   for (let key in architectureConfigRules) {
+    const rootModuleLevel = {
+      name: rootDirectory,
+      index:0,
+      parent: ''
+    }
     const lastParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).lastParent;
-    const firstParent = getAllParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).firstParent;
+    architectureConfigTree.unshift(rootModuleLevel)
     architectureConfigTree.push({
       name: architectureConfigRules[key].level,
       index: key,
-      parent: lastParent,
-      firstParent: firstParent,
+      parent: lastParent || rootDirectory,
       children: architectureConfigRules[key].children,
     });
     if (architectureConfigRules[key].children.length !== 0) {
