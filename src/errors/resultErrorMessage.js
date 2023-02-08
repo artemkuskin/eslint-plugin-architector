@@ -6,7 +6,7 @@ function resultErrorMessage({
   pathToCurrentModule,
   rootDirectory,
   levelsConfigurationFile,
-  levelsConfiguration
+  levelsConfiguration,
 }) {
   let errorMessage = undefined;
 
@@ -42,8 +42,6 @@ function resultErrorMessage({
       });
     }
   }
-
-  console.log(errorHandlingData);
 
   return errorMessage;
 }

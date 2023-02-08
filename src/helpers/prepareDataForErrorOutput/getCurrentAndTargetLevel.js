@@ -3,9 +3,9 @@ const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurre
 const getAbsolutePathTo = require("./absolutePathTo");
 const getGeneralLevel = require("./getGeneralLevel");
 const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
-module.exports = getCurrentAndTargetLevel;
+module.exports = getAllTheDataAboutTheCurrentLevel;
 
-function getCurrentAndTargetLevel({
+function getAllTheDataAboutTheCurrentLevel({
   pathToCurrentModule,
   importDefinitionPath,
   configurationTree,
