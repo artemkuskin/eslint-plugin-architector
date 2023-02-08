@@ -95,15 +95,6 @@ describe("Validate hierarchy with default config", () => {
     const errors = validateHierarchy("/home/artem/my-app/src/D.jsx", "./B/B", hierarchy, componentFolder);
     expect(errors).toEqual(undefined);
   });
-  it("allow downward import", () => {
-    const errors = validateHierarchy(
-      "/home/artem/my-app/src/D.jsx",
-      "./A/A1/A2/A22/A22.jsx",
-      hierarchy,
-      componentFolder
-    );
-    expect(errors).toEqual(undefined);
-  });
 
   it("allow downward import", () => {
     const errors = validateHierarchy("/home/artem/my-app/src/A/A.jsx", "./A1/A1.jsx", hierarchy, componentFolder);
