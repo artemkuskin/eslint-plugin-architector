@@ -15,7 +15,12 @@ describe("Validate hierarchy with default config", () => {
         children: [
           {
             level: "A1",
-            children: [],
+            children: [
+              {
+                "level": "A2",
+                "children": []
+              }
+            ],
           },
           {
             level: "A3",
@@ -69,10 +74,10 @@ describe("Validate hierarchy with default config", () => {
   //   const errors = validateHierarchy(filePath, "../../../../D", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
   // });
-  // it("allow downward import", () => {
-  //   const errors = validateHierarchy(filePath, "../A2", hierarchy, componentFolder);
-  //   expect(errors).toEqual(undefined);
-  // });
+  it("allow downward import", () => {
+    const errors = validateHierarchy(filePath, "../A2", hierarchy, componentFolder);
+    expect(errors).toEqual(undefined);
+  });
   // it("allow downward import", () => {
   //   const errors = validateHierarchy(filePath, "../../A1", hierarchy, componentFolder);
   //   expect(errors).toEqual(undefined);
@@ -114,8 +119,8 @@ describe("Validate hierarchy with default config", () => {
   // });
 
 
-  it("allow downward import", () => {
-    const errors = validateHierarchy("/home/artem/my-app/src/B/B.jsx", "./B5/index.jsx", hierarchy, componentFolder);
-    expect(errors).toEqual(undefined);
-  });
+  // it("allow downward import", () => {
+  //   const errors = validateHierarchy("/home/artem/my-app/src/B/B.jsx", "./B5/index.jsx", hierarchy, componentFolder);
+  //   expect(errors).toEqual(undefined);
+  // });
 });

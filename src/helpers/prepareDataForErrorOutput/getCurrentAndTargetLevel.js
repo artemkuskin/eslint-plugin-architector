@@ -96,13 +96,22 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
       configurationTree,
     })
   );
-  const nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
+  let nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
 
-  targetModuleLevel.path =   getPathToCurrentFileWithoutExtension(pathToCurrentModule);
-  currentModuleLevel.path = absolutePathToTargetModule;
+  targetModuleLevel.path =  absolutePathToTargetModule ;
+  currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
   nearestGeneralLevel.path = targetModuleLevel.path;
   if (targetModuleLevel.parent === currentModuleLevel.parent) {
-    nearestGeneralLevel.path = currentModuleLevel.path;
+     nearestGeneralLevel = Object.assign(
+      {},
+      getLevelsModule({
+        generalLevels,
+        path: targetModuleLevel.path,
+        configurationTree,
+      })
+    );
+    nearestGeneralLevel.path = targetModuleLevel.path
+    // nearestGeneralLevel.path = currentModuleLevel.path;
   }
 
   return {
