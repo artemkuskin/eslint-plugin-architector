@@ -9,6 +9,9 @@ const DEFAULT_HIERARCHY = {
 };
 
 const DEFAULT_COMPONENTS_FOLDER = 'components';
+function adaptingTheImportPathForLinux (path) {
+  return  path.split("\\").join("/")
+}
 
 module.exports.rules = {
     "architector-import": {
@@ -29,8 +32,8 @@ module.exports.rules = {
 
             return {
                 ImportDeclaration: ( node ) => {
-                    const fn = context.getFilename().split("\\").join("/");//тут изменил 
-                    const nodeValue = node.source.value.split("\\").join("/") // тут изменил
+                    const fn = adaptingTheImportPathForLinux(context.getFilename())
+                    const nodeValue = adaptingTheImportPathForLinux(node.source.value)
                     // const params = {
                     //     pathToCurrentModule: fn,
                     //      importDefinitionPath: nodeValue,

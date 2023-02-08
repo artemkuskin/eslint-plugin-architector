@@ -261,9 +261,7 @@
 <a name='L202'></a><a href='#L202'>202</a>
 <a name='L203'></a><a href='#L203'>203</a>
 <a name='L204'></a><a href='#L204'>204</a>
-<a name='L205'></a><a href='#L205'>205</a>
-<a name='L206'></a><a href='#L206'>206</a>
-<a name='L207'></a><a href='#L207'>207</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L205'></a><a href='#L205'>205</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -328,7 +326,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -405,7 +402,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -505,50 +501,49 @@ function getCurrentAndTargetLevel({
   }
 &nbsp;
   <span class="missing-if-branch" title="if path not taken" >I</span>if (currentModuleLevelNotSpecifiedInTheRules &amp;&amp; targetModuleLevelNotSpecifiedInTheRules) {
-<span class="cstat-no" title="statement not covered" >    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree(</span>
+<span class="cstat-no" title="statement not covered" >    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({</span>
       generalLevels,
       pathToCurrentModule,
       importDefinitionPath,
       configurationTree,
-      absolutePathToTargetModule
-    );
+      absolutePathToTargetModule,
+    });
   }
 &nbsp;
   <span class="missing-if-branch" title="else path not taken" >E</span>if (currentModuleLevelNotSpecifiedInTheRules) {
-    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree(
+    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
       configurationTree,
       rootDirectory,
-      targetModuleLevel
-    );
+      targetModuleLevel,
+    });
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (targetModuleLevelNotSpecifiedInTheRules) {</span>
-<span class="cstat-no" title="statement not covered" >   return  dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree(</span>
+<span class="cstat-no" title="statement not covered" >    return dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({</span>
       generalLevels,
       pathToCurrentModule,
       importDefinitionPath,
       configurationTree,
       currentModuleLevel,
       absolutePathToTargetModule,
-    
-    )
+    });
   }
-<span class="cstat-no" title="statement not covered" >    return {</span>
-      currentModuleLevel: currentModuleLevel,
-      targetModuleLevel: targetModuleLevel,
-      nearestGeneralLevel: nearestGeneralLevel,
-    };
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    currentModuleLevel: currentModuleLevel,
+    targetModuleLevel: targetModuleLevel,
+    nearestGeneralLevel: nearestGeneralLevel,
+  };
 }
 &nbsp;
-function <span class="fstat-no" title="function not covered" >dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree(</span>
+function <span class="fstat-no" title="function not covered" >dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree(</span>{
   generalLevels,
   pathToCurrentModule,
   importDefinitionPath,
   configurationTree,
-  absolutePathToTargetModule
-) {
+  absolutePathToTargetModule,
+}) {
   const currentModuleLevel = <span class="cstat-no" title="statement not covered" >Object.assign(</span>
     {},
     getLevelsModule({
@@ -578,13 +573,13 @@ function <span class="fstat-no" title="function not covered" >dataForErrorHandli
   };
 }
 &nbsp;
-function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree(
+function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   configurationTree,
   rootDirectory,
-  targetModuleLevel
-) {
+  targetModuleLevel,
+}) {
   let levelsModule = Object.assign(
     {},
     getLevelsModule({
@@ -617,15 +612,14 @@ function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree(
   };
 }
 &nbsp;
-function <span class="fstat-no" title="function not covered" >dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree(</span>
+function <span class="fstat-no" title="function not covered" >dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree(</span>{
   generalLevels,
   pathToCurrentModule,
   importDefinitionPath,
   configurationTree,
   currentModuleLevel,
   absolutePathToTargetModule,
-&nbsp;
-) {
+}) {
   const levelsModule = <span class="cstat-no" title="statement not covered" >Object.assign(</span>
     {},
     getLevelsModule({
@@ -682,7 +676,7 @@ function getLevelsModule({ generalLevels, path, configurationTree }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Feb 08 2023 11:18:20 GMT+0300 (Москва, стандартное время)
+                at Wed Feb 08 2023 11:30:12 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>

@@ -1,4 +1,4 @@
-const searchNearestCurrentAndTargetLevel = require("../helpers/prepareDataForErrorOutput/searchNearestCurrentAndTargetLevel");
+const dataForErrorDetection = require("../helpers/prepareDataForErrorOutput/searchNearestCurrentAndTargetLevel");
 module.exports = resultErrorMessage;
 
 function resultErrorMessage({
@@ -10,7 +10,7 @@ function resultErrorMessage({
 }) {
   let errorMessage = undefined;
 
-  const errorHandlingData = searchNearestCurrentAndTargetLevel({
+  const errorHandlingData = dataForErrorDetection({
     importDefinitionPath,
     pathToCurrentModule,
     rootDirectory,

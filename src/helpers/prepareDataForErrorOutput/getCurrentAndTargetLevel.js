@@ -34,50 +34,49 @@ function getCurrentAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
-    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree(
+    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
       importDefinitionPath,
       configurationTree,
-      absolutePathToTargetModule
-    );
+      absolutePathToTargetModule,
+    });
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules) {
-    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree(
+    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
       configurationTree,
       rootDirectory,
-      targetModuleLevel
-    );
+      targetModuleLevel,
+    });
   }
 
   if (targetModuleLevelNotSpecifiedInTheRules) {
-   return  dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree(
+    return dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
       importDefinitionPath,
       configurationTree,
       currentModuleLevel,
       absolutePathToTargetModule,
-    
-    )
+    });
   }
-    return {
-      currentModuleLevel: currentModuleLevel,
-      targetModuleLevel: targetModuleLevel,
-      nearestGeneralLevel: nearestGeneralLevel,
-    };
+  return {
+    currentModuleLevel: currentModuleLevel,
+    targetModuleLevel: targetModuleLevel,
+    nearestGeneralLevel: nearestGeneralLevel,
+  };
 }
 
-function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree(
+function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   importDefinitionPath,
   configurationTree,
-  absolutePathToTargetModule
-) {
+  absolutePathToTargetModule,
+}) {
   const currentModuleLevel = Object.assign(
     {},
     getLevelsModule({
@@ -107,13 +106,13 @@ function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfig
   };
 }
 
-function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree(
+function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   configurationTree,
   rootDirectory,
-  targetModuleLevel
-) {
+  targetModuleLevel,
+}) {
   let levelsModule = Object.assign(
     {},
     getLevelsModule({
@@ -146,15 +145,14 @@ function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree(
   };
 }
 
-function dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree(
+function dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   importDefinitionPath,
   configurationTree,
   currentModuleLevel,
   absolutePathToTargetModule,
-
-) {
+}) {
   const levelsModule = Object.assign(
     {},
     getLevelsModule({

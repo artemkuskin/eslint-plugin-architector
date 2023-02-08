@@ -4,11 +4,11 @@ const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurre
 const getArchitectureConfigurationTree = require("../architectorTree/getArchitectureConfigurationTree");
 const getCurrentAndTargetLevel = require("./getCurrentAndTargetLevel");
 const getAbsolutePathTo = require("./absolutePathTo");
-module.exports = searchNearestCurrentAndTargetLevel;
+module.exports = dataForErrorDetection;
 
 let jsConfigFileContent = undefined;
 
-function searchNearestCurrentAndTargetLevel({
+function dataForErrorDetection({
   importDefinitionPath,
   pathToCurrentModule,
   rootDirectory,

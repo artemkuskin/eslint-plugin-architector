@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675844300682" clover="3.2.0">
-  <project timestamp="1675844300682" name="All files">
+<coverage generated="1675845012395" clover="3.2.0">
+  <project timestamp="1675845012396" name="All files">
     <metrics statements="185" coveredstatements="154" conditionals="48" coveredconditionals="30" methods="38" coveredmethods="35" elements="271" coveredelements="219" complexity="0" loc="185" ncloc="185" packages="6" files="12" classes="12"/>
     <package name="errors">
       <metrics statements="27" coveredstatements="19" conditionals="10" coveredconditionals="3" methods="3" coveredmethods="2"/>
@@ -137,45 +137,45 @@
         <line num="47" count="4" type="stmt"/>
         <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="89" count="0" type="stmt"/>
-        <line num="97" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
         <line num="99" count="0" type="stmt"/>
         <line num="100" count="0" type="stmt"/>
-        <line num="101" count="0" type="stmt"/>
-        <line num="103" count="0" type="stmt"/>
-        <line num="117" count="4" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="116" count="4" type="stmt"/>
+        <line num="124" count="4" type="stmt"/>
         <line num="125" count="4" type="stmt"/>
-        <line num="126" count="4" type="stmt"/>
-        <line num="127" count="4" type="cond" truecount="3" falsecount="1"/>
-        <line num="128" count="4" type="stmt"/>
-        <line num="137" count="4" type="stmt"/>
-        <line num="138" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="139" count="0" type="stmt"/>
+        <line num="126" count="4" type="cond" truecount="3" falsecount="1"/>
+        <line num="127" count="4" type="stmt"/>
+        <line num="136" count="4" type="stmt"/>
+        <line num="137" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="140" count="4" type="stmt"/>
         <line num="141" count="4" type="stmt"/>
-        <line num="142" count="4" type="stmt"/>
-        <line num="158" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="164" count="0" type="stmt"/>
         <line num="166" count="0" type="stmt"/>
+        <line num="167" count="0" type="stmt"/>
         <line num="168" count="0" type="stmt"/>
-        <line num="169" count="0" type="stmt"/>
+        <line num="169" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="170" count="0" type="stmt"/>
-        <line num="171" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="172" count="0" type="stmt"/>
-        <line num="174" count="0" type="stmt"/>
-        <line num="182" count="4" type="stmt"/>
+        <line num="180" count="4" type="stmt"/>
+        <line num="181" count="4" type="stmt"/>
+        <line num="182" count="28" type="stmt"/>
         <line num="183" count="4" type="stmt"/>
-        <line num="184" count="28" type="stmt"/>
-        <line num="185" count="4" type="stmt"/>
-        <line num="189" count="4" type="stmt"/>
-        <line num="193" count="4" type="stmt"/>
-        <line num="194" count="4" type="stmt"/>
-        <line num="198" count="21" type="stmt"/>
-        <line num="199" count="21" type="stmt"/>
-        <line num="200" count="21" type="cond" truecount="4" falsecount="0"/>
-        <line num="201" count="13" type="stmt"/>
-        <line num="202" count="13" type="stmt"/>
-        <line num="204" count="8" type="stmt"/>
+        <line num="187" count="4" type="stmt"/>
+        <line num="191" count="4" type="stmt"/>
+        <line num="192" count="4" type="stmt"/>
+        <line num="196" count="21" type="stmt"/>
+        <line num="197" count="21" type="stmt"/>
+        <line num="198" count="21" type="cond" truecount="4" falsecount="0"/>
+        <line num="199" count="13" type="stmt"/>
+        <line num="200" count="13" type="stmt"/>
+        <line num="202" count="8" type="stmt"/>
       </file>
       <file name="getGeneralLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/getGeneralLevel.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
