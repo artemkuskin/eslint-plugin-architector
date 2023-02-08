@@ -2,7 +2,7 @@ const path = require("path");
 const getLevelAlias = require("../architectorTree/configurationTreeAleases");
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
 const getArchitectureConfigurationTree = require("../architectorTree/getArchitectureConfigurationTree");
-const getAllTheDataAboutTheCurrentLevel = require("./getCurrentAndTargetLevel");
+const getAllTheDataAboutTheCurrentLevelAndTargetLevel = require("./getCurrentAndTargetLevel");
 const getAbsolutePathTo = require("./absolutePathTo");
 module.exports = dataForErrorDetection;
 
@@ -35,7 +35,7 @@ function dataForErrorDetection({
     targetModuleAlias,
   });
 
-  return getAllTheDataAboutTheCurrentLevel({
+  return getAllTheDataAboutTheCurrentLevelAndTargetLevel({
     pathToCurrentModule,
     importDefinitionPath,
     configurationTree,

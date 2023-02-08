@@ -3,9 +3,9 @@ const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurre
 const getAbsolutePathTo = require("./absolutePathTo");
 const getGeneralLevel = require("./getGeneralLevel");
 const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
-module.exports = getAllTheDataAboutTheCurrentLevel;
+module.exports = getAllTheDataAboutTheCurrentLevelAndTargetLevel;
 
-function getAllTheDataAboutTheCurrentLevel({
+function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   pathToCurrentModule,
   importDefinitionPath,
   configurationTree,
@@ -34,7 +34,7 @@ function getAllTheDataAboutTheCurrentLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
-    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
+    return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
       importDefinitionPath,
@@ -44,7 +44,7 @@ function getAllTheDataAboutTheCurrentLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules) {
-    return dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
+    return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
       configurationTree,
@@ -54,7 +54,7 @@ function getAllTheDataAboutTheCurrentLevel({
   }
 
   if (targetModuleLevelNotSpecifiedInTheRules) {
-    return dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
+    return getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
       importDefinitionPath,
@@ -70,7 +70,7 @@ function getAllTheDataAboutTheCurrentLevel({
   };
 }
 
-function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
+function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   importDefinitionPath,
@@ -106,7 +106,7 @@ function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfig
   };
 }
 
-function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
+function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   configurationTree,
@@ -145,7 +145,7 @@ function dataForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
   };
 }
 
-function dataForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
+function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   importDefinitionPath,
