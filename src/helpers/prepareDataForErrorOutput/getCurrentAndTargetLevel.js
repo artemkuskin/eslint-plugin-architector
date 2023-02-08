@@ -98,9 +98,9 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   );
   const nearestGeneralLevel = getModuleByName(configurationTree, currentModuleLevel?.parent);
 
-  targetModuleLevel.path = absolutePathToTargetModule 
-  currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);;
-  nearestGeneralLevel.path = currentModuleLevel.path;
+  targetModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
+  currentModuleLevel.path = absolutePathToTargetModule;
+  nearestGeneralLevel.path = targetModuleLevel.path;
 
   return {
     currentModuleLevel: currentModuleLevel,
