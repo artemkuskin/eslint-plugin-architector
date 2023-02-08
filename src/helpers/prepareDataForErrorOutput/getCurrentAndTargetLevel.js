@@ -136,11 +136,11 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurat
       }),
     };
   }
-  const differentParentLevels = Boolean(levelsModule.parent !== targetModuleLevel.parent);
+  // const differentParentLevels = Boolean(levelsModule.parent !== targetModuleLevel.parent);
 
-  if (differentParentLevels) {
-    targetModuleLevel.name = levelsModule.name;
-  }
+  // if (differentParentLevels) {
+  //   targetModuleLevel.name = levelsModule.name;
+  // }
 
   const nearestGeneralLevel = getModuleByName(configurationTree, levelsModule?.parent);
   nearestGeneralLevel.path = levelsModule.path;
