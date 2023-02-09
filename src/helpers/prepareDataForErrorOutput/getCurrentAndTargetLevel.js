@@ -3,6 +3,7 @@ const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurre
 const getAbsolutePathTo = require("./absolutePathTo");
 const getGeneralLevel = require("./getGeneralLevel");
 const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
+const getNameFolder = require("../serachByNameFolder/getNameFolder");
 module.exports = getAllTheDataAboutTheCurrentLevelAndTargetLevel;
 
 function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
@@ -12,6 +13,8 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   absolutePathToTargetModule,
   rootDirectory,
 }) {
+  const rootDirectoryTargetLevelExists = Boolean(getNameFolder(rootDirectory, absolutePathToTargetModule))
+  if (rootDirectoryTargetLevelExists) {
   const generalLevels = getGeneralLevels(absolutePathToTargetModule, pathToCurrentModule);
   const moduleLevelName = getCurrentAndTargetFolderName({
     generalLevels,
@@ -65,6 +68,10 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
     nearestGeneralLevel: nearestGeneralLevel,
     isOneLevelOfNesting: isOneLevelOfNesting
   };
+}
+return {
+  nearestGeneralLevel: undefined,
+};
 }
 
 function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
@@ -208,13 +215,15 @@ function getModuleLevel({ generalLevels, path, configurationTree }) {
 } //Здесь мы ищем первый уровень для модуля который указан в конфиге
 
 function getNearestName (targetModuleLevel, currentModuleLevel) {
-  return targetModuleLevel?.architectorPath.split('/').length > currentModuleLevel?.architectorPath.split('/').length
-  ? currentModuleLevel?.name
-  : targetModuleLevel?.name
+  if (targetModuleLevel && currentModuleLevel) {
+  return targetModuleLevel.architectorPath.split('/').length > currentModuleLevel.architectorPath.split('/').length
+  ? currentModuleLevel.name
+  : targetModuleLevel.name
+  }
 }
 
 function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, currentModuleLevel) {
 if (targetModuleLevel && currentModuleLevel) {
-return getPathToCurrentFileWithoutExtension(targetModuleLevel?.architectorPath) === getPathToCurrentFileWithoutExtension(currentModuleLevel?.architectorPath)
+return getPathToCurrentFileWithoutExtension(targetModuleLevel.architectorPath) === getPathToCurrentFileWithoutExtension(currentModuleLevel.architectorPath)
 }
 }//таргет и каррент на одном уровне вложенности?
