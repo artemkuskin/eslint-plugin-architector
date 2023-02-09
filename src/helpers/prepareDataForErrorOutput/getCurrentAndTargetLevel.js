@@ -21,10 +21,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
 
   const targetModuleLevel = getModuleByName(configurationTree, moduleLevelName.targetName);
   const currentModuleLevel = getModuleByName(configurationTree, moduleLevelName.currentName);
-  const nearestName =
-    targetModuleLevel?.architectorPath.split('/').length > currentModuleLevel?.architectorPath.split('/').length
-      ? currentModuleLevel?.name
-      : targetModuleLevel?.name;
+  const nearestName = getNearestName (targetModuleLevel, currentModuleLevel)
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
 
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
@@ -103,10 +100,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
     }),
   };
 
-  const nearestName =
-    targetModuleLevel.architectorPath.split('/').length > currentModuleLevel.architectorPath.split('/').length
-      ? currentModuleLevel.name
-      : targetModuleLevel.name;
+  const nearestName =getNearestName (targetModuleLevel, currentModuleLevel)
 
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
 
@@ -144,8 +138,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurat
     };
   }
   const differentParentLevels = Boolean(levelsModule.parent !== targetModuleLevel.parent);
-  const nearestName =
-    targetModuleLevel.architectorPath.split('/').length > levelsModule.architectorPath.split('/').length ? levelsModule.name : targetModuleLevel.name;
+  const nearestName = getNearestName (targetModuleLevel, levelsModule)
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
   
   if (differentParentLevels) {
@@ -177,8 +170,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurati
   };
   const moduleNotFoundByName = !levelsModule.name;
   const levelsModuleIsRoorDirectory = Boolean(levelsModule.name === rootDirectory);
-  const nearestName =
-    levelsModule.architectorPath.split('/').length > currentModuleLevel.architectorPath.split('/').length ? currentModuleLevel.name : levelsModule.name;
+  const nearestName = getNearestName (levelsModule, currentModuleLevel)
   if (levelsModuleIsRoorDirectory || moduleNotFoundByName) {
     levelsModule = {
       ...getModuleLevel({
@@ -227,3 +219,9 @@ function getModuleLevel({ generalLevels, path, configurationTree }) {
     return moduleLevel;
   }
 } //Здесь мы ищем первый уровень для строки который указан в конфиге
+
+function getNearestName (targetModuleLevel, currentModuleLevel) {
+  return targetModuleLevel?.architectorPath.split('/').length > currentModuleLevel?.architectorPath.split('/').length
+  ? currentModuleLevel?.name
+  : targetModuleLevel?.name
+}
