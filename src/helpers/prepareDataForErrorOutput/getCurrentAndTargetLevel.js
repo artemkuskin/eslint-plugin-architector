@@ -27,17 +27,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
 
-  // if (!currentModuleLevelNotSpecifiedInTheRules) {
-  //   currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
-  //   nearestGeneralLevel.path = currentModuleLevel.path;
-  // }
-
-  // if (!targetModuleLevelNotSpecifiedInTheRules) {
-  //   targetModuleLevel.path = absolutePathToTargetModule;
-  // }
-
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
-    console.log(321);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
@@ -48,7 +38,6 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules) {
-    console.log(4444);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
@@ -59,7 +48,6 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   }
 
   if (targetModuleLevelNotSpecifiedInTheRules) {
-    console.log(123);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
       generalLevels,
       configurationTree,
@@ -207,7 +195,7 @@ function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, abs
   );
   const target = setNameModuleLevel(getGeneralLevel(generalLevels), absolutePathToTargetModule);
   return { currentName: current, targetName: target };
-} //находим текущий и целеыой уровни по последнему общему эелементу
+} //находим текущий и целеыой уровни по первому общему эелементу
 
 function getModuleLevel({ generalLevels, path, configurationTree }) {
   const nameModuleLevel = setNameModuleLevel(getGeneralLevel(generalLevels), path);
@@ -218,7 +206,7 @@ function getModuleLevel({ generalLevels, path, configurationTree }) {
   } else {
     return moduleLevel;
   }
-} //Здесь мы ищем первый уровень для строки который указан в конфиге
+} //Здесь мы ищем первый уровень для модуля который указан в конфиге
 
 function getNearestName (targetModuleLevel, currentModuleLevel) {
   return targetModuleLevel?.architectorPath.split('/').length > currentModuleLevel?.architectorPath.split('/').length

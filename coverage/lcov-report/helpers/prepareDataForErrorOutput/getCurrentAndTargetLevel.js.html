@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>66/66</span>
+                <span class='fraction'>63/63</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>65/65</span>
+                <span class='fraction'>62/62</span>
             </div>
         
             
@@ -271,19 +271,7 @@
 <a name='L212'></a><a href='#L212'>212</a>
 <a name='L213'></a><a href='#L213'>213</a>
 <a name='L214'></a><a href='#L214'>214</a>
-<a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a>
-<a name='L217'></a><a href='#L217'>217</a>
-<a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a>
-<a name='L222'></a><a href='#L222'>222</a>
-<a name='L223'></a><a href='#L223'>223</a>
-<a name='L224'></a><a href='#L224'>224</a>
-<a name='L225'></a><a href='#L225'>225</a>
-<a name='L226'></a><a href='#L226'>226</a>
-<a name='L227'></a><a href='#L227'>227</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L215'></a><a href='#L215'>215</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -312,17 +300,7 @@
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -334,7 +312,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -344,7 +321,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -538,17 +514,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
 &nbsp;
-  // if (!currentModuleLevelNotSpecifiedInTheRules) {
-  //   currentModuleLevel.path = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
-  //   nearestGeneralLevel.path = currentModuleLevel.path;
-  // }
-&nbsp;
-  // if (!targetModuleLevelNotSpecifiedInTheRules) {
-  //   targetModuleLevel.path = absolutePathToTargetModule;
-  // }
-&nbsp;
   if (currentModuleLevelNotSpecifiedInTheRules &amp;&amp; targetModuleLevelNotSpecifiedInTheRules) {
-    console.log(321);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
@@ -559,7 +525,6 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   }
 &nbsp;
   if (currentModuleLevelNotSpecifiedInTheRules) {
-    console.log(4444);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
@@ -570,7 +535,6 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   }
 &nbsp;
   if (targetModuleLevelNotSpecifiedInTheRules) {
-    console.log(123);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
       generalLevels,
       configurationTree,
@@ -718,7 +682,7 @@ function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, abs
   );
   const target = setNameModuleLevel(getGeneralLevel(generalLevels), absolutePathToTargetModule);
   return { currentName: current, targetName: target };
-} //находим текущий и целеыой уровни по последнему общему эелементу
+} //находим текущий и целеыой уровни по первому общему эелементу
 &nbsp;
 function getModuleLevel({ generalLevels, path, configurationTree }) {
   const nameModuleLevel = setNameModuleLevel(getGeneralLevel(generalLevels), path);
@@ -729,7 +693,7 @@ function getModuleLevel({ generalLevels, path, configurationTree }) {
   } else {
     return moduleLevel;
   }
-} //Здесь мы ищем первый уровень для строки который указан в конфиге
+} //Здесь мы ищем первый уровень для модуля который указан в конфиге
 &nbsp;
 function getNearestName (targetModuleLevel, currentModuleLevel) {
   return targetModuleLevel?.architectorPath.split('/').length &gt; currentModuleLevel?.architectorPath.split('/').length
@@ -742,7 +706,7 @@ function getNearestName (targetModuleLevel, currentModuleLevel) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Feb 09 2023 11:29:39 GMT+0300 (Москва, стандартное время)
+                at Thu Feb 09 2023 12:02:10 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>

@@ -26,8 +26,8 @@ function resultErrorMessage({
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
   if (nearestGeneralLevelExists) {
     const currentAndTargetModulesLevelsAreInTheSameLevel =
-      childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name ===
-      childrenOfGeneralLevelWhereTargetModuleLevelLocated.name;
+      childrenOfGeneralLevelWhereCurrentModuleLevelLocated.architectorPath ===
+      childrenOfGeneralLevelWhereTargetModuleLevelLocated.architectorPath;
 
     if (currentAndTargetModulesLevelsAreInTheSameLevel) {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
