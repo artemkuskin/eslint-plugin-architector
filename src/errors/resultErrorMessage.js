@@ -1,4 +1,4 @@
-const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/searchNearestCurrentAndTargetLevel");
+const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/getDataForErrorDetection");
 module.exports = resultErrorMessage;
 
 function resultErrorMessage({
@@ -22,11 +22,11 @@ function resultErrorMessage({
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
 
   if (nearestGeneralLevelExists) {
-  const childrenOfGeneralLevelWhereTargetModuleLevelLocated = errorHandlingData.targetModuleLevel;
-  const childrenOfGeneralLevelWhereCurrentModuleLevelLocated = errorHandlingData.currentModuleLevel;
-  const oneLevelOfNesting = errorHandlingData.isOneLevelOfNesting
+    const childrenOfGeneralLevelWhereTargetModuleLevelLocated = errorHandlingData.targetModuleLevel;
+    const childrenOfGeneralLevelWhereCurrentModuleLevelLocated = errorHandlingData.currentModuleLevel;
+    const oneLevelOfNesting = Boolean(errorHandlingData.isOneLevelOfNesting);
 
-  console.log(errorHandlingData);
+    console.log(errorHandlingData);
     if (!oneLevelOfNesting) {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
@@ -59,7 +59,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
     tagetModuleLevelIsNearestGeneralLevel && currentModuleLevelIsNotNearestLevel;
 
   if (currentModuleLevelImportsItsParentLevel) {
-    errorMessage = `Target level is the parent level of the current level`;
+    errorMessage = "Target level is the parent level of the current level";
   }
 
   return errorMessage;

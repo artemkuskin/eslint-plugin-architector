@@ -3,15 +3,18 @@ const PathToCurrentFileWithOutContent = require("../convertPath/pathToCurrentFil
 module.exports = getLevelAlias;
 
 function getLevelAlias(rootDirectory, jsConfigFileContent) {
-  const aliases = getAliases(jsConfigFileContent);
-  const configurationTreeAlias = [];
-  for (let key in aliases) {
-    configurationTreeAlias.push({
-      key: PathToCurrentFileWithOutContent(aliases[key].name),
-      path: absolutePathToAliasesByKey(aliases[key], rootDirectory),
-    });
+  if (jsConfigFileContent) {
+    const configurationTreeAlias = [];
+    const aliases = getAliases(jsConfigFileContent);
+    for (let key in aliases) {
+      configurationTreeAlias.push({
+        key: PathToCurrentFileWithOutContent(aliases[key].name),
+        path: absolutePathToAliasesByKey(aliases[key], rootDirectory),
+      });
+    }
+    return configurationTreeAlias;
   }
-  return configurationTreeAlias;
+  
 }
 
 function setLengthPathFolder(pathFolder) {
@@ -43,4 +46,3 @@ function getAliases(jsConfigFileContent) {
 
   return aliases;
 }
-

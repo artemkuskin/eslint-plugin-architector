@@ -1,5 +1,5 @@
 const resultErrorMessage = require("../errors/resultErrorMessage");
-const getParentFolder = require("../helpers/serachByNameFolder/getNameFolder");
+const getNameFolder = require("../helpers/serachByNameFolder/getNameFolder");
 
 
 module.exports = validateIfImportIsAllowed;
@@ -7,7 +7,7 @@ module.exports = validateIfImportIsAllowed;
 function validateIfImportIsAllowed({pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory}) {
   let errorMessage = undefined;
 
-  const moduleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));
+  const moduleIsInRootDirectory = Boolean(getNameFolder(rootDirectory, pathToCurrentModule));
   if (moduleIsInRootDirectory) {
     errorMessage = resultErrorMessage({
       importDefinitionPath,

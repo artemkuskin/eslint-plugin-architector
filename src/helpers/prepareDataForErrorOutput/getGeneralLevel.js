@@ -1,4 +1,4 @@
-module.exports = getGeneralLevel
+module.exports = getGeneralLevel;
 function getGeneralLevel(generalLevels) {
-    return generalLevels[generalLevels.length - 1];
-  }
+  return generalLevels[generalLevels.length - 1];
+}

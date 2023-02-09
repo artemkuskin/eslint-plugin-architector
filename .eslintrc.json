@@ -1,0 +1,46 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "overrides": [
+      {
+        "files": ["src/*.js"],
+        "excludedFiles": "*App.js",
+        "rules": {
+          "indent": ["error", 2]
+        }
+      }
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "semi": true
+    },
+    "rules": {
+      "indent": ["error", 2],
+      "linebreak-style": ["error", "unix"],
+      "quotes": ["error", "double"],
+      "semi": ["error", "always"],
+      "no-empty": "warn",
+      "no-cond-assign": ["error", "always"],
+      "for-direction": "off"
+      //   "atomic-design-hierarchy/hierarchical-import": [
+      //     "error",
+      //     {
+      //         "A": 0,
+      //         "B": 1,
+      //         "C": 2
+      //     },
+      //     "src"
+      // ]
+  
+      
+    },
+    "root": true
+  }
+  

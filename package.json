@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "coveralls": "^3.1.0",
+    "eslint": "^8.33.0",
     "jest": "^26.5.3"
   },
   "peerDependencies": {
@@ -25,6 +26,8 @@
     "eslint plugin"
   ],
   "dependencies": {
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-require": "^0.0.1",
     "tree-model": "^1.0.7"
   }
 }

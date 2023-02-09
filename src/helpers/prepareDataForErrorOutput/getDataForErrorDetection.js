@@ -28,7 +28,6 @@ function getDataForErrorDetection({
     levelsConfiguration,
     rootDirectory
   );
-
   const absolutePathToTargetModule = getAbsolutePathToTargetModule({
     pathToCurrentModule,
     importDefinitionPath,
@@ -40,7 +39,7 @@ function getDataForErrorDetection({
     importDefinitionPath,
     configurationTree,
     absolutePathToTargetModule,
-    rootDirectory
+    rootDirectory,
   });
 }
 
@@ -66,7 +65,9 @@ function getAbsolutePathToTargetModule({ pathToCurrentModule, importDefinitionPa
 }
 
 function getLevelByKey(configurationTree, key) {
-  return configurationTree.find((elem) => elem.key === key);
+  if (configurationTree) {
+    return configurationTree.find((elem) => elem.key === key);
+  }
 }
 
 function getKeyAliases(importDefinitionPath) {
