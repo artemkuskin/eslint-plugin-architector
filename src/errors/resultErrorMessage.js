@@ -54,9 +54,9 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
   let errorMessage = undefined;
 
   const tagetModuleLevelIsNearestGeneralLevel =
-    childrenOfGeneralLevelWhereTargetModuleLevelLocated.path === nearestGeneralLevel.path;
+    childrenOfGeneralLevelWhereTargetModuleLevelLocated.architectorPath === nearestGeneralLevel.architectorPath;
   const currentModuleLevelIsNotNearestLevel =
-    childrenOfGeneralLevelWhereCurrentModuleLevelLocated.path !== nearestGeneralLevel.path;
+    childrenOfGeneralLevelWhereCurrentModuleLevelLocated.architectorPath !== nearestGeneralLevel.architectorPath;
   const currentModuleLevelImportsItsParentLevel =
     tagetModuleLevelIsNearestGeneralLevel && currentModuleLevelIsNotNearestLevel;
 
