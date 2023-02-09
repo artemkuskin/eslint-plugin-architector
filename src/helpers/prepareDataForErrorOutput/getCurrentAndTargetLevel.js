@@ -22,7 +22,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   const targetModuleLevel = getModuleByName(configurationTree, moduleLevelName.targetName);
   const currentModuleLevel = getModuleByName(configurationTree, moduleLevelName.currentName);
   const nearestName =
-    targetModuleLevel?.architectorPath > currentModuleLevel?.architectorPath
+    targetModuleLevel?.architectorPath.split('/').length > currentModuleLevel?.architectorPath.split('/').length
       ? currentModuleLevel?.name
       : targetModuleLevel?.name;
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
@@ -98,25 +98,18 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   const targetModuleLevel = {
     ...getModuleLevel({
       generalLevels,
-      path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
+      path: absolutePathToTargetModule,//getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
       configurationTree,
     }),
   };
 
   const nearestName =
-    targetModuleLevel.architectorPath > currentModuleLevel.architectorPath
+    targetModuleLevel.architectorPath.split('/').length > currentModuleLevel.architectorPath.split('/').length
       ? currentModuleLevel.name
       : targetModuleLevel.name;
 
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
-  // const isSameNearestParentLevel = Boolean(targetModuleLevel.name === currentModuleLevel.name);
 
-  // if (isSameNearestParentLevel) {
-  //   targetModuleLevel.path = absolutePathToTargetModule;
-  //   currentModuleLevel.path = targetModuleLevel.path;
-  //   nearestGeneralLevel.path = currentModuleLevel.path;
-  // }
-console.log(123123);
   return {
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: targetModuleLevel,
@@ -152,14 +145,13 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurat
   }
   const differentParentLevels = Boolean(levelsModule.parent !== targetModuleLevel.parent);
   const nearestName =
-    targetModuleLevel.architectorPath > levelsModule.architectorPath ? levelsModule.name : targetModuleLevel.name;
+    targetModuleLevel.architectorPath.split('/').length > levelsModule.architectorPath.split('/').length ? levelsModule.name : targetModuleLevel.name;
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
   
   if (differentParentLevels) {
     targetModuleLevel.name = levelsModule.name;
   }
   
-  // nearestGeneralLevel.path = levelsModule.path;
   return {
     currentModuleLevel: levelsModule,
     targetModuleLevel: targetModuleLevel,
@@ -186,7 +178,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurati
   const moduleNotFoundByName = !levelsModule.name;
   const levelsModuleIsRoorDirectory = Boolean(levelsModule.name === rootDirectory);
   const nearestName =
-    levelsModule.architectorPath > currentModuleLevel.architectorPath ? currentModuleLevel.name : levelsModule.name;
+    levelsModule.architectorPath.split('/').length > currentModuleLevel.architectorPath.split('/').length ? currentModuleLevel.name : levelsModule.name;
   if (levelsModuleIsRoorDirectory || moduleNotFoundByName) {
     levelsModule = {
       ...getModuleLevel({
@@ -202,9 +194,6 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurati
     currentModuleLevel.name = levelsModule.name;
   }
 
-  // levelsModule.path = absolutePathToTargetModule;
-  // nearestGeneralLevel.path = levelsModule.path;
-
   return {
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: levelsModule,
@@ -217,7 +206,7 @@ function getGeneralLevels(targetModulePath, currentModulePath) {
   const currentModulePatharr = getPathToCurrentFileWithoutExtension(currentModulePath).split("/");
   const generalLevels = targetModulPathArr.filter((x) => currentModulePatharr.indexOf(x) !== -1);
   return generalLevels;
-}
+}//находим все общие уровни
 
 function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, absolutePathToTargetModule }) {
   const current = setNameModuleLevel(
