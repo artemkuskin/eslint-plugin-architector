@@ -51,6 +51,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   }
 
   if (currentModuleLevelNotSpecifiedInTheRules) {
+    console.log(4444);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
@@ -115,7 +116,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   //   currentModuleLevel.path = targetModuleLevel.path;
   //   nearestGeneralLevel.path = currentModuleLevel.path;
   // }
-
+console.log(123123);
   return {
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: targetModuleLevel,
@@ -138,8 +139,6 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurat
     }),
   };
 
-  const nearestName =
-    targetModuleLevel.architectorPath > levelsModule.architectorPath ? levelsModule.name : targetModuleLevel.name;
   const levelsModuleIsRoorDirectory = Boolean(levelsModule.name === rootDirectory);
   const moduleNotFoundByName = !levelsModule.name;
   if (levelsModuleIsRoorDirectory || moduleNotFoundByName) {
@@ -152,12 +151,14 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurat
     };
   }
   const differentParentLevels = Boolean(levelsModule.parent !== targetModuleLevel.parent);
-
+  const nearestName =
+    targetModuleLevel.architectorPath > levelsModule.architectorPath ? levelsModule.name : targetModuleLevel.name;
+  const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
+  
   if (differentParentLevels) {
     targetModuleLevel.name = levelsModule.name;
   }
-
-  const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
+  
   // nearestGeneralLevel.path = levelsModule.path;
   return {
     currentModuleLevel: levelsModule,
