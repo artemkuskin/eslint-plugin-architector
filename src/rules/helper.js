@@ -4,7 +4,7 @@ const getParentFolder = require("../helpers/serachByNameFolder/getNameFolder");
 
 module.exports = validateIfImportIsAllowed;
 
-function validateIfImportIsAllowed(pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory) {
+function validateIfImportIsAllowed({pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory}) {
   let errorMessage = undefined;
 
   const moduleIsInRootDirectory = Boolean(getParentFolder(rootDirectory, pathToCurrentModule));

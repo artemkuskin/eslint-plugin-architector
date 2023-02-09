@@ -162,6 +162,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurati
   pathToCurrentModule,
   importDefinitionPath,
 }) {
+  console.log(absolutePathToTargetModule);
   let levelsModule = {
     ...getModuleLevel({
       generalLevels,
@@ -215,7 +216,7 @@ function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, abs
 function getModuleLevel({ generalLevels, path, configurationTree }) {
   const nameModuleLevel = setNameModuleLevel(getGeneralLevel(generalLevels), path);
   const moduleLevel = getModuleByName(configurationTree, nameModuleLevel);
-  console.log(generalLevels);
+
   if (moduleLevel === undefined && generalLevels.length !== 0) {
     const result = generalLevels.slice(0, generalLevels.length - 1);
     return getModuleLevel({ generalLevels: result, path, configurationTree });
