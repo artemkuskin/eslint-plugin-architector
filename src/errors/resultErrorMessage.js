@@ -29,7 +29,7 @@ function resultErrorMessage({
     //   childrenOfGeneralLevelWhereCurrentModuleLevelLocated.architectorPath ===
     //   childrenOfGeneralLevelWhereTargetModuleLevelLocated.architectorPath;
 
-    if (!childrenOfGeneralLevelWhereCurrentModuleLevelLocated.check) {
+    if (!errorHandlingData.check) {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
         childrenOfGeneralLevelWhereTargetModuleLevelLocated,
