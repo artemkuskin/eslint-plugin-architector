@@ -18,25 +18,22 @@ function resultErrorMessage({
     levelsConfiguration,
   });
 
-  const nearestGeneralLevel = errorHandlingData.nearestGeneralLevel;
+  const { isOneLevelOfNesting, nearestGeneralLevel, targetModuleLevel, currentModuleLevel } = errorHandlingData;
+
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
 
   if (nearestGeneralLevelExists) {
-    const childrenOfGeneralLevelWhereTargetModuleLevelLocated = errorHandlingData.targetModuleLevel;
-    const childrenOfGeneralLevelWhereCurrentModuleLevelLocated = errorHandlingData.currentModuleLevel;
-    const oneLevelOfNesting = Boolean(errorHandlingData.isOneLevelOfNesting);
-
     console.log(errorHandlingData);
-    if (!oneLevelOfNesting) {
+    if (!isOneLevelOfNesting) {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
-        childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
-        childrenOfGeneralLevelWhereTargetModuleLevelLocated,
+        childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentModuleLevel,
+        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetModuleLevel,
         nearestGeneralLevel,
       });
     } else {
       errorMessage = getErrorWhenCurrentAndTargetModulesAreInDifferentLevels({
-        childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
-        childrenOfGeneralLevelWhereTargetModuleLevelLocated,
+        childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentModuleLevel,
+        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetModuleLevel,
       });
     }
   }

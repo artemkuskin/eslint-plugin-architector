@@ -1,4 +1,4 @@
-const getModuleByName = require("../serachByNameFolder/setModuleByName");
+const getModuleLevelByName = require("../serachByNameFolder/setModuleByName");
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
 const getAbsolutePathTo = require("./absolutePathTo");
 const getGeneralLevel = require("./getGeneralLevel");
@@ -21,10 +21,10 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
       pathToCurrentModule,
       absolutePathToTargetModule,
     });
-    const targetModuleLevel = getModuleByName(configurationTree, moduleLevelName.targetName);
-    const currentModuleLevel = getModuleByName(configurationTree, moduleLevelName.currentName);
-    const nearestName = getNearestName(targetModuleLevel, currentModuleLevel);
-    const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
+    const targetModuleLevel = getModuleLevelByName(configurationTree, moduleLevelName.targetName);
+    const currentModuleLevel = getModuleLevelByName(configurationTree, moduleLevelName.currentName);
+    const nearestModuleLevelName = getNearestName(targetModuleLevel, currentModuleLevel);
+    const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
     const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
     const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
     const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
@@ -62,6 +62,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
         importDefinitionPath,
       });
     }
+
     return {
       currentModuleLevel: currentModuleLevel,
       targetModuleLevel: targetModuleLevel,
@@ -80,24 +81,20 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   configurationTree,
   absolutePathToTargetModule,
 }) {
-  const currentModuleLevel = {
-    ...getModuleLevel({
-      generalLevels,
-      path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
-      configurationTree,
-    }),
-  };
+  const currentModuleLevel = getModuleLevel({
+    generalLevels,
+    path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
+    configurationTree,
+  });
 
-  const targetModuleLevel = {
-    ...getModuleLevel({
-      generalLevels,
-      path: absolutePathToTargetModule, //getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
-      configurationTree,
-    }),
-  };
+  const targetModuleLevel = getModuleLevel({
+    generalLevels,
+    path: absolutePathToTargetModule, //getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
+    configurationTree,
+  });
 
-  const nearestName = getNearestName(targetModuleLevel, currentModuleLevel);
-  const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
+  const nearestModuleLevelName = getNearestName(targetModuleLevel, currentModuleLevel);
+  const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
     targetModuleLevel,
     currentModuleLevel
@@ -117,27 +114,23 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurat
   rootDirectory,
   targetModuleLevel,
 }) {
-  let levelsModule = {
-    ...getModuleLevel({
-      generalLevels,
-      path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
-      configurationTree,
-    }),
-  };
+  let levelsModule = getModuleLevel({
+    generalLevels,
+    path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
+    configurationTree,
+  });
 
   const levelsModuleIsRoorDirectory = Boolean(levelsModule.name === rootDirectory);
   if (levelsModuleIsRoorDirectory) {
-    levelsModule = {
-      ...getModuleLevel({
-        generalLevels,
-        path: pathToCurrentModule,
-        configurationTree,
-      }),
-    };
+    levelsModule = getModuleLevel({
+      generalLevels,
+      path: pathToCurrentModule,
+      configurationTree,
+    });
   }
 
-  const nearestName = getNearestName(targetModuleLevel, levelsModule);
-  const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
+  const nearestModuleLevelName = getNearestName(targetModuleLevel, levelsModule);
+  const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
     targetModuleLevel,
     levelsModule
@@ -160,27 +153,24 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurati
   pathToCurrentModule,
   importDefinitionPath,
 }) {
-  let levelsModule = {
-    ...getModuleLevel({
-      generalLevels,
-      path: absolutePathToTargetModule,
-      configurationTree,
-    }),
-  };
+  let levelsModule = getModuleLevel({
+    generalLevels,
+    path: absolutePathToTargetModule,
+    configurationTree,
+  });
+
   const levelsModuleIsRoorDirectory = Boolean(levelsModule.name === rootDirectory);
-  const nearestName = getNearestName(levelsModule, currentModuleLevel);
+  const nearestModuleLevelName = getNearestName(levelsModule, currentModuleLevel);
 
   if (levelsModuleIsRoorDirectory) {
-    levelsModule = {
-      ...getModuleLevel({
-        generalLevels,
-        path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
-        configurationTree,
-      }),
-    };
+    levelsModule = getModuleLevel({
+      generalLevels,
+      path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
+      configurationTree,
+    });
   }
 
-  const nearestGeneralLevel = { ...getModuleByName(configurationTree, nearestName) };
+  const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
     levelsModule,
     currentModuleLevel
@@ -211,13 +201,13 @@ function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, abs
 
 function getModuleLevel({ generalLevels, path, configurationTree }) {
   const nameModuleLevel = setNameModuleLevel(getGeneralLevel(generalLevels), path);
-  const moduleLevel = getModuleByName(configurationTree, nameModuleLevel);
+  const moduleLevel = getModuleLevelByName(configurationTree, nameModuleLevel);
 
   if (moduleLevel === undefined && generalLevels.length !== 0) {
     const result = generalLevels.slice(0, generalLevels.length - 1);
     return getModuleLevel({ generalLevels: result, path, configurationTree });
   } else {
-    return moduleLevel;
+    return { ...moduleLevel };
   }
 } //Здесь мы ищем первый уровень для модуля который указан в конфиге
 
