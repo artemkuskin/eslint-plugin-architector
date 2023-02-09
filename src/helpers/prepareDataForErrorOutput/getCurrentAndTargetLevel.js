@@ -26,7 +26,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
 
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
-  const check = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, currentModuleLevel)
+  const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, currentModuleLevel)
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
@@ -63,7 +63,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: targetModuleLevel,
     nearestGeneralLevel: nearestGeneralLevel,
-    check: check
+    isOneLevelOfNesting: isOneLevelOfNesting
   };
 }
 
@@ -93,12 +93,12 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   const nearestName =getNearestName (targetModuleLevel, currentModuleLevel)
 
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
-  const check = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, currentModuleLevel)
+  const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, currentModuleLevel)
   return {
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: targetModuleLevel,
     nearestGeneralLevel: nearestGeneralLevel,
-    check: check
+    isOneLevelOfNesting: isOneLevelOfNesting
   };
 }
 
@@ -128,19 +128,16 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurat
       }),
     };
   }
-  // const differentParentLevels = Boolean(levelsModule.parent !== targetModuleLevel.parent);
+
   const nearestName = getNearestName (targetModuleLevel, levelsModule)
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
-  const check = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, levelsModule)
-  // if (differentParentLevels) {
-  //   targetModuleLevel.name = levelsModule.name;
-  // }
-  
+  const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, levelsModule)
+
   return {
     currentModuleLevel: levelsModule,
     targetModuleLevel: targetModuleLevel,
     nearestGeneralLevel: nearestGeneralLevel,
-    check: check
+    isOneLevelOfNesting: isOneLevelOfNesting
   };
 }
 
@@ -173,16 +170,12 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurati
     };
   }
   const nearestGeneralLevel = { ...getModuleByName(configurationTree, nearestName) };
-  // const differentParentLevels = Boolean(levelsModule.parent !== currentModuleLevel.parent);
-  // if (differentParentLevels) {
-  //   currentModuleLevel.name = levelsModule.name;
-  // }
-  const check = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (levelsModule, currentModuleLevel)
+  const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (levelsModule, currentModuleLevel)
   return {
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: levelsModule,
     nearestGeneralLevel: nearestGeneralLevel,
-    check: check
+    isOneLevelOfNesting: isOneLevelOfNesting
   };
 }
 
