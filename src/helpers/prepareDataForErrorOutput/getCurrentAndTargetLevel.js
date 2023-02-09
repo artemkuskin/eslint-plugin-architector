@@ -40,6 +40,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   // }
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
+    console.log(321);
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
       generalLevels,
       pathToCurrentModule,
