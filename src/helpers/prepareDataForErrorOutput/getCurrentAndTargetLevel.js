@@ -221,6 +221,7 @@ function getNearestName (targetModuleLevel, currentModuleLevel) {
 }
 
 function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, currentModuleLevel) {
-
-return getPathToCurrentFileWithoutExtension(targetModuleLevel.architectorPath) === getPathToCurrentFileWithoutExtension(currentModuleLevel.architectorPath)
+if (targetModuleLevel && currentModuleLevel) {
+return getPathToCurrentFileWithoutExtension(targetModuleLevel?.architectorPath) === getPathToCurrentFileWithoutExtension(currentModuleLevel?.architectorPath)
+}
 }//таргет и каррент на одном уровне вложенности?
