@@ -20,13 +20,13 @@ function resultErrorMessage({
 
   const nearestGeneralLevel = errorHandlingData.nearestGeneralLevel;
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
-  console.log(nearestGeneralLevel);
+
   if (nearestGeneralLevelExists) {
   const childrenOfGeneralLevelWhereTargetModuleLevelLocated = errorHandlingData.targetModuleLevel;
   const childrenOfGeneralLevelWhereCurrentModuleLevelLocated = errorHandlingData.currentModuleLevel;
+  const oneLevelOfNesting = errorHandlingData.isOneLevelOfNesting
 
   console.log(errorHandlingData);
-  const oneLevelOfNesting = errorHandlingData.isOneLevelOfNesting
     if (!oneLevelOfNesting) {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
