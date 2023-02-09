@@ -26,6 +26,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
 
   const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
   const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
+  const check = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, currentModuleLevel)
 
   if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
     return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
@@ -62,6 +63,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: targetModuleLevel,
     nearestGeneralLevel: nearestGeneralLevel,
+    check: check
   };
 }
 
@@ -91,11 +93,12 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   const nearestName =getNearestName (targetModuleLevel, currentModuleLevel)
 
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
-
+  const check = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, currentModuleLevel)
   return {
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: targetModuleLevel,
     nearestGeneralLevel: nearestGeneralLevel,
+    check: check
   };
 }
 
@@ -125,18 +128,19 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurat
       }),
     };
   }
-  const differentParentLevels = Boolean(levelsModule.parent !== targetModuleLevel.parent);
+  // const differentParentLevels = Boolean(levelsModule.parent !== targetModuleLevel.parent);
   const nearestName = getNearestName (targetModuleLevel, levelsModule)
   const nearestGeneralLevel = getModuleByName(configurationTree, nearestName);
-  
-  if (differentParentLevels) {
-    targetModuleLevel.name = levelsModule.name;
-  }
+  const check = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, levelsModule)
+  // if (differentParentLevels) {
+  //   targetModuleLevel.name = levelsModule.name;
+  // }
   
   return {
     currentModuleLevel: levelsModule,
     targetModuleLevel: targetModuleLevel,
     nearestGeneralLevel: nearestGeneralLevel,
+    check: check
   };
 }
 
@@ -169,15 +173,16 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurati
     };
   }
   const nearestGeneralLevel = { ...getModuleByName(configurationTree, nearestName) };
-  const differentParentLevels = Boolean(levelsModule.parent !== currentModuleLevel.parent);
-  if (differentParentLevels) {
-    currentModuleLevel.name = levelsModule.name;
-  }
-
+  // const differentParentLevels = Boolean(levelsModule.parent !== currentModuleLevel.parent);
+  // if (differentParentLevels) {
+  //   currentModuleLevel.name = levelsModule.name;
+  // }
+  const check = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (levelsModule, currentModuleLevel)
   return {
     currentModuleLevel: currentModuleLevel,
     targetModuleLevel: levelsModule,
     nearestGeneralLevel: nearestGeneralLevel,
+    check: check
   };
 }
 
@@ -200,6 +205,7 @@ function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, abs
 function getModuleLevel({ generalLevels, path, configurationTree }) {
   const nameModuleLevel = setNameModuleLevel(getGeneralLevel(generalLevels), path);
   const moduleLevel = getModuleByName(configurationTree, nameModuleLevel);
+  console.log(generalLevels);
   if (moduleLevel === undefined && generalLevels.length !== 0) {
     const result = generalLevels.slice(0, generalLevels.length - 1);
     return getModuleLevel({ generalLevels: result, path, configurationTree });
@@ -213,3 +219,8 @@ function getNearestName (targetModuleLevel, currentModuleLevel) {
   ? currentModuleLevel?.name
   : targetModuleLevel?.name
 }
+
+function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel (targetModuleLevel, currentModuleLevel) {
+
+return getPathToCurrentFileWithoutExtension(targetModuleLevel.architectorPath) === getPathToCurrentFileWithoutExtension(currentModuleLevel.architectorPath)
+}//таргет и каррент на одном уровне вложенности?
