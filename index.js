@@ -68,9 +68,7 @@ function v({ node, hierarchy, componentFolder, context }) {
 
 function a({ node, hierarchy, componentFolder, context }) {
   if (node.declarations[0].init.arguments[0].value) {
-    console.log(node.declarations[0].init.arguments[0].value);
-  } else {
-    return undefined;
+    console.log(node.declarations[0].init.arguments);
   }
   // const fn = adaptingTheImportPathForLinux(context.getFilename());
   // const nodeValue = adaptingTheImportPathForLinux(node.declarations[0].init.arguments[0].value);
