@@ -27,7 +27,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
     const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
     const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
-    console.log(1);
+   // console.log(1);
     const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
       targetModuleLevel,
       currentModuleLevel
@@ -122,7 +122,7 @@ function getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTr
 }) {
   let levelsModule = getModuleLevel({
     generalLevels,
-    path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
+    path: pathToCurrentModule,
     configurationTree,
   });
 
@@ -134,7 +134,7 @@ function getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTr
       configurationTree,
     });
   }
-
+console.log(pathToCurrentModule);
   const nearestModuleLevelName = getNearestName(targetModuleLevel, levelsModule);
   const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
@@ -217,7 +217,7 @@ function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, abs
 function getModuleLevel({ generalLevels, path, configurationTree }) {
   const nameModuleLevel = setNameModuleLevel(getLowestGeneralLevel(generalLevels), path);
   const moduleLevel = getModuleLevelByName(configurationTree, nameModuleLevel);
-
+  console.log(moduleLevel, path);
   if (moduleLevel === undefined && generalLevels.length !== 0) {
     const result = generalLevels.slice(0, generalLevels.length - 1);
     return getModuleLevel({ generalLevels: result, path, configurationTree });
@@ -228,6 +228,7 @@ function getModuleLevel({ generalLevels, path, configurationTree }) {
 
 function getNearestName(targetModuleLevel, currentModuleLevel) {
   if (targetModuleLevel && currentModuleLevel) {
+    console.log(targetModuleLevel, currentModuleLevel);
     return targetModuleLevel.architectorPath.split("/").length > currentModuleLevel.architectorPath.split("/").length
       ? currentModuleLevel.name
       : targetModuleLevel.name;

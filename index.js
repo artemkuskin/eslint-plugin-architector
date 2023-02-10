@@ -26,7 +26,7 @@ module.exports.rules = {
     create: (context) => {
       const hierarchy = context.options[0] || DEFAULT_HIERARCHY;
       const componentFolder = context.options[1] || DEFAULT_COMPONENTS_FOLDER;
-
+      console.log(context);
       return {
         ImportDeclaration: (node) => {
           const fn = adaptingTheImportPathForLinux(context.getFilename());

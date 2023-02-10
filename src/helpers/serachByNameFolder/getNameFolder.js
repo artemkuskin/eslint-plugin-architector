@@ -4,7 +4,6 @@ function getNameFolder(rootDirectory, absolutePathToTheFile) {
   function setParent() {
     try {
       parent = new RegExp(`${rootDirectory}\\/([a-zA-Z0-9-]+)`, "g").exec(absolutePathToTheFile)[1];
-      console.log(absolutePathToTheFile);
     } catch {
       parent = undefined;
     }
