@@ -27,16 +27,16 @@ module.exports.rules = {
       const hierarchy = context.options[0] || DEFAULT_HIERARCHY;
       const componentFolder = context.options[1] || DEFAULT_COMPONENTS_FOLDER;
       return {
-        ImportDeclaration: (node)=> v({
-          node, hierarchy,
-          componentFolder,
-          context
-        }),
-        // VariableDeclaration: (node)=> v({
+        // ImportDeclaration: (node)=> v({
         //   node, hierarchy,
         //   componentFolder,
         //   context
         // }),
+        VariableDeclaration: (node)=> v({
+          node, hierarchy,
+          componentFolder,
+          context
+        }),
       };
       
       
