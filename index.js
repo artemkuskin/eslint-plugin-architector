@@ -67,16 +67,16 @@ function v({ node, hierarchy, componentFolder, context }) {
 }
 
 function a({ node, hierarchy, componentFolder, context }) {
-  let asd = undefined;
+  let nodeValueRequire = undefined;
   try {
-    asd = node.declarations[0].init.arguments[0].value;
+    nodeValueRequire = node.declarations[0].init.arguments[0].value;
   } catch {
-    asd = null;
+    nodeValueRequire = null;
   }
-  console.log(asd);
-  if (asd) {
+  console.log(nodeValueRequire);
+  if (nodeValueRequire) {
     const fn = adaptingTheImportPathForLinux(context.getFilename());
-    const nodeValue = asd;
+    const nodeValue = nodeValueRequire;
     const params = {
       pathToCurrentModule: fn,
       importDefinitionPath: nodeValue,
