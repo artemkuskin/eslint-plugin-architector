@@ -1,4 +1,4 @@
-const getModuleLevelByName = require("../serachByNameFolder/setModuleByName");
+const getModuleLevelByName = require("../serachByNameFolder/getModuleByName");
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
 const getAbsolutePathTo = require("./absolutePathTo");
 const getGeneralLevel = require("./getGeneralLevel");
@@ -16,13 +16,13 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   const rootDirectoryTargetLevelExists = Boolean(getNameFolder(rootDirectory, absolutePathToTargetModule));
   if (rootDirectoryTargetLevelExists) {
     const generalLevels = getGeneralLevels(absolutePathToTargetModule, pathToCurrentModule);
-    const moduleLevelName = getCurrentAndTargetFolderName({
+    const modulesLevelName = getCurrentAndTargetFolderName({
       generalLevels,
       pathToCurrentModule,
       absolutePathToTargetModule,
     });
-    const targetModuleLevel = getModuleLevelByName(configurationTree, moduleLevelName.targetName);
-    const currentModuleLevel = getModuleLevelByName(configurationTree, moduleLevelName.currentName);
+    const targetModuleLevel = getModuleLevelByName(configurationTree, modulesLevelName.targetName);
+    const currentModuleLevel = getModuleLevelByName(configurationTree, modulesLevelName.currentName);
     const nearestModuleLevelName = getNearestName(targetModuleLevel, currentModuleLevel);
     const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
     const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
@@ -33,7 +33,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
     );
 
     if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
-      return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
+      return getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
         generalLevels,
         pathToCurrentModule,
         configurationTree,
@@ -42,7 +42,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
     }
 
     if (currentModuleLevelNotSpecifiedInTheRules) {
-      return getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
+      return getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree({
         generalLevels,
         pathToCurrentModule,
         configurationTree,
@@ -52,7 +52,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
     }
 
     if (targetModuleLevelNotSpecifiedInTheRules) {
-      return getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
+      return getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
         generalLevels,
         configurationTree,
         currentModuleLevel,
@@ -75,7 +75,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
   };
 }
 
-function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLevelInConfigurationTree({
+function getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   configurationTree,
@@ -107,7 +107,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelAndTargetLev
   };
 }
 
-function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurationTree({
+function getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   configurationTree,
@@ -144,7 +144,7 @@ function getParentLevelForErrorHandlingInTheAbsenceOfTheCurrentLevelInConfigurat
   };
 }
 
-function getParentLevelForErrorHandlingInTheAbsenceOfTheTargetLevelInConfigurationTree({
+function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
   generalLevels,
   configurationTree,
   currentModuleLevel,

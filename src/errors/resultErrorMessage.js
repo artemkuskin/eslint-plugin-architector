@@ -1,7 +1,7 @@
 const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/getDataForErrorDetection");
-module.exports = resultErrorMessage;
+module.exports = getResultErrorMessage;
 
-function resultErrorMessage({
+function getResultErrorMessage({
   importDefinitionPath,
   pathToCurrentModule,
   rootDirectory,
@@ -17,13 +17,10 @@ function resultErrorMessage({
     levelsConfigurationFile,
     levelsConfiguration,
   });
-
   const { isOneLevelOfNesting, nearestGeneralLevel, targetModuleLevel, currentModuleLevel } = errorHandlingData;
-
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
 
   if (nearestGeneralLevelExists) {
-    console.log(errorHandlingData);
     if (!isOneLevelOfNesting) {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentModuleLevel,

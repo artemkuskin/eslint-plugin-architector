@@ -1,4 +1,4 @@
-const resultErrorMessage = require("../errors/resultErrorMessage");
+const getResultErrorMessage = require("../errors/resultErrorMessage");
 const getNameFolder = require("../helpers/serachByNameFolder/getNameFolder");
 
 
@@ -9,7 +9,7 @@ function validateIfImportIsAllowed({pathToCurrentModule, importDefinitionPath, l
 
   const moduleIsInRootDirectory = Boolean(getNameFolder(rootDirectory, pathToCurrentModule));
   if (moduleIsInRootDirectory) {
-    errorMessage = resultErrorMessage({
+    errorMessage = getResultErrorMessage({
       importDefinitionPath,
       pathToCurrentModule,
       rootDirectory,
