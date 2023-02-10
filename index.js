@@ -73,7 +73,7 @@ function a({ node, hierarchy, componentFolder, context }) {
   } catch {
     nodeValueRequire = null;
   }
-  console.log(nodeValueRequire);
+
   if (nodeValueRequire) {
     const fn = adaptingTheImportPathForLinux(context.getFilename());
     const nodeValue = nodeValueRequire;
