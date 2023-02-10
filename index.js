@@ -62,6 +62,7 @@ function v ({
     levelsConfiguration: hierarchy,
     rootDirectory: componentFolder,
   };
+  console.log(node);
   const error = validateHierarchy(params);
   if (error) {
     context.report(node, error);
