@@ -74,7 +74,8 @@ function a ({
   context
 }) {
   const fn = adaptingTheImportPathForLinux(context.getFilename());
-  const nodeValue = node.declarations[0].init.arguments[0].value;
+  const nodeValue = adaptingTheImportPathForLinux(node.declarations[0].init.arguments[0].value);
+  console.log(nodeValue);
   const params = {  
     pathToCurrentModule: fn,
     importDefinitionPath: nodeValue,
