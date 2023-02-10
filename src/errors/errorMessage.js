@@ -28,7 +28,7 @@ function getErrorMessage({
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
 
   if (nearestGeneralLevelExists) {
-    console.log(errorDetectionData);
+   // console.log(errorDetectionData);
     if (isOneLevelOfNesting) {
       errorMessage = getErrorWhenCurrentAndTargetAreInDifferentLevels({
         childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentModuleLevel,
