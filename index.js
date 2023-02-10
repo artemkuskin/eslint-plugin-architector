@@ -74,7 +74,7 @@ function a ({
   componentFolder,
   context
 }) {
-  if (node.declarations[0].init?.arguments[0])  {
+  if (node.declarations[0].init?.arguments[0].value)  {
     console.log(node.declarations[0].init?.arguments[0].value);
   }
   // const fn = adaptingTheImportPathForLinux(context.getFilename());
