@@ -32,11 +32,11 @@ module.exports.rules = {
           componentFolder,
           context
         }),
-        VariableDeclaration: (node)=> v({
-          node, hierarchy,
-          componentFolder,
-          context
-        }),
+        // VariableDeclaration: (node)=> v({
+        //   node, hierarchy,
+        //   componentFolder,
+        //   context
+        // }),
       };
       
       
@@ -62,7 +62,6 @@ function v ({
     levelsConfiguration: hierarchy,
     rootDirectory: componentFolder,
   };
-  console.log(context, node);
   const error = validateHierarchy(params);
   if (error) {
     context.report(node, error);
