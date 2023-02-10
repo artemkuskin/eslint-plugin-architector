@@ -32,11 +32,11 @@ module.exports.rules = {
           componentFolder,
           context
         }),
-        VariableDeclaration: (node)=> a({
+        VariableDeclaration: (node)=>  node.declarations[0].init.arguments[0].value ?  a({
           node, hierarchy,
           componentFolder,
           context
-        }),
+        }) : undefined
       };
       
       
