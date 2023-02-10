@@ -54,7 +54,7 @@ function v ({
   componentFolder,
   context
 }) {
-  console.log(node);
+ // console.log(node);
   const fn = adaptingTheImportPathForLinux(context.getFilename());
   const nodeValue = adaptingTheImportPathForLinux(node.source.value);
   const params = {
@@ -75,16 +75,16 @@ function a ({
   context
 }) {
   console.log(node);
-  const fn = adaptingTheImportPathForLinux(context.getFilename());
-  const nodeValue = adaptingTheImportPathForLinux(node.declarations[0].init.arguments[0].value);
-  const params = {  
-    pathToCurrentModule: fn,
-    importDefinitionPath: nodeValue,
-    levelsConfiguration: hierarchy,
-    rootDirectory: componentFolder,
-  };
-  const error = validateHierarchy(params);
-  if (error) {
-    context.report(node, error);
-  }
+  // const fn = adaptingTheImportPathForLinux(context.getFilename());
+  // const nodeValue = adaptingTheImportPathForLinux(node.declarations[0].init.arguments[0].value);
+  // const params = {  
+  //   pathToCurrentModule: fn,
+  //   importDefinitionPath: nodeValue,
+  //   levelsConfiguration: hierarchy,
+  //   rootDirectory: componentFolder,
+  // };
+  // const error = validateHierarchy(params);
+  // if (error) {
+  //   context.report(node, error);
+  // }
 }
