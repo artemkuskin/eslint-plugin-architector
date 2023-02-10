@@ -1,11 +1,11 @@
 const absolutePathToFile = require("../convertPath/absolutePathToFile");
 const PathToCurrentFileWithOutContent = require("../convertPath/pathToCurrentFileWithoutContent");
-module.exports = getLevelAlias;
+module.exports = getAliasesList;
 
-function getLevelAlias(rootDirectory, jsConfigFileContent) {
-  if (jsConfigFileContent) {
+function getAliasesList(rootDirectory, jsConfigAliases) {
+  if (jsConfigAliases) {
     const configurationTreeAlias = [];
-    const aliases = getAliases(jsConfigFileContent);
+    const aliases = getAliases(jsConfigAliases);
     for (let key in aliases) {
       configurationTreeAlias.push({
         key: PathToCurrentFileWithOutContent(aliases[key].name),
@@ -35,12 +35,12 @@ function absolutePathToAliasesByKey(aliases, rootDirectory) {
     .join("/");
 }
 
-function getAliases(jsConfigFileContent) {
+function getAliases(jsConfigAliases) {
   const aliases = [];
 
-  for (let aliasName in jsConfigFileContent.compilerOptions.paths) {
+  for (let aliasName in jsConfigAliases) {
     /* We access first element of array, because for now we support only aliases with one value. It can be multiple, see https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping. */
-    const aliasPath = jsConfigFileContent.compilerOptions.paths[aliasName][0];
+    const aliasPath = jsConfigAliases[aliasName][0];
     aliases.push({ path: aliasPath, name: aliasName });
   }
 

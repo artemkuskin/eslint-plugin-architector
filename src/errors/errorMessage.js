@@ -1,7 +1,14 @@
 const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/getDataForErrorDetection");
-module.exports = getResultErrorMessage;
+module.exports = getErrorMessage;
 
-function getResultErrorMessage({
+/**
+ * currentModuleLevel -> currentLevel
+ * targetModuleLevel -> targetLevel
+ * nearestGeneralLevel -> nearestGeneralLevel
+ * 
+ */
+
+function getErrorMessage({
   importDefinitionPath,
   pathToCurrentModule,
   rootDirectory,
@@ -10,33 +17,52 @@ function getResultErrorMessage({
 }) {
   let errorMessage = undefined;
 
-  const errorHandlingData = getDataForErrorDetection({
+  const errorDetectionData = getDataForErrorDetection({
     importDefinitionPath,
     pathToCurrentModule,
     rootDirectory,
     levelsConfigurationFile,
     levelsConfiguration,
   });
-  const { isOneLevelOfNesting, nearestGeneralLevel, targetModuleLevel, currentModuleLevel } = errorHandlingData;
+  const { isOneLevelOfNesting, nearestGeneralLevel, targetModuleLevel, currentModuleLevel } = errorDetectionData;
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
 
   if (nearestGeneralLevelExists) {
-    if (!isOneLevelOfNesting) {
+    if (isOneLevelOfNesting) {
+      errorMessage = getErrorWhenCurrentAndTargetAreInDifferentLevels({
+        childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentModuleLevel,
+        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetModuleLevel,
+      });
+      
+    } else {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentModuleLevel,
         childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetModuleLevel,
         nearestGeneralLevel,
-      });
-    } else {
-      errorMessage = getErrorWhenCurrentAndTargetModulesAreInDifferentLevels({
-        childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentModuleLevel,
-        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetModuleLevel,
       });
     }
   }
 
   return errorMessage;
 }
+
+function getErrorWhenCurrentAndTargetAreInDifferentLevels({
+  childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
+  childrenOfGeneralLevelWhereTargetModuleLevelLocated,
+}) {
+  const currentModuleLevelAboveTargetModuleLevel =
+    childrenOfGeneralLevelWhereCurrentModuleLevelLocated.index <
+    childrenOfGeneralLevelWhereTargetModuleLevelLocated.index;
+
+  let errorMessage = undefined;
+
+  if (currentModuleLevelAboveTargetModuleLevel) {
+    errorMessage = `It is not advisable to ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} in ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name}, since level ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} in the rules`;
+  }
+
+  return errorMessage;
+}
+
 
 function getErrorWhenCurrentAndTargetAreInTheSameLevel({
   childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
@@ -59,19 +85,3 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
   return errorMessage;
 }
 
-function getErrorWhenCurrentAndTargetModulesAreInDifferentLevels({
-  childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
-  childrenOfGeneralLevelWhereTargetModuleLevelLocated,
-}) {
-  const currentModuleLevelAboveTargetModuleLevel =
-    childrenOfGeneralLevelWhereCurrentModuleLevelLocated.index <
-    childrenOfGeneralLevelWhereTargetModuleLevelLocated.index;
-
-  let errorMessage = undefined;
-
-  if (currentModuleLevelAboveTargetModuleLevel) {
-    errorMessage = `It is not advisable to ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} in ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name}, since level ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} in the rules`;
-  }
-
-  return errorMessage;
-}

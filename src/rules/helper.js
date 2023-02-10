@@ -1,15 +1,19 @@
-const getResultErrorMessage = require("../errors/resultErrorMessage");
+const getErrorMessage = require("../errors/errorMessage");
 const getNameFolder = require("../helpers/serachByNameFolder/getNameFolder");
-
 
 module.exports = validateIfImportIsAllowed;
 
-function validateIfImportIsAllowed({pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory}) {
+function validateIfImportIsAllowed({
+  pathToCurrentModule, 
+  importDefinitionPath, 
+  levelsConfiguration, 
+  rootDirectory
+}) {
   let errorMessage = undefined;
 
   const moduleIsInRootDirectory = Boolean(getNameFolder(rootDirectory, pathToCurrentModule));
   if (moduleIsInRootDirectory) {
-    errorMessage = getResultErrorMessage({
+    errorMessage = getErrorMessage({
       importDefinitionPath,
       pathToCurrentModule,
       rootDirectory,

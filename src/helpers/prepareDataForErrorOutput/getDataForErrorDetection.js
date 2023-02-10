@@ -1,12 +1,12 @@
 const path = require("path");
-const getLevelAlias = require("../architectorTree/configurationTreeAleases");
+const getAliasesList = require("../architectorTree/configurationTreeAleases");
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
 const getArchitectureConfigurationTree = require("../architectorTree/getArchitectureConfigurationTree");
-const getAllTheDataAboutTheCurrentLevelAndTargetLevel = require("./getCurrentAndTargetLevel");
+const getDataAboutCurrentLevelAndTargetLevel = require("./getCurrentAndTargetLevel");
 const getAbsolutePathTo = require("./absolutePathTo");
 module.exports = getDataForErrorDetection;
 
-let jsConfigFileContent = undefined;
+let jsConfigAliases = undefined;
 
 function getDataForErrorDetection({
   importDefinitionPath,
@@ -15,61 +15,69 @@ function getDataForErrorDetection({
   levelsConfigurationFile,
   levelsConfiguration,
 }) {
-  if (jsConfigFileContent === undefined) {
-    setJsConfigFile();
+  if (jsConfigAliases === undefined) {
+    setJsConfigAliases();
   }
-
-  const targetModuleAlias = getLevelByKey(
-    getLevelAlias(rootDirectory, jsConfigFileContent),
-    getKeyAliases(importDefinitionPath)
-  );
+  
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfigurationFile,
     levelsConfiguration,
     rootDirectory
   );
-  const absolutePathToTargetModule = getAbsolutePathToTargetModule({
+  const absolutePathToTargetModuleFolder = getAbsolutePathToTargetModuleFolder({
     pathToCurrentModule,
     importDefinitionPath,
-    targetModuleAlias,
+    rootDirectory
   });
 
-  return getAllTheDataAboutTheCurrentLevelAndTargetLevel({
+  return getDataAboutCurrentLevelAndTargetLevel({
     pathToCurrentModule,
     importDefinitionPath,
     configurationTree,
-    absolutePathToTargetModule,
+    absolutePathToTargetModuleFolder,
     rootDirectory,
   });
 }
 
-function setJsConfigFile() {
+/**
+ * jsconfig can contain aliases
+ */
+function setJsConfigAliases() {
   try {
-    jsConfigFileContent = require(path.resolve("jsconfig.json"));
+    const jsconfig = require(path.resolve("jsconfig.json"));
+
+    if (jsconfig.compilerOptions.paths) {
+      jsConfigAliases = jsconfig.compilerOptions.paths;
+    }
   } catch {
-    jsConfigFileContent = null;
+    jsConfigAliases = null;
   }
 }
 
-function getAbsolutePathToTargetModule({ pathToCurrentModule, importDefinitionPath, targetModuleAlias }) {
-  let absolutePathToTargetModule;
+function getAbsolutePathToTargetModuleFolder({ pathToCurrentModule, importDefinitionPath, rootDirectory }) {
+  let absolutePathToTargetModuleFolder;
+
+  const targetModuleAlias = getLevelAlias(
+    getAliasesList(rootDirectory, jsConfigAliases),
+    getAliaseKey(importDefinitionPath)
+  );
 
   if (targetModuleAlias) {
-    absolutePathToTargetModule = targetModuleAlias.path;
+    absolutePathToTargetModuleFolder = targetModuleAlias.path;
   } else {
-    absolutePathToTargetModule = getPathToCurrentFileWithoutExtension(
+    absolutePathToTargetModuleFolder = getPathToCurrentFileWithoutExtension(
       getAbsolutePathTo(pathToCurrentModule, importDefinitionPath)
     );
   }
-  return absolutePathToTargetModule;
+  return absolutePathToTargetModuleFolder;
 }
 
-function getLevelByKey(configurationTree, key) {
+function getLevelAlias(configurationTree, aliasKey) {
   if (configurationTree) {
-    return configurationTree.find((elem) => elem.key === key);
+    return configurationTree.find((elem) => elem.key === aliasKey);
   }
 }
 
-function getKeyAliases(importDefinitionPath) {
+function getAliaseKey(importDefinitionPath) {
   return importDefinitionPath.split("/")[0];
 }

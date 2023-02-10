@@ -1,25 +1,25 @@
 const getModuleLevelByName = require("../serachByNameFolder/getModuleByName");
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
 const getAbsolutePathTo = require("./absolutePathTo");
-const getGeneralLevel = require("./getGeneralLevel");
+const getLowestGeneralLevel = require("./getLowestGeneralLevel");
 const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
 const getNameFolder = require("../serachByNameFolder/getNameFolder");
-module.exports = getAllTheDataAboutTheCurrentLevelAndTargetLevel;
+module.exports = getDataAboutTheCurrentLevelAndTargetLevel;
 
-function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
+function getDataAboutTheCurrentLevelAndTargetLevel({
   pathToCurrentModule,
   importDefinitionPath,
   configurationTree,
-  absolutePathToTargetModule,
+  absolutePathToTargetModuleFolder,
   rootDirectory,
 }) {
-  const rootDirectoryTargetLevelExists = Boolean(getNameFolder(rootDirectory, absolutePathToTargetModule));
+  const rootDirectoryTargetLevelExists = Boolean(getNameFolder(rootDirectory, absolutePathToTargetModuleFolder));
   if (rootDirectoryTargetLevelExists) {
-    const generalLevels = getGeneralLevels(absolutePathToTargetModule, pathToCurrentModule);
+    const generalLevels = getGeneralLevels(absolutePathToTargetModuleFolder, pathToCurrentModule);
     const modulesLevelName = getCurrentAndTargetFolderName({
       generalLevels,
       pathToCurrentModule,
-      absolutePathToTargetModule,
+      absolutePathToTargetModuleFolder,
     });
     const targetModuleLevel = getModuleLevelByName(configurationTree, modulesLevelName.targetName);
     const currentModuleLevel = getModuleLevelByName(configurationTree, modulesLevelName.currentName);
@@ -37,7 +37,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
         generalLevels,
         pathToCurrentModule,
         configurationTree,
-        absolutePathToTargetModule,
+        absolutePathToTargetModuleFolder,
       });
     }
 
@@ -56,7 +56,7 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
         generalLevels,
         configurationTree,
         currentModuleLevel,
-        absolutePathToTargetModule,
+        absolutePathToTargetModuleFolder,
         rootDirectory,
         pathToCurrentModule,
         importDefinitionPath,
@@ -71,7 +71,10 @@ function getAllTheDataAboutTheCurrentLevelAndTargetLevel({
     };
   }
   return {
+    currentModuleLevel: undefined,
+    targetModuleLevel: undefined,
     nearestGeneralLevel: undefined,
+    isOneLevelOfNesting: undefined,
   };
 }
 
@@ -79,7 +82,7 @@ function getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAnd
   generalLevels,
   pathToCurrentModule,
   configurationTree,
-  absolutePathToTargetModule,
+  absolutePathToTargetModuleFolder,
 }) {
   const currentModuleLevel = getModuleLevel({
     generalLevels,
@@ -89,7 +92,7 @@ function getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAnd
 
   const targetModuleLevel = getModuleLevel({
     generalLevels,
-    path: absolutePathToTargetModule, //getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
+    path: absolutePathToTargetModuleFolder, //getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
     configurationTree,
   });
 
@@ -148,14 +151,14 @@ function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTre
   generalLevels,
   configurationTree,
   currentModuleLevel,
-  absolutePathToTargetModule,
+  absolutePathToTargetModuleFolder,
   rootDirectory,
   pathToCurrentModule,
   importDefinitionPath,
 }) {
   let levelsModule = getModuleLevel({
     generalLevels,
-    path: absolutePathToTargetModule,
+    path: absolutePathToTargetModuleFolder,
     configurationTree,
   });
 
@@ -183,24 +186,33 @@ function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTre
   };
 }
 
+/**
+ * находим все общие уровни
+ */
 function getGeneralLevels(targetModulePath, currentModulePath) {
   const targetModulPathArr = targetModulePath.split("/");
   const currentModulePatharr = getPathToCurrentFileWithoutExtension(currentModulePath).split("/");
   const generalLevels = targetModulPathArr.filter((x) => currentModulePatharr.indexOf(x) !== -1);
   return generalLevels;
-} //находим все общие уровни
+} 
 
-function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, absolutePathToTargetModule }) {
+/**
+ * находим текущий и целеыой уровни по первому общему эелементу
+ */
+function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, absolutePathToTargetModuleFolder }) {
   const current = setNameModuleLevel(
-    getGeneralLevel(generalLevels),
+    getLowestGeneralLevel(generalLevels),
     getPathToCurrentFileWithoutExtension(pathToCurrentModule)
   );
-  const target = setNameModuleLevel(getGeneralLevel(generalLevels), absolutePathToTargetModule);
+  const target = setNameModuleLevel(getLowestGeneralLevel(generalLevels), absolutePathToTargetModuleFolder);
   return { currentName: current, targetName: target };
-} //находим текущий и целеыой уровни по первому общему эелементу
+} 
 
+/**
+ * Здесь мы ищем первый уровень для модуля который указан в конфиге
+ */
 function getModuleLevel({ generalLevels, path, configurationTree }) {
-  const nameModuleLevel = setNameModuleLevel(getGeneralLevel(generalLevels), path);
+  const nameModuleLevel = setNameModuleLevel(getLowestGeneralLevel(generalLevels), path);
   const moduleLevel = getModuleLevelByName(configurationTree, nameModuleLevel);
 
   if (moduleLevel === undefined && generalLevels.length !== 0) {
@@ -209,7 +221,7 @@ function getModuleLevel({ generalLevels, path, configurationTree }) {
   } else {
     return { ...moduleLevel };
   }
-} //Здесь мы ищем первый уровень для модуля который указан в конфиге
+}
 
 function getNearestName(targetModuleLevel, currentModuleLevel) {
   if (targetModuleLevel && currentModuleLevel) {
@@ -219,6 +231,9 @@ function getNearestName(targetModuleLevel, currentModuleLevel) {
   }
 }
 
+/**
+ *  таргет и каррент на одном уровне вложенности?
+ */
 function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetModuleLevel, currentModuleLevel) {
   if (targetModuleLevel && currentModuleLevel) {
     return (
@@ -226,4 +241,4 @@ function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetModul
       getPathToCurrentFileWithoutExtension(currentModuleLevel.architectorPath)
     );
   }
-} //таргет и каррент на одном уровне вложенности?
+}
