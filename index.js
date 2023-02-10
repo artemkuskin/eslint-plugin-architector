@@ -36,13 +36,14 @@ module.exports.rules = {
             levelsConfiguration: hierarchy,
             rootDirectory: componentFolder,
           };
-          console.log(context, context.options);
+          console.log(context, context.options.file, node);
           const error = validateHierarchy(params);
           if (error) {
             context.report(node, error);
           }
         },
       };
+      
     },
   },
 };
