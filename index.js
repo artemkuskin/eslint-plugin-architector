@@ -54,6 +54,7 @@ function v ({
   componentFolder,
   context
 }) {
+  console.log(node);
   const fn = adaptingTheImportPathForLinux(context.getFilename());
   const nodeValue = adaptingTheImportPathForLinux(node.source.value);
   const params = {
@@ -73,9 +74,9 @@ function a ({
   componentFolder,
   context
 }) {
+  console.log(node);
   const fn = adaptingTheImportPathForLinux(context.getFilename());
   const nodeValue = adaptingTheImportPathForLinux(node.declarations[0].init.arguments[0].value);
-  console.log(nodeValue);
   const params = {  
     pathToCurrentModule: fn,
     importDefinitionPath: nodeValue,
