@@ -27,12 +27,12 @@ module.exports.rules = {
       const hierarchy = context.options[0] || DEFAULT_HIERARCHY;
       const componentFolder = context.options[1] || DEFAULT_COMPONENTS_FOLDER;
       return {
-        // ImportDeclaration: (node)=> v({
-        //   node, hierarchy,
-        //   componentFolder,
-        //   context
-        // }),
-        VariableDeclaration: (node)=> v({
+        ImportDeclaration: (node)=> v({
+          node, hierarchy,
+          componentFolder,
+          context
+        }),
+        VariableDeclaration: (node)=> a({
           node, hierarchy,
           componentFolder,
           context
@@ -62,7 +62,25 @@ function v ({
     levelsConfiguration: hierarchy,
     rootDirectory: componentFolder,
   };
-  console.log(node);
+  const error = validateHierarchy(params);
+  if (error) {
+    context.report(node, error);
+  }
+}
+
+function a ({
+  node, hierarchy,
+  componentFolder,
+  context
+}) {
+  const fn = adaptingTheImportPathForLinux(context.getFilename());
+  const nodeValue = adaptingTheImportPathForLinux(node.declarations[0].init.value);
+  const params = {
+    pathToCurrentModule: fn,
+    importDefinitionPath: nodeValue,
+    levelsConfiguration: hierarchy,
+    rootDirectory: componentFolder,
+  };
   const error = validateHierarchy(params);
   if (error) {
     context.report(node, error);
