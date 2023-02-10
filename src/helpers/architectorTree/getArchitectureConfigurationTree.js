@@ -5,28 +5,32 @@ const architectureConfigTree = [];
 module.exports = getArchitectureConfigurationTree;
 
 function getArchitectureConfigurationTree(architectureConfigRules, levelsConfiguration, rootDirectory) {
+  const rootModuleLevel = {
+    name: rootDirectory,
+    index: 0,
+    parent: "",
+    architectorPath: rootDirectory,
+  };
+
   for (let key in architectureConfigRules) {
-    const rootModuleLevel = {
-      name: rootDirectory,
-      index: 0,
-      parent: "",
-      architectorPath: rootDirectory,
-    };
-    const lastParent = getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).parent;
+    const firstParentLevel = getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).parent;
+    const architectPath =
+      rootDirectory +
+      "/" +
+      getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).archectorPath;
     architectureConfigTree.unshift(rootModuleLevel);
     architectureConfigTree.push({
       name: architectureConfigRules[key].level,
       index: key,
-      parent: lastParent || rootDirectory,
+      parent: firstParentLevel || rootDirectory,
       children: architectureConfigRules[key].children,
-      architectorPath:
-        rootDirectory +
-        "/" +
-        getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).archectorPath,
+      architectorPath: architectPath,
     });
+
     if (architectureConfigRules[key].children.length !== 0) {
       getArchitectureConfigurationTree(architectureConfigRules[key].children, levelsConfiguration, rootDirectory);
     }
+
   }
   return resultArchitectureFree(architectureConfigTree);
 }

@@ -27,12 +27,13 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
     const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
     const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
+    console.log(1);
     const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
       targetModuleLevel,
       currentModuleLevel
     );
-
     if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
+      console.log(2);
       return getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
         generalLevels,
         pathToCurrentModule,
@@ -42,6 +43,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     }
 
     if (currentModuleLevelNotSpecifiedInTheRules) {
+      console.log(3);
       return getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree({
         generalLevels,
         pathToCurrentModule,
@@ -52,6 +54,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     }
 
     if (targetModuleLevelNotSpecifiedInTheRules) {
+      console.log(4);
       return getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
         generalLevels,
         configurationTree,

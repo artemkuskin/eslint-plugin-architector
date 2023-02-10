@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>66/66</span>
+                <span class='fraction'>71/71</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>65/65</span>
+                <span class='fraction'>70/70</span>
             </div>
         
             
@@ -301,7 +301,11 @@
 <a name='L242'></a><a href='#L242'>242</a>
 <a name='L243'></a><a href='#L243'>243</a>
 <a name='L244'></a><a href='#L244'>244</a>
-<a name='L245'></a><a href='#L245'>245</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L245'></a><a href='#L245'>245</a>
+<a name='L246'></a><a href='#L246'>246</a>
+<a name='L247'></a><a href='#L247'>247</a>
+<a name='L248'></a><a href='#L248'>248</a>
+<a name='L249'></a><a href='#L249'>249</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -331,11 +335,12 @@
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -346,6 +351,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -355,6 +361,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -421,6 +428,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -517,7 +525,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">41x</span>
 <span class="cline-any cline-yes">41x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">41x</span>
 <span class="cline-any cline-yes">41x</span>
 <span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-yes">19x</span>
@@ -574,12 +582,13 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
     const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentModuleLevel === undefined);
     const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
+    console.log(1);
     const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
       targetModuleLevel,
       currentModuleLevel
     );
-&nbsp;
     if (currentModuleLevelNotSpecifiedInTheRules &amp;&amp; targetModuleLevelNotSpecifiedInTheRules) {
+      console.log(2);
       return getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
         generalLevels,
         pathToCurrentModule,
@@ -589,6 +598,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     }
 &nbsp;
     if (currentModuleLevelNotSpecifiedInTheRules) {
+      console.log(3);
       return getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree({
         generalLevels,
         pathToCurrentModule,
@@ -599,6 +609,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     }
 &nbsp;
     if (targetModuleLevelNotSpecifiedInTheRules) {
+      console.log(4);
       return getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
         generalLevels,
         configurationTree,
@@ -669,6 +680,7 @@ function getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTr
     path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
     configurationTree,
   });
+  //console.log(getPathToCurrentFileWithoutExtension(pathToCurrentModule));
 &nbsp;
   const levelsModuleIsRoorDirectory = Boolean(levelsModule.name === rootDirectory);
   if (levelsModuleIsRoorDirectory) {
@@ -761,7 +773,7 @@ function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, abs
 function getModuleLevel({ generalLevels, path, configurationTree }) {
   const nameModuleLevel = setNameModuleLevel(getLowestGeneralLevel(generalLevels), path);
   const moduleLevel = getModuleLevelByName(configurationTree, nameModuleLevel);
-&nbsp;
+console.log(nameModuleLevel, moduleLevel);
   if (moduleLevel === undefined &amp;&amp; generalLevels.length !== 0) {
     const result = generalLevels.slice(0, generalLevels.length - 1);
     return getModuleLevel({ generalLevels: result, path, configurationTree });
@@ -796,7 +808,7 @@ function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetModul
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Feb 10 2023 12:18:36 GMT+0300 (Москва, стандартное время)
+                at Fri Feb 10 2023 14:50:09 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>

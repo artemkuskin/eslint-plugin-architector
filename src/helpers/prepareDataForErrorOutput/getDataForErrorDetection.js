@@ -24,6 +24,7 @@ function getDataForErrorDetection({
     levelsConfiguration,
     rootDirectory
   );
+
   const absolutePathToTargetModuleFolder = getAbsolutePathToTargetModuleFolder({
     pathToCurrentModule,
     importDefinitionPath,
