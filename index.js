@@ -74,7 +74,7 @@ function a ({
   componentFolder,
   context
 }) {
-  console.log(node.declarations[0].init.arguments[0].value);
+  console.log(node.declarations[0].init.arguments.value);
   // const fn = adaptingTheImportPathForLinux(context.getFilename());
   // const nodeValue = adaptingTheImportPathForLinux(node.declarations[0].init.arguments[0].value);
   // const params = {  
