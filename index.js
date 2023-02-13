@@ -52,29 +52,29 @@ function adaptingTheImportPathForLinux(path) {
 }
 
 function ExpressionStatement({ node, hierarchy, componentFolder, context }) {
-  // if (node.expression.caller.name === "require") {
-  let nodeValueRequire = undefined;
-  try {
-    nodeValueRequire = node.expression.arguments[0].value;
-  } catch {
-    nodeValueRequire = null;
-  }
+  if (node.expression.caller.name === "require") {
+    let nodeValueRequire = undefined;
+    try {
+      nodeValueRequire = node.expression.arguments[0].value;
+    } catch {
+      nodeValueRequire = null;
+    }
 
-  if (nodeValueRequire) {
-    const fn = adaptingTheImportPathForLinux(context.getFilename());
-    const nodeValue = nodeValueRequire;
-    const params = {
-      pathToCurrentModule: fn,
-      importDefinitionPath: nodeValue,
-      levelsConfiguration: hierarchy,
-      rootDirectory: componentFolder,
-    };
-    const error = validateHierarchy(params);
-    if (error) {
-      context.report(node, error);
+    if (nodeValueRequire) {
+      const fn = adaptingTheImportPathForLinux(context.getFilename());
+      const nodeValue = nodeValueRequire;
+      const params = {
+        pathToCurrentModule: fn,
+        importDefinitionPath: nodeValue,
+        levelsConfiguration: hierarchy,
+        rootDirectory: componentFolder,
+      };
+      const error = validateHierarchy(params);
+      if (error) {
+        context.report(node, error);
+      }
     }
   }
-  //}
 }
 
 function ImportDeclaration({ node, hierarchy, componentFolder, context }) {
@@ -94,7 +94,7 @@ function ImportDeclaration({ node, hierarchy, componentFolder, context }) {
 }
 
 function VariableDeclaration({ node, hierarchy, componentFolder, context }) {
-  // if (node.node.declarations[0].id.name) {
+  // if (node.declarations[0].id.name) {
   let nodeValueRequire = undefined;
   try {
     nodeValueRequire = node.declarations[0].init.arguments[0].value;
