@@ -12,9 +12,10 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       parent: "",
       architectorPath: rootDirectory,
     };
-    const architectorPath = rootDirectory + "/" + getParentAndarchitecturalPathThisNode(levelsConfiguration.file, architectureConfigRules[index].level).architectural;
     const levelName = architectureConfigRules[index].level;
-    const childrenExist = Boolean(architectureConfigRules[index].children.length !== 0);
+    const architectorPath =
+      rootDirectory + "/" + getParentAndarchitecturalPathThisNode(levelsConfiguration.file, levelName).architectural;
+    const childrenExist = Boolean(getQuantityChildren(architectureConfigRules[index]) !== 0);
 
     architectureConfigTree.unshift(rootModuleLevel);
     architectureConfigTree.push({
@@ -22,15 +23,14 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       index: index,
       architectorPath: architectorPath,
     });
-    
     if (childrenExist) {
       getArchitectureConfigurationTree(architectureConfigRules[index].children, levelsConfiguration, rootDirectory);
     }
   }
-  return resultArchitectureFree(architectureConfigTree);
+  return getResultArchitectureFree(architectureConfigTree);
 }
 
-function resultArchitectureFree(architectureConfigTree) {
+function getResultArchitectureFree(architectureConfigTree) {
   let resultArchitectureFree = architectureConfigTree.reduce(
     (acc, file) => {
       if (acc.map[file.name]) return acc;
@@ -62,4 +62,8 @@ function getParentAndarchitecturalPathThisNode(dataset, nodeLevel) {
   });
 
   return { parent: parents[parents.length - 2], architectural: parents.join("/") };
+}
+
+function getQuantityChildren(architectureConfigRules) {
+  return architectureConfigRules.children.length;
 }

@@ -18,7 +18,7 @@ function getDataForErrorDetection({
   if (jsConfigAliases === undefined) {
     setJsConfigAliases();
   }
-  
+
   const configurationTree = getArchitectureConfigurationTree(
     levelsConfigurationFile,
     levelsConfiguration,
@@ -28,7 +28,7 @@ function getDataForErrorDetection({
   const absolutePathToTargetModuleFolder = getAbsolutePathToTargetModuleFolder({
     pathToCurrentModule,
     importDefinitionPath,
-    rootDirectory
+    rootDirectory,
   });
 
   return getDataAboutCurrentLevelAndTargetLevel({

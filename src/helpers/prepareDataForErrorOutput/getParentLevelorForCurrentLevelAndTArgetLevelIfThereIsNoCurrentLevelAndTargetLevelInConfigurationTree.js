@@ -23,8 +23,8 @@ function getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAnd
     configurationTree,
   });
 
-  const nearestModuleLevelName = getNearestName(targetLevel, currentLevel);
-  const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
+  const nearestLevelName = getNearestName(targetLevel, currentLevel);
+  const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestLevelName);
   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetLevel, currentLevel);
   return {
     currentLevel: currentLevel,
