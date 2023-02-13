@@ -12,18 +12,16 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       parent: "",
       architectorPath: rootDirectory,
     };
-    const lastParent = getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).parent;
+    //const lastParent = getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).parent;
+    const architectorPath = rootDirectory + "/" + getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).archectorPath;
+
     architectureConfigTree.unshift(rootModuleLevel);
     architectureConfigTree.push({
       name: architectureConfigRules[key].level,
       index: key,
-      parent: lastParent || rootDirectory,
-      children: architectureConfigRules[key].children,
-      architectorPath:
-        rootDirectory +
-        "/" +
-        getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).archectorPath,
+      architectorPath: architectorPath,
     });
+    
     if (architectureConfigRules[key].children.length !== 0) {
       getArchitectureConfigurationTree(architectureConfigRules[key].children, levelsConfiguration, rootDirectory);
     }
@@ -54,8 +52,8 @@ function getParentThisNode(dataset, nodeLevel) {
     let rootMain = tree.parse(element);
     rootMain.walk(function (node) {
       if (node.model.level === nodeLevel) {
-        let x = node.getPath();
-        x.forEach((element) => {
+        let path = node.getPath();
+        path.forEach((element) => {
           parents.push(element.model.level);
         });
       }

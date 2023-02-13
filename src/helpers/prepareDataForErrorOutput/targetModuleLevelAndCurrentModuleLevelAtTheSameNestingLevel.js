@@ -5,9 +5,10 @@ module.exports = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel;
  */
 function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetLevel, currentLevel) {
   if (targetLevel && currentLevel) {
-    return (
+    const pathEqual = Boolean(
       getPathToCurrentFileWithoutExtension(targetLevel.architectorPath) ===
-      getPathToCurrentFileWithoutExtension(currentLevel.architectorPath)
+        getPathToCurrentFileWithoutExtension(currentLevel.architectorPath)
     );
+    return pathEqual;
   }
 }
