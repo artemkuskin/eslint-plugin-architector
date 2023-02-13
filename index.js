@@ -34,6 +34,7 @@ module.exports.rules = {
             componentFolder,
             context,
           }),
+        AwaitExpression: (node) => AwaitExpression({ node, hierarchy, componentFolder, context }),
         VariableDeclaration: (node) =>
           VariableDeclaration({
             node,
@@ -48,7 +49,6 @@ module.exports.rules = {
             componentFolder,
             context,
           }),
-        AwaitExpression: (node) => AwaitExpression({ node, hierarchy, componentFolder, context }),
       };
     },
   },
