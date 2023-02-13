@@ -61,12 +61,13 @@ function adaptingTheImportPathForLinux(path) {
 function AwaitExpression({ node, hierarchy, componentFolder, context }) {
   let nodeValueRequire = undefined;
   try {
-    nodeValueRequire = node.body[0].expression.argument.source.value;
+    nodeValueRequire = node.expression.argument.source.value;
   } catch {
     nodeValueRequire = null;
   }
 
   if (nodeValueRequire) {
+    console.log(nodeValueRequire);
     const fileName = adaptingTheImportPathForLinux(context.getFilename());
     const nodeValue = nodeValueRequire;
     const params = {
