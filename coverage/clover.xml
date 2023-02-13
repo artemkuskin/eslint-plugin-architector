@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676296225348" clover="3.2.0">
-  <project timestamp="1676296225349" name="All files">
-    <metrics statements="229" coveredstatements="228" conditionals="54" coveredconditionals="50" methods="42" coveredmethods="42" elements="325" coveredelements="320" complexity="0" loc="229" ncloc="229" packages="6" files="20" classes="20"/>
+<coverage generated="1676296315989" clover="3.2.0">
+  <project timestamp="1676296315989" name="All files">
+    <metrics statements="228" coveredstatements="227" conditionals="54" coveredconditionals="50" methods="41" coveredmethods="41" elements="323" coveredelements="318" complexity="0" loc="228" ncloc="228" packages="6" files="20" classes="20"/>
     <package name="errors">
       <metrics statements="23" coveredstatements="23" conditionals="10" coveredconditionals="10" methods="3" coveredmethods="3"/>
       <file name="errorMessage.js" path="/home/artem/eslint-plagin-architector/src/errors/errorMessage.js">
@@ -278,21 +278,20 @@
       </file>
     </package>
     <package name="helpers.serachByNameFolder">
-      <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="getModuleByName.js" path="/home/artem/eslint-plagin-architector/src/helpers/serachByNameFolder/getModuleByName.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="2" count="645" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
       </file>
       <file name="getNameFolder.js" path="/home/artem/eslint-plagin-architector/src/helpers/serachByNameFolder/getNameFolder.js">
-        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="2" count="104" type="stmt"/>
+        <line num="4" count="104" type="stmt"/>
         <line num="5" count="104" type="stmt"/>
-        <line num="6" count="104" type="stmt"/>
-        <line num="8" count="17" type="stmt"/>
-        <line num="11" count="104" type="stmt"/>
-        <line num="12" count="104" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="7" count="17" type="stmt"/>
+        <line num="10" count="104" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
       </file>
     </package>
     <package name="rules">
