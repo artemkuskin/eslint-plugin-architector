@@ -28,20 +28,20 @@ module.exports.rules = {
       const componentFolder = context.options[1] || DEFAULT_COMPONENTS_FOLDER;
       return {
         ImportDeclaration: (node) =>
-          v({
+          ImportDeclaration({
             node,
             hierarchy,
             componentFolder,
             context,
           }),
         VariableDeclaration: (node) =>
-          a({
+          VariableDeclaration({
             node,
             hierarchy,
             componentFolder,
             context,
           }),
-        ExpressionStatement: (node) => dsa({ node, hierarchy, componentFolder, context }),
+        ExpressionStatement: (node) => ExpressionStatement({ node, hierarchy, componentFolder, context }),
       };
     },
   },
@@ -51,31 +51,33 @@ function adaptingTheImportPathForLinux(path) {
   return path.split("\\").join("/");
 }
 
-function dsa({ node, hierarchy, componentFolder, context }) {
-  let nodeValueRequire = undefined;
-  try {
-    nodeValueRequire = node.expression.arguments[0].value;
-  } catch {
-    nodeValueRequire = null;
-  }
+function ExpressionStatement({ node, hierarchy, componentFolder, context }) {
+  if (node.caller.name === "require") {
+    let nodeValueRequire = undefined;
+    try {
+      nodeValueRequire = node.arguments[0].value;
+    } catch {
+      nodeValueRequire = null;
+    }
 
-  if (nodeValueRequire) {
-    const fn = adaptingTheImportPathForLinux(context.getFilename());
-    const nodeValue = nodeValueRequire;
-    const params = {
-      pathToCurrentModule: fn,
-      importDefinitionPath: nodeValue,
-      levelsConfiguration: hierarchy,
-      rootDirectory: componentFolder,
-    };
-    const error = validateHierarchy(params);
-    if (error) {
-      context.report(node, error);
+    if (nodeValueRequire) {
+      const fn = adaptingTheImportPathForLinux(context.getFilename());
+      const nodeValue = nodeValueRequire;
+      const params = {
+        pathToCurrentModule: fn,
+        importDefinitionPath: nodeValue,
+        levelsConfiguration: hierarchy,
+        rootDirectory: componentFolder,
+      };
+      const error = validateHierarchy(params);
+      if (error) {
+        context.report(node, error);
+      }
     }
   }
 }
 
-function v({ node, hierarchy, componentFolder, context }) {
+function ImportDeclaration({ node, hierarchy, componentFolder, context }) {
   // console.log(node);
   const fn = adaptingTheImportPathForLinux(context.getFilename());
   const nodeValue = adaptingTheImportPathForLinux(node.source.value);
@@ -91,26 +93,28 @@ function v({ node, hierarchy, componentFolder, context }) {
   }
 }
 
-function a({ node, hierarchy, componentFolder, context }) {
-  let nodeValueRequire = undefined;
-  try {
-    nodeValueRequire = node.declarations[0].init.arguments[0].value;
-  } catch {
-    nodeValueRequire = null;
-  }
+function VariableDeclaration({ node, hierarchy, componentFolder, context }) {
+  if (node.node.declarations[0].id.name) {
+    let nodeValueRequire = undefined;
+    try {
+      nodeValueRequire = node.declarations[0].init.arguments[0].value;
+    } catch {
+      nodeValueRequire = null;
+    }
 
-  if (nodeValueRequire) {
-    const fn = adaptingTheImportPathForLinux(context.getFilename());
-    const nodeValue = nodeValueRequire;
-    const params = {
-      pathToCurrentModule: fn,
-      importDefinitionPath: nodeValue,
-      levelsConfiguration: hierarchy,
-      rootDirectory: componentFolder,
-    };
-    const error = validateHierarchy(params);
-    if (error) {
-      context.report(node, error);
+    if (nodeValueRequire) {
+      const fn = adaptingTheImportPathForLinux(context.getFilename());
+      const nodeValue = nodeValueRequire;
+      const params = {
+        pathToCurrentModule: fn,
+        importDefinitionPath: nodeValue,
+        levelsConfiguration: hierarchy,
+        rootDirectory: componentFolder,
+      };
+      const error = validateHierarchy(params);
+      if (error) {
+        context.report(node, error);
+      }
     }
   }
 
