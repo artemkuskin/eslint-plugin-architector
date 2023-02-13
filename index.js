@@ -84,7 +84,7 @@ function AwaitExpression({ node, hierarchy, componentFolder, context }) {
 }
 
 function ExpressionStatement({ node, hierarchy, componentFolder, context }) {
-  if (node.expression.callee.name === "require") {
+  if (node.expression?.callee?.name === "require") {
     let nodeValueRequire = undefined;
     try {
       nodeValueRequire = node.expression.arguments[0].value;
@@ -125,7 +125,7 @@ function ImportDeclaration({ node, hierarchy, componentFolder, context }) {
 }
 
 function VariableDeclaration({ node, hierarchy, componentFolder, context }) {
-  if (node.declarations[0].id.name) {
+  if (node.declarations[0].id?.name) {
     let nodeValueRequire = undefined;
     try {
       nodeValueRequire = node.declarations[0].init.arguments[0].value;
