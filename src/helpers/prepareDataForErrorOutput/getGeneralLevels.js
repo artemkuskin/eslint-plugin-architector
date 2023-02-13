@@ -1,7 +1,6 @@
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
 
 module.exports = getGeneralLevels;
-
 /**
  * находим все общие уровни
  */

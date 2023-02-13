@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676288166858" clover="3.2.0">
-  <project timestamp="1676288166858" name="All files">
+<coverage generated="1676289105910" clover="3.2.0">
+  <project timestamp="1676289105911" name="All files">
     <metrics statements="221" coveredstatements="220" conditionals="56" coveredconditionals="52" methods="40" coveredmethods="40" elements="317" coveredelements="312" complexity="0" loc="221" ncloc="221" packages="6" files="20" classes="20"/>
     <package name="errors">
       <metrics statements="23" coveredstatements="23" conditionals="10" coveredconditionals="10" methods="3" coveredmethods="3"/>
@@ -119,7 +119,7 @@
         <line num="14" count="20" type="stmt"/>
       </file>
       <file name="getCurrentAndTargetLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/getCurrentAndTargetLevel.js">
-        <metrics statements="33" coveredstatements="33" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
+        <metrics statements="29" coveredstatements="29" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -130,29 +130,25 @@
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="23" count="21" type="stmt"/>
-        <line num="24" count="21" type="cond" truecount="2" falsecount="0"/>
-        <line num="25" count="20" type="stmt"/>
-        <line num="26" count="20" type="stmt"/>
+        <line num="19" count="21" type="stmt"/>
+        <line num="20" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="20" type="stmt"/>
+        <line num="22" count="20" type="stmt"/>
+        <line num="27" count="20" type="stmt"/>
+        <line num="28" count="20" type="stmt"/>
+        <line num="29" count="20" type="stmt"/>
+        <line num="30" count="20" type="stmt"/>
         <line num="31" count="20" type="stmt"/>
         <line num="32" count="20" type="stmt"/>
         <line num="33" count="20" type="stmt"/>
-        <line num="34" count="20" type="stmt"/>
-        <line num="35" count="20" type="stmt"/>
-        <line num="36" count="20" type="stmt"/>
-        <line num="37" count="20" type="stmt"/>
-        <line num="41" count="20" type="cond" truecount="4" falsecount="0"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="50" count="19" type="cond" truecount="2" falsecount="0"/>
-        <line num="51" count="10" type="stmt"/>
-        <line num="59" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="60" count="3" type="stmt"/>
-        <line num="71" count="6" type="stmt"/>
-        <line num="78" count="1" type="stmt"/>
+        <line num="35" count="20" type="cond" truecount="4" falsecount="0"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="44" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="10" type="stmt"/>
+        <line num="53" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="65" count="6" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
       </file>
       <file name="getDataForErrorDetection.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/getDataForErrorDetection.js">
         <metrics statements="26" coveredstatements="25" conditionals="8" coveredconditionals="6" methods="6" coveredmethods="6"/>
@@ -187,10 +183,10 @@
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
+        <line num="8" count="20" type="stmt"/>
         <line num="9" count="20" type="stmt"/>
-        <line num="10" count="20" type="stmt"/>
-        <line num="11" count="137" type="stmt"/>
-        <line num="12" count="20" type="stmt"/>
+        <line num="10" count="137" type="stmt"/>
+        <line num="11" count="20" type="stmt"/>
       </file>
       <file name="getLowestGeneralLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/getLowestGeneralLevel.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -211,10 +207,14 @@
         <line num="16" count="16" type="stmt"/>
       </file>
       <file name="getNearestName.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/getNearestName.js">
-        <metrics statements="3" coveredstatements="3" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="34" type="cond" truecount="4" falsecount="0"/>
-        <line num="5" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="20" type="stmt"/>
+        <line num="6" count="20" type="stmt"/>
+        <line num="7" count="20" type="stmt"/>
+        <line num="11" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="20" type="stmt"/>
       </file>
       <file name="getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree.js">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
