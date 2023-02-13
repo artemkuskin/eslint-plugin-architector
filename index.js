@@ -77,10 +77,10 @@ function awaitExpression({ node, hierarchy, componentFolder, context }) {
   }
 
   if (nodeValue) {
-    const fileName = adaptingTheImportPathForLinux(context.getFilename());
+    const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
     const nodeValueName = nodeValue;
     const params = {
-      pathToCurrentModule: fileName,
+      pathToCurrentModule: pathToCurrentFile,
       importDefinitionPath: nodeValueName,
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
@@ -94,7 +94,7 @@ function awaitExpression({ node, hierarchy, componentFolder, context }) {
 
 /**
  * function works with require without assigning to a variable
- *
+ * node.callee.name = transaction name
  */
 function expressionStatement({ node, hierarchy, componentFolder, context }) {
   const nameOperationIsRequire = node.callee?.name === "require";
@@ -107,10 +107,10 @@ function expressionStatement({ node, hierarchy, componentFolder, context }) {
     }
 
     if (nodeValue) {
-      const fileName = adaptingTheImportPathForLinux(context.getFilename());
+      const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
       const nodeValueName = nodeValue;
       const params = {
-        pathToCurrentModule: fileName,
+        pathToCurrentModule: pathToCurrentFile,
         importDefinitionPath: nodeValueName,
         levelsConfiguration: hierarchy,
         rootDirectory: componentFolder,
@@ -128,10 +128,10 @@ function expressionStatement({ node, hierarchy, componentFolder, context }) {
  */
 
 function importDeclaration({ node, hierarchy, componentFolder, context }) {
-  const fileName = adaptingTheImportPathForLinux(context.getFilename());
+  const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
   const nodeValueName = adaptingTheImportPathForLinux(node.source.value);
   const params = {
-    pathToCurrentModule: fileName,
+    pathToCurrentModule: pathToCurrentFile,
     importDefinitionPath: nodeValueName,
     levelsConfiguration: hierarchy,
     rootDirectory: componentFolder,
@@ -157,10 +157,10 @@ function variableDeclaration({ node, hierarchy, componentFolder, context }) {
     }
 
     if (nodeValue) {
-      const fileName = adaptingTheImportPathForLinux(context.getFilename());
+      const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
       const nodeValueName = nodeValue;
       const params = {
-        pathToCurrentModule: fileName,
+        pathToCurrentModule: pathToCurrentFile,
         importDefinitionPath: nodeValueName,
         levelsConfiguration: hierarchy,
         rootDirectory: componentFolder,
