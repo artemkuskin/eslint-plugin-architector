@@ -34,7 +34,7 @@ module.exports.rules = {
             componentFolder,
             context,
           }),
-        AwaitExpression: (node) => AwaitExpression({ node, hierarchy, componentFolder, context }),
+        ImportExpression: (node) => AwaitExpression({ node, hierarchy, componentFolder, context }),
         VariableDeclaration: (node) =>
           VariableDeclaration({
             node,
@@ -61,7 +61,7 @@ function adaptingTheImportPathForLinux(path) {
 function AwaitExpression({ node, hierarchy, componentFolder, context }) {
   let nodeValueRequire = undefined;
   try {
-    nodeValueRequire = node.argument.source.value;
+    nodeValueRequire = node.source.value;
   } catch {
     nodeValueRequire = null;
   }
