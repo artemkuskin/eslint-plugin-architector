@@ -61,7 +61,7 @@ function adaptingTheImportPathForLinux(path) {
 function AwaitExpression({ node, hierarchy, componentFolder, context }) {
   let nodeValueRequire = undefined;
   try {
-    nodeValueRequire = node.source.value;
+    nodeValueRequire = node.expression.argument.source.value;
   } catch {
     nodeValueRequire = null;
   }
