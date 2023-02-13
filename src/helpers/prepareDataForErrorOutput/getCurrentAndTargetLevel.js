@@ -1,9 +1,12 @@
 const getModuleLevelByName = require("../serachByNameFolder/getModuleByName");
-const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
-const getAbsolutePathTo = require("./absolutePathTo");
-const getLowestGeneralLevel = require("./getLowestGeneralLevel");
-const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
 const getNameFolder = require("../serachByNameFolder/getNameFolder");
+const getGeneralLevels = require("./getGeneralLevels");
+const getCurrentAndTargetFolderName = require("./getCurrentAndTargetFolderName");
+const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("./targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
+const getNearestName = require("./getNearestName");
+const getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree = require("./getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree");
+const getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree = require("./getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree");
+const getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree = require("./getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree");
 module.exports = getDataAboutTheCurrentLevelAndTargetLevel;
 
 function getDataAboutTheCurrentLevelAndTargetLevel({
@@ -21,16 +24,13 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
       pathToCurrentModule,
       absolutePathToTargetModuleFolder,
     });
-    const targetModuleLevel = getModuleLevelByName(configurationTree, modulesLevelName.targetName);
+    const targetLevel = getModuleLevelByName(configurationTree, modulesLevelName.targetName);
     const currentLevel = getModuleLevelByName(configurationTree, modulesLevelName.currentName);
-    const nearestModuleLevelName = getNearestName(targetModuleLevel, currentLevel);
+    const nearestModuleLevelName = getNearestName(targetLevel, currentLevel);
     const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
     const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentLevel === undefined);
-    const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetModuleLevel === undefined);
-    const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
-      targetModuleLevel,
-      currentLevel
-    );
+    const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetLevel === undefined);
+    const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetLevel, currentLevel);
     if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
       return getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
         generalLevels,
@@ -45,7 +45,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
         generalLevels,
         pathToCurrentModule,
         configurationTree,
-        targetModuleLevel,
+        targetLevel,
       });
     }
 
@@ -63,170 +63,170 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
 
     return {
       currentLevel: currentLevel,
-      targetModuleLevel: targetModuleLevel,
+      targetLevel: targetLevel,
       nearestGeneralLevel: nearestGeneralLevel,
       isOneLevelOfNesting: isOneLevelOfNesting,
     };
   }
   return {
     currentLevel: undefined,
-    targetModuleLevel: undefined,
+    targetLevel: undefined,
     nearestGeneralLevel: undefined,
     isOneLevelOfNesting: undefined,
   };
 }
 
-function getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
-  generalLevels,
-  pathToCurrentModule,
-  configurationTree,
-  absolutePathToTargetModuleFolder,
-}) {
-  const currentLevel = getModuleLevel({
-    generalLevels,
-    path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
-    configurationTree,
-  });
+// function getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
+//   generalLevels,
+//   pathToCurrentModule,
+//   configurationTree,
+//   absolutePathToTargetModuleFolder,
+// }) {
+//   const currentLevel = getModuleLevel({
+//     generalLevels,
+//     path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
+//     configurationTree,
+//   });
 
-  const targetModuleLevel = getModuleLevel({
-    generalLevels,
-    path: absolutePathToTargetModuleFolder, //getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
-    configurationTree,
-  });
+//   const targetLevel = getModuleLevel({
+//     generalLevels,
+//     path: absolutePathToTargetModuleFolder, //getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
+//     configurationTree,
+//   });
 
-  const nearestModuleLevelName = getNearestName(targetModuleLevel, currentLevel);
-  const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
-  const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
-    targetModuleLevel,
-    currentLevel
-  );
-  return {
-    currentLevel: currentLevel,
-    targetModuleLevel: targetModuleLevel,
-    nearestGeneralLevel: nearestGeneralLevel,
-    isOneLevelOfNesting: isOneLevelOfNesting,
-  };
-}
+//   const nearestModuleLevelName = getNearestName(targetLevel, currentLevel);
+//   const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
+//   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
+//     targetLevel,
+//     currentLevel
+//   );
+//   return {
+//     currentLevel: currentLevel,
+//     targetLevel: targetLevel,
+//     nearestGeneralLevel: nearestGeneralLevel,
+//     isOneLevelOfNesting: isOneLevelOfNesting,
+//   };
+// }
 
-function getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree({
-  generalLevels,
-  pathToCurrentModule,
-  configurationTree,
-  targetModuleLevel,
-}) {
-  let levelsModule = getModuleLevel({
-    generalLevels,
-    path: pathToCurrentModule,
-    configurationTree,
-  });
+// function getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree({
+//   generalLevels,
+//   pathToCurrentModule,
+//   configurationTree,
+//   targetLevel,
+// }) {
+//   let currentLevel = getModuleLevel({
+//     generalLevels,
+//     path: pathToCurrentModule,
+//     configurationTree,
+//   });
 
-  const nearestModuleLevelName = getNearestName(targetModuleLevel, levelsModule);
-  const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
-  const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
-    targetModuleLevel,
-    levelsModule
-  );
+//   const nearestModuleLevelName = getNearestName(targetLevel, currentLevel);
+//   const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
+//   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
+//     targetLevel,
+//     currentLevel
+//   );
 
-  return {
-    currentLevel: levelsModule,
-    targetModuleLevel: targetModuleLevel,
-    nearestGeneralLevel: nearestGeneralLevel,
-    isOneLevelOfNesting: isOneLevelOfNesting,
-  };
-}
+//   return {
+//     currentLevel: currentLevel,
+//     targetLevel: targetLevel,
+//     nearestGeneralLevel: nearestGeneralLevel,
+//     isOneLevelOfNesting: isOneLevelOfNesting,
+//   };
+// }
 
-function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
-  generalLevels,
-  configurationTree,
-  currentLevel,
-  absolutePathToTargetModuleFolder,
-  rootDirectory,
-  pathToCurrentModule,
-  importDefinitionPath,
-}) {
-  let levelsModule = getModuleLevel({
-    generalLevels,
-    path: absolutePathToTargetModuleFolder,
-    configurationTree,
-  });
+// function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
+//   generalLevels,
+//   configurationTree,
+//   currentLevel,
+//   absolutePathToTargetModuleFolder,
+//   rootDirectory,
+//   pathToCurrentModule,
+//   importDefinitionPath,
+// }) {
+//   let targetLevel = getModuleLevel({
+//     generalLevels,
+//     path: absolutePathToTargetModuleFolder,
+//     configurationTree,
+//   });
 
-  const levelsModuleIsRoorDirectory = Boolean(levelsModule.name === rootDirectory);
-  const nearestModuleLevelName = getNearestName(levelsModule, currentLevel);
+//   const levelsModuleIsRoorDirectory = Boolean(targetLevel.name === rootDirectory);
+//   const nearestModuleLevelName = getNearestName(targetLevel, currentLevel);
 
-  if (levelsModuleIsRoorDirectory) {
-    levelsModule = getModuleLevel({
-      generalLevels,
-      path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
-      configurationTree,
-    });
-  }
+//   if (levelsModuleIsRoorDirectory) {
+//     targetLevel = getModuleLevel({
+//       generalLevels,
+//       path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
+//       configurationTree,
+//     });
+//   }
 
-  const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
-  const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
-    levelsModule,
-    currentLevel
-  );
-  return {
-    currentLevel: currentLevel,
-    targetModuleLevel: levelsModule,
-    nearestGeneralLevel: nearestGeneralLevel,
-    isOneLevelOfNesting: isOneLevelOfNesting,
-  };
-}
+//   const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
+//   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(
+//     targetLevel,
+//     currentLevel
+//   );
+//   return {
+//     currentLevel: currentLevel,
+//     targetLevel: targetLevel,
+//     nearestGeneralLevel: nearestGeneralLevel,
+//     isOneLevelOfNesting: isOneLevelOfNesting,
+//   };
+// }
 
-/**
- * находим все общие уровни
- */
-function getGeneralLevels(targetModulePath, currentModulePath) {
-  const targetModulPathArr = targetModulePath.split("/");
-  const currentModulePatharr = getPathToCurrentFileWithoutExtension(currentModulePath).split("/");
-  const generalLevels = targetModulPathArr.filter((x) => currentModulePatharr.indexOf(x) !== -1);
-  return generalLevels;
-} 
+// /**
+//  * находим все общие уровни
+//  */
+// function getGeneralLevels(targetModulePath, currentModulePath) {
+//   const targetModulPathArr = targetModulePath.split("/");
+//   const currentModulePatharr = getPathToCurrentFileWithoutExtension(currentModulePath).split("/");
+//   const generalLevels = targetModulPathArr.filter((x) => currentModulePatharr.indexOf(x) !== -1);
+//   return generalLevels;
+// }
 
-/**
- * находим текущий и целеыой уровни по первому общему эелементу
- */
-function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, absolutePathToTargetModuleFolder }) {
-  const current = setNameModuleLevel(
-    getLowestGeneralLevel(generalLevels),
-    getPathToCurrentFileWithoutExtension(pathToCurrentModule)
-  );
-  const target = setNameModuleLevel(getLowestGeneralLevel(generalLevels), absolutePathToTargetModuleFolder);
-  return { currentName: current, targetName: target };
-} 
+// /**
+//  * находим текущий и целеыой уровни по первому общему эелементу
+//  */
+// function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, absolutePathToTargetModuleFolder }) {
+//   const current = setNameModuleLevel(
+//     getLowestGeneralLevel(generalLevels),
+//     getPathToCurrentFileWithoutExtension(pathToCurrentModule)
+//   );
+//   const target = setNameModuleLevel(getLowestGeneralLevel(generalLevels), absolutePathToTargetModuleFolder);
+//   return { currentName: current, targetName: target };
+// }
 
-/**
- * Здесь мы ищем первый уровень для модуля который указан в конфиге
- */
-function getModuleLevel({ generalLevels, path, configurationTree }) {
-  const nameModuleLevel = setNameModuleLevel(getLowestGeneralLevel(generalLevels), path);
-  const moduleLevel = getModuleLevelByName(configurationTree, nameModuleLevel);
+// /**
+//  * Здесь мы ищем первый уровень для модуля который указан в конфиге
+//  */
+// function getModuleLevel({ generalLevels, path, configurationTree }) {
+//   const nameModuleLevel = setNameModuleLevel(getLowestGeneralLevel(generalLevels), path);
+//   const moduleLevel = getModuleLevelByName(configurationTree, nameModuleLevel);
 
-  if (moduleLevel === undefined && generalLevels.length !== 0) {
-    const result = generalLevels.slice(0, generalLevels.length - 1);
-    return getModuleLevel({ generalLevels: result, path, configurationTree });
-  } else {
-    return { ...moduleLevel };
-  }
-}
+//   if (moduleLevel === undefined && generalLevels.length !== 0) {
+//     const result = generalLevels.slice(0, generalLevels.length - 1);
+//     return getModuleLevel({ generalLevels: result, path, configurationTree });
+//   } else {
+//     return { ...moduleLevel };
+//   }
+// }
 
-function getNearestName(targetModuleLevel, currentLevel) {
-  if (targetModuleLevel && currentLevel) {
-    return targetModuleLevel.architectorPath.split("/").length > currentLevel.architectorPath.split("/").length
-      ? currentLevel.name
-      : targetModuleLevel.name;
-  }
-}
+// function getNearestName(targetLevel, currentLevel) {
+//   if (targetLevel && currentLevel) {
+//     return targetLevel.architectorPath.split("/").length > currentLevel.architectorPath.split("/").length
+//       ? currentLevel.name
+//       : targetLevel.name;
+//   }
+// }
 
-/**
- *  таргет и каррент на одном уровне вложенности?
- */
-function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetModuleLevel, currentModuleLevel) {
-  if (targetModuleLevel && currentModuleLevel) {
-    return (
-      getPathToCurrentFileWithoutExtension(targetModuleLevel.architectorPath) ===
-      getPathToCurrentFileWithoutExtension(currentModuleLevel.architectorPath)
-    );
-  }
-}
+// /**
+//  *  таргет и каррент на одном уровне вложенности?
+//  */
+// function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetLevel, currentLevel) {
+//   if (targetLevel && currentLevel) {
+//     return (
+//       getPathToCurrentFileWithoutExtension(targetLevel.architectorPath) ===
+//       getPathToCurrentFileWithoutExtension(currentLevel.architectorPath)
+//     );
+//   }
+// }

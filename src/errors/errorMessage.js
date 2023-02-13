@@ -24,20 +24,20 @@ function getErrorMessage({
     levelsConfigurationFile,
     levelsConfiguration,
   });
-  const { isOneLevelOfNesting, nearestGeneralLevel, targetModuleLevel, currentLevel } = errorDetectionData;
+  const { isOneLevelOfNesting, nearestGeneralLevel, targetLevel, currentLevel } = errorDetectionData;
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
 
   if (nearestGeneralLevelExists) {
     if (isOneLevelOfNesting) {
       errorMessage = getErrorWhenCurrentAndTargetAreInDifferentLevels({
         childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentLevel,
-        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetModuleLevel,
+        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetLevel,
       });
       
     } else {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentLevel,
-        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetModuleLevel,
+        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetLevel,
         nearestGeneralLevel,
       });
     }
