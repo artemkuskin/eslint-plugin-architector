@@ -63,7 +63,11 @@ module.exports.rules = {
 function adaptingTheImportPathForLinux(path) {
   return path.split("\\").join("/");
 }
-
+/**
+ * 
+ * function works with async imports
+ * node.source.value = import string value
+ */
 function AwaitExpression({ node, hierarchy, componentFolder, context }) {
   let nodeValue = undefined;
   try {
@@ -73,7 +77,6 @@ function AwaitExpression({ node, hierarchy, componentFolder, context }) {
   }
 
   if (nodeValue) {
-    console.log(nodeValue);
     const fileName = adaptingTheImportPathForLinux(context.getFilename());
     const nodeValueName = nodeValue;
     const params = {
@@ -89,6 +92,10 @@ function AwaitExpression({ node, hierarchy, componentFolder, context }) {
   }
 }
 
+
+/**
+ * function works with require without assigning to a variable
+ */
 function ExpressionStatement({ node, hierarchy, componentFolder, context }) {
   const nameOperationIsRequire = node.expression?.callee?.name === "require";
   if (nameOperationIsRequire) {
@@ -116,6 +123,10 @@ function ExpressionStatement({ node, hierarchy, componentFolder, context }) {
   }
 }
 
+/**
+ *  function works with regular imports
+ */
+
 function ImportDeclaration({ node, hierarchy, componentFolder, context }) {
   const fileName = adaptingTheImportPathForLinux(context.getFilename());
   const nodeValueName = adaptingTheImportPathForLinux(node.source.value);
@@ -131,9 +142,13 @@ function ImportDeclaration({ node, hierarchy, componentFolder, context }) {
   }
 }
 
+/**
+ * the function works with require with assignment to a variable
+ * node.declarations[0].id?.name = name variable 
+ */
 function VariableDeclaration({ node, hierarchy, componentFolder, context }) {
-  const checkFolderName = node.declarations[0].id?.name;
-  if (checkFolderName) {
+  const checkVariableName = node.declarations[0].id?.name;
+  if (checkVariableName) {
     let nodeValue = undefined;
     try {
       nodeValue = node.declarations[0].init.arguments[0].value;
