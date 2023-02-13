@@ -41,6 +41,7 @@ module.exports.rules = {
             componentFolder,
             context,
           }),
+        ExpressionStatement: (node) => dsa({ node, hierarchy, componentFolder, context }),
       };
     },
   },
@@ -48,6 +49,30 @@ module.exports.rules = {
 
 function adaptingTheImportPathForLinux(path) {
   return path.split("\\").join("/");
+}
+
+function dsa({ node, hierarchy, componentFolder, context }) {
+  let nodeValueRequire = undefined;
+  try {
+    nodeValueRequire = node.expression.arguments[0].value;
+  } catch {
+    nodeValueRequire = null;
+  }
+
+  if (nodeValueRequire) {
+    const fn = adaptingTheImportPathForLinux(context.getFilename());
+    const nodeValue = nodeValueRequire;
+    const params = {
+      pathToCurrentModule: fn,
+      importDefinitionPath: nodeValue,
+      levelsConfiguration: hierarchy,
+      rootDirectory: componentFolder,
+    };
+    const error = validateHierarchy(params);
+    if (error) {
+      context.report(node, error);
+    }
+  }
 }
 
 function v({ node, hierarchy, componentFolder, context }) {
@@ -88,16 +113,28 @@ function a({ node, hierarchy, componentFolder, context }) {
       context.report(node, error);
     }
   }
-  // const fn = adaptingTheImportPathForLinux(context.getFilename());
-  // const nodeValue = adaptingTheImportPathForLinux(node.declarations[0].init.arguments[0].value);
-  // const params = {
-  //   pathToCurrentModule: fn,
-  //   importDefinitionPath: nodeValue,
-  //   levelsConfiguration: hierarchy,
-  //   rootDirectory: componentFolder,
-  // };
-  // const error = validateHierarchy(params);
-  // if (error) {
-  //   context.report(node, error);
+
+  // function aaa({ node, hierarchy, componentFolder, context }) {
+  // let nodeValueRequire = undefined;
+  // try {
+  //   nodeValueRequire = node.expression.arguments[0].value;
+  // } catch {
+  //   nodeValueRequire = null;
+  // }
+
+  // if (nodeValueRequire) {
+  //   const fn = adaptingTheImportPathForLinux(context.getFilename());
+  //   const nodeValue = nodeValueRequire;
+  //   const params = {
+  //     pathToCurrentModule: fn,
+  //     importDefinitionPath: nodeValue,
+  //     levelsConfiguration: hierarchy,
+  //     rootDirectory: componentFolder,
+  //   };
+  //   const error = validateHierarchy(params);
+  //   if (error) {
+  //     context.report(node, error);
+  //   }
+  // }
   // }
 }
