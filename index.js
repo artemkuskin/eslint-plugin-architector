@@ -52,10 +52,10 @@ function adaptingTheImportPathForLinux(path) {
 }
 
 function ExpressionStatement({ node, hierarchy, componentFolder, context }) {
-  if (node.caller.name === "require") {
+  if (node.expression.caller.name === "require") {
     let nodeValueRequire = undefined;
     try {
-      nodeValueRequire = node.arguments[0].value;
+      nodeValueRequire = node.expression.arguments[0].value;
     } catch {
       nodeValueRequire = null;
     }
