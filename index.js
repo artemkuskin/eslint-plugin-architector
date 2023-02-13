@@ -34,7 +34,13 @@ module.exports.rules = {
             componentFolder,
             context,
           }),
-        ImportExpression: (node) => AwaitExpression({ node, hierarchy, componentFolder, context }),
+        ImportExpression: (node) =>
+          AwaitExpression({
+            node,
+            hierarchy,
+            componentFolder,
+            context,
+          }),
         VariableDeclaration: (node) =>
           VariableDeclaration({
             node,
@@ -59,17 +65,17 @@ function adaptingTheImportPathForLinux(path) {
 }
 
 function AwaitExpression({ node, hierarchy, componentFolder, context }) {
-  let nodeValueRequire = undefined;
+  let nodeValue = undefined;
   try {
-    nodeValueRequire = node.source.value;
+    nodeValue = node.source.value;
   } catch {
-    nodeValueRequire = null;
+    nodeValue = null;
   }
 
-  if (nodeValueRequire) {
-    console.log(nodeValueRequire);
+  if (nodeValue) {
+    console.log(nodeValue);
     const fileName = adaptingTheImportPathForLinux(context.getFilename());
-    const nodeValue = nodeValueRequire;
+    const nodeValue = nodeValue;
     const params = {
       pathToCurrentModule: fileName,
       importDefinitionPath: nodeValue,
@@ -84,17 +90,18 @@ function AwaitExpression({ node, hierarchy, componentFolder, context }) {
 }
 
 function ExpressionStatement({ node, hierarchy, componentFolder, context }) {
-  if (node.expression?.callee?.name === "require") {
-    let nodeValueRequire = undefined;
+  const nameOperationIsRequire = node.expression?.callee?.name === "require";
+  if (nameOperationIsRequire) {
+    let nodeValue = undefined;
     try {
-      nodeValueRequire = node.expression.arguments[0].value;
+      nodeValue = node.expression.arguments[0].value;
     } catch {
-      nodeValueRequire = null;
+      nodeValue = null;
     }
 
-    if (nodeValueRequire) {
+    if (nodeValue) {
       const fileName = adaptingTheImportPathForLinux(context.getFilename());
-      const nodeValue = nodeValueRequire;
+      const nodeValue = nodeValue;
       const params = {
         pathToCurrentModule: fileName,
         importDefinitionPath: nodeValue,
@@ -125,17 +132,18 @@ function ImportDeclaration({ node, hierarchy, componentFolder, context }) {
 }
 
 function VariableDeclaration({ node, hierarchy, componentFolder, context }) {
-  if (node.declarations[0].id?.name) {
-    let nodeValueRequire = undefined;
+  const checkFolderName = node.declarations[0].id?.name;
+  if (checkFolderName) {
+    let nodeValue = undefined;
     try {
-      nodeValueRequire = node.declarations[0].init.arguments[0].value;
+      nodeValue = node.declarations[0].init.arguments[0].value;
     } catch {
-      nodeValueRequire = null;
+      nodeValue = null;
     }
 
-    if (nodeValueRequire) {
+    if (nodeValue) {
       const fileName = adaptingTheImportPathForLinux(context.getFilename());
-      const nodeValue = nodeValueRequire;
+      const nodeValue = nodeValue;
       const params = {
         pathToCurrentModule: fileName,
         importDefinitionPath: nodeValue,
