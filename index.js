@@ -75,10 +75,10 @@ function AwaitExpression({ node, hierarchy, componentFolder, context }) {
   if (nodeValue) {
     console.log(nodeValue);
     const fileName = adaptingTheImportPathForLinux(context.getFilename());
-    const nodeValue = nodeValue;
+    const nodeValueName = nodeValue;
     const params = {
       pathToCurrentModule: fileName,
-      importDefinitionPath: nodeValue,
+      importDefinitionPath: nodeValueName,
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
     };
@@ -101,10 +101,10 @@ function ExpressionStatement({ node, hierarchy, componentFolder, context }) {
 
     if (nodeValue) {
       const fileName = adaptingTheImportPathForLinux(context.getFilename());
-      const nodeValue = nodeValue;
+      const nodeValueName = nodeValue;
       const params = {
         pathToCurrentModule: fileName,
-        importDefinitionPath: nodeValue,
+        importDefinitionPath: nodeValueName,
         levelsConfiguration: hierarchy,
         rootDirectory: componentFolder,
       };
@@ -118,10 +118,10 @@ function ExpressionStatement({ node, hierarchy, componentFolder, context }) {
 
 function ImportDeclaration({ node, hierarchy, componentFolder, context }) {
   const fileName = adaptingTheImportPathForLinux(context.getFilename());
-  const nodeValue = adaptingTheImportPathForLinux(node.source.value);
+  const nodeValueName = adaptingTheImportPathForLinux(node.source.value);
   const params = {
     pathToCurrentModule: fileName,
-    importDefinitionPath: nodeValue,
+    importDefinitionPath: nodeValueName,
     levelsConfiguration: hierarchy,
     rootDirectory: componentFolder,
   };
@@ -143,10 +143,10 @@ function VariableDeclaration({ node, hierarchy, componentFolder, context }) {
 
     if (nodeValue) {
       const fileName = adaptingTheImportPathForLinux(context.getFilename());
-      const nodeValue = nodeValue;
+      const nodeValueName = nodeValue;
       const params = {
         pathToCurrentModule: fileName,
-        importDefinitionPath: nodeValue,
+        importDefinitionPath: nodeValueName,
         levelsConfiguration: hierarchy,
         rootDirectory: componentFolder,
       };
