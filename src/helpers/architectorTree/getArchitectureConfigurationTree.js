@@ -1,29 +1,30 @@
 const TreeModel = require("tree-model");
 
-const architectureConfigTree = [];
-
 module.exports = getArchitectureConfigurationTree;
 
+const architectureConfigTree = [];
+
 function getArchitectureConfigurationTree(architectureConfigRules, levelsConfiguration, rootDirectory) {
-  for (let key in architectureConfigRules) {
+  for (let index in architectureConfigRules) {
     const rootModuleLevel = {
       name: rootDirectory,
       index: 0,
       parent: "",
       architectorPath: rootDirectory,
     };
-    //const lastParent = getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).parent;
-    const architectorPath = rootDirectory + "/" + getParentThisNode(levelsConfiguration.file, architectureConfigRules[key].level).archectorPath;
+    const architectorPath = rootDirectory + "/" + getParentAndarchitecturalPathThisNode(levelsConfiguration.file, architectureConfigRules[index].level).architectural;
+    const levelName = architectureConfigRules[index].level;
+    const childrenExist = Boolean(architectureConfigRules[index].children.length !== 0);
 
     architectureConfigTree.unshift(rootModuleLevel);
     architectureConfigTree.push({
-      name: architectureConfigRules[key].level,
-      index: key,
+      name: levelName,
+      index: index,
       architectorPath: architectorPath,
     });
     
-    if (architectureConfigRules[key].children.length !== 0) {
-      getArchitectureConfigurationTree(architectureConfigRules[key].children, levelsConfiguration, rootDirectory);
+    if (childrenExist) {
+      getArchitectureConfigurationTree(architectureConfigRules[index].children, levelsConfiguration, rootDirectory);
     }
   }
   return resultArchitectureFree(architectureConfigTree);
@@ -45,7 +46,7 @@ function resultArchitectureFree(architectureConfigTree) {
   return resultArchitectureFree;
 }
 
-function getParentThisNode(dataset, nodeLevel) {
+function getParentAndarchitecturalPathThisNode(dataset, nodeLevel) {
   let parents = [];
   let tree = new TreeModel();
   dataset.forEach((element) => {
@@ -60,5 +61,5 @@ function getParentThisNode(dataset, nodeLevel) {
     });
   });
 
-  return { parent: parents[parents.length - 2], archectorPath: parents.join("/") };
+  return { parent: parents[parents.length - 2], architectural: parents.join("/") };
 }

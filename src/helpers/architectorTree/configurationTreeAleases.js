@@ -6,15 +6,16 @@ function getAliasesList(rootDirectory, jsConfigAliases) {
   if (jsConfigAliases) {
     const configurationTreeAlias = [];
     const aliases = getAliases(jsConfigAliases);
-    for (let key in aliases) {
+    for (let aliase of aliases) {
+      const keyAliase = PathToCurrentFileWithOutContent(aliase.name);
+      const pathAliase = absolutePathToAliasesByKey(aliase, rootDirectory);
       configurationTreeAlias.push({
-        key: PathToCurrentFileWithOutContent(aliases[key].name),
-        path: absolutePathToAliasesByKey(aliases[key], rootDirectory),
+        key: keyAliase,
+        path: pathAliase,
       });
     }
     return configurationTreeAlias;
   }
-  
 }
 
 function setLengthPathFolder(pathFolder) {
