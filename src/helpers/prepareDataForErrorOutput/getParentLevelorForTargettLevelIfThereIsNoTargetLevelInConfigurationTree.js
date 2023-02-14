@@ -1,4 +1,3 @@
-const getAbsolutePathTo = require("./absolutePathTo");
 const getModuleLevelByName = require("../serachByNameFolder/getModuleByName");
 const getModuleLevel = require("./getModuleLevel");
 const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("./targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
@@ -11,8 +10,7 @@ function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTre
   currentLevel,
   absolutePathToTargetModuleFolder,
   rootDirectory,
-  pathToCurrentModule,
-  importDefinitionPath,
+  absolutePathToTargetModule,
 }) {
   let targetLevel = getModuleLevel({
     generalLevels,
@@ -26,7 +24,7 @@ function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTre
   if (levelsModuleIsRoorDirectory) {
     targetLevel = getModuleLevel({
       generalLevels,
-      path: getAbsolutePathTo(pathToCurrentModule, importDefinitionPath),
+      path: absolutePathToTargetModule,
       configurationTree,
     });
   }

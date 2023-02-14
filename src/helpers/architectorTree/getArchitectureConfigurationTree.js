@@ -13,15 +13,14 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       architectorPath: rootDirectory,
     };
     const levelName = architectureConfigRules[index].level;
-    const architectorPath =
-      rootDirectory + "/" + getParentAndarchitecturalPathThisNode(levelsConfiguration.file, levelName).architectural;
+    const architecturalPath = rootDirectory + "/" + getParentAndArchitecturalPathThisNode(levelsConfiguration.file, levelName).architectural;
     const childrenExist = Boolean(getQuantityChildren(architectureConfigRules[index]) !== 0);
 
     architectureConfigTree.unshift(rootModuleLevel);
     architectureConfigTree.push({
       name: levelName,
       index: index,
-      architectorPath: architectorPath,
+      architectorPath: architecturalPath,
     });
     if (childrenExist) {
       getArchitectureConfigurationTree(architectureConfigRules[index].children, levelsConfiguration, rootDirectory);
@@ -46,7 +45,7 @@ function getResultArchitectureFree(architectureConfigTree) {
   return resultArchitectureFree;
 }
 
-function getParentAndarchitecturalPathThisNode(dataset, nodeLevel) {
+function getParentAndArchitecturalPathThisNode(dataset, nodeLevel) {
   let parents = [];
   let tree = new TreeModel();
   dataset.forEach((element) => {
