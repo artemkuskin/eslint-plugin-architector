@@ -73,29 +73,52 @@ module.exports.rules = {
             context,
             pathToCurrentFile,
           }),
+        CallExpression: (node) =>
+          callExpression({
+            node,
+            hierarchy,
+            componentFolder,
+            context,
+            pathToCurrentFile,
+          }),
       };
     },
   },
 };
 
-function adaptingTheImportPathForLinux(path) {
-  return path.split("\\").join("/");
+/**
+ *  works with regular imports
+ */
+
+function importDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
+  const importDefinitionPath = adaptingTheImportPathForLinux(node.source.value);
+  const params = {
+    pathToCurrentModule: pathToCurrentFile,
+    importDefinitionPath: importDefinitionPath,
+    levelsConfiguration: hierarchy,
+    rootDirectory: componentFolder,
+  };
+  const error = validateHierarchy(params);
+  if (error) {
+    context.report(node, error);
+  }
 }
+
 /**
  *
  * function works with async imports
  * node.source.value = import string value
  */
 function importExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  let nodeValue = undefined;
+  let importDefinition = undefined;
   try {
-    nodeValue = node.source.value;
+    importDefinition = node.source.value;
   } catch {
-    nodeValue = null;
+    importDefinition = null;
   }
 
-  if (nodeValue) {
-    const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
+  if (importDefinition) {
+    const importDefinitionPath = adaptingTheImportPathForLinux(importDefinition);
     const params = {
       pathToCurrentModule: pathToCurrentFile,
       importDefinitionPath: importDefinitionPath,
@@ -105,6 +128,36 @@ function importExpression({ node, hierarchy, componentFolder, context, pathToCur
     const error = validateHierarchy(params);
     if (error) {
       context.report(node, error);
+    }
+  }
+}
+
+/**
+ * the function works with require with assignment to a variable
+ * node.declarations[0].id?.name = name variable
+ */
+function variableDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
+  const checkVariableName = node.declarations[0].id?.name;
+  if (checkVariableName) {
+    let nodeValue = undefined;
+    try {
+      nodeValue = node.declarations[0].init.arguments[0].value;
+    } catch {
+      nodeValue = null;
+    }
+
+    if (nodeValue) {
+      const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
+      const params = {
+        pathToCurrentModule: pathToCurrentFile,
+        importDefinitionPath: importDefinitionPath,
+        levelsConfiguration: hierarchy,
+        rootDirectory: componentFolder,
+      };
+      const error = validateHierarchy(params);
+      if (error) {
+        context.report(node, error);
+      }
     }
   }
 }
@@ -140,49 +193,15 @@ function expressionStatement({ node, hierarchy, componentFolder, context, pathTo
 }
 
 /**
- *  function works with regular imports
+ * function works with require without assigning to a variable
+ * node.callee.name = transaction name
  */
+function callExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
+  console.log("CALL EXPRESSION!!");
 
-function importDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  const importDefinitionPath = adaptingTheImportPathForLinux(node.source.value);
-  const params = {
-    pathToCurrentModule: pathToCurrentFile,
-    importDefinitionPath: importDefinitionPath,
-    levelsConfiguration: hierarchy,
-    rootDirectory: componentFolder,
-  };
-  const error = validateHierarchy(params);
-  if (error) {
-    context.report(node, error);
-  }
+  console.log(node.expression);
 }
 
-/**
- * the function works with require with assignment to a variable
- * node.declarations[0].id?.name = name variable
- */
-function variableDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  const checkVariableName = node.declarations[0].id?.name;
-  if (checkVariableName) {
-    let nodeValue = undefined;
-    try {
-      nodeValue = node.declarations[0].init.arguments[0].value;
-    } catch {
-      nodeValue = null;
-    }
-
-    if (nodeValue) {
-      const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
-      const params = {
-        pathToCurrentModule: pathToCurrentFile,
-        importDefinitionPath: importDefinitionPath,
-        levelsConfiguration: hierarchy,
-        rootDirectory: componentFolder,
-      };
-      const error = validateHierarchy(params);
-      if (error) {
-        context.report(node, error);
-      }
-    }
-  }
+function adaptingTheImportPathForLinux(path) {
+  return path.split("\\").join("/");
 }
