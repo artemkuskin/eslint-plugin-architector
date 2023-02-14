@@ -101,7 +101,7 @@ function importExpression({ node, hierarchy, componentFolder, context, pathToCur
  * node.callee.name = transaction name
  */
 function expressionStatement({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  const nameOperationIsRequire = node.callee?.name === "require";
+  const nameOperationIsRequire = node.expression.callee?.name === "require";
   if (nameOperationIsRequire) {
     let nodeValue = undefined;
     try {
