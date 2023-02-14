@@ -199,7 +199,7 @@ function expressionStatement({ node, hierarchy, componentFolder, context, pathTo
 function callExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
   console.log("CALL EXPRESSION!!");
 
-  console.log(node.expression);
+  console.log(node);
 }
 
 function adaptingTheImportPathForLinux(path) {
