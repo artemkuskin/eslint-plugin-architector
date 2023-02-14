@@ -26,6 +26,7 @@ module.exports.rules = {
     create: (context) => {
       const hierarchy = context.options[0] || DEFAULT_HIERARCHY;
       const componentFolder = context.options[1] || DEFAULT_COMPONENTS_FOLDER;
+      const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
       return {
         ImportDeclaration: (node) =>
           importDeclaration({
@@ -33,6 +34,7 @@ module.exports.rules = {
             hierarchy,
             componentFolder,
             context,
+            pathToCurrentFile
           }),
         ImportExpression: (node) =>
           awaitExpression({
@@ -40,6 +42,7 @@ module.exports.rules = {
             hierarchy,
             componentFolder,
             context,
+            pathToCurrentFile
           }),
         VariableDeclaration: (node) =>
           variableDeclaration({
@@ -47,6 +50,7 @@ module.exports.rules = {
             hierarchy,
             componentFolder,
             context,
+            pathToCurrentFile
           }),
         CallExpression: (node) =>
           expressionStatement({
@@ -54,6 +58,7 @@ module.exports.rules = {
             hierarchy,
             componentFolder,
             context,
+            pathToCurrentFile
           }),
       };
     },
@@ -68,7 +73,7 @@ function adaptingTheImportPathForLinux(path) {
  * function works with async imports
  * node.source.value = import string value
  */
-function awaitExpression({ node, hierarchy, componentFolder, context }) {
+function awaitExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
   let nodeValue = undefined;
   try {
     nodeValue = node.source.value;
@@ -77,7 +82,6 @@ function awaitExpression({ node, hierarchy, componentFolder, context }) {
   }
 
   if (nodeValue) {
-    const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
     const nodeValueName = nodeValue;
     const params = {
       pathToCurrentModule: pathToCurrentFile,
@@ -96,7 +100,7 @@ function awaitExpression({ node, hierarchy, componentFolder, context }) {
  * function works with require without assigning to a variable
  * node.callee.name = transaction name
  */
-function expressionStatement({ node, hierarchy, componentFolder, context }) {
+function expressionStatement({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
   const nameOperationIsRequire = node.callee?.name === "require";
   if (nameOperationIsRequire) {
     let nodeValue = undefined;
@@ -107,7 +111,6 @@ function expressionStatement({ node, hierarchy, componentFolder, context }) {
     }
 
     if (nodeValue) {
-      const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
       const nodeValueName = nodeValue;
       const params = {
         pathToCurrentModule: pathToCurrentFile,
@@ -127,8 +130,7 @@ function expressionStatement({ node, hierarchy, componentFolder, context }) {
  *  function works with regular imports
  */
 
-function importDeclaration({ node, hierarchy, componentFolder, context }) {
-  const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
+function importDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
   const nodeValueName = adaptingTheImportPathForLinux(node.source.value);
   const params = {
     pathToCurrentModule: pathToCurrentFile,
@@ -146,7 +148,7 @@ function importDeclaration({ node, hierarchy, componentFolder, context }) {
  * the function works with require with assignment to a variable
  * node.declarations[0].id?.name = name variable
  */
-function variableDeclaration({ node, hierarchy, componentFolder, context }) {
+function variableDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
   const checkVariableName = node.declarations[0].id?.name;
   if (checkVariableName) {
     let nodeValue = undefined;
@@ -157,7 +159,6 @@ function variableDeclaration({ node, hierarchy, componentFolder, context }) {
     }
 
     if (nodeValue) {
-      const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
       const nodeValueName = nodeValue;
       const params = {
         pathToCurrentModule: pathToCurrentFile,
