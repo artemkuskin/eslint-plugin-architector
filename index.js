@@ -37,7 +37,7 @@ module.exports.rules = {
             pathToCurrentFile
           }),
         ImportExpression: (node) =>
-          awaitExpression({
+          importExpression({
             node,
             hierarchy,
             componentFolder,
@@ -73,7 +73,7 @@ function adaptingTheImportPathForLinux(path) {
  * function works with async imports
  * node.source.value = import string value
  */
-function awaitExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
+function importExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
   let nodeValue = undefined;
   try {
     nodeValue = node.source.value;
@@ -82,10 +82,10 @@ function awaitExpression({ node, hierarchy, componentFolder, context, pathToCurr
   }
 
   if (nodeValue) {
-    const nodeValueName = nodeValue;
+    const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
     const params = {
       pathToCurrentModule: pathToCurrentFile,
-      importDefinitionPath: nodeValueName,
+      importDefinitionPath: importDefinitionPath,
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
     };
@@ -111,10 +111,10 @@ function expressionStatement({ node, hierarchy, componentFolder, context, pathTo
     }
 
     if (nodeValue) {
-      const nodeValueName = nodeValue;
+      const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
       const params = {
         pathToCurrentModule: pathToCurrentFile,
-        importDefinitionPath: nodeValueName,
+        importDefinitionPath: importDefinitionPath,
         levelsConfiguration: hierarchy,
         rootDirectory: componentFolder,
       };
@@ -131,10 +131,10 @@ function expressionStatement({ node, hierarchy, componentFolder, context, pathTo
  */
 
 function importDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  const nodeValueName = adaptingTheImportPathForLinux(node.source.value);
+  const importDefinitionPath = adaptingTheImportPathForLinux(node.source.value);
   const params = {
     pathToCurrentModule: pathToCurrentFile,
-    importDefinitionPath: nodeValueName,
+    importDefinitionPath: importDefinitionPath,
     levelsConfiguration: hierarchy,
     rootDirectory: componentFolder,
   };
@@ -159,10 +159,10 @@ function variableDeclaration({ node, hierarchy, componentFolder, context, pathTo
     }
 
     if (nodeValue) {
-      const nodeValueName = nodeValue;
+      const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
       const params = {
         pathToCurrentModule: pathToCurrentFile,
-        importDefinitionPath: nodeValueName,
+        importDefinitionPath: importDefinitionPath,
         levelsConfiguration: hierarchy,
         rootDirectory: componentFolder,
       };
