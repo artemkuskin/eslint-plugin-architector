@@ -57,22 +57,22 @@ module.exports.rules = {
             context,
             pathToCurrentFile,
           }),
-        VariableDeclaration: (node) =>
-          variableDeclaration({
-            node,
-            hierarchy,
-            componentFolder,
-            context,
-            pathToCurrentFile,
-          }),
-        ExpressionStatement: (node) =>
-          expressionStatement({
-            node,
-            hierarchy,
-            componentFolder,
-            context,
-            pathToCurrentFile,
-          }),
+        // VariableDeclaration: (node) =>
+        //   variableDeclaration({
+        //     node,
+        //     hierarchy,
+        //     componentFolder,
+        //     context,
+        //     pathToCurrentFile,
+        //   }),
+        // ExpressionStatement: (node) =>
+        //   expressionStatement({
+        //     node,
+        //     hierarchy,
+        //     componentFolder,
+        //     context,
+        //     pathToCurrentFile,
+        //   }),
         CallExpression: (node) =>
           callExpression({
             node,
@@ -167,11 +167,40 @@ function variableDeclaration({ node, hierarchy, componentFolder, context, pathTo
  * node.callee.name = transaction name
  */
 function expressionStatement({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  const nameOperationIsRequire = node.expression?.callee?.name === "require";
+  // const nameOperationIsRequire = node.expression?.callee?.name === "require";
+  // if (nameOperationIsRequire) {
+  //   let nodeValue = undefined;
+  //   try {
+  //     nodeValue = node.arguments[0].value;
+  //   } catch {
+  //     nodeValue = null;
+  //   }
+  //   if (nodeValue) {
+  //     const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
+  //     const params = {
+  //       pathToCurrentModule: pathToCurrentFile,
+  //       importDefinitionPath: importDefinitionPath,
+  //       levelsConfiguration: hierarchy,
+  //       rootDirectory: componentFolder,
+  //     };
+  //     const error = validateHierarchy(params);
+  //     if (error) {
+  //       context.report(node, error);
+  //     }
+  //   }
+  // }
+}
+
+/**
+ * function works with require without assigning to a variable
+ * node.callee.name = transaction name
+ */
+function callExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
+  const nameOperationIsRequire = node?.callee?.name === "require";
   if (nameOperationIsRequire) {
     let nodeValue = undefined;
     try {
-      nodeValue = node.expression.arguments[0].value;
+      nodeValue = node.arguments[0].value;
     } catch {
       nodeValue = null;
     }
@@ -190,16 +219,6 @@ function expressionStatement({ node, hierarchy, componentFolder, context, pathTo
       }
     }
   }
-}
-
-/**
- * function works with require without assigning to a variable
- * node.callee.name = transaction name
- */
-function callExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  console.log("CALL EXPRESSION!!");
-
-  console.log(node);
 }
 
 function adaptingTheImportPathForLinux(path) {
