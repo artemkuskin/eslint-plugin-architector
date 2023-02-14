@@ -11,7 +11,7 @@ function getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTr
   configurationTree,
   targetLevel,
 }) {
-  let currentLevel = getModuleLevel({
+  const currentLevel = getModuleLevel({
     generalLevels,
     path: pathToCurrentModule,
     configurationTree,

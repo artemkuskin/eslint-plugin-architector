@@ -19,8 +19,7 @@ function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTre
   });
 
   const levelsModuleIsRoorDirectory = Boolean(targetLevel.name === rootDirectory);
-  const nearestLevelName = getNearestName(targetLevel, currentLevel);
-
+  
   if (levelsModuleIsRoorDirectory) {
     targetLevel = getModuleLevel({
       generalLevels,
@@ -28,7 +27,8 @@ function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTre
       configurationTree,
     });
   }
-
+  
+  const nearestLevelName = getNearestName(targetLevel, currentLevel);
   const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestLevelName);
   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetLevel, currentLevel);
   return {

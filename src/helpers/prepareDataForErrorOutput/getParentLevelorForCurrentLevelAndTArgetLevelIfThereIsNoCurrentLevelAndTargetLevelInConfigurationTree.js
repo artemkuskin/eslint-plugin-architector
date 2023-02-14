@@ -11,9 +11,10 @@ function getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAnd
   configurationTree,
   absolutePathToTargetModuleFolder,
 }) {
+  const pathToCurrentFolder = getPathToCurrentFileWithoutExtension(pathToCurrentModule);
   const currentLevel = getModuleLevel({
     generalLevels,
-    path: getPathToCurrentFileWithoutExtension(pathToCurrentModule),
+    path: pathToCurrentFolder,
     configurationTree,
   });
 

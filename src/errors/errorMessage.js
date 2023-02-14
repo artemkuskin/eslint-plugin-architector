@@ -30,14 +30,14 @@ function getErrorMessage({
   if (nearestGeneralLevelExists) {
     if (isOneLevelOfNesting) {
       errorMessage = getErrorWhenCurrentAndTargetAreInDifferentLevels({
-        childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentLevel,
-        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetLevel,
+        childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
+        childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
       });
       
     } else {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
-        childrenOfGeneralLevelWhereCurrentModuleLevelLocated: currentLevel,
-        childrenOfGeneralLevelWhereTargetModuleLevelLocated: targetLevel,
+        childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
+        childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
         nearestGeneralLevel,
       });
     }
@@ -47,17 +47,17 @@ function getErrorMessage({
 }
 
 function getErrorWhenCurrentAndTargetAreInDifferentLevels({
-  childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
-  childrenOfGeneralLevelWhereTargetModuleLevelLocated,
+  childrenOfGeneralLevelWhereCurrentLevelLocated,
+  childrenOfGeneralLevelWhereTargetLevelLocated,
 }) {
   const currentModuleLevelAboveTargetModuleLevel =
-    childrenOfGeneralLevelWhereCurrentModuleLevelLocated.index <
-    childrenOfGeneralLevelWhereTargetModuleLevelLocated.index;
+    childrenOfGeneralLevelWhereCurrentLevelLocated.index <
+    childrenOfGeneralLevelWhereTargetLevelLocated.index;
 
   let errorMessage = undefined;
 
   if (currentModuleLevelAboveTargetModuleLevel) {
-    errorMessage = `It is not advisable to ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} in ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name}, since level ${childrenOfGeneralLevelWhereCurrentModuleLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereTargetModuleLevelLocated.name} in the rules`;
+    errorMessage = `It is not advisable to ${childrenOfGeneralLevelWhereTargetLevelLocated.name} in ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}, since level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} in the rules`;
   }
 
   return errorMessage;
@@ -65,16 +65,16 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
 
 
 function getErrorWhenCurrentAndTargetAreInTheSameLevel({
-  childrenOfGeneralLevelWhereCurrentModuleLevelLocated,
-  childrenOfGeneralLevelWhereTargetModuleLevelLocated,
+  childrenOfGeneralLevelWhereCurrentLevelLocated,
+  childrenOfGeneralLevelWhereTargetLevelLocated,
   nearestGeneralLevel,
 }) {
   let errorMessage = undefined;
 
   const tagetModuleLevelIsNearestGeneralLevel =
-    childrenOfGeneralLevelWhereTargetModuleLevelLocated.architectorPath === nearestGeneralLevel.architectorPath;
+    childrenOfGeneralLevelWhereTargetLevelLocated.architectorPath === nearestGeneralLevel.architectorPath;
   const currentModuleLevelIsNotNearestLevel =
-    childrenOfGeneralLevelWhereCurrentModuleLevelLocated.architectorPath !== nearestGeneralLevel.architectorPath;
+    childrenOfGeneralLevelWhereCurrentLevelLocated.architectorPath !== nearestGeneralLevel.architectorPath;
   const currentModuleLevelImportsItsParentLevel =
     tagetModuleLevelIsNearestGeneralLevel && currentModuleLevelIsNotNearestLevel;
 

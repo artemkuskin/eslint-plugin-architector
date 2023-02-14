@@ -46,13 +46,14 @@ function getResultArchitectureFree(architectureConfigTree) {
 }
 
 function getParentAndArchitecturalPathThisNode(dataset, nodeLevel) {
-  let parents = [];
-  let tree = new TreeModel();
+  const parents = [];
+  const tree = new TreeModel();
+
   dataset.forEach((element) => {
-    let rootMain = tree.parse(element);
+    const rootMain = tree.parse(element);
     rootMain.walk(function (node) {
       if (node.model.level === nodeLevel) {
-        let path = node.getPath();
+        const path = node.getPath();
         path.forEach((element) => {
           parents.push(element.model.level);
         });
