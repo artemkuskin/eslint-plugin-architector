@@ -13,7 +13,8 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       architectorPath: rootDirectory,
     };
     const levelName = architectureConfigRules[index].level;
-    const architecturalPath = rootDirectory + "/" + getParentAndArchitecturalPathThisNode(levelsConfiguration.file, levelName).architectural;
+    const architecturalPath =
+      rootDirectory + "/" + getParentAndArchitecturalPathThisNode(levelsConfiguration.file, levelName).architectural;
     const childrenExist = Boolean(getQuantityChildren(architectureConfigRules[index]) !== 0);
 
     architectureConfigTree.unshift(rootModuleLevel);
@@ -21,6 +22,7 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
       name: levelName,
       index: index,
       architectorPath: architecturalPath,
+      independentChildren: architectureConfigRules[index].independentChildren || false,
     });
     if (childrenExist) {
       getArchitectureConfigurationTree(architectureConfigRules[index].children, levelsConfiguration, rootDirectory);

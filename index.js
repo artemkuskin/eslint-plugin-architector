@@ -146,14 +146,14 @@ function adaptingTheImportPathForLinux(path) {
   return path.split("\\").join("/");
 }
 
-function isRequireExpression(expr) {
-  return (
-    expr != null &&
-    expr.type === "CallExpression" &&
-    expr.callee != null &&
-    expr.callee.name === "require" &&
-    expr.arguments != null &&
-    expr.arguments.length === 1 &&
-    expr.arguments[0].type === "Literal"
-  );
-}
+// function isRequireExpression(expr) {
+//   return (
+//     expr != null &&
+//     expr.type === "CallExpression" &&
+//     expr.callee != null &&
+//     expr.callee.name === "require" &&
+//     expr.arguments != null &&
+//     expr.arguments.length === 1 &&
+//     expr.arguments[0].type === "Literal"
+//   );
+// }

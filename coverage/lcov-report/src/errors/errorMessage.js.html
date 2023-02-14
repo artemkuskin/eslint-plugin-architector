@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/23</span>
+                <span class='fraction'>24/24</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/23</span>
+                <span class='fraction'>24/24</span>
             </div>
         
             
@@ -140,19 +140,8 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -197,8 +186,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -207,7 +201,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -230,16 +223,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/getDataForErrorDetection");
 module.exports = getErrorMessage;
-&nbsp;
-/**
- * currentModuleLevel -&gt; currentLevel
- * targetModuleLevel -&gt; targetLevel
- * nearestGeneralLevel -&gt; nearestGeneralLevel
- * 
- */
 &nbsp;
 function getErrorMessage({
   importDefinitionPath,
@@ -265,8 +250,8 @@ function getErrorMessage({
       errorMessage = getErrorWhenCurrentAndTargetAreInDifferentLevels({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
         childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
+        nearestGeneralLevel,
       });
-      
     } else {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
@@ -282,10 +267,15 @@ function getErrorMessage({
 function getErrorWhenCurrentAndTargetAreInDifferentLevels({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
   childrenOfGeneralLevelWhereTargetLevelLocated,
+  nearestGeneralLevel,
 }) {
+  // if (nearestGeneralLevel.independentChildren === true) {
+  //   return;
+  // }
+&nbsp;
+  console.log(nearestGeneralLevel);
   const currentModuleLevelAboveTargetModuleLevel =
-    childrenOfGeneralLevelWhereCurrentLevelLocated.index &lt;
-    childrenOfGeneralLevelWhereTargetLevelLocated.index;
+    childrenOfGeneralLevelWhereCurrentLevelLocated.index &lt; childrenOfGeneralLevelWhereTargetLevelLocated.index;
 &nbsp;
   let errorMessage = undefined;
 &nbsp;
@@ -295,7 +285,6 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
 &nbsp;
   return errorMessage;
 }
-&nbsp;
 &nbsp;
 function getErrorWhenCurrentAndTargetAreInTheSameLevel({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
@@ -317,7 +306,6 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
 &nbsp;
   return errorMessage;
 }
-&nbsp;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -325,7 +313,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Feb 14 2023 14:35:09 GMT+0300 (Москва, стандартное время)
+                at Tue Feb 14 2023 16:34:35 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>

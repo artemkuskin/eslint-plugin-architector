@@ -48,6 +48,7 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
     return;
   }
 
+  console.log(nearestGeneralLevel);
   const currentModuleLevelAboveTargetModuleLevel =
     childrenOfGeneralLevelWhereCurrentLevelLocated.index < childrenOfGeneralLevelWhereTargetLevelLocated.index;
 
