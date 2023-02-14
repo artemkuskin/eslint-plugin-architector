@@ -1,11 +1,24 @@
 const validateHierarchy = require("./src");
 
 const DEFAULT_HIERARCHY = {
-  atoms: 0,
-  molecules: 1,
-  organisms: 2,
-  templates: 3,
-  pages: 4,
+  file: [
+    {
+      level: "D",
+      children: [],
+    },
+    {
+      level: "A",
+      children: [],
+    },
+    {
+      level: "B",
+      children: [],
+    },
+    {
+      level: "C",
+      children: [],
+    },
+  ],
 };
 
 const DEFAULT_COMPONENTS_FOLDER = "components";
