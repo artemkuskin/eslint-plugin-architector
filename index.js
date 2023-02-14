@@ -34,7 +34,7 @@ module.exports.rules = {
             hierarchy,
             componentFolder,
             context,
-            pathToCurrentFile
+            pathToCurrentFile,
           }),
         ImportExpression: (node) =>
           importExpression({
@@ -42,7 +42,7 @@ module.exports.rules = {
             hierarchy,
             componentFolder,
             context,
-            pathToCurrentFile
+            pathToCurrentFile,
           }),
         VariableDeclaration: (node) =>
           variableDeclaration({
@@ -50,15 +50,15 @@ module.exports.rules = {
             hierarchy,
             componentFolder,
             context,
-            pathToCurrentFile
+            pathToCurrentFile,
           }),
-        CallExpression: (node) =>
+        ExpressionStatement: (node) =>
           expressionStatement({
             node,
             hierarchy,
             componentFolder,
             context,
-            pathToCurrentFile
+            pathToCurrentFile,
           }),
       };
     },
@@ -101,8 +101,8 @@ function importExpression({ node, hierarchy, componentFolder, context, pathToCur
  * node.callee.name = transaction name
  */
 function expressionStatement({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  const nameOperationIsRequire = node.callee?.name === "require";
-  //if (nameOperationIsRequire) {
+  const nameOperationIsRequire = node.expression?.callee?.name === "require";
+  if (nameOperationIsRequire) {
     let nodeValue = undefined;
     try {
       nodeValue = node.expression.arguments[0].value;
@@ -123,7 +123,7 @@ function expressionStatement({ node, hierarchy, componentFolder, context, pathTo
         context.report(node, error);
       }
     }
- // }
+  }
 }
 
 /**
