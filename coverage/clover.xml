@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676298905710" clover="3.2.0">
-  <project timestamp="1676298905710" name="All files">
-    <metrics statements="229" coveredstatements="228" conditionals="54" coveredconditionals="50" methods="41" coveredmethods="41" elements="324" coveredelements="319" complexity="0" loc="229" ncloc="229" packages="6" files="20" classes="20"/>
+<coverage generated="1676362907379" clover="3.2.0">
+  <project timestamp="1676362907379" name="All files">
+    <metrics statements="228" coveredstatements="226" conditionals="54" coveredconditionals="50" methods="41" coveredmethods="40" elements="323" coveredelements="316" complexity="0" loc="228" ncloc="228" packages="6" files="20" classes="20"/>
     <package name="errors">
       <metrics statements="23" coveredstatements="23" conditionals="10" coveredconditionals="10" methods="3" coveredmethods="3"/>
       <file name="errorMessage.js" path="/home/artem/eslint-plagin-architector/src/errors/errorMessage.js">
@@ -32,9 +32,9 @@
       </file>
     </package>
     <package name="helpers.architectorTree">
-      <metrics statements="53" coveredstatements="53" conditionals="8" coveredconditionals="7" methods="14" coveredmethods="14"/>
+      <metrics statements="52" coveredstatements="51" conditionals="8" coveredconditionals="7" methods="14" coveredmethods="13"/>
       <file name="configurationTreeAleases.js" path="/home/artem/eslint-plagin-architector/src/helpers/architectorTree/configurationTreeAleases.js">
-        <metrics statements="23" coveredstatements="23" conditionals="2" coveredconditionals="1" methods="6" coveredmethods="6"/>
+        <metrics statements="22" coveredstatements="21" conditionals="2" coveredconditionals="1" methods="6" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -48,16 +48,15 @@
         <line num="18" count="21" type="stmt"/>
         <line num="23" count="126" type="stmt"/>
         <line num="26" count="126" type="stmt"/>
-        <line num="27" count="126" type="stmt"/>
-        <line num="29" count="126" type="stmt"/>
-        <line num="33" count="21" type="stmt"/>
-        <line num="35" count="21" type="stmt"/>
+        <line num="28" count="126" type="stmt"/>
+        <line num="32" count="21" type="stmt"/>
+        <line num="34" count="21" type="stmt"/>
+        <line num="35" count="126" type="stmt"/>
         <line num="36" count="126" type="stmt"/>
-        <line num="37" count="126" type="stmt"/>
-        <line num="40" count="21" type="stmt"/>
-        <line num="44" count="126" type="stmt"/>
-        <line num="51" count="252" type="stmt"/>
-        <line num="55" count="126" type="stmt"/>
+        <line num="39" count="21" type="stmt"/>
+        <line num="43" count="126" type="stmt"/>
+        <line num="50" count="126" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
       </file>
       <file name="getArchitectureConfigurationTree.js" path="/home/artem/eslint-plagin-architector/src/helpers/architectorTree/getArchitectureConfigurationTree.js">
         <metrics statements="30" coveredstatements="30" conditionals="6" coveredconditionals="6" methods="8" coveredmethods="8"/>
@@ -103,7 +102,7 @@
       </file>
       <file name="pathToCurrentFileWithoutContent.js" path="/home/artem/eslint-plagin-architector/src/helpers/convertPath/pathToCurrentFileWithoutContent.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="364" type="stmt"/>
+        <line num="2" count="490" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
       </file>
     </package>

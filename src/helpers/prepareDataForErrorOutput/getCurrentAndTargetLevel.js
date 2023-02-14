@@ -1,5 +1,5 @@
 const getModuleLevelByName = require("../serachByNameFolder/getModuleByName");
-const getNameFolder = require("../serachByNameFolder/getNameFolder");
+const getFolderName = require("../serachByNameFolder/getNameFolder");
 const getGeneralLevels = require("./getGeneralLevels");
 const getCurrentAndTargetFolderName = require("./getCurrentAndTargetFolderName");
 const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("./targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
@@ -16,7 +16,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
   absolutePathToTargetModuleFolder,
   rootDirectory,
 }) {
-  const rootDirectoryTargetLevelExists = Boolean(getNameFolder(rootDirectory, absolutePathToTargetModuleFolder));
+  const rootDirectoryTargetLevelExists = Boolean(getFolderName(rootDirectory, absolutePathToTargetModuleFolder));
   if (rootDirectoryTargetLevelExists) {
     const generalLevels = getGeneralLevels(absolutePathToTargetModuleFolder, pathToCurrentModule);
     const modulesLevelName = getCurrentAndTargetFolderName({

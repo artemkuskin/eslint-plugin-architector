@@ -24,7 +24,6 @@ function getPathToAliase(aliases, rootDirectory) {
     absolutePathToFile(PathToCurrentFileWithOutContent(aliases.path), rootDirectory)
   );
   const pathToAliase = absolutePathToAliase(aliases, rootDirectory, lengthStringAliases);
-  console.log(aliases);
 
   return pathToAliase;
 }
@@ -41,7 +40,7 @@ function getAliases(jsConfigAliases) {
 }
 
 function absolutePathToAliase(aliases, rootDirectory, lengthStringAliases) {
-  return absolutePathToFile(setPathAliases(aliases.path), rootDirectory)
+  return absolutePathToFile(PathToCurrentFileWithOutContent(aliases.path), rootDirectory)
     .split("/")
     .splice(0, lengthStringAliases)
     .join("/");
@@ -51,6 +50,6 @@ function setLengthPathFolder(pathFolder) {
   return pathFolder.split("/").length - 1;
 }
 
-function setPathAliases(pathAlias) {
-  return pathAlias.split("/").splice(0, setLengthPathFolder(pathAlias)).join("/");
-}
+// function setPathAliasesWithOutContent(pathAlias) {
+//   return pathAlias.split("/").splice(0, setLengthPathFolder(pathAlias)).join("/");
+// }

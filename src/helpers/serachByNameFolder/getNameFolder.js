@@ -1,4 +1,4 @@
-function getNameFolder(rootDirectory, absolutePathToTheFile) {
+function getFolderName(rootDirectory, absolutePathToTheFile) {
   let parent = undefined;
 
   try {
@@ -10,4 +10,4 @@ function getNameFolder(rootDirectory, absolutePathToTheFile) {
   return parent;
 }
 
-module.exports = getNameFolder;
+module.exports = getFolderName;
