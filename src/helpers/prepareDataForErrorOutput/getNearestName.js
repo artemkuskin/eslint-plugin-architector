@@ -7,10 +7,17 @@ function getNearestName(targetLevel, currentLevel) {
     const lengthArchitecturalPathTargetLevelMoreThenLengthArchitecturalPathCurrentLevel = Boolean(
       lengthArchitecturalPathTargetLevel > lengthArchitecturalPathCurrentLevel
     );
-    const nearestGeneralLevelByLengthPath =
-      lengthArchitecturalPathTargetLevelMoreThenLengthArchitecturalPathCurrentLevel
-        ? currentLevel.name
-        : targetLevel.name;
+    let nearestGeneralLevelByLengthPath;
+    // lengthArchitecturalPathTargetLevelMoreThenLengthArchitecturalPathCurrentLevel
+    //   ? currentLevel.name
+    //   : targetLevel.name;
+    if (lengthArchitecturalPathTargetLevel > lengthArchitecturalPathCurrentLevel) {
+      nearestGeneralLevelByLengthPath = currentLevel.name;
+    } else if (lengthArchitecturalPathTargetLevel < lengthArchitecturalPathCurrentLevel) {
+      nearestGeneralLevelByLengthPath = targetLevel.name;
+    } else if (lengthArchitecturalPathTargetLevel === lengthArchitecturalPathCurrentLevel) {
+      nearestGeneralLevelByLengthPath = currentLevel.architectorPath.split("/")[lengthArchitecturalPathTargetLevel - 2];
+    }
     return nearestGeneralLevelByLengthPath;
   }
 }
