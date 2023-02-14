@@ -26,7 +26,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     });
     const targetLevel = getModuleLevelByName(configurationTree, modulesLevelName.targetName);
     const currentLevel = getModuleLevelByName(configurationTree, modulesLevelName.currentName);
-    const nearestModuleLevelName = getNearestName(targetLevel, currentLevel);
+    const nearestModuleLevelName = getNearestName(targetLevel, currentLevel, rootDirectory);
     const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestModuleLevelName);
     const currentModuleLevelNotSpecifiedInTheRules = Boolean(currentLevel === undefined);
     const targetModuleLevelNotSpecifiedInTheRules = Boolean(targetLevel === undefined);
@@ -57,7 +57,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
         currentLevel,
         absolutePathToTargetModuleFolder,
         rootDirectory,
-        absolutePathToTargetModule
+        absolutePathToTargetModule,
       });
     }
 
@@ -75,4 +75,3 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     isOneLevelOfNesting: undefined,
   };
 }
-
