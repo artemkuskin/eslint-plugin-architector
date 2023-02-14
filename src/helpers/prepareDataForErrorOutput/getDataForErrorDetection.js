@@ -25,7 +25,7 @@ function getDataForErrorDetection({
     rootDirectory
   );
 
-  const absolutePathToModuleFolder = getAbsolutePathToTargetModuleFolder({
+  const absolutePathToTargetLevel = getAbsolutePathToTargetLevel({
     pathToCurrentModule,
     importDefinitionPath,
     rootDirectory,
@@ -34,7 +34,7 @@ function getDataForErrorDetection({
   return getDataAboutCurrentLevelAndTargetLevel({
     pathToCurrentModule,
     configurationTree,
-    absolutePathToModuleFolder,
+    absolutePathToTargetLevel,
     rootDirectory,
   });
 }
@@ -54,7 +54,7 @@ function setJsConfigAliases() {
   }
 }
 
-function getAbsolutePathToTargetModuleFolder({ pathToCurrentModule, importDefinitionPath, rootDirectory }) {
+function getAbsolutePathToTargetLevel({ pathToCurrentModule, importDefinitionPath, rootDirectory }) {
   let absolutePathToTargetModuleFolder;
 
   const targetModuleAlias = getLevelAlias(

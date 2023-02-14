@@ -1,5 +1,5 @@
-const getErrorMessage = require("../errors/errorMessage");
-const getNameFolder = require("../helpers/serachByNameFolder/getNameFolder");
+const getErrorMessage = require("./errors/errorMessage");
+const getNameFolder = require("./helpers/serachByNameFolder/getNameFolder");
 
 module.exports = validateIfImportIsAllowed;
 

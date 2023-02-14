@@ -12,10 +12,10 @@ module.exports = getDataAboutTheCurrentLevelAndTargetLevel;
 function getDataAboutTheCurrentLevelAndTargetLevel({
   pathToCurrentModule,
   configurationTree,
-  absolutePathToModuleFolder,
+  absolutePathToTargetLevel,
   rootDirectory,
 }) {
-  const { absolutePathToTargetModuleFolder, absolutePathToTargetModule } = absolutePathToModuleFolder;
+  const { absolutePathToTargetModuleFolder, absolutePathToTargetModule } = absolutePathToTargetLevel;
   const rootDirectoryTargetLevelExists = Boolean(getFolderName(rootDirectory, absolutePathToTargetModuleFolder));
   if (rootDirectoryTargetLevelExists) {
     const generalLevels = getGeneralLevels(absolutePathToTargetModuleFolder, pathToCurrentModule);

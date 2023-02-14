@@ -1,4 +1,4 @@
-const validateHierarchy = require("./src/rules/helper");
+const validateHierarchy = require("./src");
 
 const DEFAULT_HIERARCHY = {
   atoms: 0,
