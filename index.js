@@ -57,22 +57,6 @@ module.exports.rules = {
             context,
             pathToCurrentFile,
           }),
-        // VariableDeclaration: (node) =>
-        //   variableDeclaration({
-        //     node,
-        //     hierarchy,
-        //     componentFolder,
-        //     context,
-        //     pathToCurrentFile,
-        //   }),
-        // ExpressionStatement: (node) =>
-        //   expressionStatement({
-        //     node,
-        //     hierarchy,
-        //     componentFolder,
-        //     context,
-        //     pathToCurrentFile,
-        //   }),
         CallExpression: (node) =>
           callExpression({
             node,
@@ -133,80 +117,17 @@ function importExpression({ node, hierarchy, componentFolder, context, pathToCur
 }
 
 /**
- * the function works with require with assignment to a variable
- * node.declarations[0].id?.name = name variable
- */
-function variableDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  const checkVariableName = node.declarations[0].id?.name;
-  if (checkVariableName) {
-    let nodeValue = undefined;
-    try {
-      nodeValue = node.declarations[0].init.arguments[0].value;
-    } catch {
-      nodeValue = null;
-    }
-
-    if (nodeValue) {
-      const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
-      const params = {
-        pathToCurrentModule: pathToCurrentFile,
-        importDefinitionPath: importDefinitionPath,
-        levelsConfiguration: hierarchy,
-        rootDirectory: componentFolder,
-      };
-      const error = validateHierarchy(params);
-      if (error) {
-        context.report(node, error);
-      }
-    }
-  }
-}
-
-/**
- * function works with require without assigning to a variable
- * node.callee.name = transaction name
- */
-function expressionStatement({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
-  // const nameOperationIsRequire = node.expression?.callee?.name === "require";
-  // if (nameOperationIsRequire) {
-  //   let nodeValue = undefined;
-  //   try {
-  //     nodeValue = node.arguments[0].value;
-  //   } catch {
-  //     nodeValue = null;
-  //   }
-  //   if (nodeValue) {
-  //     const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
-  //     const params = {
-  //       pathToCurrentModule: pathToCurrentFile,
-  //       importDefinitionPath: importDefinitionPath,
-  //       levelsConfiguration: hierarchy,
-  //       rootDirectory: componentFolder,
-  //     };
-  //     const error = validateHierarchy(params);
-  //     if (error) {
-  //       context.report(node, error);
-  //     }
-  //   }
-  // }
-}
-
-/**
  * function works with require without assigning to a variable
  * node.callee.name = transaction name
  */
 function callExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
   const nameOperationIsRequire = node?.callee?.name === "require";
-  if (nameOperationIsRequire) {
-    let nodeValue = undefined;
-    try {
-      nodeValue = node.arguments[0].value;
-    } catch {
-      nodeValue = null;
-    }
 
-    if (nodeValue) {
-      const importDefinitionPath = adaptingTheImportPathForLinux(nodeValue);
+  if (nameOperationIsRequire && node.arguments.length > 0) {
+    const importDefinition = node.arguments[0].value.toString();
+
+    if (importDefinition) {
+      const importDefinitionPath = adaptingTheImportPathForLinux(importDefinition);
       const params = {
         pathToCurrentModule: pathToCurrentFile,
         importDefinitionPath: importDefinitionPath,
@@ -223,4 +144,16 @@ function callExpression({ node, hierarchy, componentFolder, context, pathToCurre
 
 function adaptingTheImportPathForLinux(path) {
   return path.split("\\").join("/");
+}
+
+function isRequireExpression(expr) {
+  return (
+    expr != null &&
+    expr.type === "CallExpression" &&
+    expr.callee != null &&
+    expr.callee.name === "require" &&
+    expr.arguments != null &&
+    expr.arguments.length === 1 &&
+    expr.arguments[0].type === "Literal"
+  );
 }

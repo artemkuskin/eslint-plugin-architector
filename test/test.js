@@ -10,11 +10,12 @@ describe("Validate hierarchy with default config", () => {
         children: [],
       },
       {
-        "level": "ui-lib",
-        "children": []
+        level: "ui-lib",
+        children: [],
       },
       {
         level: "A",
+        independentChildren: true,
         children: [
           {
             level: "A1",

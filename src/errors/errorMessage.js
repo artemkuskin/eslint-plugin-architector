@@ -1,13 +1,6 @@
 const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/getDataForErrorDetection");
 module.exports = getErrorMessage;
 
-/**
- * currentModuleLevel -> currentLevel
- * targetModuleLevel -> targetLevel
- * nearestGeneralLevel -> nearestGeneralLevel
- * 
- */
-
 function getErrorMessage({
   importDefinitionPath,
   pathToCurrentModule,
@@ -32,8 +25,8 @@ function getErrorMessage({
       errorMessage = getErrorWhenCurrentAndTargetAreInDifferentLevels({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
         childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
+        nearestGeneralLevel,
       });
-      
     } else {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
@@ -49,10 +42,14 @@ function getErrorMessage({
 function getErrorWhenCurrentAndTargetAreInDifferentLevels({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
   childrenOfGeneralLevelWhereTargetLevelLocated,
+  nearestGeneralLevel,
 }) {
+  if (nearestGeneralLevel.independentChildren === true) {
+    return;
+  }
+
   const currentModuleLevelAboveTargetModuleLevel =
-    childrenOfGeneralLevelWhereCurrentLevelLocated.index <
-    childrenOfGeneralLevelWhereTargetLevelLocated.index;
+    childrenOfGeneralLevelWhereCurrentLevelLocated.index < childrenOfGeneralLevelWhereTargetLevelLocated.index;
 
   let errorMessage = undefined;
 
@@ -62,7 +59,6 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
 
   return errorMessage;
 }
-
 
 function getErrorWhenCurrentAndTargetAreInTheSameLevel({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
@@ -84,4 +80,3 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
 
   return errorMessage;
 }
-
