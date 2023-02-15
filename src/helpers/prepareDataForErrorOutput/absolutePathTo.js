@@ -3,5 +3,5 @@ const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurre
 module.exports = getAbsolutePathTo;
 
 function getAbsolutePathTo(pathToModule, importDefinitionPath) {
-  return absolutePathToFile(getPathToCurrentFileWithoutExtension(pathToModule), importDefinitionPath);
+  return absolutePathToFile(getPathToCurrentFileWithoutExtension(pathToModule), importDefinitionPath).split("\\").join("/");
 }
