@@ -1,5 +1,5 @@
 const absolutePathToFile = require("../convertPath/absolutePathToFile");
-const getPathToFileWithOutContent = require("../convertPath/pathToCurrentFileWithoutContent");
+const PathToCurrentFileWithOutContent = require("../convertPath/pathToCurrentFileWithoutContent");
 module.exports = getAliasesList;
 
 function getAliasesList(rootDirectory, jsConfigAliases) {
@@ -8,7 +8,7 @@ function getAliasesList(rootDirectory, jsConfigAliases) {
     const aliases = getAliases(jsConfigAliases);
 
     for (let aliase of aliases) {
-      const keyAliase = getPathToFileWithOutContent(aliase.name);
+      const keyAliase = PathToCurrentFileWithOutContent(aliase.name);
       const pathAliase = getPathToAliase(aliase, rootDirectory);
       configurationTreeAlias.push({
         key: keyAliase,
@@ -21,9 +21,11 @@ function getAliasesList(rootDirectory, jsConfigAliases) {
 
 function getPathToAliase(aliases, rootDirectory) {
   const lengthStringAliases = setLengthPathFolder(
-    absolutePathToFile(getPathToFileWithOutContent(aliases.path), rootDirectory)
+    absolutePathToFile(PathToCurrentFileWithOutContent(aliases.path), rootDirectory)
   );
   const pathToAliase = absolutePathToAliase(aliases, rootDirectory, lengthStringAliases);
+  console.log(pathToAliase);
+  //console.log(aliases);
 
   return pathToAliase;
 }
@@ -40,7 +42,7 @@ function getAliases(jsConfigAliases) {
 }
 
 function absolutePathToAliase(aliases, rootDirectory, lengthStringAliases) {
-  return absolutePathToFile(getPathToFileWithOutContent(aliases.path), rootDirectory)
+  return absolutePathToFile(setPathAliases(aliases.path), rootDirectory)
     .split("/")
     .splice(0, lengthStringAliases)
     .join("/");
@@ -48,4 +50,8 @@ function absolutePathToAliase(aliases, rootDirectory, lengthStringAliases) {
 
 function setLengthPathFolder(pathFolder) {
   return pathFolder.split("/").length - 1;
+}
+
+function setPathAliases(pathAlias) {
+  return pathAlias.split("/").splice(0, setLengthPathFolder(pathAlias)).join("/");
 }

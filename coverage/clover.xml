@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676457989308" clover="3.2.0">
-  <project timestamp="1676457989309" name="All files">
-    <metrics statements="235" coveredstatements="233" conditionals="64" coveredconditionals="57" methods="40" coveredmethods="40" elements="339" coveredelements="330" complexity="0" loc="235" ncloc="235" packages="6" files="20" classes="20"/>
+<coverage generated="1676459504657" clover="3.2.0">
+  <project timestamp="1676459504658" name="All files">
+    <metrics statements="240" coveredstatements="197" conditionals="66" coveredconditionals="36" methods="41" coveredmethods="36" elements="347" coveredelements="269" complexity="0" loc="240" ncloc="240" packages="6" files="20" classes="20"/>
     <package name="src">
       <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="index.js" path="C:\eslint-plagin-architector\src\index.js">
@@ -9,102 +9,105 @@
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="12" count="21" type="stmt"/>
-        <line num="14" count="21" type="stmt"/>
-        <line num="15" count="21" type="cond" truecount="1" falsecount="1"/>
-        <line num="16" count="21" type="stmt"/>
-        <line num="25" count="21" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
       </file>
     </package>
     <package name="src.errors">
-      <metrics statements="25" coveredstatements="24" conditionals="12" coveredconditionals="11" methods="3" coveredmethods="3"/>
+      <metrics statements="26" coveredstatements="17" conditionals="12" coveredconditionals="4" methods="3" coveredmethods="2"/>
       <file name="errorMessage.js" path="C:\eslint-plagin-architector\src\errors\errorMessage.js">
-        <metrics statements="25" coveredstatements="24" conditionals="12" coveredconditionals="11" methods="3" coveredmethods="3"/>
+        <metrics statements="26" coveredstatements="17" conditionals="12" coveredconditionals="4" methods="3" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="11" count="21" type="stmt"/>
-        <line num="13" count="21" type="stmt"/>
-        <line num="20" count="21" type="stmt"/>
-        <line num="21" count="21" type="stmt"/>
-        <line num="23" count="21" type="cond" truecount="2" falsecount="0"/>
-        <line num="24" count="13" type="cond" truecount="2" falsecount="0"/>
-        <line num="25" count="9" type="stmt"/>
-        <line num="31" count="4" type="stmt"/>
-        <line num="39" count="21" type="stmt"/>
-        <line num="47" count="9" type="cond" truecount="1" falsecount="1"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="52" count="9" type="stmt"/>
-        <line num="54" count="9" type="stmt"/>
-        <line num="56" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="57" count="8" type="stmt"/>
-        <line num="60" count="9" type="stmt"/>
-        <line num="68" count="4" type="stmt"/>
-        <line num="71" count="4" type="stmt"/>
-        <line num="73" count="4" type="stmt"/>
-        <line num="75" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="77" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="78" count="2" type="stmt"/>
-        <line num="81" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="25" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="40" count="4" type="stmt"/>
+        <line num="48" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="55" count="4" type="stmt"/>
+        <line num="57" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="58" count="4" type="stmt"/>
+        <line num="61" count="4" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="76" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="78" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.helpers.architectorTree">
-      <metrics statements="51" coveredstatements="51" conditionals="10" coveredconditionals="9" methods="13" coveredmethods="13"/>
+      <metrics statements="53" coveredstatements="53" conditionals="10" coveredconditionals="9" methods="14" coveredmethods="14"/>
       <file name="configurationTreeAleases.js" path="C:\eslint-plagin-architector\src\helpers\architectorTree\configurationTreeAleases.js">
-        <metrics statements="21" coveredstatements="21" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="5"/>
+        <metrics statements="23" coveredstatements="23" conditionals="2" coveredconditionals="1" methods="6" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="6" count="21" type="cond" truecount="1" falsecount="1"/>
-        <line num="7" count="21" type="stmt"/>
-        <line num="8" count="21" type="stmt"/>
-        <line num="10" count="21" type="stmt"/>
-        <line num="11" count="126" type="stmt"/>
-        <line num="12" count="126" type="stmt"/>
-        <line num="13" count="126" type="stmt"/>
-        <line num="18" count="21" type="stmt"/>
-        <line num="23" count="126" type="stmt"/>
-        <line num="26" count="126" type="stmt"/>
-        <line num="28" count="126" type="stmt"/>
-        <line num="32" count="21" type="stmt"/>
-        <line num="34" count="21" type="stmt"/>
-        <line num="35" count="126" type="stmt"/>
-        <line num="36" count="126" type="stmt"/>
-        <line num="39" count="21" type="stmt"/>
-        <line num="43" count="126" type="stmt"/>
-        <line num="50" count="126" type="stmt"/>
+        <line num="6" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="24" type="stmt"/>
+        <line num="12" count="24" type="stmt"/>
+        <line num="13" count="24" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="23" count="24" type="stmt"/>
+        <line num="26" count="24" type="stmt"/>
+        <line num="27" count="24" type="stmt"/>
+        <line num="30" count="24" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="37" count="24" type="stmt"/>
+        <line num="38" count="24" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="45" count="24" type="stmt"/>
+        <line num="52" count="48" type="stmt"/>
+        <line num="56" count="24" type="stmt"/>
       </file>
       <file name="getArchitectureConfigurationTree.js" path="C:\eslint-plagin-architector\src\helpers\architectorTree\getArchitectureConfigurationTree.js">
         <metrics statements="30" coveredstatements="30" conditionals="8" coveredconditionals="8" methods="8" coveredmethods="8"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="8" count="84" type="stmt"/>
-        <line num="9" count="189" type="stmt"/>
-        <line num="15" count="189" type="stmt"/>
-        <line num="17" count="189" type="stmt"/>
-        <line num="18" count="189" type="stmt"/>
-        <line num="20" count="189" type="stmt"/>
-        <line num="21" count="189" type="stmt"/>
-        <line num="27" count="189" type="cond" truecount="2" falsecount="0"/>
-        <line num="28" count="63" type="stmt"/>
-        <line num="31" count="84" type="stmt"/>
-        <line num="35" count="84" type="stmt"/>
-        <line num="37" count="16296" type="cond" truecount="2" falsecount="0"/>
-        <line num="38" count="832" type="stmt"/>
-        <line num="39" count="832" type="stmt"/>
-        <line num="40" count="832" type="stmt"/>
-        <line num="47" count="84" type="stmt"/>
-        <line num="51" count="189" type="stmt"/>
-        <line num="52" count="189" type="stmt"/>
-        <line num="54" count="189" type="stmt"/>
-        <line num="55" count="945" type="stmt"/>
-        <line num="56" count="945" type="stmt"/>
-        <line num="57" count="1701" type="cond" truecount="2" falsecount="0"/>
-        <line num="58" count="189" type="stmt"/>
-        <line num="59" count="189" type="stmt"/>
-        <line num="60" count="294" type="stmt"/>
-        <line num="66" count="189" type="stmt"/>
-        <line num="70" count="189" type="stmt"/>
+        <line num="8" count="16" type="stmt"/>
+        <line num="9" count="36" type="stmt"/>
+        <line num="15" count="36" type="stmt"/>
+        <line num="17" count="36" type="stmt"/>
+        <line num="18" count="36" type="stmt"/>
+        <line num="20" count="36" type="stmt"/>
+        <line num="21" count="36" type="stmt"/>
+        <line num="27" count="36" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="12" type="stmt"/>
+        <line num="31" count="16" type="stmt"/>
+        <line num="35" count="16" type="stmt"/>
+        <line num="37" count="656" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="152" type="stmt"/>
+        <line num="39" count="152" type="stmt"/>
+        <line num="40" count="152" type="stmt"/>
+        <line num="47" count="16" type="stmt"/>
+        <line num="51" count="36" type="stmt"/>
+        <line num="52" count="36" type="stmt"/>
+        <line num="54" count="36" type="stmt"/>
+        <line num="55" count="180" type="stmt"/>
+        <line num="56" count="180" type="stmt"/>
+        <line num="57" count="324" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="36" type="stmt"/>
+        <line num="59" count="36" type="stmt"/>
+        <line num="60" count="56" type="stmt"/>
+        <line num="66" count="36" type="stmt"/>
+        <line num="70" count="36" type="stmt"/>
       </file>
     </package>
     <package name="src.helpers.convertPath">
@@ -113,22 +116,22 @@
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="5" count="287" type="stmt"/>
+        <line num="5" count="54" type="stmt"/>
       </file>
       <file name="pathToCurrentFileWithoutContent.js" path="C:\eslint-plagin-architector\src\helpers\convertPath\pathToCurrentFileWithoutContent.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="480" type="stmt"/>
+        <line num="2" count="72" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.helpers.prepareDataForErrorOutput">
-      <metrics statements="138" coveredstatements="137" conditionals="40" coveredconditionals="36" methods="18" coveredmethods="18"/>
+      <metrics statements="140" coveredstatements="107" conditionals="42" coveredconditionals="22" methods="18" coveredmethods="14"/>
       <file name="absolutePathTo.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\absolutePathTo.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="6" count="35" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
       </file>
       <file name="getCurrentAndTargetFolderName.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getCurrentAndTargetFolderName.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -136,12 +139,12 @@
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="9" count="13" type="stmt"/>
-        <line num="13" count="13" type="stmt"/>
-        <line num="14" count="13" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
       </file>
       <file name="getCurrentAndTargetLevel.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getCurrentAndTargetLevel.js">
-        <metrics statements="30" coveredstatements="30" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
+        <metrics statements="31" coveredstatements="27" conditionals="12" coveredconditionals="6" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -152,29 +155,30 @@
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
-        <line num="18" count="21" type="stmt"/>
-        <line num="19" count="21" type="stmt"/>
-        <line num="20" count="21" type="cond" truecount="2" falsecount="0"/>
-        <line num="21" count="13" type="stmt"/>
-        <line num="22" count="13" type="stmt"/>
-        <line num="27" count="13" type="stmt"/>
-        <line num="28" count="13" type="stmt"/>
-        <line num="29" count="13" type="stmt"/>
-        <line num="30" count="13" type="stmt"/>
-        <line num="31" count="13" type="stmt"/>
-        <line num="32" count="13" type="stmt"/>
-        <line num="33" count="13" type="stmt"/>
-        <line num="35" count="13" type="cond" truecount="4" falsecount="0"/>
-        <line num="36" count="1" type="stmt"/>
-        <line num="44" count="12" type="cond" truecount="2" falsecount="0"/>
-        <line num="45" count="8" type="stmt"/>
-        <line num="53" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="54" count="2" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
-        <line num="71" count="8" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="32" count="4" type="stmt"/>
+        <line num="33" count="4" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="36" count="4" type="cond" truecount="2" falsecount="2"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="45" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="54" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="65" count="4" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
       </file>
       <file name="getDataForErrorDetection.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getDataForErrorDetection.js">
-        <metrics statements="27" coveredstatements="26" conditionals="8" coveredconditionals="6" methods="6" coveredmethods="6"/>
+        <metrics statements="28" coveredstatements="27" conditionals="8" coveredconditionals="6" methods="6" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -183,135 +187,136 @@
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="18" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="22" count="21" type="stmt"/>
-        <line num="28" count="21" type="stmt"/>
-        <line num="34" count="21" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
         <line num="46" count="1" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
         <line num="49" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="50" count="1" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
-        <line num="60" count="21" type="stmt"/>
-        <line num="64" count="21" type="stmt"/>
-        <line num="65" count="21" type="cond" truecount="2" falsecount="0"/>
-        <line num="66" count="7" type="stmt"/>
-        <line num="68" count="14" type="stmt"/>
-        <line num="72" count="21" type="stmt"/>
-        <line num="79" count="21" type="cond" truecount="1" falsecount="1"/>
-        <line num="80" count="112" type="stmt"/>
-        <line num="85" count="21" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
+        <line num="64" count="4" type="stmt"/>
+        <line num="65" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="66" count="2" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="72" count="4" type="stmt"/>
+        <line num="73" count="4" type="stmt"/>
+        <line num="80" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="81" count="18" type="stmt"/>
+        <line num="86" count="4" type="stmt"/>
       </file>
       <file name="getGeneralLevels.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getGeneralLevels.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="8" count="13" type="stmt"/>
-        <line num="9" count="13" type="stmt"/>
-        <line num="10" count="89" type="stmt"/>
-        <line num="12" count="13" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="20" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
       </file>
       <file name="getLowestGeneralLevel.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getLowestGeneralLevel.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="4" count="44" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
       </file>
       <file name="getModuleLevel.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getModuleLevel.js">
-        <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <metrics statements="10" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="9" count="18" type="stmt"/>
-        <line num="10" count="18" type="stmt"/>
-        <line num="12" count="18" type="cond" truecount="4" falsecount="0"/>
-        <line num="13" count="5" type="stmt"/>
-        <line num="14" count="5" type="stmt"/>
-        <line num="16" count="13" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
       </file>
       <file name="getNearestName.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getNearestName.js">
-        <metrics statements="11" coveredstatements="11" conditionals="12" coveredconditionals="10" methods="1" coveredmethods="1"/>
+        <metrics statements="11" coveredstatements="9" conditionals="12" coveredconditionals="7" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="4" count="24" type="cond" truecount="4" falsecount="0"/>
-        <line num="5" count="13" type="stmt"/>
-        <line num="6" count="13" type="stmt"/>
-        <line num="8" count="13" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="11" type="cond" truecount="2" falsecount="0"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="12" count="9" type="cond" truecount="1" falsecount="1"/>
-        <line num="13" count="9" type="stmt"/>
-        <line num="16" count="13" type="stmt"/>
+        <line num="4" count="4" type="cond" truecount="3" falsecount="1"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="8" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
       </file>
       <file name="getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree.js">
-        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="13" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
       </file>
       <file name="getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree.js">
-        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="10" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="14" count="8" type="stmt"/>
-        <line num="20" count="8" type="stmt"/>
-        <line num="21" count="8" type="stmt"/>
-        <line num="22" count="8" type="stmt"/>
-        <line num="24" count="8" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
       </file>
       <file name="getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree.js">
-        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="13" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="23" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="24" count="1" type="stmt"/>
-        <line num="31" count="2" type="stmt"/>
-        <line num="32" count="2" type="stmt"/>
-        <line num="33" count="2" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
       </file>
       <file name="targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel.js" path="C:\eslint-plagin-architector\src\helpers\prepareDataForErrorOutput\targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel.js">
-        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="7" count="24" type="cond" truecount="4" falsecount="0"/>
-        <line num="8" count="13" type="stmt"/>
-        <line num="12" count="13" type="stmt"/>
+        <line num="7" count="4" type="cond" truecount="3" falsecount="1"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
       </file>
     </package>
     <package name="src.helpers.serachByNameFolder">
-      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="getModuleByName.js" path="C:\eslint-plagin-architector\src\helpers\serachByNameFolder\getModuleByName.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="2" count="417" type="stmt"/>
+        <line num="2" count="57" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
       </file>
       <file name="getNameFolder.js" path="C:\eslint-plagin-architector\src\helpers\serachByNameFolder\getNameFolder.js">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="2" count="86" type="stmt"/>
-        <line num="4" count="86" type="stmt"/>
-        <line num="5" count="86" type="stmt"/>
-        <line num="7" count="20" type="stmt"/>
-        <line num="10" count="86" type="stmt"/>
+        <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="16" type="stmt"/>
+        <line num="4" count="16" type="stmt"/>
+        <line num="5" count="16" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="16" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
       </file>
     </package>

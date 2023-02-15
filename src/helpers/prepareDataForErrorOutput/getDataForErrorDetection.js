@@ -69,6 +69,7 @@ function getAbsolutePathToTargetLevel({ pathToCurrentModule, importDefinitionPat
       getAbsolutePathTo(pathToCurrentModule, importDefinitionPath)
     );
   }
+  console.log(targetModuleAlias);
   return {
     absolutePathToTargetModuleFolder: absolutePathToTargetModuleFolder,
     absolutePathToTargetModule: absolutePathToTargetModule,
