@@ -4,9 +4,9 @@ The Dependency Rule states that the source code dependencies can only point inwa
 
 ![Image alt](https://github.com/artemkuskin/eslint-plugin-architector/blob/main/image/image.webp)
 
-This means nothing in an inner circle can know anything at all about something in an outer circle. i.e. the inner circle shouldn’t depend on anything in the outer circle. The Black arrows represented in the diagram show the dependency rule.
+This means nothing in an inner circle can know anything at all about something in an outer circle. i.e. the inner circle shouldn’t depend on anything in the outer circle. The Black arrows represented in the diagram show the dependency rule. This plugin helps to avoid dependency rule errors
 
-The plugin supports aliases that you specify in "jsconfig.json"
+The plugin supports aliases that you specify in the "jsconfig.json" file and also works with require and asinc import.
 
 ## installation
 
@@ -25,51 +25,6 @@ Add the plugin to your eslint config file
 ```
 
 Next, enable the rule
-
-`"architector-import/architector-import": "error"`
-
-## Configuring
-
-### default values
-
-```
-component folder: 'components'
-
-design hierarchy:
-levels: [
-    {
-      level: "D",
-      children: [],
-    },
-    {
-      level: "A",
-      children: [],
-    },
-    {
-      level: "B",
-      children: [],
-    },
-    {
-      level: "C",
-      children: [],
-    },
-  ],
-
-```
-
-### options
-
-You can change the hierarchy, both levels and child levels are configurable. The plugin will only check imports in these folders, located in the components folder.
-
-You can also change the name of the root component folder. The plugin will only check files and import in this folder.
-
-`"level"` - Folder name(Required field).
-
-`"children"` - Array with child folders (Required if there are no child levels- "children": []).
-
-`"errorPostfix"` - The message that will be shown with an error if the import is not correct (Optional field).
-
-`"independentChildren"`: true,- This setting will allow you to import all child levels into each other, regardless of the hierarchy, but not deeper than one level of nesting (Optional field).
 
 ```
      "architector-import/architector-import": [
@@ -130,7 +85,19 @@ You can also change the name of the root component folder. The plugin will only 
     ]
 ```
 
-## Example 1
+You can change the hierarchy, both levels and child levels are configurable. The plugin will only check imports in these folders, located in the components folder.
+
+You can also change the name of the root component folder. The plugin will only check files and import in this folder.
+
+`"level"` - Folder name(Required field).
+
+`"children"` - Array with child folders (Required if there are no child levels- "children": []).
+
+`"errorPostfix"` - The message that will be shown with an error if the import is not correct (Optional field).
+
+`"independentChildren"`: true,- This setting will allow you to import all child levels into each other, regardless of the hierarchy, but not deeper than one level of nesting (Optional field).
+
+## Case 1
 
 `**/components/**/A/A.js`
 Level "A" is the highest in the tree, so only its children can be imported into it
@@ -150,7 +117,7 @@ import { B1 } from "B1/B1.js"; - Aliase
 
 ```
 
-## Example 2
+## Case 2
 
 `**/components/**/B/B1/B1.js`
 Level "B1" is a child of level "B", level "B" is above "D" and "C", but below "A", so it can import "A" and its children
@@ -167,7 +134,7 @@ import { C } from "C/C.js";
 
 ```
 
-## Example 3
+## Case 3
 
 `**/components/**/D/D.js`
 Level "D" is below all levels in the rules tree, so you can import all levels into it
