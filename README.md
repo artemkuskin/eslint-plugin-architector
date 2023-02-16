@@ -6,6 +6,8 @@ The plugin supports aliases that you specify in "jsconfig.json"
 
 ## installation
 
+`npm install artemkuskin/eslint-plagin-architector`
+
 ## Usage
 
 Add the plugin to your eslint config file
