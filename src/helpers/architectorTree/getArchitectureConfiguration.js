@@ -14,7 +14,7 @@ function getArchitectureConfigurationTree(architectureConfigRules, levelsConfigu
     };
     const levelName = architectureConfigRules[index].level;
     const architecturalPath =
-      rootDirectory + "/" + getParentAndArchitecturalPathThisNode(levelsConfiguration.file, levelName).architectural;
+      rootDirectory + "/" + getParentAndArchitecturalPathThisNode(levelsConfiguration.levels, levelName).architectural;
     const childrenExist = Boolean(getQuantityChildren(architectureConfigRules[index]) !== 0);
 
     architectureConfigTree.unshift(rootModuleLevel);

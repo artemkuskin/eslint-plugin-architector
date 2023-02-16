@@ -1,7 +1,7 @@
 const validateHierarchy = require("./src");
 
 const DEFAULT_HIERARCHY = {
-  file: [
+  levels: [
     {
       level: "D",
       children: [],
