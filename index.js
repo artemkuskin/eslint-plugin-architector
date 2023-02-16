@@ -22,7 +22,7 @@ const DEFAULT_HIERARCHY = {
 };
 
 const DEFAULT_COMPONENTS_FOLDER = "components";
-const DEFAULT_POSTFIX = "";
+const DEFAULT_POSTFIX = "asdasdas";
 module.exports.rules = {
   "architector-import": {
     meta: {
@@ -40,7 +40,7 @@ module.exports.rules = {
       ],
     },
     create: (context) => {
-      const errorPostfix = context.options[1] || DEFAULT_POSTFIX;
+      const errorPostfix = context.options[0] || DEFAULT_POSTFIX;
       const hierarchy = context.options[1] || DEFAULT_HIERARCHY;
       const componentFolder = context.options[2] || DEFAULT_COMPONENTS_FOLDER;
       const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());

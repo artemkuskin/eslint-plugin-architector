@@ -56,6 +56,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "../A/A1/A1",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -65,6 +66,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "B3/B3",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -75,6 +77,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "../../../../public/asd",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -84,6 +87,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "A/A",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -93,6 +97,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "C/C.jsx",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -102,6 +107,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "B3/B3",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -111,6 +117,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "B1/B1",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -120,6 +127,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "../../../../B/B",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -129,6 +137,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "../../../../D",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -138,6 +147,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "../A2",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
@@ -147,6 +157,7 @@ describe("Validate hierarchy with default config", () => {
       importDefinitionPath: "../../A1",
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: "see www.wiki for details.",
     });
     expect(errors).toEqual(undefined);
   });
