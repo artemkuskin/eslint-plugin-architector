@@ -2,8 +2,8 @@ const path = require("path");
 const getAliasesList = require("../architectorTree/configurationTreeAleases");
 const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
 const getArchitectureConfigurationTree = require("../architectorTree/getArchitectureConfigurationTree");
-const getDataAboutCurrentLevelAndTargetLevel = require("./getCurrentAndTargetLevel");
-const getAbsolutePathTo = require("./absolutePathTo");
+const getDataAboutCurrentLevelAndTargetLevel = require("./currentAndTargetLevels/getCurrentAndTargetLevel");
+const getAbsolutePath = require("./absolutePath");
 module.exports = getDataForErrorDetection;
 
 let jsConfigAliases = undefined;
@@ -61,12 +61,12 @@ function getAbsolutePathToTargetLevel({ pathToCurrentModule, importDefinitionPat
     getAliasesList(rootDirectory, jsConfigAliases),
     getAliaseKey(importDefinitionPath)
   );
-  const absolutePathToTargetModule = getAbsolutePathTo(pathToCurrentModule, importDefinitionPath);
+  const absolutePathToTargetModule = getAbsolutePath(pathToCurrentModule, importDefinitionPath);
   if (targetModuleAlias) {
     absolutePathToTargetModuleFolder = targetModuleAlias.path;
   } else {
     absolutePathToTargetModuleFolder = getPathToCurrentFileWithoutExtension(
-      getAbsolutePathTo(pathToCurrentModule, importDefinitionPath)
+      getAbsolutePath(pathToCurrentModule, importDefinitionPath)
     );
   }
 

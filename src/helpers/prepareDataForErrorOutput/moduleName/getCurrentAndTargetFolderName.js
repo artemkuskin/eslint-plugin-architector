@@ -1,6 +1,6 @@
-const getLowestGeneralLevel = require("./getLowestGeneralLevel");
-const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
-const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
+const getLowestGeneralLevel = require("../generalLevel/getLowestGeneralLevel");
+const setNameModuleLevel = require("../../serachByNameFolder/getNameFolder");
+const getPathToCurrentFileWithoutExtension = require("../../convertPath/pathToCurrentFileWithoutContent");
 module.exports = getCurrentAndTargetFolderName;
 /**
  * находим текущий и целеыой уровни по первому общему эелементу

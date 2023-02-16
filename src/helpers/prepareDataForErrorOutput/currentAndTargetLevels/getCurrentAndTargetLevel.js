@@ -1,12 +1,12 @@
-const getModuleLevelByName = require("../serachByNameFolder/getModuleByName");
-const getFolderName = require("../serachByNameFolder/getNameFolder");
-const getGeneralLevels = require("./getGeneralLevels");
-const getCurrentAndTargetFolderName = require("./getCurrentAndTargetFolderName");
-const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("./targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
-const getNearestName = require("./getNearestName");
-const getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree = require("./getLevels/getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree");
-const getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree = require("./getLevels/getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree");
-const getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree = require("./getLevels/getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree");
+const getModuleLevelByName = require("../../serachByNameFolder/getModuleByName");
+const getFolderName = require("../../serachByNameFolder/getNameFolder");
+const getGeneralLevels = require("../generalLevel/getGeneralLevels");
+const getCurrentAndTargetFolderName = require("../moduleName/getCurrentAndTargetFolderName");
+const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("../targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
+const getNearestName = require("../moduleName/getNearestName");
+const getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree = require("./getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree");
+const getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree = require("./getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree");
+const getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree = require("./getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree");
 module.exports = getDataAboutTheCurrentLevelAndTargetLevel;
 
 function getDataAboutTheCurrentLevelAndTargetLevel({

@@ -1,6 +1,6 @@
-const getLowestGeneralLevel = require("./getLowestGeneralLevel");
-const setNameModuleLevel = require("../serachByNameFolder/getNameFolder");
-const getModuleLevelByName = require("../serachByNameFolder/getModuleByName");
+const getLowestGeneralLevel = require("../generalLevel/getLowestGeneralLevel");
+const setNameModuleLevel = require("../../serachByNameFolder/getNameFolder");
+const getModuleLevelByName = require("../../serachByNameFolder/getModuleByName");
 module.exports = getModuleLevel;
 /**
  * Здесь мы ищем первый уровень для модуля который указан в конфиге
