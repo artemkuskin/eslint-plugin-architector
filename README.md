@@ -1,6 +1,10 @@
 # eslint-plugin-architector
 
-This plugin allows you to build the hierarchy of your proposal and disallows imports if they conflict with your settings. Imports are banned to folders that are higher in the rules tree or are parent
+The Dependency Rule states that the source code dependencies can only point inwards.
+
+    ![Image alt](https://github.com/{artemkuskin}/{eslint-plugin-architector}/raw/{main}/{./image}/image.png)
+
+This means nothing in an inner circle can know anything at all about something in an outer circle. i.e. the inner circle shouldn’t depend on anything in the outer circle. The Black arrows represented in the diagram show the dependency rule.
 
 The plugin supports aliases that you specify in "jsconfig.json"
 
