@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676540035709" clover="3.2.0">
-  <project timestamp="1676540035709" name="All files">
+<coverage generated="1676540145437" clover="3.2.0">
+  <project timestamp="1676540145438" name="All files">
     <metrics statements="236" coveredstatements="234" conditionals="64" coveredconditionals="57" methods="41" coveredmethods="41" elements="341" coveredelements="332" complexity="0" loc="236" ncloc="236" packages="10" files="20" classes="20"/>
     <package name="src">
       <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
@@ -13,7 +13,7 @@
         <line num="14" count="20" type="stmt"/>
         <line num="15" count="20" type="cond" truecount="1" falsecount="1"/>
         <line num="16" count="20" type="stmt"/>
-        <line num="25" count="17" type="stmt"/>
+        <line num="25" count="20" type="stmt"/>
       </file>
     </package>
     <package name="src.errors">
@@ -30,7 +30,7 @@
         <line num="24" count="19" type="cond" truecount="2" falsecount="0"/>
         <line num="25" count="13" type="stmt"/>
         <line num="31" count="6" type="stmt"/>
-        <line num="39" count="17" type="stmt"/>
+        <line num="39" count="20" type="stmt"/>
         <line num="47" count="13" type="cond" truecount="1" falsecount="1"/>
         <line num="48" count="0" type="stmt"/>
         <line num="52" count="13" type="stmt"/>
@@ -44,7 +44,7 @@
         <line num="75" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="77" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="78" count="3" type="stmt"/>
-        <line num="84" count="3" type="stmt"/>
+        <line num="84" count="6" type="stmt"/>
       </file>
     </package>
     <package name="src.helpers.architectorTree">

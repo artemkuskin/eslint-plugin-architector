@@ -75,8 +75,8 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
     tagetModuleLevelIsNearestGeneralLevel && currentModuleLevelIsNotNearestLevel;
 
   if (currentModuleLevelImportsItsParentLevel) {
-    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is parent of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. \n See 'architector-import/architector-import' rules in `
-      .eslintrc.js`.`;
+    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is parent of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. \n See 'architector-import/architector-import' rules in 
+      .eslintrc.js.`;
 
     //"Target level is the parent level of the current level";
   }
