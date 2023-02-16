@@ -1,4 +1,4 @@
-# eslint-plagin-architector
+# eslint-plugin-architector
 
 This plugin allows you to build the hierarchy of your proposal and disallows imports if they conflict with your settings. Imports are banned to folders that are higher in the rules tree or are parent
 
