@@ -3,7 +3,13 @@ const getNameFolder = require("./helpers/serachByNameFolder/getNameFolder");
 
 module.exports = validateIfImportIsAllowed;
 
-function validateIfImportIsAllowed({ pathToCurrentModule, importDefinitionPath, levelsConfiguration, rootDirectory }) {
+function validateIfImportIsAllowed({
+  pathToCurrentModule,
+  importDefinitionPath,
+  levelsConfiguration,
+  rootDirectory,
+  errorPostfix,
+}) {
   let errorMessage = undefined;
 
   const moduleIsInRootDirectory = Boolean(getNameFolder(rootDirectory, pathToCurrentModule));
@@ -14,6 +20,7 @@ function validateIfImportIsAllowed({ pathToCurrentModule, importDefinitionPath, 
       rootDirectory,
       levelsConfigurationFile: levelsConfiguration.levels,
       levelsConfiguration,
+      errorPostfix,
     });
   }
 

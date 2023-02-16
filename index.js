@@ -22,11 +22,14 @@ const DEFAULT_HIERARCHY = {
 };
 
 const DEFAULT_COMPONENTS_FOLDER = "components";
-
+const DEFAULT_POSTFIX = "";
 module.exports.rules = {
   "architector-import": {
     meta: {
       schema: [
+        {
+          type: "string",
+        },
         {
           type: "object",
           additionalProperties: true,
@@ -37,8 +40,9 @@ module.exports.rules = {
       ],
     },
     create: (context) => {
-      const hierarchy = context.options[0] || DEFAULT_HIERARCHY;
-      const componentFolder = context.options[1] || DEFAULT_COMPONENTS_FOLDER;
+      const errorPostfix = context.options[1] || DEFAULT_POSTFIX;
+      const hierarchy = context.options[1] || DEFAULT_HIERARCHY;
+      const componentFolder = context.options[2] || DEFAULT_COMPONENTS_FOLDER;
       const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
       return {
         ImportDeclaration: (node) =>
@@ -48,6 +52,7 @@ module.exports.rules = {
             componentFolder,
             context,
             pathToCurrentFile,
+            errorPostfix,
           }),
         ImportExpression: (node) =>
           importExpression({
@@ -56,6 +61,7 @@ module.exports.rules = {
             componentFolder,
             context,
             pathToCurrentFile,
+            errorPostfix,
           }),
         CallExpression: (node) =>
           callExpression({
@@ -64,6 +70,7 @@ module.exports.rules = {
             componentFolder,
             context,
             pathToCurrentFile,
+            errorPostfix,
           }),
       };
     },
@@ -74,13 +81,14 @@ module.exports.rules = {
  *  works with regular imports
  */
 
-function importDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
+function importDeclaration({ node, hierarchy, componentFolder, context, pathToCurrentFile, errorPostfix }) {
   const importDefinitionPath = adaptingTheImportPathForLinux(node.source.value);
   const params = {
     pathToCurrentModule: pathToCurrentFile,
     importDefinitionPath: importDefinitionPath,
     levelsConfiguration: hierarchy,
     rootDirectory: componentFolder,
+    errorPostfix: errorPostfix,
   };
   const error = validateHierarchy(params);
   if (error) {
@@ -93,7 +101,7 @@ function importDeclaration({ node, hierarchy, componentFolder, context, pathToCu
  * function works with async imports
  * node.source.value = import string value
  */
-function importExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
+function importExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile, errorPostfix }) {
   let importDefinition = undefined;
   try {
     importDefinition = node.source.value;
@@ -108,6 +116,7 @@ function importExpression({ node, hierarchy, componentFolder, context, pathToCur
       importDefinitionPath: importDefinitionPath,
       levelsConfiguration: hierarchy,
       rootDirectory: componentFolder,
+      errorPostfix: errorPostfix,
     };
     const error = validateHierarchy(params);
     if (error) {
@@ -120,7 +129,7 @@ function importExpression({ node, hierarchy, componentFolder, context, pathToCur
  * function works with require without assigning to a variable
  * node.callee.name = transaction name
  */
-function callExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile }) {
+function callExpression({ node, hierarchy, componentFolder, context, pathToCurrentFile, errorPostfix }) {
   const nameOperationIsRequire = node?.callee?.name === "require";
 
   if (nameOperationIsRequire && node.arguments.length > 0) {
@@ -133,6 +142,7 @@ function callExpression({ node, hierarchy, componentFolder, context, pathToCurre
         importDefinitionPath: importDefinitionPath,
         levelsConfiguration: hierarchy,
         rootDirectory: componentFolder,
+        errorPostfix: errorPostfix,
       };
       const error = validateHierarchy(params);
       if (error) {

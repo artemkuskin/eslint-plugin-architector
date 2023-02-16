@@ -7,6 +7,7 @@ function getErrorMessage({
   rootDirectory,
   levelsConfigurationFile,
   levelsConfiguration,
+  errorPostfix,
 }) {
   let errorMessage = undefined;
 
@@ -26,12 +27,14 @@ function getErrorMessage({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
         childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
         nearestGeneralLevel,
+        errorPostfix,
       });
     } else {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
         childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
         nearestGeneralLevel,
+        errorPostfix,
       });
     }
   }
@@ -43,6 +46,7 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
   childrenOfGeneralLevelWhereTargetLevelLocated,
   nearestGeneralLevel,
+  errorPostfix,
 }) {
   if (nearestGeneralLevel.independentChildren === true) {
     return;
@@ -54,7 +58,7 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
   let errorMessage = undefined;
 
   if (currentModuleLevelAboveTargetModuleLevel) {
-    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} inside of ${nearestGeneralLevel.name}. \n See 'architector-import/architector-import' rules in .eslintrc.js.`;
+    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} inside of ${nearestGeneralLevel.name}. \n See 'architector-import/architector-import' rules in .eslintrc.js. ${errorPostfix}`;
   }
 
   return errorMessage;
@@ -64,6 +68,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
   childrenOfGeneralLevelWhereTargetLevelLocated,
   nearestGeneralLevel,
+  errorPostfix,
 }) {
   let errorMessage = undefined;
 
@@ -76,7 +81,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
 
   if (currentModuleLevelImportsItsParentLevel) {
     errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is parent of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. \n See 'architector-import/architector-import' rules in 
-      .eslintrc.js.`;
+      .eslintrc.js. ${errorPostfix}`;
 
     //"Target level is the parent level of the current level";
   }
