@@ -22,7 +22,7 @@ const DEFAULT_HIERARCHY = {
 };
 
 const DEFAULT_COMPONENTS_FOLDER = "components";
-const DEFAULT_POSTFIX = "asdasdas";
+const DEFAULT_POSTFIX = "";
 module.exports.rules = {
   "architector-import": {
     meta: {
