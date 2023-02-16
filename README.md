@@ -2,7 +2,7 @@
 
 The Dependency Rule states that the source code dependencies can only point inwards.
 
-![Image alt](https://github.com/artemkuskin/img/blob/main/1%200u-ekVHFu7Om7Z-VTwFHvg.webp)
+![Image alt](https://github.com/artemkuskin/eslint-plugin-architector/blob/main/image/image.webp)
 
 This means nothing in an inner circle can know anything at all about something in an outer circle. i.e. the inner circle shouldn’t depend on anything in the outer circle. The Black arrows represented in the diagram show the dependency rule.
 
