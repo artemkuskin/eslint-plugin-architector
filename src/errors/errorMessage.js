@@ -54,7 +54,7 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
   let errorMessage = undefined;
 
   if (currentModuleLevelAboveTargetModuleLevel) {
-    errorMessage = `It is not advisable to ${childrenOfGeneralLevelWhereTargetLevelLocated.name} in ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}, since level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} in the rules`;
+    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} inside of ${nearestGeneralLevel.name}. \n See 'architector-import/architector-import' rules in .eslintrc.js.`;
   }
 
   return errorMessage;
@@ -75,7 +75,10 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
     tagetModuleLevelIsNearestGeneralLevel && currentModuleLevelIsNotNearestLevel;
 
   if (currentModuleLevelImportsItsParentLevel) {
-    errorMessage = "Target level is the parent level of the current level";
+    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is parent of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. \n See 'architector-import/architector-import' rules in `
+      .eslintrc.js`.`;
+
+    //"Target level is the parent level of the current level";
   }
 
   return errorMessage;
