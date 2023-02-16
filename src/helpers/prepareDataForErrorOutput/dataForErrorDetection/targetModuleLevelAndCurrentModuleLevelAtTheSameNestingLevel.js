@@ -1,4 +1,4 @@
-const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
+const getPathToCurrentFileWithoutExtension = require("../../convertPath/pathToCurrentFileWithoutContent");
 module.exports = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel;
 /**
  *  таргет и каррент на одном уровне вложенности?

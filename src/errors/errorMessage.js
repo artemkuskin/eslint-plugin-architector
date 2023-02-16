@@ -1,4 +1,4 @@
-const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/getDataForErrorDetection");
+const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/dataForErrorDetection/getDataForErrorDetection");
 module.exports = getErrorMessage;
 
 function getErrorMessage({

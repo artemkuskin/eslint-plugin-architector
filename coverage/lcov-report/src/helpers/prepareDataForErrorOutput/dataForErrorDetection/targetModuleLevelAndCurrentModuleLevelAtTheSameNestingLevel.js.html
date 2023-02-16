@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/helpers/prepareDataForErrorOutput/moduleName/getCurrentAndTargetFolderName.js</title>
+    <title>Code coverage report for src/helpers/prepareDataForErrorOutput/dataForErrorDetection/targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/helpers/prepareDataForErrorOutput/moduleName</a> getCurrentAndTargetFolderName.js</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/helpers/prepareDataForErrorOutput/dataForErrorDetection</a> targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -71,36 +71,33 @@
 <a name='L12'></a><a href='#L12'>12</a>
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a>
-<a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L15'></a><a href='#L15'>15</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const getLowestGeneralLevel = require("../generalLevel/getLowestGeneralLevel");
-const setNameModuleLevel = require("../../serachByNameFolder/getNameFolder");
-const getPathToCurrentFileWithoutExtension = require("../../convertPath/pathToCurrentFileWithoutContent");
-module.exports = getCurrentAndTargetFolderName;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const getPathToCurrentFileWithoutExtension = require("../../convertPath/pathToCurrentFileWithoutContent");
+module.exports = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel;
 /**
- * находим текущий и целеыой уровни по первому общему эелементу
+ *  таргет и каррент на одном уровне вложенности?
  */
-function getCurrentAndTargetFolderName({ generalLevels, pathToCurrentModule, absolutePathToTargetModuleFolder }) {
-  const current = setNameModuleLevel(
-    getLowestGeneralLevel(generalLevels),
-    getPathToCurrentFileWithoutExtension(pathToCurrentModule)
-  );
-  const target = setNameModuleLevel(getLowestGeneralLevel(generalLevels), absolutePathToTargetModuleFolder);
-  return { currentName: current, targetName: target };
+function targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetLevel, currentLevel) {
+  if (targetLevel &amp;&amp; currentLevel) {
+    const pathEqual = Boolean(
+      getPathToCurrentFileWithoutExtension(targetLevel.architectorPath) ===
+        getPathToCurrentFileWithoutExtension(currentLevel.architectorPath)
+    );
+    return pathEqual;
+  }
 }
 &nbsp;</pre></td></tr></table></pre>
 

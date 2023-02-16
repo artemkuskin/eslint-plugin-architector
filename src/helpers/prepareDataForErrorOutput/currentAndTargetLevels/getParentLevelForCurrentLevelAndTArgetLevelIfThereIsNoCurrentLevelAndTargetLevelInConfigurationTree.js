@@ -2,7 +2,7 @@ const getPathToCurrentFileWithoutExtension = require("../../convertPath/pathToCu
 const getModuleLevelByName = require("../../serachByNameFolder/getModuleByName");
 const getModuleLevel = require("../moduleLevel/getModuleLevel");
 const getNearestName = require("../moduleName/getNearestName");
-const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("../targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
+const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("../dataForErrorDetection/targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
 module.exports = getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree;
 
 function getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({

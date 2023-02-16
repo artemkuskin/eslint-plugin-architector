@@ -1,8 +1,8 @@
 const path = require("path");
-const getAliasesList = require("../architectorTree/configurationTreeAleases");
-const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
-const getArchitectureConfigurationTree = require("../architectorTree/getArchitectureConfigurationTree");
-const getDataAboutCurrentLevelAndTargetLevel = require("./currentAndTargetLevels/getCurrentAndTargetLevel");
+const getAliasesList = require("../../architectorTree/configurationListAleases");
+const getPathToCurrentFileWithoutExtension = require("../../convertPath/pathToCurrentFileWithoutContent");
+const getArchitectureConfigurationTree = require("../../architectorTree/getArchitectureConfiguration");
+const getDataAboutCurrentLevelAndTargetLevel = require("../currentAndTargetLevels/getCurrentAndTargetLevel");
 const getAbsolutePath = require("./absolutePath");
 module.exports = getDataForErrorDetection;
 

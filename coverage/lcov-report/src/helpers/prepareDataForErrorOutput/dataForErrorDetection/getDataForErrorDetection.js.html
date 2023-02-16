@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/errors/errorMessage.js</title>
+    <title>Code coverage report for src/helpers/prepareDataForErrorOutput/dataForErrorDetection/getDataForErrorDetection.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/errors</a> errorMessage.js</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/helpers/prepareDataForErrorOutput/dataForErrorDetection</a> getDataForErrorDetection.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">96.43% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/25</span>
+                <span class='fraction'>27/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.67% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/12</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">96.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/25</span>
+                <span class='fraction'>26/27</span>
             </div>
         
             
@@ -139,7 +139,19 @@
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -150,28 +162,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,123 +185,138 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">108x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/dataForErrorDetection/getDataForErrorDetection");
-module.exports = getErrorMessage;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const path = require("path");
+const getAliasesList = require("../../architectorTree/configurationListAleases");
+const getPathToCurrentFileWithoutExtension = require("../../convertPath/pathToCurrentFileWithoutContent");
+const getArchitectureConfigurationTree = require("../../architectorTree/getArchitectureConfiguration");
+const getDataAboutCurrentLevelAndTargetLevel = require("../currentAndTargetLevels/getCurrentAndTargetLevel");
+const getAbsolutePath = require("./absolutePath");
+module.exports = getDataForErrorDetection;
 &nbsp;
-function getErrorMessage({
+let jsConfigAliases = undefined;
+&nbsp;
+function getDataForErrorDetection({
   importDefinitionPath,
   pathToCurrentModule,
   rootDirectory,
   levelsConfigurationFile,
   levelsConfiguration,
 }) {
-  let errorMessage = undefined;
+  if (jsConfigAliases === undefined) {
+    setJsConfigAliases();
+  }
 &nbsp;
-  const errorDetectionData = getDataForErrorDetection({
-    importDefinitionPath,
-    pathToCurrentModule,
-    rootDirectory,
+  const configurationTree = getArchitectureConfigurationTree(
     levelsConfigurationFile,
     levelsConfiguration,
+    rootDirectory
+  );
+&nbsp;
+  const absolutePathToTargetLevel = getAbsolutePathToTargetLevel({
+    pathToCurrentModule,
+    importDefinitionPath,
+    rootDirectory,
   });
-  const { isOneLevelOfNesting, nearestGeneralLevel, targetLevel, currentLevel } = errorDetectionData;
-  const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
 &nbsp;
-  if (nearestGeneralLevelExists) {
-    if (isOneLevelOfNesting) {
-      errorMessage = getErrorWhenCurrentAndTargetAreInDifferentLevels({
-        childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
-        childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
-        nearestGeneralLevel,
-      });
-    } else {
-      errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
-        childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
-        childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
-        nearestGeneralLevel,
-      });
+  return getDataAboutCurrentLevelAndTargetLevel({
+    pathToCurrentModule,
+    configurationTree,
+    absolutePathToTargetLevel,
+    rootDirectory,
+  });
+}
+&nbsp;
+/**
+ * jsconfig can contain aliases
+ */
+function setJsConfigAliases() {
+  try {
+    const jsconfig = require(path.resolve("jsconfig.json"));
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (jsconfig.compilerOptions.paths) {
+      jsConfigAliases = jsconfig.compilerOptions.paths;
     }
+  } catch {
+<span class="cstat-no" title="statement not covered" >    jsConfigAliases = null;</span>
   }
-&nbsp;
-  return errorMessage;
 }
 &nbsp;
-function getErrorWhenCurrentAndTargetAreInDifferentLevels({
-  childrenOfGeneralLevelWhereCurrentLevelLocated,
-  childrenOfGeneralLevelWhereTargetLevelLocated,
-  nearestGeneralLevel,
-}) {
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (nearestGeneralLevel.independentChildren === true) {
-<span class="cstat-no" title="statement not covered" >    return;</span>
+function getAbsolutePathToTargetLevel({ pathToCurrentModule, importDefinitionPath, rootDirectory }) {
+  let absolutePathToTargetModuleFolder;
+&nbsp;
+  const targetModuleAlias = getLevelAlias(
+    getAliasesList(rootDirectory, jsConfigAliases),
+    getAliaseKey(importDefinitionPath)
+  );
+  const absolutePathToTargetModule = getAbsolutePath(pathToCurrentModule, importDefinitionPath);
+  if (targetModuleAlias) {
+    absolutePathToTargetModuleFolder = targetModuleAlias.path;
+  } else {
+    absolutePathToTargetModuleFolder = getPathToCurrentFileWithoutExtension(
+      getAbsolutePath(pathToCurrentModule, importDefinitionPath)
+    );
   }
 &nbsp;
-  const currentModuleLevelAboveTargetModuleLevel =
-    childrenOfGeneralLevelWhereCurrentLevelLocated.index &lt; childrenOfGeneralLevelWhereTargetLevelLocated.index;
-&nbsp;
-  let errorMessage = undefined;
-&nbsp;
-  if (currentModuleLevelAboveTargetModuleLevel) {
-    errorMessage = `It is not advisable to ${childrenOfGeneralLevelWhereTargetLevelLocated.name} in ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}, since level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} in the rules`;
-  }
-&nbsp;
-  return errorMessage;
+  return {
+    absolutePathToTargetModuleFolder: absolutePathToTargetModuleFolder,
+    absolutePathToTargetModule: absolutePathToTargetModule,
+  };
 }
 &nbsp;
-function getErrorWhenCurrentAndTargetAreInTheSameLevel({
-  childrenOfGeneralLevelWhereCurrentLevelLocated,
-  childrenOfGeneralLevelWhereTargetLevelLocated,
-  nearestGeneralLevel,
-}) {
-  let errorMessage = undefined;
-&nbsp;
-  const tagetModuleLevelIsNearestGeneralLevel =
-    childrenOfGeneralLevelWhereTargetLevelLocated.architectorPath === nearestGeneralLevel.architectorPath;
-  const currentModuleLevelIsNotNearestLevel =
-    childrenOfGeneralLevelWhereCurrentLevelLocated.architectorPath !== nearestGeneralLevel.architectorPath;
-  const currentModuleLevelImportsItsParentLevel =
-    tagetModuleLevelIsNearestGeneralLevel &amp;&amp; currentModuleLevelIsNotNearestLevel;
-&nbsp;
-  if (currentModuleLevelImportsItsParentLevel) {
-    errorMessage = "Target level is the parent level of the current level";
+function getLevelAlias(configurationTree, aliasKey) {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (configurationTree) {
+    return configurationTree.find((elem) =&gt; elem.key === aliasKey);
   }
+}
 &nbsp;
-  return errorMessage;
+function getAliaseKey(importDefinitionPath) {
+  return importDefinitionPath.split("/")[0];
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -313,14 +328,14 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
                 at Thu Feb 16 2023 10:34:36 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
-        <script src="../../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     
