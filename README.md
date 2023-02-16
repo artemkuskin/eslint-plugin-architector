@@ -54,10 +54,10 @@ levels: [
 Вы можете изменить иерархию, настраиваются как уровни, так и уровни детей. Плагин будет проверять импорт только в этих папках, расположенных в папке компонентов.
 
 Вы также можете изменить имя папки корневых компонентов. Плагин будет проверять файлы и импортировать только в этой папке.
-"level" - имя папки(Обязательное поле).
-"children" - массив с дочерними папками (Обязательное поле, если не дочерних уровней - "children": []).
-"errorPostfix" - сообщение которое будет показываться с ошибкой при не правильном импорте(Не обязательное поле).
-"independentChildren": true,- эта настройка позволит импортировать все дочерние уровни друг в друга не зависимо от иерархии , но не глубже чем на один уровень вложенности(Не обязательное поле).
+`"level" - имя папки(Обязательное поле).`
+`"children" - массив с дочерними папками (Обязательное поле, если нет дочерних уровней - "children": []).`
+`"errorPostfix" - сообщение которое будет показываться с ошибкой при не правильном импорте(Не обязательное поле).`
+`"independentChildren": true,- эта настройка позволит импортировать все дочерние уровни друг в друга не зависимо от иерархии , но не глубже чем на один уровень вложенности(Не обязательное поле).`
 
 ```
      "architector-import/architector-import": [
@@ -125,16 +125,16 @@ levels: [
 
 ```
 // valid, A can import "childrens"  Module A
-import { A1 } from "./A1/A1.jsx";
-import { A2 } from "./A1/A2/A2.jsx";
-import { A3 } from "A3/A3.jsx"; - Aliase
+import { A1 } from "./A1/A1.js";
+import { A2 } from "./A1/A2/A2.js";
+import { A3 } from "A3/A3.js"; - Aliase
 
 // valid, A can import B, C
-import {B} from "../B/B.jsx";
-import {C} from "C/C.jsx"; - Aliase
+import {B} from "../B/B.js";
+import {C} from "C/C.js"; - Aliase
 
 // invalid, A can't import "children" Module B
-import { B1 } from "B1/B1.jsx"; - Aliase
+import { B1 } from "B1/B1.js"; - Aliase
 
 ```
 
@@ -145,13 +145,13 @@ import { B1 } from "B1/B1.jsx"; - Aliase
 
 ```
 // valid, B can import "childrens" Module A and Module A
-import { A } from "../../A/A.jsx";
-import { A1 } from "../../A/A1/A1.jsx";
+import { A } from "../../A/A.js";
+import { A1 } from "../../A/A1/A1.js";
 
 
 // invalid, B can't import  Module B and Module C
-import { B } from "../B.jsx";
-import { C } from "C/C.jsx";
+import { B } from "../B.js";
+import { C } from "C/C.js";
 
 ```
 
@@ -162,9 +162,9 @@ import { C } from "C/C.jsx";
 
 ```
 // valid, B can import "childrens" Module A and Module A
-import { B1 } from "B1/B1.jsx";
-import { A } from "../A/A.jsx";
-import { A1 } from "../A/A1/A1.jsx";
-import { B } from "../B/B.jsx";
-import { A3 } from "A3/A3.jsx";
+import { B1 } from "B1/B1.js";
+import { A } from "../A/A.js";
+import { A1 } from "../A/A1/A1.js";
+import { B } from "../B/B.js";
+import { A3 } from "A3/A3.js";
 ```
