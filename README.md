@@ -1,8 +1,8 @@
 # eslint-plagin-architector
 
-Плагин поддерживающий иерархию вашего приложения. Плагин позволяет вам выстраивать иерархию вашего предложения и запрещает импорты если они противоречат вашим настройкам. Импотры запрещаются в папки которые находятся выше в дереве правил или являются родительскими
+This plugin allows you to build the hierarchy of your proposal and disallows imports if they conflict with your settings. Imports are banned to folders that are higher in the rules tree or are parent
 
-Плагин поддерживает Алиасы которые вы укажите в "jsconfig.json"
+The plugin supports aliases that you specify in "jsconfig.json"
 
 ## installation
 
@@ -51,17 +51,17 @@ levels: [
 
 ### options
 
-Вы можете изменить иерархию, настраиваются как уровни, так и уровни детей. Плагин будет проверять импорт только в этих папках, расположенных в папке компонентов.
+You can change the hierarchy, both levels and child levels are configurable. The plugin will only check imports in these folders, located in the components folder.
 
-Вы также можете изменить имя папки корневых компонентов. Плагин будет проверять файлы и импортировать только в этой папке.
+You can also change the name of the root component folder. The plugin will only check files and import in this folder.
 
-`"level" - имя папки(Обязательное поле).`
+`"level" - Folder name(Required field).`
 
-`"children" - массив с дочерними папками (Обязательное поле, если нет дочерних уровней - "children": []).`
+`"children" - Array with child folders (Required if there are no child levels- "children": []).`
 
-`"errorPostfix" - сообщение которое будет показываться с ошибкой при не правильном импорте(Не обязательное поле).`
+`"errorPostfix" - The message that will be shown with an error if the import is not correct (Optional field).`
 
-`"independentChildren": true,- эта настройка позволит импортировать все дочерние уровни друг в друга не зависимо от иерархии , но не глубже чем на один уровень вложенности(Не обязательное поле).`
+`"independentChildren": true,- This setting will allow you to import all child levels into each other, regardless of the hierarchy, but not deeper than one level of nesting (optional field).`
 
 ```
      "architector-import/architector-import": [
@@ -125,10 +125,10 @@ levels: [
 ## Examples 1
 
 `**/components/**/A/A.js`
-`Модуль А находится выше всех в дереве, значит в него могут импортироваться только его дочерние уровни`
+`Level "A" is the highest in the tree, so only its children can be imported into it`
 
 ```
-// valid, A can import "childrens"  Module A
+// valid, A can import childrens  Level A
 import { A1 } from "./A1/A1.js";
 import { A2 } from "./A1/A2/A2.js";
 import { A3 } from "A3/A3.js"; - Aliase
@@ -137,7 +137,7 @@ import { A3 } from "A3/A3.js"; - Aliase
 import {B} from "../B/B.js";
 import {C} from "C/C.js"; - Aliase
 
-// invalid, A can't import "children" Module B
+// invalid, A can't import "children" Level B
 import { B1 } from "B1/B1.js"; - Aliase
 
 ```
@@ -145,15 +145,15 @@ import { B1 } from "B1/B1.js"; - Aliase
 ## Examples 2
 
 `**/components/**/B/B1/B1.js`
-`Модуль B1 является дочерним В, В находится выше D и С , но ниже А , значит в него могут импортироваться А и его дочерние элементы `
+`Level "B1" is a child of level "B", level "B" is above "D" and "C", but below "A", so it can import "A" and its children`
 
 ```
-// valid, B can import "childrens" Module A and Module A
+// valid, B can import childrens Level A and Level A
 import { A } from "../../A/A.js";
 import { A1 } from "../../A/A1/A1.js";
 
 
-// invalid, B can't import  Module B and Module C
+// invalid, B can't import  Level B and Level C
 import { B } from "../B.js";
 import { C } from "C/C.js";
 
@@ -162,10 +162,10 @@ import { C } from "C/C.js";
 ## Examples 3
 
 `**/components/**/D/D.js`
-`Модуль D находиться ниже всех в дереве правил, згачит в него можно импортировать все модули`
+`Level "D" is below all levels in the rules tree, so you can import all levels into it`
 
 ```
-// valid, B can import "childrens" Module A and Module A
+// valid, B can import childrens Level A and Level A
 import { B1 } from "B1/B1.js";
 import { A } from "../A/A.js";
 import { A1 } from "../A/A1/A1.js";
