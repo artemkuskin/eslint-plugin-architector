@@ -1,11 +1,11 @@
-const getPathToCurrentFileWithoutExtension = require("../convertPath/pathToCurrentFileWithoutContent");
-const getModuleLevelByName = require("../serachByNameFolder/getModuleByName");
-const getModuleLevel = require("./getModuleLevel");
-const getNearestName = require("./getNearestName");
-const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("./targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
-module.exports = getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree;
+const getPathToCurrentFileWithoutExtension = require("../../convertPath/pathToCurrentFileWithoutContent");
+const getModuleLevelByName = require("../../serachByNameFolder/getModuleByName");
+const getModuleLevel = require("../getModuleLevel");
+const getNearestName = require("../getNearestName");
+const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("../targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
+module.exports = getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree;
 
-function getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
+function getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
   generalLevels,
   pathToCurrentModule,
   configurationTree,

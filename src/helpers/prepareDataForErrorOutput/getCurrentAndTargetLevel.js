@@ -4,9 +4,9 @@ const getGeneralLevels = require("./getGeneralLevels");
 const getCurrentAndTargetFolderName = require("./getCurrentAndTargetFolderName");
 const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("./targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
 const getNearestName = require("./getNearestName");
-const getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree = require("./getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree");
-const getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree = require("./getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree");
-const getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree = require("./getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree");
+const getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree = require("./getLevels/getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree");
+const getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree = require("./getLevels/getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree");
+const getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree = require("./getLevels/getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree");
 module.exports = getDataAboutTheCurrentLevelAndTargetLevel;
 
 function getDataAboutTheCurrentLevelAndTargetLevel({
@@ -33,7 +33,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetLevel, currentLevel);
 
     if (currentModuleLevelNotSpecifiedInTheRules && targetModuleLevelNotSpecifiedInTheRules) {
-      return getParentLevelorForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
+      return getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree({
         generalLevels,
         pathToCurrentModule,
         configurationTree,
@@ -42,7 +42,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     }
 
     if (currentModuleLevelNotSpecifiedInTheRules) {
-      return getParentLevelorForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree({
+      return getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree({
         generalLevels,
         pathToCurrentModule,
         configurationTree,
@@ -51,7 +51,7 @@ function getDataAboutTheCurrentLevelAndTargetLevel({
     }
 
     if (targetModuleLevelNotSpecifiedInTheRules) {
-      return getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
+      return getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
         generalLevels,
         configurationTree,
         currentLevel,

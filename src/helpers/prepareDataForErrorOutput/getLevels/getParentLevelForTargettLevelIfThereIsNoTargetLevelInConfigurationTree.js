@@ -1,10 +1,10 @@
-const getModuleLevelByName = require("../serachByNameFolder/getModuleByName");
-const getModuleLevel = require("./getModuleLevel");
-const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("./targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
-const getNearestName = require("./getNearestName");
-module.exports = getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree;
+const getModuleLevelByName = require("../../serachByNameFolder/getModuleByName");
+const getModuleLevel = require("../getModuleLevel");
+const targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel = require("../targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel");
+const getNearestName = require("../getNearestName");
+module.exports = getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree;
 
-function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
+function getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree({
   generalLevels,
   configurationTree,
   currentLevel,
@@ -19,7 +19,7 @@ function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTre
   });
 
   const levelsModuleIsRoorDirectory = Boolean(targetLevel.name === rootDirectory);
-  
+
   if (levelsModuleIsRoorDirectory) {
     targetLevel = getModuleLevel({
       generalLevels,
@@ -27,7 +27,7 @@ function getParentLevelorForTargettLevelIfThereIsNoTargetLevelInConfigurationTre
       configurationTree,
     });
   }
-  
+
   const nearestLevelName = getNearestName(targetLevel, currentLevel);
   const nearestGeneralLevel = getModuleLevelByName(configurationTree, nearestLevelName);
   const isOneLevelOfNesting = targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel(targetLevel, currentLevel);

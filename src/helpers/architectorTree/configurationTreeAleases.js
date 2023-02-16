@@ -24,8 +24,6 @@ function getPathToAliase(aliases, rootDirectory) {
     absolutePathToFile(PathToCurrentFileWithOutContent(aliases.path), rootDirectory)
   );
   const pathToAliase = absolutePathToAliase(aliases, rootDirectory, lengthStringAliases);
-  console.log(pathToAliase);
-  //console.log(aliases);
 
   return pathToAliase;
 }
