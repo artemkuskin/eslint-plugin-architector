@@ -22,14 +22,10 @@ const DEFAULT_HIERARCHY = {
 };
 
 const DEFAULT_COMPONENTS_FOLDER = "components";
-const DEFAULT_POSTFIX = "";
 module.exports.rules = {
   "architector-import": {
     meta: {
       schema: [
-        {
-          type: "string",
-        },
         {
           type: "object",
           additionalProperties: true,
@@ -40,9 +36,8 @@ module.exports.rules = {
       ],
     },
     create: (context) => {
-      const errorPostfix = context.options[0] || DEFAULT_POSTFIX;
-      const hierarchy = context.options[1] || DEFAULT_HIERARCHY;
-      const componentFolder = context.options[2] || DEFAULT_COMPONENTS_FOLDER;
+      const hierarchy = context.options[0] || DEFAULT_HIERARCHY;
+      const componentFolder = context.options[1] || DEFAULT_COMPONENTS_FOLDER;
       const pathToCurrentFile = adaptingTheImportPathForLinux(context.getFilename());
       return {
         ImportDeclaration: (node) =>
@@ -52,7 +47,6 @@ module.exports.rules = {
             componentFolder,
             context,
             pathToCurrentFile,
-            errorPostfix,
           }),
         ImportExpression: (node) =>
           importExpression({
@@ -61,7 +55,6 @@ module.exports.rules = {
             componentFolder,
             context,
             pathToCurrentFile,
-            errorPostfix,
           }),
         CallExpression: (node) =>
           callExpression({
@@ -70,7 +63,6 @@ module.exports.rules = {
             componentFolder,
             context,
             pathToCurrentFile,
-            errorPostfix,
           }),
       };
     },
@@ -155,15 +147,3 @@ function callExpression({ node, hierarchy, componentFolder, context, pathToCurre
 function adaptingTheImportPathForLinux(path) {
   return path.split("\\").join("/");
 }
-
-// function isRequireExpression(expr) {
-//   return (
-//     expr != null &&
-//     expr.type === "CallExpression" &&
-//     expr.callee != null &&
-//     expr.callee.name === "require" &&
-//     expr.arguments != null &&
-//     expr.arguments.length === 1 &&
-//     expr.arguments[0].type === "Literal"
-//   );
-// }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676541509960" clover="3.2.0">
-  <project timestamp="1676541509960" name="All files">
-    <metrics statements="236" coveredstatements="234" conditionals="64" coveredconditionals="57" methods="41" coveredmethods="41" elements="341" coveredelements="332" complexity="0" loc="236" ncloc="236" packages="10" files="20" classes="20"/>
+<coverage generated="1676545579225" clover="3.2.0">
+  <project timestamp="1676545579225" name="All files">
+    <metrics statements="237" coveredstatements="235" conditionals="66" coveredconditionals="58" methods="41" coveredmethods="41" elements="344" coveredelements="334" complexity="0" loc="237" ncloc="237" packages="10" files="20" classes="20"/>
     <package name="src">
       <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="index.js" path="/home/artem/eslint-plagin-architector/src/index.js">
@@ -17,34 +17,35 @@
       </file>
     </package>
     <package name="src.errors">
-      <metrics statements="25" coveredstatements="24" conditionals="12" coveredconditionals="11" methods="3" coveredmethods="3"/>
+      <metrics statements="26" coveredstatements="25" conditionals="14" coveredconditionals="12" methods="3" coveredmethods="3"/>
       <file name="errorMessage.js" path="/home/artem/eslint-plagin-architector/src/errors/errorMessage.js">
-        <metrics statements="25" coveredstatements="24" conditionals="12" coveredconditionals="11" methods="3" coveredmethods="3"/>
+        <metrics statements="26" coveredstatements="25" conditionals="14" coveredconditionals="12" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="12" count="20" type="stmt"/>
         <line num="14" count="20" type="stmt"/>
         <line num="21" count="20" type="stmt"/>
         <line num="22" count="20" type="stmt"/>
-        <line num="24" count="20" type="cond" truecount="2" falsecount="0"/>
-        <line num="25" count="19" type="cond" truecount="2" falsecount="0"/>
-        <line num="26" count="13" type="stmt"/>
-        <line num="33" count="6" type="stmt"/>
-        <line num="42" count="20" type="stmt"/>
-        <line num="51" count="13" type="cond" truecount="1" falsecount="1"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="56" count="13" type="stmt"/>
-        <line num="58" count="13" type="stmt"/>
-        <line num="60" count="13" type="cond" truecount="2" falsecount="0"/>
-        <line num="61" count="12" type="stmt"/>
-        <line num="64" count="13" type="stmt"/>
-        <line num="73" count="6" type="stmt"/>
-        <line num="76" count="6" type="stmt"/>
-        <line num="78" count="6" type="stmt"/>
-        <line num="80" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="82" count="6" type="cond" truecount="2" falsecount="0"/>
-        <line num="83" count="3" type="stmt"/>
-        <line num="89" count="6" type="stmt"/>
+        <line num="23" count="20" type="cond" truecount="1" falsecount="1"/>
+        <line num="25" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="13" type="stmt"/>
+        <line num="34" count="6" type="stmt"/>
+        <line num="43" count="20" type="stmt"/>
+        <line num="52" count="13" type="cond" truecount="1" falsecount="1"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="57" count="13" type="stmt"/>
+        <line num="59" count="13" type="stmt"/>
+        <line num="61" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="62" count="12" type="stmt"/>
+        <line num="65" count="13" type="stmt"/>
+        <line num="74" count="6" type="stmt"/>
+        <line num="77" count="6" type="stmt"/>
+        <line num="79" count="6" type="stmt"/>
+        <line num="81" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="83" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="84" count="3" type="stmt"/>
+        <line num="87" count="6" type="stmt"/>
       </file>
     </package>
     <package name="src.helpers.architectorTree">

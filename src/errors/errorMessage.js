@@ -20,6 +20,7 @@ function getErrorMessage({
   });
   const { isOneLevelOfNesting, nearestGeneralLevel, targetLevel, currentLevel } = errorDetectionData;
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
+  const errorPost = errorPostfix ? errorPostfix : ".";
 
   if (nearestGeneralLevelExists) {
     if (isOneLevelOfNesting) {
@@ -27,14 +28,14 @@ function getErrorMessage({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
         childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
         nearestGeneralLevel,
-        errorPostfix,
+        errorPost,
       });
     } else {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
         childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
         nearestGeneralLevel,
-        errorPostfix,
+        errorPost,
       });
     }
   }
@@ -46,7 +47,7 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
   childrenOfGeneralLevelWhereTargetLevelLocated,
   nearestGeneralLevel,
-  errorPostfix,
+  errorPost,
 }) {
   if (nearestGeneralLevel.independentChildren === true) {
     return;
@@ -58,7 +59,7 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
   let errorMessage = undefined;
 
   if (currentModuleLevelAboveTargetModuleLevel) {
-    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} inside of ${nearestGeneralLevel.name}. \n See 'architector-import/architector-import' rules in .eslintrc.js. ${errorPostfix}`;
+    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} inside of ${nearestGeneralLevel.name}. ${errorPost}`;
   }
 
   return errorMessage;
@@ -68,7 +69,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
   childrenOfGeneralLevelWhereTargetLevelLocated,
   nearestGeneralLevel,
-  errorPostfix,
+  errorPost,
 }) {
   let errorMessage = undefined;
 
@@ -80,10 +81,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
     tagetModuleLevelIsNearestGeneralLevel && currentModuleLevelIsNotNearestLevel;
 
   if (currentModuleLevelImportsItsParentLevel) {
-    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is parent of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. \n See 'architector-import/architector-import' rules in 
-      .eslintrc.js. ${errorPostfix}`;
-
-    //"Target level is the parent level of the current level";
+    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is parent of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} ${errorPost}`;
   }
 
   return errorMessage;

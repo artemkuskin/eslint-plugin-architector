@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">96.15% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/25</span>
+                <span class='fraction'>25/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.67% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/12</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">96.15% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/25</span>
+                <span class='fraction'>25/26</span>
             </div>
         
             
@@ -145,9 +145,7 @@
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
 <a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,6 +165,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -232,9 +231,6 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const getDataForErrorDetection = require("../helpers/prepareDataForErrorOutput/dataForErrorDetection/getDataForErrorDetection");
@@ -259,6 +255,7 @@ function getErrorMessage({
   });
   const { isOneLevelOfNesting, nearestGeneralLevel, targetLevel, currentLevel } = errorDetectionData;
   const nearestGeneralLevelExists = Boolean(nearestGeneralLevel);
+  const errorPost = errorPostfix ? <span class="branch-0 cbranch-no" title="branch not covered" >errorPostfix </span>: ".";
 &nbsp;
   if (nearestGeneralLevelExists) {
     if (isOneLevelOfNesting) {
@@ -266,14 +263,14 @@ function getErrorMessage({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
         childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
         nearestGeneralLevel,
-        errorPostfix,
+        errorPost,
       });
     } else {
       errorMessage = getErrorWhenCurrentAndTargetAreInTheSameLevel({
         childrenOfGeneralLevelWhereCurrentLevelLocated: currentLevel,
         childrenOfGeneralLevelWhereTargetLevelLocated: targetLevel,
         nearestGeneralLevel,
-        errorPostfix,
+        errorPost,
       });
     }
   }
@@ -285,7 +282,7 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
   childrenOfGeneralLevelWhereTargetLevelLocated,
   nearestGeneralLevel,
-  errorPostfix,
+  errorPost,
 }) {
   <span class="missing-if-branch" title="if path not taken" >I</span>if (nearestGeneralLevel.independentChildren === true) {
 <span class="cstat-no" title="statement not covered" >    return;</span>
@@ -297,7 +294,7 @@ function getErrorWhenCurrentAndTargetAreInDifferentLevels({
   let errorMessage = undefined;
 &nbsp;
   if (currentModuleLevelAboveTargetModuleLevel) {
-    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} inside of ${nearestGeneralLevel.name}. \n See 'architector-import/architector-import' rules in .eslintrc.js. ${errorPostfix}`;
+    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is higher than level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} inside of ${nearestGeneralLevel.name}. ${errorPost}`;
   }
 &nbsp;
   return errorMessage;
@@ -307,7 +304,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
   childrenOfGeneralLevelWhereCurrentLevelLocated,
   childrenOfGeneralLevelWhereTargetLevelLocated,
   nearestGeneralLevel,
-  errorPostfix,
+  errorPost,
 }) {
   let errorMessage = undefined;
 &nbsp;
@@ -319,10 +316,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
     tagetModuleLevelIsNearestGeneralLevel &amp;&amp; currentModuleLevelIsNotNearestLevel;
 &nbsp;
   if (currentModuleLevelImportsItsParentLevel) {
-    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is parent of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. \n See 'architector-import/architector-import' rules in 
-      .eslintrc.js. ${errorPostfix}`;
-&nbsp;
-    //"Target level is the parent level of the current level";
+    errorMessage = `Cannot import module of level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} into module of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name}. Reason: level ${childrenOfGeneralLevelWhereTargetLevelLocated.name} is parent of level ${childrenOfGeneralLevelWhereCurrentLevelLocated.name} ${errorPost}`;
   }
 &nbsp;
   return errorMessage;
@@ -334,7 +328,7 @@ function getErrorWhenCurrentAndTargetAreInTheSameLevel({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Feb 16 2023 12:58:29 GMT+0300 (Москва, стандартное время)
+                at Thu Feb 16 2023 14:06:19 GMT+0300 (Москва, стандартное время)
             </div>
         </div>
         <script src="../../prettify.js"></script>

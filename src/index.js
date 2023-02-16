@@ -20,7 +20,7 @@ function validateIfImportIsAllowed({
       rootDirectory,
       levelsConfigurationFile: levelsConfiguration.levels,
       levelsConfiguration,
-      errorPostfix,
+      errorPostfix: levelsConfiguration.errorPostfix,
     });
   }
 
