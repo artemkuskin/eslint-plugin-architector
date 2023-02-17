@@ -8,7 +8,7 @@ This means nothing in an inner circle can know anything at all about something i
 
 The plugin supports aliases that you specify in the "jsconfig.json" file and also works with require and asinc import.
 
-![Image alt](<https://github.com/artemkuskin/eslint-plugin-architector/blob/main/image/Untitled%20Workspace%20-%20Copy%20(2).png>)
+![Image alt](<https://github.com/artemkuskin/eslint-plugin-architector/blob/main/image/Untitled%20Workspace%20-%20Copy%20(4).png>)
 
 ## installation
 
