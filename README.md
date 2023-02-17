@@ -36,49 +36,58 @@ Next, enable the rule
         "errorPostfix": "see www.wiki for details.",
         "levels": [
             {
-            "level": "A",
+            "level": "UILib",
             "independentChildren": true,
             "children": [
               {
-                "level": "A1",
+                "level": "UiLibA",
                 "children": [
                   {
-                    "level": "A2",
+                    "level": "UiLibD",
                     "children": []
                   },
                   {
-                    "level": "A5",
+                    "level": "UiLibE",
                     "children": []
                   }
                 ]
               },
               {
-                "level": "A3",
+                "level": "UiLibB",
                 "children": []
               }
             ]
           },
           {
-            "level": "B",
+            "level": "Global",
             "children": [
               {
-                "level": "B1",
+                "level": "GlobalA",
                 "children": []
               },
               {
-                "level": "B5",
+                "level": "GlobalB",
                 "children": []
               }
             ]
           },
           {
-            "level": "C",
-            "children": []
-          },
-          {
-            "level": "D",
-            "children": []
-          },
+            "level": "Services",
+            "children": [
+              {
+                "level": "ServicesA",
+                "children": []
+              },
+              {
+                "level": "ServicesB",
+                "children": []
+              },
+              {
+                "level": "ServicesC",
+                "children": []
+              }
+            ]
+          }
 
         ]
       },
@@ -101,51 +110,50 @@ You can also change the name of the root component folder. The plugin will only 
 
 ## Case 1
 
-`**/components/**/A/A.js`
-Level "A" is the highest in the tree, so only its children can be imported into it
+`**/components/**/UILib/UILib.js`
+Level "UILib" is the highest in the tree, so only its children can be imported into it
 
 ```
-// valid, A can import childrens  Level A
-import { A1 } from "./A1/A1.js";
-import { A2 } from "./A1/A2/A2.js";
-import { A3 } from "A3/A3.js"; - Aliase
+// valid, UILiB can import childrens  Level A
+import { UILibA } from "./UILibA/UILibA.js";
+import { UILibB } from "./UILibB/UILibB.js";
 
-// valid, A can import B, C
-import {B} from "../B/B.js";
-import {C} from "C/C.js"; - Aliase
+// invalid, UILib can import Global, C
+import {Global} from "../Global/Global.js";
+import {Services} from "Services/Services.js"; - Aliase
 
-// invalid, A can't import "children" Level B
-import { B1 } from "B1/B1.js"; - Aliase
+// invalid, UILib can't import "children" Level B
+import { GlobalB } from "GlobalB/GlobalB.js"; - Aliase
 
 ```
 
 ## Case 2
 
-`**/components/**/B/B1/B1.js`
-Level "B1" is a child of level "B", level "B" is above "D" and "C", but below "A", so it can import "A" and its children
+`**/components/**/Global/GlobalB/GlobalB.js`
+Level "GlobalB" is a child of level "Global", level "Global" is above "Services", but below "UILib", so it can import "UILib" and its children
 
 ```
-// valid, B can import childrens Level A and Level A
-import { A } from "../../A/A.js";
-import { A1 } from "../../A/A1/A1.js";
+// valid, Global can import childrens Level UILib and Level UILib
+import { UILib } from "../../UILib/UILib.js";
+import { UILibA } from "../../UILib/UILibA/UILibA.js";
 
 
-// invalid, B can't import  Level B and Level C
-import { B } from "../B.js";
-import { C } from "C/C.js";
+// invalid, GlobalB can't import  Level Global and Level Services
+import { GlobalB } from "../Global.js";
+import { Services } from "Services/Services.js";
 
 ```
 
 ## Case 3
 
-`**/components/**/D/D.js`
-Level "D" is below all levels in the rules tree, so you can import all levels into it
+`**/components/**/Services/Services.js`
+Level "Services" is below all levels in the rules tree, so you can import all levels into it
 
 ```
-// valid, B can import childrens Level A and Level A
-import { B1 } from "B1/B1.js";
-import { A } from "../A/A.js";
-import { A1 } from "../A/A1/A1.js";
-import { B } from "../B/B.js";
-import { A3 } from "A3/A3.js";
+// valid
+import { GlobalB } from "GlobalB/GlobalB.js";
+import { UILib } from "../UILib/UILib.js";
+import { UILibA } from "../UILib/UILibA/UILibA.js";
+import { Global } from "../Global/Global.js";
+
 ```
