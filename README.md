@@ -28,7 +28,7 @@ Add the plugin to your eslint config file
 
 Next, enable the rule
 
-```
+```js
      "architector-import/architector-import": [
       "error",
 
@@ -113,18 +113,19 @@ You can also change the name of the root component folder. The plugin will only 
 `**/components/**/UILib/UILib.js`
 Level "UILib" is the highest in the tree, so only its children can be imported into it
 
-```
+```js
 // valid, UILiB can import childrens  Level A
 import { UILibA } from "./UILibA/UILibA.js";
 import { UILibB } from "./UILibB/UILibB.js";
 
-// invalid, UILib can import Global, C
-import {Global} from "../Global/Global.js";
-import {Services} from "Services/Services.js"; - Aliase
+// invalid, UILib cannot import Global, Services
+import { Global } from "../Global/Global.js";
+import { Services } from "Services/Services.js";
+-Aliase;
 
 // invalid, UILib can't import "children" Level B
-import { GlobalB } from "GlobalB/GlobalB.js"; - Aliase
-
+import { GlobalB } from "GlobalB/GlobalB.js";
+-Aliase;
 ```
 
 ## Case 2
@@ -132,16 +133,14 @@ import { GlobalB } from "GlobalB/GlobalB.js"; - Aliase
 `**/components/**/Global/GlobalB/GlobalB.js`
 Level "GlobalB" is a child of level "Global", level "Global" is above "Services", but below "UILib", so it can import "UILib" and its children
 
-```
+```js
 // valid, Global can import childrens Level UILib and Level UILib
 import { UILib } from "../../UILib/UILib.js";
 import { UILibA } from "../../UILib/UILibA/UILibA.js";
 
-
 // invalid, GlobalB can't import  Level Global and Level Services
-import { GlobalB } from "../Global.js";
+import { Global } from "../Global.js";
 import { Services } from "Services/Services.js";
-
 ```
 
 ## Case 3
@@ -149,11 +148,10 @@ import { Services } from "Services/Services.js";
 `**/components/**/Services/Services.js`
 Level "Services" is below all levels in the rules tree, so you can import all levels into it
 
-```
+```js
 // valid
 import { GlobalB } from "GlobalB/GlobalB.js";
 import { UILib } from "../UILib/UILib.js";
 import { UILibA } from "../UILib/UILibA/UILibA.js";
 import { Global } from "../Global/Global.js";
-
 ```
