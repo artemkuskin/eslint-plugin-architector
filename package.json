@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/artemkuskin/eslint-plagin-architector.git"
   },
-  "version": "1.0.10",
+  "version": "1.0.0",
   "description": "Eslint plugin for enforcing atomic design hierarchy",
   "main": "index.js",
   "author": "Robin Alaerts",
@@ -29,5 +29,12 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-require": "^0.0.1",
     "tree-model": "^1.0.7"
+  },
+  "bugs": {
+    "url": "https://github.com/artemkuskin/eslint-plagin-architector/issues"
+  },
+  "homepage": "https://github.com/artemkuskin/eslint-plagin-architector#readme",
+  "directories": {
+    "test": "test"
   }
 }

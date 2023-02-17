@@ -13,7 +13,7 @@ The plugin supports aliases that you specify in the "jsconfig.json" file and als
 ## installation
 
 ```
-npm install artemkuskin/eslint-plagin-architector
+npm i eslint-plugin-architector-import
 ```
 
 ## Usage
