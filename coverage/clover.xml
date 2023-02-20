@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676623659676" clover="3.2.0">
-  <project timestamp="1676623659677" name="All files">
+<coverage generated="1676875780817" clover="3.2.0">
+  <project timestamp="1676875780818" name="All files">
     <metrics statements="237" coveredstatements="235" conditionals="66" coveredconditionals="58" methods="41" coveredmethods="41" elements="344" coveredelements="334" complexity="0" loc="237" ncloc="237" packages="10" files="20" classes="20"/>
     <package name="src">
       <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-      <file name="index.js" path="/home/artem/eslint-plagin-architector/src/index.js">
+      <file name="index.ts" path="/home/artem/eslint-plagin-architector/src/index.ts">
         <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -18,7 +18,7 @@
     </package>
     <package name="src.errors">
       <metrics statements="26" coveredstatements="25" conditionals="14" coveredconditionals="12" methods="3" coveredmethods="3"/>
-      <file name="errorMessage.js" path="/home/artem/eslint-plagin-architector/src/errors/errorMessage.js">
+      <file name="errorMessage.ts" path="/home/artem/eslint-plagin-architector/src/errors/errorMessage.ts">
         <metrics statements="26" coveredstatements="25" conditionals="14" coveredconditionals="12" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -50,7 +50,7 @@
     </package>
     <package name="src.helpers.architectorTree">
       <metrics statements="52" coveredstatements="52" conditionals="10" coveredconditionals="9" methods="14" coveredmethods="14"/>
-      <file name="configurationListAleases.js" path="/home/artem/eslint-plagin-architector/src/helpers/architectorTree/configurationListAleases.js">
+      <file name="configurationListAleases.ts" path="/home/artem/eslint-plagin-architector/src/helpers/architectorTree/configurationListAleases.ts">
         <metrics statements="22" coveredstatements="22" conditionals="2" coveredconditionals="1" methods="6" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -75,7 +75,7 @@
         <line num="50" count="240" type="stmt"/>
         <line num="54" count="120" type="stmt"/>
       </file>
-      <file name="getArchitectureConfiguration.js" path="/home/artem/eslint-plagin-architector/src/helpers/architectorTree/getArchitectureConfiguration.js">
+      <file name="getArchitectureConfiguration.ts" path="/home/artem/eslint-plagin-architector/src/helpers/architectorTree/getArchitectureConfiguration.ts">
         <metrics statements="30" coveredstatements="30" conditionals="8" coveredconditionals="8" methods="8" coveredmethods="8"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -111,13 +111,13 @@
     </package>
     <package name="src.helpers.convertPath">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="absolutePathToFile.js" path="/home/artem/eslint-plagin-architector/src/helpers/convertPath/absolutePathToFile.js">
+      <file name="absolutePathToFile.ts" path="/home/artem/eslint-plagin-architector/src/helpers/convertPath/absolutePathToFile.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="5" count="273" type="stmt"/>
       </file>
-      <file name="pathToCurrentFileWithoutContent.js" path="/home/artem/eslint-plagin-architector/src/helpers/convertPath/pathToCurrentFileWithoutContent.js">
+      <file name="pathToCurrentFileWithoutContent.ts" path="/home/artem/eslint-plagin-architector/src/helpers/convertPath/pathToCurrentFileWithoutContent.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="2" count="363" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -125,7 +125,7 @@
     </package>
     <package name="src.helpers.prepareDataForErrorOutput.currentAndTargetLevels">
       <metrics statements="66" coveredstatements="66" conditionals="12" coveredconditionals="12" methods="4" coveredmethods="4"/>
-      <file name="getCurrentAndTargetLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/currentAndTargetLevels/getCurrentAndTargetLevel.js">
+      <file name="getCurrentAndTargetLevel.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/currentAndTargetLevels/getCurrentAndTargetLevel.ts">
         <metrics statements="30" coveredstatements="30" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -158,7 +158,7 @@
         <line num="64" count="6" type="stmt"/>
         <line num="71" count="1" type="stmt"/>
       </file>
-      <file name="getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/currentAndTargetLevels/getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree.js">
+      <file name="getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/currentAndTargetLevels/getParentLevelForCurrentLevelAndTArgetLevelIfThereIsNoCurrentLevelAndTargetLevelInConfigurationTree.ts">
         <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -174,7 +174,7 @@
         <line num="29" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
       </file>
-      <file name="getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/currentAndTargetLevels/getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree.js">
+      <file name="getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/currentAndTargetLevels/getParentLevelForCurrentLevelIfThereIsNoCurrentLevelInConfigurationTree.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -187,7 +187,7 @@
         <line num="22" count="9" type="stmt"/>
         <line num="24" count="9" type="stmt"/>
       </file>
-      <file name="getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/currentAndTargetLevels/getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree.js">
+      <file name="getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/currentAndTargetLevels/getParentLevelForTargettLevelIfThereIsNoTargetLevelInConfigurationTree.ts">
         <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -206,14 +206,14 @@
     </package>
     <package name="src.helpers.prepareDataForErrorOutput.dataForErrorDetection">
       <metrics statements="36" coveredstatements="35" conditionals="12" coveredconditionals="10" methods="8" coveredmethods="8"/>
-      <file name="absolutePath.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/dataForErrorDetection/absolutePath.js">
+      <file name="absolutePath.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/dataForErrorDetection/absolutePath.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="6" count="33" type="stmt"/>
       </file>
-      <file name="getDataForErrorDetection.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/dataForErrorDetection/getDataForErrorDetection.js">
+      <file name="getDataForErrorDetection.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/dataForErrorDetection/getDataForErrorDetection.ts">
         <metrics statements="27" coveredstatements="26" conditionals="8" coveredconditionals="6" methods="6" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -243,7 +243,7 @@
         <line num="81" count="108" type="stmt"/>
         <line num="86" count="20" type="stmt"/>
       </file>
-      <file name="targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/dataForErrorDetection/targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel.js">
+      <file name="targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/dataForErrorDetection/targetModuleLevelAndCurrentModuleLevelAtTheSameNestingLevel.ts">
         <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -254,7 +254,7 @@
     </package>
     <package name="src.helpers.prepareDataForErrorOutput.generalLevel">
       <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-      <file name="getGeneralLevels.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/generalLevel/getGeneralLevels.js">
+      <file name="getGeneralLevels.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/generalLevel/getGeneralLevels.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -263,7 +263,7 @@
         <line num="10" count="134" type="stmt"/>
         <line num="12" count="19" type="stmt"/>
       </file>
-      <file name="getLowestGeneralLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/generalLevel/getLowestGeneralLevel.js">
+      <file name="getLowestGeneralLevel.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/generalLevel/getLowestGeneralLevel.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="59" type="stmt"/>
@@ -271,7 +271,7 @@
     </package>
     <package name="src.helpers.prepareDataForErrorOutput.moduleLevel">
       <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-      <file name="getModuleLevel.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/moduleLevel/getModuleLevel.js">
+      <file name="getModuleLevel.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/moduleLevel/getModuleLevel.ts">
         <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -287,7 +287,7 @@
     </package>
     <package name="src.helpers.prepareDataForErrorOutput.moduleName">
       <metrics statements="18" coveredstatements="18" conditionals="12" coveredconditionals="10" methods="2" coveredmethods="2"/>
-      <file name="getCurrentAndTargetFolderName.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/moduleName/getCurrentAndTargetFolderName.js">
+      <file name="getCurrentAndTargetFolderName.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/moduleName/getCurrentAndTargetFolderName.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -297,7 +297,7 @@
         <line num="13" count="19" type="stmt"/>
         <line num="14" count="19" type="stmt"/>
       </file>
-      <file name="getNearestName.js" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/moduleName/getNearestName.js">
+      <file name="getNearestName.ts" path="/home/artem/eslint-plagin-architector/src/helpers/prepareDataForErrorOutput/moduleName/getNearestName.ts">
         <metrics statements="11" coveredstatements="11" conditionals="12" coveredconditionals="10" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="32" type="cond" truecount="4" falsecount="0"/>
@@ -314,12 +314,12 @@
     </package>
     <package name="src.helpers.serachByNameFolder">
       <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-      <file name="getModuleByName.js" path="/home/artem/eslint-plagin-architector/src/helpers/serachByNameFolder/getModuleByName.js">
+      <file name="getModuleByName.ts" path="/home/artem/eslint-plagin-architector/src/helpers/serachByNameFolder/getModuleByName.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="2" count="549" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
       </file>
-      <file name="getNameFolder.js" path="/home/artem/eslint-plagin-architector/src/helpers/serachByNameFolder/getNameFolder.js">
+      <file name="getNameFolder.ts" path="/home/artem/eslint-plagin-architector/src/helpers/serachByNameFolder/getNameFolder.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="2" count="99" type="stmt"/>
         <line num="4" count="99" type="stmt"/>
